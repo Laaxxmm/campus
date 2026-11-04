@@ -173,3 +173,10 @@ export const invites = pgTable("invites", {
 - `events` lightweight analytics; `invites` pending emails allowed to sign in.
 - Auth.js tables: `accounts`, `sessions`, `verification_tokens` per @auth/drizzle-adapter (users table extended with app columns).
 - Authorization: no RLS. All tpo/admin queries go through `src/lib/authz.ts` `scoped()` which injects `college_id = user.collegeId`.
+
+## v2 additions (migration 0001, D17)
+- `audit_logs` — append-only record of every TPO/admin mutation (actor, college, action, target, meta, ip).
+- `rate_limits` — fixed-window counters keyed by (bucket, key, window_start).
+- `mocks` + college_id (null = global), mark_correct, negative_mark, sectional, instructions, created_by, created_at.
+- `mock_attempts` + answers (autosaved sheet), option_order, section_ends_at, auto_submitted, correct/wrong counts, marks; partial unique index = one active attempt per (user, mock).
+- `batch_mocks` — TPO schedules a mock for a batch with open/close window.

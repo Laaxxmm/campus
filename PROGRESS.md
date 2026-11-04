@@ -1,11 +1,11 @@
 # PROGRESS — LearnCrew Campus
-Current phase: 2 — Auth + roles + tenancy (v2 gap-fill) | Last green: 2026-11-04T21:40+05:30 | Tests: unit 47/47, e2e 10/10
+Current phase: 4 — Student drill + streak + PWA | Last green: 2026-11-04T22:00+05:30 | Tests: unit 122/122, e2e 11/11
 Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived at docs/ORCHESTRATOR-v1.md; v1 phases 0–3 work carried over (same schema + stack).
 
 ## Phase checklist (✅ only when phase QA gate green)
 - [x] 0 — Design system + architecture docs ✅ (docs/DESIGN.md, ARCHITECTURE.md, SECURITY.md; tokens compile)
 - [x] 1 — Scaffold ✅ (v2 tokens navy/amber + Inter + lucide, env.ts boot validation, CSP nonce + headers, CI workflow, /dev/ui, architecture test)
-- [ ] 2 — Auth + roles + tenancy — done: Auth.js, middleware RBAC, scoped(), cross-college test. Gaps: RBAC matrix test, rate limiter, audit logger, cookie flags test
+- [x] 2 — Auth + roles + tenancy ✅ (RBAC matrix 70 cases, Postgres rate limiter + login/submit wiring, audit logger, cookie flags, cross-college DB test; per-route IDOR e2e added as routes land)
 - [ ] 3 — Question bank + pipeline — done: schema, 260 golden verified Q, generate/qa/dedupe/quant-check (--dry-run), idempotent seed. Gap: 600-Q seed count (Blocked: needs ANTHROPIC_API_KEY — see Blocked), verifier fixture test
 - [ ] 4 — Student drill + streak + PWA — done: drill engine, grading, sync, offline queue, SW, e2e drill + offline. Gaps: axe check, offline-shell e2e, profile tab
 - [ ] 5 — Adaptive engine + real mocks
@@ -15,12 +15,11 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 - [ ] 9 — Pilot hardening
 - [ ] 10 — Final QA matrix
 
-## Current phase tasks
-- [ ] RBAC matrix unit test (every route prefix × role)
-- [ ] rate limiter (Postgres fixed window) + test: login 5/15min IP+email, submit 120/min, explain 5/min, import 5/hr
-- [ ] audit_logs table + logger + test
-- [ ] session policy: 30-day max, 7-day idle; cookie flags test (done in e2e/security.spec.ts)
-- [ ] IDOR e2e for every id route (grows with phases 5–7)
+## Current phase tasks (phase 3 v2 gap + phase 4 gate)
+- [ ] QA verifier fixture test (blind-solve mismatch → review)
+- [ ] Profile tab (leaderboard link, privacy, sign out)
+- [ ] axe a11y check on student screens
+- [ ] offline-shell e2e (SW installed → /offline + cached drill page load offline)
 
 ## Feature test registry
 | Feature | Test file | Status |
@@ -40,6 +39,9 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 | CSRF origin check on JSON APIs | tests/security.test.ts, e2e/security.spec.ts | ✅ |
 | Env validation fails boot | tests/security.test.ts | ✅ |
 | UI never imports db; no raw SQL/innerHTML | tests/architecture.test.ts | ✅ |
+| RBAC matrix (14 routes × 5 roles) | src/lib/rbac.test.ts | ✅ |
+| Rate limits (login, submit, atomic) | tests/rate-audit.test.ts, e2e/auth.spec.ts | ✅ |
+| Audit log append + scope | tests/rate-audit.test.ts | ✅ |
 
 ## Decisions (ADR-lite)
 - D1 2026-11-04: `learncrew-campus-product-pack.md` was NOT provided to the build session. Taxonomy, the "12 samples", and pack prompts (system/variant/qa/seed) are authored by the orchestrator from the summaries in ORCHESTRATOR.md. Replace with pack versions when available.
@@ -56,6 +58,8 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 - D12 2026-11-04: v2 "admin (super)" maps to our `superadmin` (+ `content` for review). College `admin` role kept (roster/batches) since schema has it.
 - D13 2026-11-04: Student routes stay at root (`/today` not `/app/today`); QA matrix rows reference these paths.
 - D14 2026-11-04: v2 "db.select only in scoped.ts" enforced as: `src/app/**` may not import `@/db`/drizzle (test), and every staff query uses `scoped()`. A stricter lint rule would forbid student-own queries that are already keyed by session user id.
+- D18 2026-11-04: Login rate limit is per (IP, email) only — no IP-only cap, because campus NAT shares one IP across a college. Sessions: 7-day idle expiry rolled daily (Auth.js DB sessions have no creation timestamp, so the 30-day absolute cap is not enforced; revisit with a sessions.created_at column).
+- D17 2026-11-04: Migration 0001 adds audit_logs, rate_limits, batch_mocks and v2 mock-exam columns (negative marks, sectional, autosaved answers, one-active-attempt partial unique index).
 - D16 2026-11-04: CSRF for custom JSON routes = same-origin `Origin` check + `application/json` content-type (forces preflight) + SameSite=Lax cookies; no double-submit token (server actions already have Next origin check).
 - D15 2026-11-04: Bank seeded at 260 hand-authored, machine-verified golden questions (v1 gate ≥120 met; v2 asks 600). The designed route to 600–2,000 is the Haiku-batch → Sonnet-QA pipeline, which needs ANTHROPIC_API_KEY (~$30 per the pack). Not hand-authoring 340 more in-session.
 
@@ -65,6 +69,7 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 - [ ] Railway login (Phase 8).
 
 ## Log
+- 2026-11-04T22:00+05:30 phase 2 (v2) done: migration 0001 (audit_logs, rate_limits, batch_mocks, mock exam cols), rate limiter wired to login + sync, audit lib, 7-day idle sessions, RBAC matrix; 122 unit + 11 e2e green.
 - 2026-11-04T21:40+05:30 phase 1 (v2) done: retheme to navy/amber + Inter + lucide (no emoji/confetti), env.ts, CSP nonce middleware (all e2e pass under CSP), CI workflow, /dev/ui, postcss override → npm audit 0 vulns.
 - 2026-11-04T21:10+05:30 phase 3 (v1) done: 260 golden Q across 42 topics (5 parallel authoring agents, every answer re-solved in code), pack samples added, seed idempotent (2 runs identical), 500-student seed OK. v2 spec + product pack received; adopted v2.
 - 2026-11-04T20:25+05:30 phase 2 done: Auth.js v5 (Resend provider w/ console fallback, Drizzle adapter, DB sessions, invite-only signIn), Node-runtime middleware role routing (403 rewrite), authz requireUser/requireRole/scoped; 12 vitest (incl. cross-college DB isolation) + 5 Playwright green.

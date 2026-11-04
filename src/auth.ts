@@ -14,7 +14,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     sessionsTable: sessions,
     verificationTokensTable: verificationTokens,
   }),
-  session: { strategy: "database", maxAge: 60 * 60 * 24 * 60, updateAge: 60 * 60 * 24 },
+  // v2: 7-day idle expiry, rolled forward at most once a day while active (D18).
+  session: { strategy: "database", maxAge: 60 * 60 * 24 * 7, updateAge: 60 * 60 * 24 },
   trustHost: true,
   providers: [
     Resend({

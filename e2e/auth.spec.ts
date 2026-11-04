@@ -30,3 +30,17 @@ test("anonymous is redirected to login", async ({ page }) => {
   await page.goto("/today");
   await expect(page).toHaveURL(/\/login/);
 });
+
+test("login is rate limited per ip+email (5 / 15 min)", async ({ page }) => {
+  const email = "ratelimit.probe@nowhere.in";
+  for (let i = 0; i < 5; i++) {
+    await page.goto("/login");
+    await page.getByLabel(/college email/i).fill(email);
+    await page.getByRole("button", { name: /send login link/i }).click();
+    await expect(page.getByText(/isn.t registered/i)).toBeVisible();
+  }
+  await page.goto("/login");
+  await page.getByLabel(/college email/i).fill(email);
+  await page.getByRole("button", { name: /send login link/i }).click();
+  await expect(page.getByText(/too many attempts/i)).toBeVisible();
+});

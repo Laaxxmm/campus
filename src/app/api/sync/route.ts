@@ -2,6 +2,7 @@ import { z } from "zod";
 import { requireUser, UnauthorizedError } from "@/lib/authz";
 import { GradeError, gradeAttempt } from "@/lib/drill";
 import { csrfGuard } from "@/lib/http";
+import { hit, tooMany } from "@/lib/rate-limit";
 
 export const dynamic = "force-dynamic";
 
@@ -33,6 +34,9 @@ export async function POST(req: Request) {
   if (user.role !== "student") return Response.json({ error: "forbidden" }, { status: 403 });
   const parsed = Body.safeParse(await req.json().catch(() => null));
   if (!parsed.success) return Response.json({ error: "bad request", issues: parsed.error.issues.slice(0, 5) }, { status: 400 });
+
+  const rl = await hit("submit", user.id, Math.max(1, parsed.data.attempts.length));
+  if (!rl.ok) return tooMany(rl);
 
   const results = [];
   for (const a of parsed.data.attempts) {

@@ -1,4 +1,5 @@
 /* Source: ORCHESTRATOR.md § DATABASE SCHEMA. Keep docs/schema.md in sync. */
+import { sql } from "drizzle-orm";
 import { pgTable, pgEnum, uuid, text, integer, boolean, timestamp, date, jsonb, real, primaryKey, index, uniqueIndex, vector } from "drizzle-orm/pg-core";
 
 export const role = pgEnum("role", ["student", "tpo", "admin", "content", "superadmin"]);
@@ -136,7 +137,25 @@ export const mocks = pgTable("mocks", {
   company: text("company").notNull(), title: text("title").notNull(),
   blueprint: jsonb("blueprint").notNull(),  // [{section, topic?, count, difficulty:[min,max], timeSec}]
   durationSec: integer("duration_sec").notNull(),
+  // v2 exam UX (D17)
+  collegeId: uuid("college_id").references(() => colleges.id),   // null = global LearnCrew mock; set = TPO-created for one college
+  markCorrect: real("mark_correct").notNull().default(1),
+  negativeMark: real("negative_mark").notNull().default(0),       // marks deducted per wrong answer
+  sectional: boolean("sectional").notNull().default(false),       // per-section timers when true
+  instructions: text("instructions"),
+  createdBy: uuid("created_by"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
 });
+
+export const batchMocks = pgTable("batch_mocks", {   // TPO schedules a mock for a batch (D17)
+  id: uuid("id").primaryKey().defaultRandom(),
+  collegeId: uuid("college_id").notNull().references(() => colleges.id),
+  batchId: uuid("batch_id").notNull().references(() => batches.id),
+  mockId: uuid("mock_id").notNull().references(() => mocks.id),
+  opensAt: timestamp("opens_at").notNull(), closesAt: timestamp("closes_at").notNull(),
+  createdBy: uuid("created_by").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, t => [index("batch_mocks_college_idx").on(t.collegeId, t.batchId)]);
 export const mockAttempts = pgTable("mock_attempts", {
   id: uuid("id").primaryKey().defaultRandom(),
   mockId: uuid("mock_id").notNull().references(() => mocks.id),
@@ -145,7 +164,13 @@ export const mockAttempts = pgTable("mock_attempts", {
   score: integer("score"), sectionScores: jsonb("section_scores"),
   tabSwitches: integer("tab_switches").notNull().default(0),
   startedAt: timestamp("started_at").defaultNow().notNull(), endsAt: timestamp("ends_at").notNull(), endedAt: timestamp("ended_at"),
-});
+  // v2 exam UX (D17): autosaved answer sheet keyed by question id, per-student option order, outcome detail
+  answers: jsonb("answers").$type<Record<string, { choice: number | null; flagged: boolean; visited: boolean; timeMs: number }>>().notNull().default({}),
+  optionOrder: jsonb("option_order").$type<number[][]>().notNull().default([]),
+  sectionEndsAt: jsonb("section_ends_at").$type<Record<string, string>>(),
+  autoSubmitted: boolean("auto_submitted").notNull().default(false),
+  correctCount: integer("correct_count"), wrongCount: integer("wrong_count"), marks: real("marks"),
+}, t => [index("mock_attempts_user_idx").on(t.userId, t.mockId), uniqueIndex("mock_attempts_one_active_uq").on(t.userId, t.mockId).where(sql`ended_at is null`)]);
 
 export const explanationsCache = pgTable("explanations_cache", {
   questionId: text("question_id").notNull().references(() => questions.id),
@@ -172,6 +197,20 @@ export const events = pgTable("events", {   // lightweight analytics
   name: text("name").notNull(), props: jsonb("props"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 }, t => [index("events_college_time_idx").on(t.collegeId, t.createdAt)]);
+
+export const auditLogs = pgTable("audit_logs", {   // v2: append-only, every TPO/admin mutation
+  id: uuid("id").primaryKey().defaultRandom(),
+  actorId: uuid("actor_id"), collegeId: uuid("college_id"),
+  action: text("action").notNull(), targetType: text("target_type"), targetId: text("target_id"),
+  meta: jsonb("meta"), ip: text("ip"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, t => [index("audit_college_time_idx").on(t.collegeId, t.createdAt)]);
+
+export const rateLimits = pgTable("rate_limits", {   // fixed-window counters (no Redis until >1k actives)
+  bucket: text("bucket").notNull(), key: text("key").notNull(),
+  windowStart: timestamp("window_start").notNull(),
+  count: integer("count").notNull().default(0),
+}, t => [primaryKey({ columns: [t.bucket, t.key, t.windowStart] })]);
 
 export const invites = pgTable("invites", {
   id: uuid("id").primaryKey().defaultRandom(),

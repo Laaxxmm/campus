@@ -19,6 +19,7 @@ export const en = {
     submit: "Send login link",
     notInvited: "This email isn't registered. Ask your TPO to add you.",
     genericError: "Couldn't send the link. Try again.",
+    rateLimited: "Too many attempts. Please wait 15 minutes and try again.",
     checkTitle: "Check your email",
     checkBody: "We sent a login link. Open it on this phone. It works for 24 hours.",
     devHint: "Dev mode: the link is printed in the server console.",

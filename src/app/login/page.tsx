@@ -1,6 +1,9 @@
 import { redirect } from "next/navigation";
 import { AuthError } from "next-auth";
+import { headers } from "next/headers";
 import { signIn } from "@/auth";
+import { hit } from "@/lib/rate-limit";
+import { clientIp } from "@/lib/http";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { t } from "@/i18n/en";
@@ -9,7 +12,11 @@ async function sendLink(formData: FormData) {
   "use server";
   const email = String(formData.get("email") ?? "").trim().toLowerCase();
   const next = String(formData.get("next") ?? "");
-  if (!email) redirect("/login?error=missing");
+  if (!email || email.length > 254) redirect("/login?error=missing");
+  const ip = clientIp({ headers: await headers() });
+  // Per ip+email only: campus Wi-Fi puts hundreds of students behind one NAT IP (D18).
+  const limit = await hit("login", `${ip}|${email}`);
+  if (!limit.ok) redirect("/login?error=rate");
   try {
     await signIn("resend", { email, redirectTo: next.startsWith("/") ? next : "/home" });
   } catch (e) {
@@ -20,7 +27,7 @@ async function sendLink(formData: FormData) {
 
 export default async function LoginPage({ searchParams }: { searchParams: Promise<{ error?: string; next?: string }> }) {
   const { error, next } = await searchParams;
-  const msg = error === "not_invited" || error === "AccessDenied" ? t.login.notInvited : error ? t.login.genericError : null;
+  const msg = error === "not_invited" || error === "AccessDenied" ? t.login.notInvited : error === "rate" ? t.login.rateLimited : error ? t.login.genericError : null;
   return (
     <main className="mx-auto flex min-h-dvh max-w-sm flex-col justify-center px-4">
       <div className="mb-8 text-2xl font-bold text-ink-900">{t.appName}</div>
