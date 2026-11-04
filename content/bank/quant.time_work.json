@@ -1,0 +1,217 @@
+[
+ {
+  "id": "Q-QNT-TWK-0001",
+  "section": "quant",
+  "topic": "time_work",
+  "subtopic": "individual_combined",
+  "stem": "Anil can complete a data-entry job in 10 days and Bala can complete the same job in 15 days. Working together, in how many days will they complete the job?",
+  "options": [
+   "12.5 days",
+   "6 days",
+   "5 days",
+   "25 days"
+  ],
+  "answer_index": 1,
+  "explanation": "Anil does 1/10 of the job per day and Bala 1/15. Together: 1/10 + 1/15 = 3/30 + 2/30 = 5/30 = 1/6 of the job per day, so they need 6 days.",
+  "shortcut": "Together = ab/(a + b) = (10 × 15)/25 = 6 days",
+  "company_tags": [
+   "tcs_nqt",
+   "wipro"
+  ],
+  "difficulty": 1,
+  "time_sec": 40,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "TWK-COMB-01",
+  "version": 1
+ },
+ {
+  "id": "Q-QNT-TWK-0002",
+  "section": "quant",
+  "topic": "time_work",
+  "subtopic": "efficiency",
+  "stem": "Meena is twice as efficient as Kavya. Working together, they finish a project in 12 days. How many days would Kavya alone take to finish it?",
+  "options": [
+   "18 days",
+   "24 days",
+   "72 days",
+   "36 days"
+  ],
+  "answer_index": 3,
+  "explanation": "Let Kavya do k of the work per day; Meena does 2k. Together 3k = 1/12, so k = 1/36. Kavya alone needs 36 days (Meena alone would need 18).",
+  "shortcut": "Efficiency 2 : 1 → 3 units/day × 12 days = 36 units; Kavya does 1 unit/day → 36 days",
+  "company_tags": [
+   "infosys",
+   "cognizant"
+  ],
+  "difficulty": 2,
+  "time_sec": 55,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "TWK-EFF-01",
+  "version": 1
+ },
+ {
+  "id": "Q-QNT-TWK-0003",
+  "section": "quant",
+  "topic": "time_work",
+  "subtopic": "individual_combined",
+  "stem": "P and Q together can finish a task in 12 days, Q and R together in 15 days, and P and R together in 20 days. In how many days can P, Q and R working together finish the task?",
+  "options": [
+   "10 days",
+   "5 days",
+   "15⅔ days",
+   "12 days"
+  ],
+  "answer_index": 0,
+  "explanation": "Adding the three pair rates counts each person twice: 2(P + Q + R) = 1/12 + 1/15 + 1/20 = (5 + 4 + 3)/60 = 1/5. So P + Q + R = 1/10 of the task per day, i.e. 10 days.",
+  "shortcut": "Total work = LCM 60 units; pair rates 5, 4, 3 sum to 12 = twice the trio's rate → 6 units/day → 60/6 = 10",
+  "company_tags": [
+   "tcs_nqt",
+   "accenture"
+  ],
+  "difficulty": 3,
+  "time_sec": 75,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "TWK-COMB-02",
+  "version": 1
+ },
+ {
+  "id": "Q-QNT-TWK-0004",
+  "section": "quant",
+  "topic": "time_work",
+  "subtopic": "work_wages",
+  "stem": "Ramesh can do a job in 6 days and Dinesh can do it in 9 days. They work together, finish the job and are paid ₹4,500 in total. What is Ramesh's fair share of the payment?",
+  "options": [
+   "₹1,800",
+   "₹2,250",
+   "₹2,700",
+   "₹3,000"
+  ],
+  "answer_index": 2,
+  "explanation": "Wages are shared in the ratio of work done. Since both work the same number of days, that ratio equals their daily rates: 1/6 : 1/9 = 3 : 2. Ramesh gets 3/5 × ₹4,500 = ₹2,700.",
+  "shortcut": "Share ratio = inverse of days taken: 9 : 6 = 3 : 2",
+  "company_tags": [
+   "wipro",
+   "capgemini"
+  ],
+  "difficulty": 3,
+  "time_sec": 75,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "TWK-WAGE-01",
+  "version": 1
+ },
+ {
+  "id": "Q-QNT-TWK-0005",
+  "section": "quant",
+  "topic": "time_work",
+  "subtopic": "individual_combined",
+  "stem": "Arjun can finish a piece of work in 24 days and Bhavna in 36 days. They start together, but Arjun leaves 6 days before the work is completed. In how many days is the whole work completed?",
+  "options": [
+   "14.4 days",
+   "20.4 days",
+   "18 days",
+   "16 days"
+  ],
+  "answer_index": 2,
+  "explanation": "Let the work take T days. Bhavna works all T days and Arjun works T − 6 days: (T − 6)/24 + T/36 = 1. Multiplying by 72: 3(T − 6) + 2T = 72 → 5T = 90 → T = 18 days.",
+  "shortcut": "Bhavna alone does the last 6 days (6/36 = 1/6); the other 5/6 at combined rate 5/72 per day takes 12 days; 12 + 6 = 18",
+  "company_tags": [
+   "tcs_nqt",
+   "infosys"
+  ],
+  "difficulty": 4,
+  "time_sec": 100,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "TWK-COMB-03",
+  "version": 1
+ },
+ {
+  "id": "Q-QNT-TWK-0006",
+  "section": "quant",
+  "topic": "time_work",
+  "subtopic": "individual_combined",
+  "stem": "Sneha can complete a job in 12 days and Farhan can complete it in 18 days. They work on alternate days, with Sneha working on the first day. In how many days will the job be completed?",
+  "options": [
+   "14⅓ days",
+   "14½ days",
+   "15 days",
+   "7.2 days"
+  ],
+  "answer_index": 0,
+  "explanation": "One 2-day cycle completes 1/12 + 1/18 = 5/36 of the job. After 7 cycles (14 days), 35/36 is done. The remaining 1/36 is done by Sneha on day 15 at 1/12 per day, taking (1/36) ÷ (1/12) = 1/3 day. Total = 14⅓ days.",
+  "shortcut": "Total work 36 units: Sneha 3/day, Farhan 2/day → 5 units per 2 days; 35 units in 14 days, last 1 unit takes Sneha 1/3 day",
+  "company_tags": [
+   "cognizant",
+   "accenture"
+  ],
+  "difficulty": 4,
+  "time_sec": 100,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "TWK-ALT-01",
+  "version": 1
+ },
+ {
+  "id": "Q-QNT-TWK-0007",
+  "section": "quant",
+  "topic": "time_work",
+  "subtopic": "efficiency",
+  "stem": "4 men and 6 women can finish a job in 8 days, while 3 men and 7 women can finish the same job in 10 days. In how many days will 10 women alone finish the job?",
+  "options": [
+   "50 days",
+   "36 days",
+   "44 days",
+   "40 days"
+  ],
+  "answer_index": 3,
+  "explanation": "Let a man do m units and a woman w units per day. The work is the same: 8(4m + 6w) = 10(3m + 7w) → 32m + 48w = 30m + 70w → m = 11w. Work = 8(44w + 6w) = 400w. 10 women do 10w per day, so they need 400w ÷ 10w = 40 days.",
+  "shortcut": "Equate total work and convert men into women-units (1 man = 11 women)",
+  "company_tags": [
+   "tcs_nqt",
+   "capgemini"
+  ],
+  "difficulty": 5,
+  "time_sec": 125,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "TWK-EFF-02",
+  "version": 1
+ },
+ {
+  "id": "Q-QNT-TWK-0008",
+  "section": "quant",
+  "topic": "time_work",
+  "subtopic": "individual_combined",
+  "stem": "Ravi can finish a project in 12 days and Meena can finish it in 18 days. They work together for 4 days, then Ravi leaves. In how many more days will Meena finish the remaining work?",
+  "options": [
+   "6",
+   "8",
+   "7",
+   "9"
+  ],
+  "answer_index": 1,
+  "explanation": "Together they do 1/12 + 1/18 = 5/36 per day. In 4 days: 20/36 done, 16/36 left. Meena alone does 1/18 per day, so she needs (16/36) × 18 = 8 days.",
+  "shortcut": "Work left × days for one person",
+  "company_tags": [
+   "accenture"
+  ],
+  "difficulty": 3,
+  "time_sec": 75,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "TWK-LEAVE-PACK",
+  "version": 1
+ }
+]

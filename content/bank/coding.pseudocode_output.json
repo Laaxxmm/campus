@@ -1,0 +1,191 @@
+[
+ {
+  "id": "Q-COD-PSE-0001",
+  "section": "coding",
+  "topic": "pseudocode_output",
+  "subtopic": "loops",
+  "stem": "What will be the output of the following pseudo-code?\n\n```\nInteger s = 0\nfor (i = 1 to 5)\n  s = s + i * 2\nend for\nprint s\n```",
+  "options": [
+   "15",
+   "30",
+   "20",
+   "40"
+  ],
+  "answer_index": 1,
+  "explanation": "The loop adds 2i for i = 1..5: 2 + 4 + 6 + 8 + 10 = 30. So s = 30 is printed.",
+  "shortcut": "2 × (1+2+3+4+5) = 2 × 15",
+  "company_tags": [
+   "tcs_nqt",
+   "capgemini"
+  ],
+  "difficulty": 1,
+  "time_sec": 30,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "PSE-LOOP-01",
+  "version": 1
+ },
+ {
+  "id": "Q-COD-PSE-0002",
+  "section": "coding",
+  "topic": "pseudocode_output",
+  "subtopic": "conditionals",
+  "stem": "What will be the output of the following pseudo-code?\n\n```\nInteger a = 12, b = 7\nif (a mod 5 > b mod 5)\n  print a - b\nelse\n  print a + b\nend if\n```\n\nNote: mod gives the remainder after division.",
+  "options": [
+   "5",
+   "2",
+   "12",
+   "19"
+  ],
+  "answer_index": 3,
+  "explanation": "a mod 5 = 12 mod 5 = 2 and b mod 5 = 7 mod 5 = 2. The condition 2 > 2 is false, so the else branch runs and prints a + b = 12 + 7 = 19.",
+  "shortcut": null,
+  "company_tags": [
+   "tcs_nqt",
+   "accenture"
+  ],
+  "difficulty": 2,
+  "time_sec": 40,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "PSE-COND-01",
+  "version": 1
+ },
+ {
+  "id": "Q-COD-PSE-0003",
+  "section": "coding",
+  "topic": "pseudocode_output",
+  "subtopic": "conditionals",
+  "stem": "What will be the output of the following pseudo-code?\n\n```\nInteger a = 8, b = 3, c = 5\nif (a > b and b > c)\n  print 1\nelse if (a > c or c < b)\n  if (a mod b == c mod b)\n    print 2\n  else\n    print 3\n  end if\nelse\n  print 4\nend if\n```\n\nNote: mod gives the remainder after division.",
+  "options": [
+   "2",
+   "1",
+   "3",
+   "4"
+  ],
+  "answer_index": 0,
+  "explanation": "First condition: a > b is true but b > c (3 > 5) is false, so 'and' gives false. Second: a > c (8 > 5) is true, so 'or' gives true. Inner check: 8 mod 3 = 2 and 5 mod 3 = 2, equal, so 2 is printed.",
+  "shortcut": null,
+  "company_tags": [
+   "capgemini",
+   "cognizant"
+  ],
+  "difficulty": 3,
+  "time_sec": 60,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "PSE-COND-02",
+  "version": 1
+ },
+ {
+  "id": "Q-COD-PSE-0004",
+  "section": "coding",
+  "topic": "pseudocode_output",
+  "subtopic": "loops",
+  "stem": "What will be the output of the following pseudo-code?\n\n```\nInteger x = 0\nfor (i = 1 to 10)\n  if (i mod 3 == 0)\n    continue\n  end if\n  if (x > 20)\n    break\n  end if\n  x = x + i\nend for\nprint x\n```\n\nNote: continue skips to the next iteration; break exits the loop.",
+  "options": [
+   "19",
+   "34",
+   "27",
+   "37"
+  ],
+  "answer_index": 2,
+  "explanation": "Multiples of 3 are skipped. x: i=1→1, i=2→3, i=4→7, i=5→12, i=7→19. At i=8, x = 19 is not > 20, so x = 27. i=9 is skipped. At i=10, x = 27 > 20, so the loop breaks. Output 27.",
+  "shortcut": null,
+  "company_tags": [
+   "tcs_nqt",
+   "accenture",
+   "capgemini"
+  ],
+  "difficulty": 4,
+  "time_sec": 90,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "PSE-LOOP-02",
+  "version": 1
+ },
+ {
+  "id": "Q-COD-PSE-0005",
+  "section": "coding",
+  "topic": "pseudocode_output",
+  "subtopic": "functions",
+  "stem": "What will be the output of the following pseudo-code?\n\n```\nInteger f(Integer a, Integer b)\n  Integer t = 0\n  while (b > 0)\n    if (b mod 2 == 1)\n      t = t + a\n    end if\n    a = a * 2\n    b = b / 2\n  end while\n  return t\nend function\n\nprint f(6, 11) - f(11, 6)\n```\n\nNote: / is integer division and mod gives the remainder.",
+  "options": [
+   "0",
+   "66",
+   "-5",
+   "5"
+  ],
+  "answer_index": 0,
+  "explanation": "f is shift-and-add multiplication. f(6,11): b = 11,5,2,1 with a = 6,12,24,48; odd b adds 6+12+48 = 66. f(11,6): b = 6,3,1 with a = 11,22,44; odd b adds 22+44 = 66. Both equal 6 × 11, so 66 − 66 = 0.",
+  "shortcut": "f(a, b) = a × b",
+  "company_tags": [
+   "tcs_nqt",
+   "cognizant"
+  ],
+  "difficulty": 4,
+  "time_sec": 120,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "PSE-FUNC-01",
+  "version": 1
+ },
+ {
+  "id": "Q-COD-PSE-0006",
+  "section": "coding",
+  "topic": "pseudocode_output",
+  "subtopic": "functions",
+  "stem": "What will be the output of the following pseudo-code?\n\n```\nInteger g(Integer n)\n  Integer c = 0\n  while (n > 0)\n    n = n & (n - 1)\n    c = c + 1\n  end while\n  return c\nend function\n\nprint g(45) + g(64) * 10\n```\n\nNote: & is bitwise AND.",
+  "options": [
+   "41",
+   "24",
+   "5",
+   "14"
+  ],
+  "answer_index": 3,
+  "explanation": "n & (n − 1) clears the lowest set bit, so g counts set bits. 45 = 101101 in binary has 4 set bits, so g(45) = 4. 64 = 1000000 has 1 set bit, so g(64) = 1. Output = 4 + 1 × 10 = 14.",
+  "shortcut": "n & (n−1) removes one 1-bit per iteration",
+  "company_tags": [
+   "tcs_nqt",
+   "capgemini"
+  ],
+  "difficulty": 5,
+  "time_sec": 120,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "PSE-FUNC-02",
+  "version": 1
+ },
+ {
+  "id": "Q-COD-PSE-0007",
+  "section": "coding",
+  "topic": "pseudocode_output",
+  "subtopic": "functions",
+  "stem": "What does this Python code print?\n```\nx = [1, 2, 3]\ny = x\ny.append(4)\nprint(len(x))\n```",
+  "options": [
+   "3",
+   "4",
+   "Error",
+   "1"
+  ],
+  "answer_index": 1,
+  "explanation": "y = x copies the reference, not the list, so x and y name the same list. Appending 4 through y changes that list, so len(x) is 4.",
+  "shortcut": "Assignment shares mutable objects",
+  "company_tags": [
+   "tcs_nqt"
+  ],
+  "difficulty": 3,
+  "time_sec": 40,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "PSE-ALIAS-PACK",
+  "version": 1
+ }
+]

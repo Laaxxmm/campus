@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   description: "Placement-aptitude practice for colleges: 10 questions a day, readiness per company.",
   manifest: "/manifest.webmanifest",
   icons: { icon: "/icons/icon-192.png", apple: "/icons/icon-192.png" },
+  appleWebApp: { capable: true, title: "LearnCrew", statusBarStyle: "default" },
 };
 
 export const viewport: Viewport = {

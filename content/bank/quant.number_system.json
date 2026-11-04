@@ -1,0 +1,190 @@
+[
+ {
+  "id": "Q-QNT-NUM-0001",
+  "section": "quant",
+  "topic": "number_system",
+  "subtopic": "unit_digit",
+  "stem": "What is the unit digit of 2³¹?",
+  "options": [
+   "2",
+   "4",
+   "8",
+   "6"
+  ],
+  "answer_index": 2,
+  "explanation": "Unit digits of powers of 2 repeat in a cycle of 4: 2, 4, 8, 6. Since 31 = 4 × 7 + 3, 2³¹ has the same unit digit as 2³ = 8.",
+  "shortcut": "Divide the power by 4; use the remainder (0 → 4th term)",
+  "company_tags": [
+   "tcs_nqt",
+   "wipro"
+  ],
+  "difficulty": 1,
+  "time_sec": 40,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "NUM-UNIT-01",
+  "version": 1
+ },
+ {
+  "id": "Q-QNT-NUM-0002",
+  "section": "quant",
+  "topic": "number_system",
+  "subtopic": "divisibility",
+  "stem": "The six-digit number 47A562 is divisible by 9, where A is a single digit. What is the value of A?",
+  "options": [
+   "3",
+   "6",
+   "2",
+   "9"
+  ],
+  "answer_index": 0,
+  "explanation": "A number is divisible by 9 when its digit sum is. 4 + 7 + A + 5 + 6 + 2 = 24 + A. The next multiple of 9 is 27, so A = 3 (A = 12 is not a digit). Check: 473562 ÷ 9 = 52618.",
+  "shortcut": "Digit sum must be a multiple of 9",
+  "company_tags": [
+   "infosys",
+   "cognizant"
+  ],
+  "difficulty": 2,
+  "time_sec": 50,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "NUM-DIV-01",
+  "version": 1
+ },
+ {
+  "id": "Q-QNT-NUM-0003",
+  "section": "quant",
+  "topic": "number_system",
+  "subtopic": "factors",
+  "stem": "How many positive factors does 720 have?",
+  "options": [
+   "24",
+   "30",
+   "36",
+   "28"
+  ],
+  "answer_index": 1,
+  "explanation": "720 = 2⁴ × 3² × 5¹. Number of factors = (4 + 1)(2 + 1)(1 + 1) = 5 × 3 × 2 = 30.",
+  "shortcut": "For p^a × q^b × r^c, factors = (a+1)(b+1)(c+1)",
+  "company_tags": [
+   "tcs_nqt",
+   "accenture"
+  ],
+  "difficulty": 3,
+  "time_sec": 70,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "NUM-FAC-01",
+  "version": 1
+ },
+ {
+  "id": "Q-QNT-NUM-0004",
+  "section": "quant",
+  "topic": "number_system",
+  "subtopic": "divisibility",
+  "stem": "How many integers from 1 to 1000 (both inclusive) are divisible by neither 3 nor 7?",
+  "options": [
+   "428",
+   "524",
+   "619",
+   "572"
+  ],
+  "answer_index": 3,
+  "explanation": "Multiples of 3: ⌊1000/3⌋ = 333. Multiples of 7: ⌊1000/7⌋ = 142. Multiples of both (21): ⌊1000/21⌋ = 47. Divisible by 3 or 7 = 333 + 142 − 47 = 428. Neither = 1000 − 428 = 572.",
+  "shortcut": "Inclusion–exclusion: N − (A + B − A∩B)",
+  "company_tags": [
+   "tcs_nqt",
+   "capgemini"
+  ],
+  "difficulty": 4,
+  "time_sec": 95,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "NUM-DIV-02",
+  "version": 1
+ },
+ {
+  "id": "Q-QNT-NUM-0005",
+  "section": "quant",
+  "topic": "number_system",
+  "subtopic": "remainders",
+  "stem": "What is the remainder when 5⁷⁵ is divided by 13?",
+  "options": [
+   "5",
+   "12",
+   "8",
+   "1"
+  ],
+  "answer_index": 2,
+  "explanation": "5² = 25 ≡ −1 (mod 13), so 5⁴ ≡ 1. Since 75 = 4 × 18 + 3, 5⁷⁵ ≡ 5³ = 125. 125 = 13 × 9 + 8, so the remainder is 8.",
+  "shortcut": "Find a small power ≡ 1 (or −1) and reduce the exponent",
+  "company_tags": [
+   "tcs_nqt",
+   "infosys"
+  ],
+  "difficulty": 4,
+  "time_sec": 95,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "NUM-REM-01",
+  "version": 1
+ },
+ {
+  "id": "Q-QNT-NUM-0006",
+  "section": "quant",
+  "topic": "number_system",
+  "subtopic": "remainders",
+  "stem": "What is the remainder when 17²³ + 23²³ is divided by 40?",
+  "options": [
+   "0",
+   "1",
+   "6",
+   "17"
+  ],
+  "answer_index": 0,
+  "explanation": "For odd n, aⁿ + bⁿ is always divisible by a + b. Here n = 23 is odd and 17 + 23 = 40, so 17²³ + 23²³ is divisible by 40 and the remainder is 0.",
+  "shortcut": "aⁿ + bⁿ is divisible by (a + b) when n is odd",
+  "company_tags": [
+   "tcs_nqt",
+   "accenture"
+  ],
+  "difficulty": 5,
+  "time_sec": 120,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "NUM-REM-02",
+  "version": 1
+ },
+ {
+  "id": "Q-QNT-NUM-0007",
+  "section": "quant",
+  "topic": "number_system",
+  "subtopic": "remainders",
+  "stem": "What is the remainder when 7^45 is divided by 5?",
+  "options": [
+   "1",
+   "2",
+   "3",
+   "4"
+  ],
+  "answer_index": 1,
+  "explanation": "7 ≡ 2 (mod 5). Powers of 2 mod 5 cycle 2, 4, 3, 1 with period 4. 45 mod 4 = 1, so 7^45 ≡ 2^1 = 2.",
+  "shortcut": "Find the cycle of last-digit remainders",
+  "company_tags": [
+   "capgemini"
+  ],
+  "difficulty": 4,
+  "time_sec": 75,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "NUM-REM-CYCLE-PACK",
+  "version": 1
+ }
+]

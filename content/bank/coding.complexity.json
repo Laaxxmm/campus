@@ -1,0 +1,164 @@
+[
+ {
+  "id": "Q-COD-CPX-0001",
+  "section": "coding",
+  "topic": "complexity",
+  "subtopic": "search_sort",
+  "stem": "What is the worst-case time complexity of binary search on a sorted array of n elements?",
+  "options": [
+   "O(n)",
+   "O(log n)",
+   "O(n log n)",
+   "O(1)"
+  ],
+  "answer_index": 1,
+  "explanation": "Each comparison halves the remaining search range: n, n/2, n/4, … , 1. About log₂ n halvings are needed in the worst case, so binary search is O(log n).",
+  "shortcut": null,
+  "company_tags": [
+   "tcs_nqt",
+   "infosys",
+   "wipro"
+  ],
+  "difficulty": 1,
+  "time_sec": 20,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "CPX-SRCH-01",
+  "version": 1
+ },
+ {
+  "id": "Q-COD-CPX-0002",
+  "section": "coding",
+  "topic": "complexity",
+  "subtopic": "search_sort",
+  "stem": "Which of the following sorting algorithms has a worst-case time complexity of O(n log n)?",
+  "options": [
+   "Quick sort",
+   "Insertion sort",
+   "Merge sort",
+   "Bubble sort"
+  ],
+  "answer_index": 2,
+  "explanation": "Merge sort always splits the array in half (log n levels) and merges each level in O(n), so it is O(n log n) even in the worst case. Quick sort degrades to O(n²) with bad pivots; insertion and bubble sort are O(n²) in the worst case.",
+  "shortcut": null,
+  "company_tags": [
+   "cognizant",
+   "accenture"
+  ],
+  "difficulty": 2,
+  "time_sec": 30,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "CPX-SORT-01",
+  "version": 1
+ },
+ {
+  "id": "Q-COD-CPX-0003",
+  "section": "coding",
+  "topic": "complexity",
+  "subtopic": "search_sort",
+  "stem": "What is the time complexity of insertion sort when the input array of n elements is already sorted in ascending order?",
+  "options": [
+   "O(n)",
+   "O(n log n)",
+   "O(n²)",
+   "O(log n)"
+  ],
+  "answer_index": 0,
+  "explanation": "For an already sorted array, each new element is compared once with its left neighbour, finds it smaller or equal, and stays in place. That is n − 1 comparisons and no shifts, so the best case is O(n).",
+  "shortcut": null,
+  "company_tags": [
+   "infosys",
+   "capgemini"
+  ],
+  "difficulty": 3,
+  "time_sec": 30,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "CPX-SORT-02",
+  "version": 1
+ },
+ {
+  "id": "Q-COD-CPX-0004",
+  "section": "coding",
+  "topic": "complexity",
+  "subtopic": "loops_big_o",
+  "stem": "What is the time complexity of the following pseudo-code in terms of n?\n\n```\nInteger count = 0\nInteger i = 1\nwhile (i <= n)\n  for (j = 1 to i)\n    count = count + 1\n  end for\n  i = i * 2\nend while\n```",
+  "options": [
+   "O(n log n)",
+   "O(log n)",
+   "O(n²)",
+   "O(n)"
+  ],
+  "answer_index": 3,
+  "explanation": "i takes the values 1, 2, 4, … up to n, and the inner loop runs i times. Total work = 1 + 2 + 4 + … + 2ᵏ (2ᵏ ≤ n) = 2ᵏ⁺¹ − 1 < 2n. So the code is O(n), not O(n log n).",
+  "shortcut": "Geometric series: sum is under twice the largest term",
+  "company_tags": [
+   "tcs_nqt",
+   "accenture"
+  ],
+  "difficulty": 4,
+  "time_sec": 75,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "CPX-LOOP-01",
+  "version": 1
+ },
+ {
+  "id": "Q-COD-CPX-0005",
+  "section": "coding",
+  "topic": "complexity",
+  "subtopic": "loops_big_o",
+  "stem": "What is the final value of c when the following pseudo-code runs with n = 16?\n\n```\nInteger c = 0\nfor (i = 1 to n)\n  Integer j = 1\n  while (j < i)\n    c = c + 1\n    j = j * 2\n  end while\nend for\nprint c\n```",
+  "options": [
+   "64",
+   "49",
+   "45",
+   "32"
+  ],
+  "answer_index": 1,
+  "explanation": "For each i the inner loop runs once per power of 2 below i, i.e. ⌈log₂ i⌉ times. i = 1: 0; i = 2: 1; i = 3, 4: 2 each; i = 5–8: 3 each (12); i = 9–16: 4 each (32). Total = 0 + 1 + 4 + 12 + 32 = 49.",
+  "shortcut": null,
+  "company_tags": [
+   "tcs_nqt",
+   "capgemini"
+  ],
+  "difficulty": 5,
+  "time_sec": 150,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "CPX-LOOP-02",
+  "version": 1
+ },
+ {
+  "id": "Q-COD-CPX-0006",
+  "section": "coding",
+  "topic": "complexity",
+  "subtopic": "loops_big_o",
+  "stem": "What is the time complexity of this pseudocode?\n```\nfor i = 1 to n\n  j = 1\n  while j < n\n    j = j * 2\n  end while\nend for\n```",
+  "options": [
+   "O(n)",
+   "O(n log n)",
+   "O(log n)",
+   "O(n²)"
+  ],
+  "answer_index": 1,
+  "explanation": "The outer loop runs n times. The inner loop doubles j until it reaches n, about log₂ n steps. Total work is n × log n = O(n log n).",
+  "shortcut": "Doubling loop = log n",
+  "company_tags": [
+   "accenture"
+  ],
+  "difficulty": 4,
+  "time_sec": 60,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "CPX-NLOGN-PACK",
+  "version": 1
+ }
+]

@@ -1,0 +1,114 @@
+[
+ {
+  "id": "Q-VRB-SIM-0001",
+  "section": "verbal",
+  "topic": "sentence_improvement",
+  "subtopic": "phrase_replacement",
+  "stem": "Choose the best replacement for the part of the sentence in square brackets. If no improvement is needed, choose 'No improvement'.\n\nHe [did not knew] the answer to the interviewer's question.",
+  "options": [
+   "does not knew",
+   "did not know",
+   "had not knew",
+   "No improvement"
+  ],
+  "answer_index": 1,
+  "explanation": "After the auxiliary 'did' (or 'does'), the main verb is always in its base form. So 'did not know' is correct. 'Knew' is already past tense and cannot follow 'did', 'does' or 'had' ('had' would need 'known').",
+  "shortcut": "do/does/did + base form of the verb.",
+  "company_tags": [
+   "tcs_nqt",
+   "wipro",
+   "cognizant"
+  ],
+  "difficulty": 1,
+  "time_sec": 30,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "SIM-PHR-01",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-SIM-0002",
+  "section": "verbal",
+  "topic": "sentence_improvement",
+  "subtopic": "parallelism",
+  "stem": "Choose the best replacement for the part of the sentence in square brackets. If no improvement is needed, choose 'No improvement'.\n\nThe internship taught her how to write clean code, manage deadlines and [the importance of communicating] with clients.",
+  "options": [
+   "communicate",
+   "communicating",
+   "the communication",
+   "No improvement"
+  ],
+  "answer_index": 0,
+  "explanation": "The three items all depend on 'how to': how to write, (how to) manage, and (how to) communicate. Parallel structure needs the same base-verb form for each item, so 'communicate with clients' is correct. 'Communicating' and 'the communication' break the pattern.",
+  "shortcut": "Items in a list must share the same grammatical form.",
+  "company_tags": [
+   "infosys",
+   "accenture",
+   "capgemini"
+  ],
+  "difficulty": 3,
+  "time_sec": 45,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "SIM-PAR-01",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-SIM-0003",
+  "section": "verbal",
+  "topic": "sentence_improvement",
+  "subtopic": "phrase_replacement",
+  "stem": "Choose the best replacement for the part of the sentence in square brackets. If no improvement is needed, choose 'No improvement'.\n\n[Hardly had the guest lecture begun than] the power went off.",
+  "options": [
+   "Hardly the guest lecture had begun when",
+   "No sooner had the guest lecture begun when",
+   "Hardly had the guest lecture begun when",
+   "No improvement"
+  ],
+  "answer_index": 2,
+  "explanation": "'Hardly' pairs with 'when' (or 'before'), while 'no sooner' pairs with 'than'. With 'hardly' at the start, the subject and auxiliary are inverted: 'Hardly had the guest lecture begun when...'. The second option lacks the inversion, and 'no sooner ... when' is the wrong pairing.",
+  "shortcut": "Hardly/Scarcely ... when; No sooner ... than; all with inversion (had + subject).",
+  "company_tags": [
+   "tcs_nqt",
+   "infosys",
+   "accenture"
+  ],
+  "difficulty": 4,
+  "time_sec": 45,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "SIM-PHR-02",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-SIM-0004",
+  "section": "verbal",
+  "topic": "sentence_improvement",
+  "subtopic": "parallelism",
+  "stem": "Choose the best replacement for the part of the sentence in square brackets. If no improvement is needed, choose 'No improvement'.\n\nYou can [either submit the form online or] at the admission office.",
+  "options": [
+   "submit the form either online or",
+   "either submit the form online nor",
+   "submit either the form online or",
+   "No improvement"
+  ],
+  "answer_index": 0,
+  "explanation": "'Either' must sit directly before the first of the two parallel choices. The choices here are 'online' and 'at the admission office', so the sentence should read 'submit the form either online or at the admission office'. 'Either ... nor' is an incorrect pairing, and 'either the form online' places 'either' before the wrong element.",
+  "shortcut": "Place either/neither/not only immediately before the first of the two parallel elements.",
+  "company_tags": [
+   "tcs_nqt",
+   "accenture",
+   "capgemini"
+  ],
+  "difficulty": 5,
+  "time_sec": 50,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "SIM-PAR-02",
+  "version": 1
+ }
+]

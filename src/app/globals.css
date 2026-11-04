@@ -33,3 +33,14 @@ body { font-family: var(--font-sans); -webkit-tap-highlight-color: transparent; 
   .no-print { display: none !important; }
   body { background: #fff; }
 }
+
+/* drill done celebrations (CSS only, no JS) */
+.confetti {
+  background-image: radial-gradient(circle, var(--streak) 2px, transparent 3px), radial-gradient(circle, var(--brand-600) 2px, transparent 3px), radial-gradient(circle, var(--success) 2px, transparent 3px);
+  background-size: 37px 41px, 53px 47px, 29px 31px;
+  animation: confetti-fall 2.2s ease-out both;
+}
+@keyframes confetti-fall { from { transform: translateY(-60px); opacity: 1; } to { transform: translateY(120px); opacity: 0; } }
+.streak-pop { animation: pop 0.6s ease-out both 0.2s; }
+@keyframes pop { 0% { transform: scale(0.6); } 60% { transform: scale(1.25); } 100% { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .confetti, .streak-pop { animation: none; } }

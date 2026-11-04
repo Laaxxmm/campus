@@ -9,6 +9,8 @@ export const DEMO = {
   admin: "admin@demo.learncrew.in",
   content: "content@learncrew.in",
   newStudent: "newstudent@demo.learncrew.in",
+  /** Fresh-every-seed students for e2e (activity wiped on each seed run). */
+  freshStudents: ["drill.student@demo.learncrew.in", "offline.student@demo.learncrew.in", "mock.student@demo.learncrew.in", "smoke.student@demo.learncrew.in"],
   student: (i: number) => `student${String(i).padStart(3, "0")}@demo.learncrew.in`,
   otherTpo: "tpo@sample.learncrew.in",
   otherStudent: (i: number) => `student${String(i).padStart(3, "0")}@sample.learncrew.in`,
@@ -63,6 +65,17 @@ export async function upsertUser(v: { email: string; name: string; role: Role; c
   return u;
 }
 
+export async function resetActivity(userId: string) {
+  await db.execute(sql`delete from attempts where user_id = ${userId}`);
+  await db.execute(sql`delete from mock_attempts where user_id = ${userId}`);
+  await db.execute(sql`delete from drills where user_id = ${userId}`);
+  await db.execute(sql`delete from review_queue where user_id = ${userId}`);
+  await db.execute(sql`delete from skills where user_id = ${userId}`);
+  await db.execute(sql`delete from streaks where user_id = ${userId}`);
+  await db.execute(sql`delete from readiness_snapshots where user_id = ${userId}`);
+  await db.update(users).set({ xp: 0, lastActiveAt: null }).where(eq(users.id, userId));
+}
+
 export type SeedOptions = { students: number; activity: boolean };
 
 export async function seedPeople(opts: SeedOptions) {
@@ -81,6 +94,12 @@ export async function seedPeople(opts: SeedOptions) {
   await upsertUser({ email: DEMO.content, name: "Content Reviewer", role: "content", collegeId: null, consent: true });
   await upsertUser({ email: DEMO.otherTpo, name: "Other TPO", role: "tpo", collegeId: other.id, consent: true });
   await upsertUser({ email: DEMO.newStudent, name: "New Student", role: "student", collegeId: demo.id, batchId: b1.id, rollNo: "21CS999", consent: false, resetConsent: true });
+
+  for (const [i, email] of DEMO.freshStudents.entries()) {
+    const u = await upsertUser({ email, name: `Test Student ${i + 1}`, role: "student", collegeId: demo.id, batchId: b1.id, rollNo: `21CS9${i}0`, consent: true, targetCompany: "tcs_nqt" });
+    await resetActivity(u.id);
+    await db.update(users).set({ consentAt: new Date("2026-10-01T04:00:00Z") }).where(eq(users.id, u.id));
+  }
 
   const students = [];
   for (let i = 1; i <= opts.students; i++) {
@@ -123,6 +142,11 @@ export async function counts() {
 }
 
 export async function seedAll(opts: SeedOptions) {
-  await seedPeople(opts);
+  const { seedQuestions, seedBlueprintsAndMocks, seedActivity, syncCollegeAccess } = await import("./seed-content");
+  await seedQuestions();
+  await seedBlueprintsAndMocks();
+  const people = await seedPeople(opts);
+  await syncCollegeAccess();
+  if (opts.activity) await seedActivity([...people.students, ...people.otherStudents]);
   return counts();
 }

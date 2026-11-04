@@ -36,6 +36,7 @@ export const en = {
     submit: "Start practising",
     mustConsent: "Please tick consent to continue.",
   },
+  offline: { banner: "You're offline. Keep answering — we'll sync when you're back online." },
   forbidden: { title: "Not allowed", body: "Your account can't open this page.", home: "Go to my home" },
 } as const;
 

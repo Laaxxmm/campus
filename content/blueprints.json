@@ -1,0 +1,403 @@
+[
+ {
+  "company": "tcs_nqt",
+  "name": "TCS NQT",
+  "section_weights": {
+   "quant": 0.35,
+   "logical": 0.3,
+   "verbal": 0.2,
+   "coding": 0.15
+  },
+  "topic_weights": {
+   "number_system": 2.0,
+   "percentages": 2.0,
+   "profit_loss": 2.0,
+   "time_work": 2.0,
+   "time_speed_distance": 2.0,
+   "permutation_combination": 2.0,
+   "probability": 2.0,
+   "number_series": 2.0,
+   "coding_decoding": 2.0,
+   "seating_arrangement": 2.0,
+   "reading_comprehension": 2.0,
+   "fill_blanks": 2.0,
+   "pseudocode_output": 2.0,
+   "data_structures": 2.0
+  },
+  "notes": "Foundation: numerical, verbal, reasoning; Advanced: harder quant + coding. Speed matters; negative marking absent. (Weights are LearnCrew estimates from public pattern write-ups; tune with TPO feedback.)",
+  "mock": {
+   "title": "TCS NQT practice mock",
+   "duration_sec": 1200,
+   "blueprint": [
+    {
+     "section": "quant",
+     "count": 7,
+     "difficulty": [
+      1,
+      4
+     ],
+     "timeSec": 60
+    },
+    {
+     "section": "logical",
+     "count": 6,
+     "difficulty": [
+      1,
+      4
+     ],
+     "timeSec": 60
+    },
+    {
+     "section": "verbal",
+     "count": 4,
+     "difficulty": [
+      1,
+      4
+     ],
+     "timeSec": 60
+    },
+    {
+     "section": "coding",
+     "count": 3,
+     "difficulty": [
+      1,
+      3
+     ],
+     "timeSec": 60
+    }
+   ]
+  }
+ },
+ {
+  "company": "infosys",
+  "name": "Infosys",
+  "section_weights": {
+   "quant": 0.3,
+   "logical": 0.35,
+   "verbal": 0.25,
+   "coding": 0.1
+  },
+  "topic_weights": {
+   "data_interpretation": 2.0,
+   "percentages": 2.0,
+   "ratio_proportion": 2.0,
+   "puzzles": 2.0,
+   "seating_arrangement": 2.0,
+   "syllogisms": 2.0,
+   "data_sufficiency": 2.0,
+   "reading_comprehension": 2.0,
+   "error_spotting": 2.0,
+   "para_jumbles": 2.0,
+   "pseudocode_output": 2.0
+  },
+  "notes": "Reasoning-heavy (puzzles, DS, arrangements) and long verbal; quant leans to DI. (Weights are LearnCrew estimates from public pattern write-ups; tune with TPO feedback.)",
+  "mock": {
+   "title": "Infosys practice mock",
+   "duration_sec": 1200,
+   "blueprint": [
+    {
+     "section": "quant",
+     "count": 6,
+     "difficulty": [
+      1,
+      4
+     ],
+     "timeSec": 60
+    },
+    {
+     "section": "logical",
+     "count": 7,
+     "difficulty": [
+      1,
+      4
+     ],
+     "timeSec": 60
+    },
+    {
+     "section": "verbal",
+     "count": 5,
+     "difficulty": [
+      1,
+      4
+     ],
+     "timeSec": 60
+    },
+    {
+     "section": "coding",
+     "count": 2,
+     "difficulty": [
+      1,
+      3
+     ],
+     "timeSec": 60
+    }
+   ]
+  }
+ },
+ {
+  "company": "accenture",
+  "name": "Accenture",
+  "section_weights": {
+   "quant": 0.25,
+   "logical": 0.25,
+   "verbal": 0.25,
+   "coding": 0.25
+  },
+  "topic_weights": {
+   "percentages": 2.0,
+   "averages": 2.0,
+   "time_work": 2.0,
+   "number_series": 2.0,
+   "coding_decoding": 2.0,
+   "direction_sense": 2.0,
+   "fill_blanks": 2.0,
+   "synonyms_antonyms": 2.0,
+   "sentence_improvement": 2.0,
+   "pseudocode_output": 2.0,
+   "complexity": 2.0,
+   "oops": 2.0
+  },
+  "notes": "Cognitive + technical assessment; balanced sections, includes pseudo-code and networking/OOP basics. (Weights are LearnCrew estimates from public pattern write-ups; tune with TPO feedback.)",
+  "mock": {
+   "title": "Accenture practice mock",
+   "duration_sec": 1500,
+   "blueprint": [
+    {
+     "section": "quant",
+     "count": 5,
+     "difficulty": [
+      1,
+      4
+     ],
+     "timeSec": 60
+    },
+    {
+     "section": "logical",
+     "count": 5,
+     "difficulty": [
+      1,
+      4
+     ],
+     "timeSec": 60
+    },
+    {
+     "section": "verbal",
+     "count": 5,
+     "difficulty": [
+      1,
+      4
+     ],
+     "timeSec": 60
+    },
+    {
+     "section": "coding",
+     "count": 5,
+     "difficulty": [
+      1,
+      3
+     ],
+     "timeSec": 60
+    }
+   ]
+  }
+ },
+ {
+  "company": "cognizant",
+  "name": "Cognizant",
+  "section_weights": {
+   "quant": 0.35,
+   "logical": 0.3,
+   "verbal": 0.25,
+   "coding": 0.1
+  },
+  "topic_weights": {
+   "number_system": 2.0,
+   "profit_loss": 2.0,
+   "interest": 2.0,
+   "time_speed_distance": 2.0,
+   "geometry_mensuration": 2.0,
+   "blood_relations": 2.0,
+   "syllogisms": 2.0,
+   "clocks_calendars": 2.0,
+   "reading_comprehension": 2.0,
+   "error_spotting": 2.0,
+   "idioms_phrases": 2.0
+  },
+  "notes": "GenC: quant + logical + English; arithmetic word problems dominate. (Weights are LearnCrew estimates from public pattern write-ups; tune with TPO feedback.)",
+  "mock": {
+   "title": "Cognizant practice mock",
+   "duration_sec": 1200,
+   "blueprint": [
+    {
+     "section": "quant",
+     "count": 7,
+     "difficulty": [
+      1,
+      4
+     ],
+     "timeSec": 60
+    },
+    {
+     "section": "logical",
+     "count": 6,
+     "difficulty": [
+      1,
+      4
+     ],
+     "timeSec": 60
+    },
+    {
+     "section": "verbal",
+     "count": 5,
+     "difficulty": [
+      1,
+      4
+     ],
+     "timeSec": 60
+    },
+    {
+     "section": "coding",
+     "count": 2,
+     "difficulty": [
+      1,
+      3
+     ],
+     "timeSec": 60
+    }
+   ]
+  }
+ },
+ {
+  "company": "wipro",
+  "name": "Wipro",
+  "section_weights": {
+   "quant": 0.35,
+   "logical": 0.3,
+   "verbal": 0.3,
+   "coding": 0.05
+  },
+  "topic_weights": {
+   "percentages": 2.0,
+   "averages": 2.0,
+   "ratio_proportion": 2.0,
+   "ages": 2.0,
+   "probability": 2.0,
+   "number_series": 2.0,
+   "coding_decoding": 2.0,
+   "blood_relations": 2.0,
+   "direction_sense": 2.0,
+   "fill_blanks": 2.0,
+   "synonyms_antonyms": 2.0,
+   "para_jumbles": 2.0
+  },
+  "notes": "NLTH: aptitude + written English; moderate difficulty, strict time. (Weights are LearnCrew estimates from public pattern write-ups; tune with TPO feedback.)",
+  "mock": {
+   "title": "Wipro practice mock",
+   "duration_sec": 1200,
+   "blueprint": [
+    {
+     "section": "quant",
+     "count": 7,
+     "difficulty": [
+      1,
+      4
+     ],
+     "timeSec": 60
+    },
+    {
+     "section": "logical",
+     "count": 6,
+     "difficulty": [
+      1,
+      4
+     ],
+     "timeSec": 60
+    },
+    {
+     "section": "verbal",
+     "count": 6,
+     "difficulty": [
+      1,
+      4
+     ],
+     "timeSec": 60
+    },
+    {
+     "section": "coding",
+     "count": 2,
+     "difficulty": [
+      1,
+      3
+     ],
+     "timeSec": 60
+    }
+   ]
+  }
+ },
+ {
+  "company": "capgemini",
+  "name": "Capgemini",
+  "section_weights": {
+   "quant": 0.3,
+   "logical": 0.35,
+   "verbal": 0.25,
+   "coding": 0.1
+  },
+  "topic_weights": {
+   "percentages": 2.0,
+   "mixtures_alligations": 2.0,
+   "pipes_cisterns": 2.0,
+   "permutation_combination": 2.0,
+   "puzzles": 2.0,
+   "seating_arrangement": 2.0,
+   "statements_conclusions": 2.0,
+   "analogy_classification": 2.0,
+   "error_spotting": 2.0,
+   "sentence_improvement": 2.0,
+   "pseudocode_output": 2.0
+  },
+  "notes": "Game-based + pseudo-code; logical reasoning carries the most weight. (Weights are LearnCrew estimates from public pattern write-ups; tune with TPO feedback.)",
+  "mock": {
+   "title": "Capgemini practice mock",
+   "duration_sec": 1200,
+   "blueprint": [
+    {
+     "section": "quant",
+     "count": 6,
+     "difficulty": [
+      1,
+      4
+     ],
+     "timeSec": 60
+    },
+    {
+     "section": "logical",
+     "count": 7,
+     "difficulty": [
+      1,
+      4
+     ],
+     "timeSec": 60
+    },
+    {
+     "section": "verbal",
+     "count": 5,
+     "difficulty": [
+      1,
+      4
+     ],
+     "timeSec": 60
+    },
+    {
+     "section": "coding",
+     "count": 2,
+     "difficulty": [
+      1,
+      3
+     ],
+     "timeSec": 60
+    }
+   ]
+  }
+ }
+]

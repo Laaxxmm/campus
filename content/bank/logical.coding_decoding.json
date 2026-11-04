@@ -1,0 +1,217 @@
+[
+ {
+  "id": "Q-LOG-COD-0001",
+  "section": "logical",
+  "topic": "coding_decoding",
+  "subtopic": "letter_shift",
+  "stem": "In a certain code, CAT is written as DBU. How is DOG written in that code?",
+  "options": [
+   "CNF",
+   "EOH",
+   "EPH",
+   "FQI"
+  ],
+  "answer_index": 2,
+  "explanation": "Each letter moves one place forward: C→D, A→B, T→U. Applying the same rule, D→E, O→P, G→H, giving EPH.",
+  "shortcut": null,
+  "company_tags": [
+   "tcs_nqt",
+   "wipro"
+  ],
+  "difficulty": 1,
+  "time_sec": 30,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "COD-SHIFT-01",
+  "version": 1
+ },
+ {
+  "id": "Q-LOG-COD-0002",
+  "section": "logical",
+  "topic": "coding_decoding",
+  "subtopic": "letter_shift",
+  "stem": "In a certain code, MANGO is written as OCPIQ. How is GRAPE written in that code?",
+  "options": [
+   "ITCRG",
+   "HSBQF",
+   "ITCRF",
+   "JUDSH"
+  ],
+  "answer_index": 0,
+  "explanation": "Each letter is shifted two places forward: M→O, A→C, N→P, G→I, O→Q. For GRAPE: G→I, R→T, A→C, P→R, E→G, giving ITCRG.",
+  "shortcut": null,
+  "company_tags": [
+   "infosys",
+   "capgemini"
+  ],
+  "difficulty": 2,
+  "time_sec": 40,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "COD-SHIFT-02",
+  "version": 1
+ },
+ {
+  "id": "Q-LOG-COD-0003",
+  "section": "logical",
+  "topic": "coding_decoding",
+  "subtopic": "number_coding",
+  "stem": "In a certain code, ACE is written as 9 and BED is written as 11. Following the same rule, how is HOME written?",
+  "options": [
+   "39",
+   "43",
+   "45",
+   "41"
+  ],
+  "answer_index": 3,
+  "explanation": "The code is the sum of the alphabet positions of the letters: A(1) + C(3) + E(5) = 9 and B(2) + E(5) + D(4) = 11. HOME = H(8) + O(15) + M(13) + E(5) = 41.",
+  "shortcut": "Sum of letter positions",
+  "company_tags": [
+   "tcs_nqt",
+   "cognizant"
+  ],
+  "difficulty": 3,
+  "time_sec": 45,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "COD-NUM-01",
+  "version": 1
+ },
+ {
+  "id": "Q-LOG-COD-0004",
+  "section": "logical",
+  "topic": "coding_decoding",
+  "subtopic": "letter_shift",
+  "stem": "In a certain code, GOLD is written as TLOW. How is SILVER written in that code?",
+  "options": [
+   "HRPEVI",
+   "HROEVI",
+   "IROEVH",
+   "HROFVI"
+  ],
+  "answer_index": 1,
+  "explanation": "Each letter is replaced by its opposite letter in the alphabet (position p becomes 27 − p): G→T, O→L, L→O, D→W. For SILVER: S→H, I→R, L→O, V→E, E→V, R→I, giving HROEVI.",
+  "shortcut": "Opposite letters' positions add up to 27",
+  "company_tags": [
+   "accenture",
+   "infosys"
+  ],
+  "difficulty": 4,
+  "time_sec": 60,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "COD-OPP-01",
+  "version": 1
+ },
+ {
+  "id": "Q-LOG-COD-0005",
+  "section": "logical",
+  "topic": "coding_decoding",
+  "subtopic": "substitution",
+  "stem": "In a certain code language:\n'pit nak sor' means 'good morning friends',\n'sor lum dev' means 'friends are kind', and\n'nak dev ras' means 'kind good people'.\nWhich code word stands for 'people'?",
+  "options": [
+   "lum",
+   "dev",
+   "ras",
+   "nak"
+  ],
+  "answer_index": 2,
+  "explanation": "'sor' is common to sentences 1 and 2, so sor = friends. 'nak' is common to 1 and 3, so nak = good. 'dev' is common to 2 and 3, so dev = kind. The remaining word of sentence 3, 'ras', must mean 'people'.",
+  "shortcut": "Match words common to two sentences",
+  "company_tags": [
+   "tcs_nqt",
+   "wipro"
+  ],
+  "difficulty": 3,
+  "time_sec": 60,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "COD-SUB-01",
+  "version": 1
+ },
+ {
+  "id": "Q-LOG-COD-0006",
+  "section": "logical",
+  "topic": "coding_decoding",
+  "subtopic": "letter_shift",
+  "stem": "In a certain code, BOARD is written as CQDVI. How is CHAIR written in that code?",
+  "options": [
+   "DJDMW",
+   "DJCMW",
+   "DIDMW",
+   "DJDNW"
+  ],
+  "answer_index": 0,
+  "explanation": "The k-th letter is moved k places forward: B+1 = C, O+2 = Q, A+3 = D, R+4 = V, D+5 = I. For CHAIR: C+1 = D, H+2 = J, A+3 = D, I+4 = M, R+5 = W, giving DJDMW.",
+  "shortcut": "Compare positions letter by letter",
+  "company_tags": [
+   "cognizant",
+   "capgemini"
+  ],
+  "difficulty": 4,
+  "time_sec": 60,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "COD-SHIFT-03",
+  "version": 1
+ },
+ {
+  "id": "Q-LOG-COD-0007",
+  "section": "logical",
+  "topic": "coding_decoding",
+  "subtopic": "substitution",
+  "stem": "In a certain code, ROSE is written as 6821, CHAIR as 73456 and PREACH as 961473. How is SEARCH written in that code?",
+  "options": [
+   "214763",
+   "214673",
+   "241673",
+   "214637"
+  ],
+  "answer_index": 1,
+  "explanation": "Each letter has a fixed digit. From ROSE: R=6, O=8, S=2, E=1. From CHAIR: C=7, H=3, A=4, I=5 (R=6 again). From PREACH: P=9. So SEARCH = S(2) E(1) A(4) R(6) C(7) H(3) = 214673.",
+  "shortcut": null,
+  "company_tags": [
+   "infosys",
+   "accenture"
+  ],
+  "difficulty": 3,
+  "time_sec": 60,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "COD-SUB-02",
+  "version": 1
+ },
+ {
+  "id": "Q-LOG-COD-0008",
+  "section": "logical",
+  "topic": "coding_decoding",
+  "subtopic": "letter_shift",
+  "stem": "In a certain code, CAMPUS is written as DBNQVT. How is PLACED written in that code?",
+  "options": [
+   "QMBDFE",
+   "QMBDEF",
+   "QLBDFE",
+   "RMBDFE"
+  ],
+  "answer_index": 0,
+  "explanation": "Each letter moves one step forward: C→D, A→B, M→N, P→Q, U→V, S→T. So P→Q, L→M, A→B, C→D, E→F, D→E gives QMBDFE.",
+  "shortcut": "Check the shift on the first two letters",
+  "company_tags": [
+   "infosys"
+  ],
+  "difficulty": 3,
+  "time_sec": 45,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "COD-SHIFT1-PACK",
+  "version": 1
+ }
+]

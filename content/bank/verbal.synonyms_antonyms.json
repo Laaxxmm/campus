@@ -1,0 +1,170 @@
+[
+ {
+  "id": "Q-VRB-SYN-0001",
+  "section": "verbal",
+  "topic": "synonyms_antonyms",
+  "subtopic": "synonyms",
+  "stem": "Choose the word that is most nearly SIMILAR in meaning to the word in capitals.\n\nABUNDANT",
+  "options": [
+   "scarce",
+   "ordinary",
+   "plentiful",
+   "precious"
+  ],
+  "answer_index": 2,
+  "explanation": "'Abundant' means existing in large quantities, more than enough. 'Plentiful' has the same meaning. 'Scarce' is its opposite, while 'ordinary' and 'precious' describe quality or value, not quantity.",
+  "shortcut": null,
+  "company_tags": [
+   "tcs_nqt",
+   "wipro",
+   "cognizant"
+  ],
+  "difficulty": 1,
+  "time_sec": 20,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "SYN-SYN-01",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-SYN-0002",
+  "section": "verbal",
+  "topic": "synonyms_antonyms",
+  "subtopic": "antonyms",
+  "stem": "Choose the word that is most nearly OPPOSITE in meaning to the word in capitals.\n\nTRANSPARENT",
+  "options": [
+   "clear",
+   "delicate",
+   "visible",
+   "opaque"
+  ],
+  "answer_index": 3,
+  "explanation": "'Transparent' describes something that light passes through, so objects behind it can be seen clearly. 'Opaque' describes something light cannot pass through, which is the exact opposite. 'Clear' is a synonym, and 'delicate' and 'visible' are unrelated in meaning.",
+  "shortcut": "In antonym questions, eliminate the synonym first; it is a common trap.",
+  "company_tags": [
+   "infosys",
+   "wipro",
+   "capgemini"
+  ],
+  "difficulty": 2,
+  "time_sec": 20,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "SYN-ANT-01",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-SYN-0003",
+  "section": "verbal",
+  "topic": "synonyms_antonyms",
+  "subtopic": "synonyms",
+  "stem": "Choose the word that is most nearly SIMILAR in meaning to the word in capitals.\n\nMETICULOUS",
+  "options": [
+   "painstaking",
+   "careless",
+   "hesitant",
+   "extravagant"
+  ],
+  "answer_index": 0,
+  "explanation": "'Meticulous' means showing great attention to detail and being very careful and precise. 'Painstaking' means taking great care over every detail. 'Careless' is the opposite, 'hesitant' means unsure or slow to act, and 'extravagant' means spending or using too much.",
+  "shortcut": null,
+  "company_tags": [
+   "tcs_nqt",
+   "accenture",
+   "cognizant"
+  ],
+  "difficulty": 3,
+  "time_sec": 25,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "SYN-SYN-02",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-SYN-0004",
+  "section": "verbal",
+  "topic": "synonyms_antonyms",
+  "subtopic": "antonyms",
+  "stem": "Choose the word that is most nearly OPPOSITE in meaning to the word in capitals.\n\nLACONIC",
+  "options": [
+   "terse",
+   "verbose",
+   "curt",
+   "reticent"
+  ],
+  "answer_index": 1,
+  "explanation": "'Laconic' means using very few words. 'Verbose' means using more words than needed, so it is the opposite. 'Terse' and 'curt' are near-synonyms of laconic, and 'reticent' (reluctant to speak) is also close in meaning, not opposite.",
+  "shortcut": "When three options share one sense, the odd one is usually the antonym.",
+  "company_tags": [
+   "tcs_nqt",
+   "infosys",
+   "accenture"
+  ],
+  "difficulty": 4,
+  "time_sec": 25,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "SYN-ANT-02",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-SYN-0005",
+  "section": "verbal",
+  "topic": "synonyms_antonyms",
+  "subtopic": "synonyms",
+  "stem": "Choose the word that is most nearly SIMILAR in meaning to the word in capitals.\n\nEPHEMERAL",
+  "options": [
+   "eternal",
+   "ethereal",
+   "transient",
+   "tangible"
+  ],
+  "answer_index": 2,
+  "explanation": "'Ephemeral' means lasting for a very short time. 'Transient' also means short-lived or passing. 'Eternal' is the opposite, 'ethereal' (delicate, heavenly) is a look-alike trap, and 'tangible' means able to be touched.",
+  "shortcut": "Beware of options that look or sound like the given word (ephemeral vs ethereal).",
+  "company_tags": [
+   "infosys",
+   "accenture",
+   "capgemini"
+  ],
+  "difficulty": 4,
+  "time_sec": 25,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "SYN-SYN-03",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-SYN-0006",
+  "section": "verbal",
+  "topic": "synonyms_antonyms",
+  "subtopic": "antonyms",
+  "stem": "Choose the word that is most nearly OPPOSITE in meaning to the word in capitals.\n\nOBSEQUIOUS",
+  "options": [
+   "servile",
+   "fawning",
+   "timid",
+   "haughty"
+  ],
+  "answer_index": 3,
+  "explanation": "'Obsequious' means excessively eager to please or obey, behaving in a servile way. 'Haughty' means proud and behaving as if superior to others, the opposite attitude. 'Servile' and 'fawning' are synonyms, and 'timid' (shy, lacking courage) is closer to obsequious than opposite to it.",
+  "shortcut": null,
+  "company_tags": [
+   "tcs_nqt",
+   "accenture",
+   "capgemini"
+  ],
+  "difficulty": 5,
+  "time_sec": 30,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "SYN-ANT-03",
+  "version": 1
+ }
+]

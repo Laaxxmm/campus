@@ -1,0 +1,455 @@
+{
+ "version": 1,
+ "sections": {
+  "quant": [
+   {
+    "id": "number_system",
+    "code": "NUM",
+    "name": "Number system",
+    "major": true,
+    "subtopics": [
+     "divisibility",
+     "remainders",
+     "unit_digit",
+     "factors"
+    ]
+   },
+   {
+    "id": "hcf_lcm",
+    "code": "HCF",
+    "name": "HCF & LCM",
+    "major": false,
+    "subtopics": [
+     "hcf_lcm_word",
+     "hcf_lcm_properties"
+    ]
+   },
+   {
+    "id": "percentages",
+    "code": "PCT",
+    "name": "Percentages",
+    "major": true,
+    "subtopics": [
+     "basic_percent",
+     "successive_change",
+     "population_growth"
+    ]
+   },
+   {
+    "id": "profit_loss",
+    "code": "PNL",
+    "name": "Profit & loss",
+    "major": true,
+    "subtopics": [
+     "cost_selling",
+     "discount_markup",
+     "dishonest_dealer"
+    ]
+   },
+   {
+    "id": "interest",
+    "code": "INT",
+    "name": "Simple & compound interest",
+    "major": true,
+    "subtopics": [
+     "simple_interest",
+     "compound_interest",
+     "si_ci_difference"
+    ]
+   },
+   {
+    "id": "ratio_proportion",
+    "code": "RAT",
+    "name": "Ratio & proportion",
+    "major": true,
+    "subtopics": [
+     "ratio_basics",
+     "partnership",
+     "proportion"
+    ]
+   },
+   {
+    "id": "averages",
+    "code": "AVG",
+    "name": "Averages",
+    "major": true,
+    "subtopics": [
+     "simple_average",
+     "weighted_average",
+     "replacement"
+    ]
+   },
+   {
+    "id": "mixtures_alligations",
+    "code": "MIX",
+    "name": "Mixtures & alligations",
+    "major": false,
+    "subtopics": [
+     "alligation_rule",
+     "replacement_mixture"
+    ]
+   },
+   {
+    "id": "ages",
+    "code": "AGE",
+    "name": "Problems on ages",
+    "major": false,
+    "subtopics": [
+     "present_past_future",
+     "ratio_ages"
+    ]
+   },
+   {
+    "id": "time_work",
+    "code": "TWK",
+    "name": "Time & work",
+    "major": true,
+    "subtopics": [
+     "individual_combined",
+     "efficiency",
+     "work_wages"
+    ]
+   },
+   {
+    "id": "pipes_cisterns",
+    "code": "PIP",
+    "name": "Pipes & cisterns",
+    "major": false,
+    "subtopics": [
+     "fill_empty",
+     "leak"
+    ]
+   },
+   {
+    "id": "time_speed_distance",
+    "code": "TSD",
+    "name": "Time, speed & distance",
+    "major": true,
+    "subtopics": [
+     "average_speed",
+     "relative_speed",
+     "meeting_point"
+    ]
+   },
+   {
+    "id": "trains_boats",
+    "code": "TRB",
+    "name": "Trains, boats & streams",
+    "major": true,
+    "subtopics": [
+     "trains",
+     "boats_streams"
+    ]
+   },
+   {
+    "id": "permutation_combination",
+    "code": "PNC",
+    "name": "Permutations & combinations",
+    "major": true,
+    "subtopics": [
+     "arrangements",
+     "selections",
+     "words_letters"
+    ]
+   },
+   {
+    "id": "probability",
+    "code": "PRB",
+    "name": "Probability",
+    "major": true,
+    "subtopics": [
+     "coins_dice",
+     "cards_balls",
+     "conditional"
+    ]
+   },
+   {
+    "id": "algebra",
+    "code": "ALG",
+    "name": "Algebra & equations",
+    "major": false,
+    "subtopics": [
+     "linear_equations",
+     "quadratic",
+     "inequalities"
+    ]
+   },
+   {
+    "id": "geometry_mensuration",
+    "code": "GEO",
+    "name": "Geometry & mensuration",
+    "major": true,
+    "subtopics": [
+     "area_perimeter",
+     "volume_surface",
+     "triangles_circles"
+    ]
+   },
+   {
+    "id": "data_interpretation",
+    "code": "DIN",
+    "name": "Data interpretation",
+    "major": true,
+    "subtopics": [
+     "table",
+     "bar_chart",
+     "pie_chart"
+    ]
+   }
+  ],
+  "logical": [
+   {
+    "id": "number_series",
+    "code": "SER",
+    "name": "Number & letter series",
+    "major": true,
+    "subtopics": [
+     "number_series",
+     "letter_series",
+     "missing_term"
+    ]
+   },
+   {
+    "id": "coding_decoding",
+    "code": "COD",
+    "name": "Coding–decoding",
+    "major": true,
+    "subtopics": [
+     "letter_shift",
+     "substitution",
+     "number_coding"
+    ]
+   },
+   {
+    "id": "blood_relations",
+    "code": "BLD",
+    "name": "Blood relations",
+    "major": true,
+    "subtopics": [
+     "direct",
+     "coded_relations"
+    ]
+   },
+   {
+    "id": "direction_sense",
+    "code": "DIR",
+    "name": "Direction sense",
+    "major": true,
+    "subtopics": [
+     "distance_direction",
+     "shadow_turns"
+    ]
+   },
+   {
+    "id": "seating_arrangement",
+    "code": "SEA",
+    "name": "Seating arrangement",
+    "major": true,
+    "subtopics": [
+     "linear",
+     "circular"
+    ]
+   },
+   {
+    "id": "syllogisms",
+    "code": "SYL",
+    "name": "Syllogisms",
+    "major": true,
+    "subtopics": [
+     "two_statement",
+     "possibility"
+    ]
+   },
+   {
+    "id": "puzzles",
+    "code": "PUZ",
+    "name": "Puzzles",
+    "major": false,
+    "subtopics": [
+     "floor_box",
+     "scheduling"
+    ]
+   },
+   {
+    "id": "clocks_calendars",
+    "code": "CLK",
+    "name": "Clocks & calendars",
+    "major": true,
+    "subtopics": [
+     "clock_angles",
+     "calendar_day"
+    ]
+   },
+   {
+    "id": "statements_conclusions",
+    "code": "STC",
+    "name": "Statements & conclusions",
+    "major": false,
+    "subtopics": [
+     "conclusions",
+     "assumptions",
+     "course_of_action"
+    ]
+   },
+   {
+    "id": "analogy_classification",
+    "code": "ANL",
+    "name": "Analogy & odd one out",
+    "major": false,
+    "subtopics": [
+     "word_analogy",
+     "number_analogy",
+     "odd_one_out"
+    ]
+   },
+   {
+    "id": "data_sufficiency",
+    "code": "DSF",
+    "name": "Data sufficiency",
+    "major": false,
+    "subtopics": [
+     "two_statement_ds"
+    ]
+   }
+  ],
+  "verbal": [
+   {
+    "id": "reading_comprehension",
+    "code": "RCM",
+    "name": "Reading comprehension",
+    "major": true,
+    "subtopics": [
+     "main_idea",
+     "inference",
+     "vocab_in_context"
+    ]
+   },
+   {
+    "id": "error_spotting",
+    "code": "ERR",
+    "name": "Error spotting",
+    "major": true,
+    "subtopics": [
+     "subject_verb",
+     "tense",
+     "prepositions_articles"
+    ]
+   },
+   {
+    "id": "sentence_improvement",
+    "code": "SIM",
+    "name": "Sentence improvement",
+    "major": false,
+    "subtopics": [
+     "phrase_replacement",
+     "parallelism"
+    ]
+   },
+   {
+    "id": "fill_blanks",
+    "code": "FIB",
+    "name": "Fill in the blanks",
+    "major": true,
+    "subtopics": [
+     "vocabulary",
+     "grammar",
+     "double_blank"
+    ]
+   },
+   {
+    "id": "synonyms_antonyms",
+    "code": "SYN",
+    "name": "Synonyms & antonyms",
+    "major": true,
+    "subtopics": [
+     "synonyms",
+     "antonyms"
+    ]
+   },
+   {
+    "id": "para_jumbles",
+    "code": "PJM",
+    "name": "Para jumbles",
+    "major": true,
+    "subtopics": [
+     "sentence_order"
+    ]
+   },
+   {
+    "id": "idioms_phrases",
+    "code": "IDM",
+    "name": "Idioms & phrases",
+    "major": false,
+    "subtopics": [
+     "idiom_meaning",
+     "phrasal_verbs"
+    ]
+   }
+  ],
+  "coding": [
+   {
+    "id": "pseudocode_output",
+    "code": "PSE",
+    "name": "Pseudocode output",
+    "major": true,
+    "subtopics": [
+     "loops",
+     "conditionals",
+     "functions"
+    ]
+   },
+   {
+    "id": "complexity",
+    "code": "CPX",
+    "name": "Time complexity",
+    "major": false,
+    "subtopics": [
+     "loops_big_o",
+     "search_sort"
+    ]
+   },
+   {
+    "id": "arrays_strings",
+    "code": "ARR",
+    "name": "Arrays & strings",
+    "major": true,
+    "subtopics": [
+     "indexing",
+     "string_ops"
+    ]
+   },
+   {
+    "id": "recursion",
+    "code": "REC",
+    "name": "Recursion",
+    "major": false,
+    "subtopics": [
+     "trace_recursion",
+     "base_case"
+    ]
+   },
+   {
+    "id": "oops",
+    "code": "OOP",
+    "name": "OOP concepts",
+    "major": false,
+    "subtopics": [
+     "inheritance",
+     "polymorphism",
+     "encapsulation"
+    ]
+   },
+   {
+    "id": "data_structures",
+    "code": "DST",
+    "name": "Data structures",
+    "major": true,
+    "subtopics": [
+     "stack_queue",
+     "linked_list",
+     "trees_hashing"
+    ]
+   }
+  ]
+ }
+}

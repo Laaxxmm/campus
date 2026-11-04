@@ -1,0 +1,217 @@
+[
+ {
+  "id": "Q-LOG-BLD-0001",
+  "section": "logical",
+  "topic": "blood_relations",
+  "subtopic": "direct",
+  "stem": "Pointing to a boy, Riya said, \"He is the son of my mother's only son.\" Riya is a woman. How is the boy related to Riya?",
+  "options": [
+   "Brother",
+   "Son",
+   "Nephew",
+   "Cousin"
+  ],
+  "answer_index": 2,
+  "explanation": "Riya is a woman, so her mother's only son is Riya's brother. The boy is her brother's son, i.e., her nephew.",
+  "shortcut": null,
+  "company_tags": [
+   "tcs_nqt",
+   "wipro"
+  ],
+  "difficulty": 1,
+  "time_sec": 30,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "BLD-DIR-01",
+  "version": 1
+ },
+ {
+  "id": "Q-LOG-BLD-0002",
+  "section": "logical",
+  "topic": "blood_relations",
+  "subtopic": "direct",
+  "stem": "A, B, C and D are four different persons. A is the brother of B. B is the sister of C. C is the father of D. How is A related to D?",
+  "options": [
+   "Father",
+   "Uncle",
+   "Grandfather",
+   "Cousin"
+  ],
+  "answer_index": 1,
+  "explanation": "A and C are both siblings of B, so A is C's brother. C is D's father, so A, being male, is D's paternal uncle.",
+  "shortcut": null,
+  "company_tags": [
+   "infosys",
+   "cognizant"
+  ],
+  "difficulty": 2,
+  "time_sec": 40,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "BLD-DIR-02",
+  "version": 1
+ },
+ {
+  "id": "Q-LOG-BLD-0003",
+  "section": "logical",
+  "topic": "blood_relations",
+  "subtopic": "direct",
+  "stem": "Introducing a woman, Arjun said, \"Her father is the only son of my father's father.\" How is the woman related to Arjun?",
+  "options": [
+   "Sister",
+   "Mother",
+   "Cousin",
+   "Aunt"
+  ],
+  "answer_index": 0,
+  "explanation": "Arjun's father's father is his paternal grandfather, and that man's only son is Arjun's father. So the woman's father is Arjun's father, which makes her Arjun's sister.",
+  "shortcut": "Resolve the phrase from the speaker's end",
+  "company_tags": [
+   "tcs_nqt",
+   "accenture"
+  ],
+  "difficulty": 2,
+  "time_sec": 45,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "BLD-DIR-03",
+  "version": 1
+ },
+ {
+  "id": "Q-LOG-BLD-0004",
+  "section": "logical",
+  "topic": "blood_relations",
+  "subtopic": "coded_relations",
+  "stem": "In a certain code:\nP + Q means P is the father of Q;\nP − Q means P is the wife of Q;\nP × Q means P is the brother of Q;\nP ÷ Q means P is the daughter of Q.\nIf A + B × C − D, how is A related to D?",
+  "options": [
+   "Father",
+   "Brother-in-law",
+   "Uncle",
+   "Father-in-law"
+  ],
+  "answer_index": 3,
+  "explanation": "A + B: A is B's father. B × C: B is C's brother, so A is also C's father. C − D: C is D's wife. Hence A is the father of D's wife, i.e., D's father-in-law.",
+  "shortcut": "Decode one symbol at a time, left to right",
+  "company_tags": [
+   "capgemini",
+   "wipro"
+  ],
+  "difficulty": 3,
+  "time_sec": 60,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "BLD-COD-01",
+  "version": 1
+ },
+ {
+  "id": "Q-LOG-BLD-0005",
+  "section": "logical",
+  "topic": "blood_relations",
+  "subtopic": "coded_relations",
+  "stem": "In a certain code:\nA $ B means A is the mother of B;\nA # B means A is the son of B;\nA @ B means A is the sister of B.\nP, Q, R and S are four different persons. If P @ Q $ R # S, how is S related to P?",
+  "options": [
+   "Brother-in-law",
+   "Brother",
+   "Husband",
+   "Father-in-law"
+  ],
+  "answer_index": 0,
+  "explanation": "P @ Q: P is Q's sister. Q $ R: Q is R's mother. R # S: R is S's son, and since S is not Q, S is R's father, i.e., Q's husband. S is the husband of P's sister, so S is P's brother-in-law.",
+  "shortcut": null,
+  "company_tags": [
+   "infosys",
+   "tcs_nqt"
+  ],
+  "difficulty": 4,
+  "time_sec": 75,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "BLD-COD-02",
+  "version": 1
+ },
+ {
+  "id": "Q-LOG-BLD-0006",
+  "section": "logical",
+  "topic": "blood_relations",
+  "subtopic": "direct",
+  "stem": "Pointing to a lady in a photograph, Vikram said, \"She is the only daughter of the mother-in-law of my wife's only brother.\" How is the lady related to Vikram's wife?",
+  "options": [
+   "Sister",
+   "Sister-in-law",
+   "Mother-in-law",
+   "Cousin"
+  ],
+  "answer_index": 1,
+  "explanation": "Vikram's wife's only brother — call him K. K's mother-in-law is the mother of K's wife, and her only daughter is K's wife. So the lady is the wife of Vikram's wife's brother, i.e., her sister-in-law.",
+  "shortcut": "Work backwards from the last relation named",
+  "company_tags": [
+   "accenture",
+   "cognizant"
+  ],
+  "difficulty": 4,
+  "time_sec": 75,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "BLD-DIR-04",
+  "version": 1
+ },
+ {
+  "id": "Q-LOG-BLD-0007",
+  "section": "logical",
+  "topic": "blood_relations",
+  "subtopic": "direct",
+  "stem": "A, B, C, D and E are five different persons. A is the son of B. C is the mother of B. D is the only son of C and is married to E. How is D related to A?",
+  "options": [
+   "Father",
+   "Paternal uncle",
+   "Maternal uncle",
+   "Grandfather"
+  ],
+  "answer_index": 2,
+  "explanation": "B is C's child. If B were male, B would be C's only son, i.e., D — but B and D are different persons. So B is C's daughter and D is B's brother. B is A's mother, so D is A's maternal uncle.",
+  "shortcut": "Use 'only son' to fix the gender of B",
+  "company_tags": [
+   "tcs_nqt",
+   "capgemini"
+  ],
+  "difficulty": 5,
+  "time_sec": 90,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "BLD-DIR-05",
+  "version": 1
+ },
+ {
+  "id": "Q-LOG-BLD-0008",
+  "section": "logical",
+  "topic": "blood_relations",
+  "subtopic": "direct",
+  "stem": "Pointing to a man, Anita says, \"His mother is the only daughter of my mother.\" How is the man related to Anita?",
+  "options": [
+   "Brother",
+   "Son",
+   "Nephew",
+   "Cousin"
+  ],
+  "answer_index": 1,
+  "explanation": "The only daughter of Anita's mother is Anita herself. So the man's mother is Anita, which makes him Anita's son.",
+  "shortcut": "\"Only daughter of my mother\" = the speaker (if female)",
+  "company_tags": [
+   "cognizant"
+  ],
+  "difficulty": 2,
+  "time_sec": 45,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "BLD-ONLYDAU-PACK",
+  "version": 1
+ }
+]

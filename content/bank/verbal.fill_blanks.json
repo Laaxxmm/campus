@@ -1,0 +1,170 @@
+[
+ {
+  "id": "Q-VRB-FIB-0001",
+  "section": "verbal",
+  "topic": "fill_blanks",
+  "subtopic": "grammar",
+  "stem": "Choose the option that correctly fills the blank(s).\n\nShe has been interested ____ robotics since her school days.",
+  "options": [
+   "in",
+   "on",
+   "at",
+   "for"
+  ],
+  "answer_index": 0,
+  "explanation": "The adjective 'interested' is always followed by the preposition 'in': interested in robotics, interested in music. 'Interested on/at/for' is not standard English.",
+  "shortcut": "Fixed pairs: interested in, good at, fond of, capable of.",
+  "company_tags": [
+   "tcs_nqt",
+   "wipro",
+   "cognizant"
+  ],
+  "difficulty": 1,
+  "time_sec": 25,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "FIB-PRP-01",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-FIB-0002",
+  "section": "verbal",
+  "topic": "fill_blanks",
+  "subtopic": "grammar",
+  "stem": "Choose the option that correctly fills the blank(s).\n\nIf it ____ tomorrow, the outdoor cultural fest will be postponed.",
+  "options": [
+   "will rain",
+   "rains",
+   "rained",
+   "would rain"
+  ],
+  "answer_index": 1,
+  "explanation": "This is a first conditional about a real future possibility: the if-clause uses the simple present and the main clause uses 'will'. So 'If it rains tomorrow, ... will be postponed'. 'Will rain' is not used in the if-clause here, and 'rained/would rain' belong to the second conditional, which clashes with 'will be'.",
+  "shortcut": "First conditional: If + simple present, will + verb.",
+  "company_tags": [
+   "infosys",
+   "accenture",
+   "capgemini"
+  ],
+  "difficulty": 2,
+  "time_sec": 30,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "FIB-CND-01",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-FIB-0003",
+  "section": "verbal",
+  "topic": "fill_blanks",
+  "subtopic": "vocabulary",
+  "stem": "Choose the option that correctly fills the blank(s).\n\nThe manager's instructions were so ____ that each team interpreted them differently.",
+  "options": [
+   "explicit",
+   "precise",
+   "ambiguous",
+   "elaborate"
+  ],
+  "answer_index": 2,
+  "explanation": "Instructions that different teams interpret differently must be open to more than one meaning, which is what 'ambiguous' means. 'Explicit' and 'precise' mean the opposite, and 'elaborate' (detailed) does not explain why the teams disagreed.",
+  "shortcut": "Find the clue after 'so ... that': the result tells you the quality.",
+  "company_tags": [
+   "tcs_nqt",
+   "cognizant",
+   "wipro"
+  ],
+  "difficulty": 3,
+  "time_sec": 35,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "FIB-VOC-01",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-FIB-0004",
+  "section": "verbal",
+  "topic": "fill_blanks",
+  "subtopic": "vocabulary",
+  "stem": "Choose the option that correctly fills the blank(s).\n\nDespite repeated setbacks, the start-up's founders remained ____, convinced that their product would eventually find a market.",
+  "options": [
+   "despondent",
+   "apathetic",
+   "indignant",
+   "sanguine"
+  ],
+  "answer_index": 3,
+  "explanation": "'Despite setbacks' and 'convinced that their product would eventually find a market' show the founders stayed hopeful. 'Sanguine' means optimistic and confident. 'Despondent' (hopeless) contradicts 'convinced', 'apathetic' means uninterested, and 'indignant' means angry at unfairness.",
+  "shortcut": "'Despite' signals a contrast: the blank must be the opposite of what setbacks would normally cause.",
+  "company_tags": [
+   "infosys",
+   "accenture",
+   "capgemini"
+  ],
+  "difficulty": 4,
+  "time_sec": 40,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "FIB-VOC-02",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-FIB-0005",
+  "section": "verbal",
+  "topic": "fill_blanks",
+  "subtopic": "double_blank",
+  "stem": "Choose the option that correctly fills the blank(s).\n\nThe new policy was meant to ____ traffic congestion, but critics argue that it has only ____ the problem by pushing vehicles onto narrower roads.",
+  "options": [
+   "relieve, aggravated",
+   "relieve, resolved",
+   "worsen, aggravated",
+   "ignore, reduced"
+  ],
+  "answer_index": 0,
+  "explanation": "'Was meant to' states the intended good effect, so the first blank must mean reduce (relieve). 'But critics argue' and 'pushing vehicles onto narrower roads' show the actual result was harmful, so the second blank must mean made worse (aggravated). 'Resolved' gives no contrast, a policy is not 'meant to worsen' congestion, and 'reduced' contradicts the criticism.",
+  "shortcut": "Test both blanks: the 'but' needs the second word to oppose the first.",
+  "company_tags": [
+   "tcs_nqt",
+   "infosys",
+   "cognizant"
+  ],
+  "difficulty": 4,
+  "time_sec": 50,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "FIB-DBL-01",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-FIB-0006",
+  "section": "verbal",
+  "topic": "fill_blanks",
+  "subtopic": "double_blank",
+  "stem": "Choose the option that correctly fills the blank(s).\n\nFar from being ____, the minister's reply was so ____ that even her critics admitted it had addressed every concern raised in the debate.",
+  "options": [
+   "comprehensive, evasive",
+   "evasive, comprehensive",
+   "perfunctory, superficial",
+   "candid, forthright"
+  ],
+  "answer_index": 1,
+  "explanation": "'Far from being X' means the reply was the opposite of X, and the result clause (it addressed every concern) needs a word meaning thorough. 'Evasive, comprehensive' fits: not evasive at all, but complete. The reversed pair contradicts 'addressed every concern'; 'perfunctory, superficial' and 'candid, forthright' are near-synonym pairs, so they give no 'far from' contrast.",
+  "shortcut": "'Far from being X ... so Y' needs X and Y to be opposites, with Y matching the result.",
+  "company_tags": [
+   "tcs_nqt",
+   "accenture",
+   "capgemini"
+  ],
+  "difficulty": 5,
+  "time_sec": 60,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "FIB-DBL-02",
+  "version": 1
+ }
+]

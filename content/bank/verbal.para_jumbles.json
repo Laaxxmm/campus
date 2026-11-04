@@ -1,0 +1,196 @@
+[
+ {
+  "id": "Q-VRB-PJM-0001",
+  "section": "verbal",
+  "topic": "para_jumbles",
+  "subtopic": "sentence_order",
+  "stem": "The following sentences, labelled P, Q, R and S, form a paragraph when arranged in the correct order. Choose the most logical order.\n\nP. A week later, she received an email inviting her for an interview.\nQ. Riya first updated her resume with details of her latest project.\nR. Then she searched the college portal for internships in data analytics.\nS. After shortlisting three companies, she applied to each of them.",
+  "options": [
+   "QRSP",
+   "RQSP",
+   "QSRP",
+   "PQRS"
+  ],
+  "answer_index": 0,
+  "explanation": "The time markers fix the order: 'first' (updating the resume) opens the sequence, 'then' she searches, 'after shortlisting' she applies, and 'a week later' the interview invitation arrives. That gives Q, R, S, P.",
+  "shortcut": "Look for sequence markers: first, then, after, later.",
+  "company_tags": [
+   "tcs_nqt",
+   "wipro",
+   "cognizant"
+  ],
+  "difficulty": 1,
+  "time_sec": 60,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "PJM-SEQ-01",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-PJM-0002",
+  "section": "verbal",
+  "topic": "para_jumbles",
+  "subtopic": "sentence_order",
+  "stem": "The following sentences, labelled P, Q, R and S, form a paragraph when arranged in the correct order. Choose the most logical order.\n\nP. In a year when the monsoon arrives on time, these farmers can sow their crops as planned.\nQ. This is why late rains are often followed by a rise in food prices.\nR. A large number of Indian farmers depend on rainfall rather than irrigation to water their crops.\nS. A delayed monsoon, however, can leave their fields unsown for weeks.",
+  "options": [
+   "RSPQ",
+   "RPSQ",
+   "PRSQ",
+   "RPQS"
+  ],
+  "answer_index": 1,
+  "explanation": "R introduces the farmers; P refers to 'these farmers' and the on-time case; S begins with 'however' and gives the contrasting delayed case; Q ('This is why late rains...') draws the conclusion from S. The order is R, P, S, Q.",
+  "shortcut": "Pronouns like 'these farmers' and connectors like 'however' must follow the sentence they refer to.",
+  "company_tags": [
+   "infosys",
+   "accenture",
+   "capgemini"
+  ],
+  "difficulty": 2,
+  "time_sec": 75,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "PJM-SEQ-02",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-PJM-0003",
+  "section": "verbal",
+  "topic": "para_jumbles",
+  "subtopic": "sentence_order",
+  "stem": "The following sentences, labelled P, Q, R and S, form a paragraph when arranged in the correct order. Choose the most logical order.\n\nP. To address this, the municipality distributed cloth bags at low cost through ration shops.\nQ. Shopkeepers, however, complained that customers still demanded free carry bags.\nR. Within months, the use of cloth bags in the city's markets had nearly doubled.\nS. Last year, the city banned single-use plastic bags in all its markets.",
+  "options": [
+   "SPQR",
+   "QSPR",
+   "SQPR",
+   "SQRP"
+  ],
+  "answer_index": 2,
+  "explanation": "S states the ban; Q ('however') raises the shopkeepers' complaint against it; P ('To address this') responds to that complaint; R gives the result. The order is S, Q, P, R.",
+  "shortcut": "'To address this' needs a problem just before it.",
+  "company_tags": [
+   "tcs_nqt",
+   "cognizant",
+   "wipro"
+  ],
+  "difficulty": 2,
+  "time_sec": 75,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "PJM-SEQ-03",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-PJM-0004",
+  "section": "verbal",
+  "topic": "para_jumbles",
+  "subtopic": "sentence_order",
+  "stem": "The following sentences, labelled P, Q, R and S, form a paragraph when arranged in the correct order. Choose the most logical order.\n\nP. Many people use the same password for their email, banking and social media accounts.\nQ. Security experts therefore recommend a password manager, which can create and remember a unique password for every site.\nR. The risk is that attackers who steal a password from one poorly protected website can use it to enter all the other accounts.\nS. This habit saves effort, but it creates a serious risk.",
+  "options": [
+   "PRSQ",
+   "SPRQ",
+   "PSQR",
+   "PSRQ"
+  ],
+  "answer_index": 3,
+  "explanation": "P describes the habit; S ('This habit') names it and mentions a risk; R ('The risk is that...') explains that risk; Q ('therefore') gives the recommended solution. The order is P, S, R, Q.",
+  "shortcut": "Chain the links: 'This habit' points back, 'The risk' points back, 'therefore' concludes.",
+  "company_tags": [
+   "tcs_nqt",
+   "infosys",
+   "accenture"
+  ],
+  "difficulty": 3,
+  "time_sec": 80,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "PJM-SEQ-04",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-PJM-0005",
+  "section": "verbal",
+  "topic": "para_jumbles",
+  "subtopic": "sentence_order",
+  "stem": "The following sentences, labelled P, Q, R and S, form a paragraph when arranged in the correct order. Choose the most logical order.\n\nP. Research suggests that this strategy can backfire, because sleep plays an active role in forming memories.\nQ. During deep sleep, the brain replays the day's experiences and strengthens the connections that store them.\nR. Cutting sleep short, then, may erase some of the very gains that the extra revision was meant to secure.\nS. Students often sacrifice sleep the night before an exam, hoping to squeeze in a few more hours of revision.",
+  "options": [
+   "SPQR",
+   "SQPR",
+   "PSQR",
+   "SPRQ"
+  ],
+  "answer_index": 0,
+  "explanation": "S describes the students' habit; P calls it 'this strategy' and claims sleep forms memories; Q explains how deep sleep does this; R ('then') concludes that cutting sleep wastes revision. The order is S, P, Q, R.",
+  "shortcut": "Place the general claim before its explanation, and the 'then/therefore' sentence last.",
+  "company_tags": [
+   "infosys",
+   "accenture",
+   "capgemini"
+  ],
+  "difficulty": 4,
+  "time_sec": 90,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "PJM-SEQ-05",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-PJM-0006",
+  "section": "verbal",
+  "topic": "para_jumbles",
+  "subtopic": "sentence_order",
+  "stem": "The following sentences, labelled P, Q, R and S, form a paragraph when arranged in the correct order. Choose the most logical order.\n\nP. Faced with costlier loans, households postpone big purchases and firms delay new investment.\nQ. When inflation rises well above its target, the Reserve Bank of India may raise its policy rate.\nR. Commercial banks then pass this higher cost of funds on to their own borrowers by raising loan rates.\nS. The resulting slowdown in demand gradually eases the pressure on prices.",
+  "options": [
+   "QPRS",
+   "QRPS",
+   "RQPS",
+   "QRSP"
+  ],
+  "answer_index": 1,
+  "explanation": "The chain of cause and effect fixes the order: Q (the RBI raises its rate), R (banks pass 'this higher cost' on through loan rates), P ('faced with costlier loans', spending falls), S ('the resulting slowdown in demand' eases prices). The order is Q, R, P, S.",
+  "shortcut": "In cause-effect paragraphs, each sentence names the result of the one before it.",
+  "company_tags": [
+   "tcs_nqt",
+   "accenture",
+   "capgemini"
+  ],
+  "difficulty": 5,
+  "time_sec": 90,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "PJM-SEQ-06",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-PJM-0007",
+  "section": "verbal",
+  "topic": "para_jumbles",
+  "subtopic": "sentence_order",
+  "stem": "Arrange the sentences in a logical order:\nP: Hence they practise daily.\nQ: Tests reward speed.\nR: Speed comes from pattern familiarity.\nS: Smart students know this.",
+  "options": [
+   "QRSP",
+   "SQRP",
+   "QSRP",
+   "RQSP"
+  ],
+  "answer_index": 0,
+  "explanation": "Q states the claim, R gives the reason speed matters, S says who knows this, and P (\"Hence\") draws the conclusion: QRSP.",
+  "shortcut": "Find the opener (no pronoun/connector) and the \"Hence\" closer",
+  "company_tags": [
+   "capgemini"
+  ],
+  "difficulty": 3,
+  "time_sec": 60,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "PJM-SPEED-PACK",
+  "version": 1
+ }
+]

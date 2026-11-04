@@ -1,0 +1,170 @@
+[
+ {
+  "id": "Q-VRB-RCM-0001",
+  "section": "verbal",
+  "topic": "reading_comprehension",
+  "subtopic": "main_idea",
+  "stem": "Read the passage and answer the question that follows.\n\nAt many engineering colleges, the final-year placement season dominates campus conversation. Students often spend months solving aptitude drills, yet recruiters increasingly report that the candidates they reject rarely fail the aptitude round. Instead, they stumble in interviews, unable to explain the projects listed on their own resumes. A student who built a small inventory app and can describe every design choice often impresses more than one who lists five advanced projects copied from tutorials. Placement cells have begun to respond by asking students to present their projects to juniors before the season begins. The aim is not to add another test, but to make students comfortable talking about work they genuinely understand.\n\nWhich of the following best expresses the main idea of the passage?",
+  "options": [
+   "Aptitude tests have become irrelevant in campus recruitment.",
+   "In interviews, a genuine understanding of one's own work counts for more than a long list of projects.",
+   "Placement cells should replace interviews with project presentations.",
+   "Students who build inventory apps are more likely to be hired."
+  ],
+  "answer_index": 1,
+  "explanation": "The passage says rejected candidates fail not the aptitude round but the interview, because they cannot explain their own projects, and that one well-understood project impresses more than many copied ones. Option A overstates the point, C misreads the presentations (they are practice before juniors, not a replacement), and D turns an example into a rule.",
+  "shortcut": "Main-idea answers cover the whole passage; reject options that are too extreme or only repeat one example.",
+  "company_tags": [
+   "tcs_nqt",
+   "infosys",
+   "wipro"
+  ],
+  "difficulty": 2,
+  "time_sec": 120,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "RCM-MAIN-01",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-RCM-0002",
+  "section": "verbal",
+  "topic": "reading_comprehension",
+  "subtopic": "inference",
+  "stem": "Read the passage and answer the question that follows.\n\nWhen a small tea stall in a Pune suburb began accepting payments through a QR code, its owner expected only convenience. What he did not expect was a bank loan. Because his daily receipts were now recorded digitally, the bank could see a steady pattern of income, something his cash box had never been able to prove. Lenders have traditionally hesitated to serve small vendors because they lack documented earnings. Digital payment trails are beginning to change that, although economists caution that a few months of transactions may not capture seasonal slumps, and lending on such thin records carries its own risks.\n\nIt can be inferred from the passage that the tea-stall owner had earlier found it difficult to obtain a loan mainly because",
+  "options": [
+   "his income was too low to repay a loan",
+   "banks did not lend to businesses in suburbs",
+   "he could not provide documented proof of his earnings",
+   "his sales fell sharply during certain seasons"
+  ],
+  "answer_index": 2,
+  "explanation": "The passage says his cash box could never prove his income and that lenders hesitate to serve vendors who lack documented earnings; the digital record solved exactly this. Nothing suggests his income was too low or that suburbs were excluded, and seasonal slumps are mentioned only as a general risk raised by economists, not as his problem.",
+  "shortcut": "For inference questions, pick the option the passage directly supports; reject ones that need outside assumptions.",
+  "company_tags": [
+   "tcs_nqt",
+   "accenture",
+   "capgemini"
+  ],
+  "difficulty": 3,
+  "time_sec": 120,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "RCM-INF-01",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-RCM-0003",
+  "section": "verbal",
+  "topic": "reading_comprehension",
+  "subtopic": "vocab_in_context",
+  "stem": "Read the passage and answer the question that follows.\n\nAlong India's eastern coast, mangrove forests act as a natural buffer against cyclones. Their tangled roots slow incoming waves and trap sediment, so villages behind healthy mangroves often suffer less damage than those on bare shores. Yet for decades these forests were cleared for shrimp farms and salt pans, because their value was invisible in market terms. Recent restoration drives have tried to reverse this trend, with local communities replanting saplings and guarding them from grazing cattle. Officials say the early results are encouraging, though they concede that a young mangrove takes years to become as resilient as the forests that were lost.\n\nAs used in the passage, the word \"resilient\" most nearly means",
+  "options": [
+   "able to withstand damage and recover from it",
+   "rich in rare species",
+   "easy to cut down",
+   "quick to spread over new land"
+  ],
+  "answer_index": 0,
+  "explanation": "The passage values mangroves for protecting villages from cyclones, and says a young mangrove takes years to become as resilient as the old forests. In this context resilient means strong enough to absorb shocks such as waves and storms and recover from them. The passage says nothing about species, ease of cutting or speed of spreading.",
+  "shortcut": "Substitute each option for the word in the sentence and keep the one that fits the passage's argument.",
+  "company_tags": [
+   "infosys",
+   "cognizant",
+   "wipro"
+  ],
+  "difficulty": 2,
+  "time_sec": 90,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "RCM-VOC-01",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-RCM-0004",
+  "section": "verbal",
+  "topic": "reading_comprehension",
+  "subtopic": "inference",
+  "stem": "Read the passage and answer the question that follows.\n\nA university that introduced software to grade first-year programming assignments found that average marks rose within a single semester. Administrators initially celebrated the result as proof that students were learning faster. A closer look told a different story. The software checked only whether a program produced the correct output for a fixed set of test cases, and students soon learned which cases were tested. Many submissions passed every check while failing on slightly different inputs. The department has since added hidden test cases and asks teaching assistants to review a sample of code by hand.\n\nWhich of the following can most reasonably be inferred from the passage?",
+  "options": [
+   "The grading software was withdrawn after one semester.",
+   "Teaching assistants now grade every assignment by hand.",
+   "Students copied one another's code to pass the tests.",
+   "The rise in average marks did not necessarily reflect an improvement in programming skill."
+  ],
+  "answer_index": 3,
+  "explanation": "Students learned which fixed test cases were checked, so many programs passed while failing on slightly different inputs; higher marks therefore did not prove better skill. The software was not withdrawn (hidden test cases were added), assistants review only a sample, and copying is never mentioned.",
+  "shortcut": "Watch for quantity traps: 'a sample' is not 'every', and 'added hidden tests' is not 'withdrawn'.",
+  "company_tags": [
+   "tcs_nqt",
+   "accenture",
+   "cognizant"
+  ],
+  "difficulty": 4,
+  "time_sec": 135,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "RCM-INF-02",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-RCM-0005",
+  "section": "verbal",
+  "topic": "reading_comprehension",
+  "subtopic": "main_idea",
+  "stem": "Read the passage and answer the question that follows.\n\nIndia is often described as poised to reap a 'demographic dividend' because a large share of its population is of working age. The phrase, however, can mislead. A young population is an opportunity only if young people find productive work; otherwise the same numbers can translate into frustration rather than growth. East Asian economies that benefited from similar demographic shifts invested heavily in schooling, health and labour-intensive manufacturing before their workforces peaked. The dividend, in other words, is not a gift that arrives automatically with a birth-rate chart. It is a return on investments made in time, and the window for making them does not stay open indefinitely.\n\nThe primary purpose of the passage is to",
+  "options": [
+   "argue that India's young population will inevitably produce rapid growth",
+   "warn that India's demographic window has already closed",
+   "explain that a demographic dividend depends on timely investment and does not arrive automatically",
+   "compare the birth rates of India and East Asian economies"
+  ],
+  "answer_index": 2,
+  "explanation": "The author calls the phrase misleading, says a young population helps only if people find productive work, and concludes that the dividend is a return on investments made in time. Option A is the view the author corrects; B overstates the closing remark (the window 'does not stay open indefinitely', not 'has closed'); D mistakes an example for the purpose.",
+  "shortcut": "Primary purpose usually sits in the author's turn ('however', 'in other words'); distrust options that exaggerate the final line.",
+  "company_tags": [
+   "tcs_nqt",
+   "infosys",
+   "capgemini"
+  ],
+  "difficulty": 5,
+  "time_sec": 150,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "RCM-MAIN-02",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-RCM-0006",
+  "section": "verbal",
+  "topic": "reading_comprehension",
+  "subtopic": "vocab_in_context",
+  "stem": "Read the passage and answer the question that follows.\n\nIndian cities are warming faster than the countryside around them, a pattern known as the urban heat island effect. Concrete and asphalt absorb sunlight during the day and release it slowly at night, so city neighbourhoods stay warm long after sunset. Some municipal bodies have begun painting rooftops white and planting trees along major roads. Such measures cannot reverse the trend on their own, but planners believe they can arrest the rise in night-time temperatures, which matter most for health because the body recovers from daytime heat while people sleep.\n\nAs used in the passage, the word \"arrest\" most nearly means",
+  "options": [
+   "check or halt",
+   "take into custody",
+   "draw attention to",
+   "record accurately"
+  ],
+  "answer_index": 0,
+  "explanation": "The sentence contrasts 'cannot reverse the trend' with 'can arrest the rise', so arrest here means stop or slow the rise in temperatures, not turn it back. 'Take into custody' is the legal sense and does not fit temperatures; 'draw attention to' and 'record accurately' do not match the planners' aim of reducing heat.",
+  "shortcut": "Words with several meanings: use the contrast in the sentence (here 'reverse' vs 'arrest') to pick the sense.",
+  "company_tags": [
+   "accenture",
+   "wipro",
+   "capgemini"
+  ],
+  "difficulty": 3,
+  "time_sec": 100,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "RCM-VOC-02",
+  "version": 1
+ }
+]

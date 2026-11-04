@@ -1,0 +1,217 @@
+[
+ {
+  "id": "Q-LOG-SYL-0001",
+  "section": "logical",
+  "topic": "syllogisms",
+  "subtopic": "two_statement",
+  "stem": "Statements:\nAll pens are books.\nAll books are bags.\nConclusions:\nI. All pens are bags.\nII. Some bags are pens.\nWhich conclusion(s) logically follow from the statements?",
+  "options": [
+   "Only I follows",
+   "Only II follows",
+   "Both I and II follow",
+   "Neither I nor II follows"
+  ],
+  "answer_index": 2,
+  "explanation": "Pens are inside books and books are inside bags, so all pens are bags — I follows. Converting 'All pens are bags' gives 'Some bags are pens' — II follows.",
+  "shortcut": "All A are B converts to Some B are A",
+  "company_tags": [
+   "tcs_nqt",
+   "wipro"
+  ],
+  "difficulty": 1,
+  "time_sec": 40,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "SYL-TWO-01",
+  "version": 1
+ },
+ {
+  "id": "Q-LOG-SYL-0002",
+  "section": "logical",
+  "topic": "syllogisms",
+  "subtopic": "two_statement",
+  "stem": "Statements:\nSome cats are dogs.\nNo dog is a rat.\nConclusions:\nI. Some cats are not rats.\nII. No cat is a rat.\nWhich conclusion(s) logically follow from the statements?",
+  "options": [
+   "Only I follows",
+   "Only II follows",
+   "Both I and II follow",
+   "Neither I nor II follows"
+  ],
+  "answer_index": 0,
+  "explanation": "The cats that are dogs cannot be rats, so some cats are definitely not rats — I follows. The other cats may or may not be rats, so 'No cat is a rat' is not certain — II does not follow.",
+  "shortcut": "Some + No gives Some-not",
+  "company_tags": [
+   "infosys",
+   "accenture"
+  ],
+  "difficulty": 2,
+  "time_sec": 45,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "SYL-TWO-02",
+  "version": 1
+ },
+ {
+  "id": "Q-LOG-SYL-0003",
+  "section": "logical",
+  "topic": "syllogisms",
+  "subtopic": "two_statement",
+  "stem": "Statements:\nAll doctors are graduates.\nSome graduates are singers.\nConclusions:\nI. Some doctors are singers.\nII. Some singers are graduates.\nWhich conclusion(s) logically follow from the statements?",
+  "options": [
+   "Only I follows",
+   "Only II follows",
+   "Both I and II follow",
+   "Neither I nor II follows"
+  ],
+  "answer_index": 1,
+  "explanation": "The graduates who are singers may or may not include doctors, so I is not certain. 'Some graduates are singers' converts directly to 'Some singers are graduates', so II follows.",
+  "shortcut": null,
+  "company_tags": [
+   "cognizant",
+   "capgemini"
+  ],
+  "difficulty": 2,
+  "time_sec": 45,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "SYL-TWO-03",
+  "version": 1
+ },
+ {
+  "id": "Q-LOG-SYL-0004",
+  "section": "logical",
+  "topic": "syllogisms",
+  "subtopic": "two_statement",
+  "stem": "Statements:\nNo teacher is a doctor.\nAll doctors are singers.\nConclusions:\nI. Some singers are not teachers.\nII. No singer is a teacher.\nWhich conclusion(s) logically follow from the statements?",
+  "options": [
+   "Only I follows",
+   "Only II follows",
+   "Both I and II follow",
+   "Neither I nor II follows"
+  ],
+  "answer_index": 0,
+  "explanation": "All doctors are singers and none of them is a teacher, so the singers who are doctors are not teachers — I follows. Singers who are not doctors may still be teachers, so II does not follow.",
+  "shortcut": null,
+  "company_tags": [
+   "tcs_nqt",
+   "infosys"
+  ],
+  "difficulty": 3,
+  "time_sec": 50,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "SYL-TWO-04",
+  "version": 1
+ },
+ {
+  "id": "Q-LOG-SYL-0005",
+  "section": "logical",
+  "topic": "syllogisms",
+  "subtopic": "possibility",
+  "stem": "Statements:\nSome phones are laptops.\nAll laptops are tablets.\nConclusions:\nI. Some tablets are phones.\nII. All tablets being phones is a possibility.\nWhich conclusion(s) logically follow from the statements?",
+  "options": [
+   "Only I follows",
+   "Only II follows",
+   "Both I and II follow",
+   "Neither I nor II follows"
+  ],
+  "answer_index": 2,
+  "explanation": "The phones that are laptops are also tablets, so some tablets are phones — I follows. Nothing in the statements prevents every tablet from being a phone (laptops inside tablets inside phones fits both statements), so II is possible and follows.",
+  "shortcut": "A possibility follows if it contradicts no statement",
+  "company_tags": [
+   "accenture",
+   "wipro"
+  ],
+  "difficulty": 4,
+  "time_sec": 60,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "SYL-POS-01",
+  "version": 1
+ },
+ {
+  "id": "Q-LOG-SYL-0006",
+  "section": "logical",
+  "topic": "syllogisms",
+  "subtopic": "possibility",
+  "stem": "Statements:\nAll engineers are graduates.\nNo graduate is unemployed.\nSome unemployed people are artists.\nConclusions:\nI. No artist is an engineer.\nII. All artists being graduates is a possibility.\nWhich conclusion(s) logically follow from the statements?",
+  "options": [
+   "Only I follows",
+   "Only II follows",
+   "Both I and II follow",
+   "Neither I nor II follows"
+  ],
+  "answer_index": 3,
+  "explanation": "The unemployed artists are not graduates, but other artists may well be engineers, so I is not certain. Some artists are unemployed and no unemployed person is a graduate, so it is impossible for all artists to be graduates — II does not follow either.",
+  "shortcut": "Test a possibility against every definite fact",
+  "company_tags": [
+   "tcs_nqt",
+   "capgemini"
+  ],
+  "difficulty": 5,
+  "time_sec": 75,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "SYL-POS-02",
+  "version": 1
+ },
+ {
+  "id": "Q-LOG-SYL-0007",
+  "section": "logical",
+  "topic": "syllogisms",
+  "subtopic": "two_statement",
+  "stem": "Statements:\nSome boys are players.\nSome players are singers.\nConclusions:\nI. Some singers are boys.\nII. All players are boys.\nWhich conclusion(s) logically follow from the statements?",
+  "options": [
+   "Only I follows",
+   "Only II follows",
+   "Both I and II follow",
+   "Neither I nor II follows"
+  ],
+  "answer_index": 3,
+  "explanation": "Two 'some' statements give no definite link between boys and singers, so I does not follow. 'Some boys are players' does not mean that every player is a boy, so II does not follow.",
+  "shortcut": "Some + Some gives no definite conclusion",
+  "company_tags": [
+   "cognizant",
+   "infosys"
+  ],
+  "difficulty": 2,
+  "time_sec": 40,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "SYL-TWO-05",
+  "version": 1
+ },
+ {
+  "id": "Q-LOG-SYL-0008",
+  "section": "logical",
+  "topic": "syllogisms",
+  "subtopic": "two_statement",
+  "stem": "Statements: All drives are tests. Some tests are online.\nConclusions:\nI. Some drives are online.\nII. Some tests are drives.",
+  "options": [
+   "Only I follows",
+   "Only II follows",
+   "Both I and II follow",
+   "Neither I nor II follows"
+  ],
+  "answer_index": 1,
+  "explanation": "\"All drives are tests\" converts to \"Some tests are drives\", so II follows. The online tests may or may not include any drives, so I is not certain.",
+  "shortcut": "All A are B ⇒ Some B are A",
+  "company_tags": [
+   "accenture"
+  ],
+  "difficulty": 3,
+  "time_sec": 60,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "SYL-CONV-PACK",
+  "version": 1
+ }
+]

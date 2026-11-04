@@ -1,0 +1,114 @@
+[
+ {
+  "id": "Q-VRB-IDM-0001",
+  "section": "verbal",
+  "topic": "idioms_phrases",
+  "subtopic": "idiom_meaning",
+  "stem": "Choose the option that best expresses the meaning of the idiom in square brackets.\n\nWith the semester exams a week away, Arjun has been [burning the midnight oil].",
+  "options": [
+   "studying or working late into the night",
+   "wasting time and money",
+   "causing trouble for others",
+   "avoiding hard work"
+  ],
+  "answer_index": 0,
+  "explanation": "'Burn the midnight oil' means to stay up late at night working or studying, originally by the light of an oil lamp. The context of exams a week away supports this meaning; the other options do not match the idiom.",
+  "shortcut": null,
+  "company_tags": [
+   "tcs_nqt",
+   "wipro",
+   "cognizant"
+  ],
+  "difficulty": 1,
+  "time_sec": 20,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "IDM-IDI-01",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-IDM-0002",
+  "section": "verbal",
+  "topic": "idioms_phrases",
+  "subtopic": "phrasal_verbs",
+  "stem": "Choose the option that best expresses the meaning of the phrasal verb in square brackets.\n\nBecause of heavy rain, the organisers [called off] the inter-college football match.",
+  "options": [
+   "postponed",
+   "rescheduled",
+   "shortened",
+   "cancelled"
+  ],
+  "answer_index": 3,
+  "explanation": "'Call off' means to cancel something that was planned. It does not mean postpone; that sense is expressed by 'put off'. 'Rescheduled' and 'shortened' also describe the match still taking place, which 'called off' does not.",
+  "shortcut": "Call off = cancel; put off = postpone.",
+  "company_tags": [
+   "infosys",
+   "accenture",
+   "capgemini"
+  ],
+  "difficulty": 2,
+  "time_sec": 25,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "IDM-PHV-01",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-IDM-0003",
+  "section": "verbal",
+  "topic": "idioms_phrases",
+  "subtopic": "idiom_meaning",
+  "stem": "Choose the option that best expresses the meaning of the idiom in square brackets.\n\nThe question about the candidate's hobbies was [a red herring]; the panel was really testing how he handled pressure.",
+  "options": [
+   "a rare and valuable opportunity",
+   "something that misleads or distracts from the real issue",
+   "an obvious and careless mistake",
+   "a sign of danger ahead"
+  ],
+  "answer_index": 1,
+  "explanation": "'A red herring' is something that draws attention away from the real issue. In the sentence, the hobbies question distracted from what the panel was actually testing. It does not mean an opportunity, a mistake or a warning sign ('red flag' is a different idiom).",
+  "shortcut": "Do not confuse 'red herring' (distraction) with 'red flag' (warning sign).",
+  "company_tags": [
+   "tcs_nqt",
+   "infosys",
+   "accenture"
+  ],
+  "difficulty": 4,
+  "time_sec": 30,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "IDM-IDI-02",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-IDM-0004",
+  "section": "verbal",
+  "topic": "idioms_phrases",
+  "subtopic": "phrasal_verbs",
+  "stem": "Choose the option that best expresses the meaning of the phrasal verb in square brackets.\n\nThe reviewer asked the team to [bear out] their claim of faster load times with benchmark data.",
+  "options": [
+   "tolerate patiently",
+   "withdraw",
+   "support or confirm",
+   "exaggerate"
+  ],
+  "answer_index": 2,
+  "explanation": "'Bear out' means to support or confirm that something is true, as data can bear out a claim. 'Tolerate patiently' is the sense of 'bear with' or simply 'bear', not 'bear out'. Asking for benchmark data shows the reviewer wanted proof, not withdrawal or exaggeration.",
+  "shortcut": "Bear out = confirm; bear with = be patient with; bear up = stay strong.",
+  "company_tags": [
+   "tcs_nqt",
+   "accenture",
+   "capgemini"
+  ],
+  "difficulty": 5,
+  "time_sec": 30,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "IDM-PHV-02",
+  "version": 1
+ }
+]

@@ -1,0 +1,224 @@
+[
+ {
+  "id": "Q-VRB-ERR-0001",
+  "section": "verbal",
+  "topic": "error_spotting",
+  "subtopic": "subject_verb",
+  "stem": "Identify the part of the sentence that contains a grammatical error.\n\n(A) Each of the students\n(B) in the final year\n(C) have submitted\n(D) the project report on time.",
+  "options": [
+   "A",
+   "B",
+   "C",
+   "D"
+  ],
+  "answer_index": 2,
+  "explanation": "'Each of the students' takes a singular verb because the subject is 'each', not 'students'. Part (C) should read 'has submitted'. The other parts are correct.",
+  "shortcut": "'Each of', 'one of', 'every' + noun take a singular verb.",
+  "company_tags": [
+   "tcs_nqt",
+   "wipro",
+   "cognizant"
+  ],
+  "difficulty": 1,
+  "time_sec": 40,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "ERR-SVA-01",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-ERR-0002",
+  "section": "verbal",
+  "topic": "error_spotting",
+  "subtopic": "subject_verb",
+  "stem": "Identify the part of the sentence that contains a grammatical error. If there is no error, choose 'No error'.\n\n(A) Neither the manager nor the team members\n(B) were informed\n(C) about the change in the schedule.",
+  "options": [
+   "A",
+   "B",
+   "C",
+   "No error"
+  ],
+  "answer_index": 3,
+  "explanation": "With 'neither ... nor', the verb agrees with the subject closer to it. The nearer subject is 'the team members' (plural), so the plural 'were informed' is correct. 'Informed about the change' is also correct, so the sentence has no error.",
+  "shortcut": "Neither/either ... nor/or: match the verb to the nearer subject.",
+  "company_tags": [
+   "infosys",
+   "accenture",
+   "capgemini"
+  ],
+  "difficulty": 3,
+  "time_sec": 45,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "ERR-SVA-02",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-ERR-0003",
+  "section": "verbal",
+  "topic": "error_spotting",
+  "subtopic": "tense",
+  "stem": "Identify the part of the sentence that contains a grammatical error. If there is no error, choose 'No error'.\n\n(A) If he would have prepared more thoroughly,\n(B) he might have cleared\n(C) the technical interview.",
+  "options": [
+   "A",
+   "B",
+   "C",
+   "No error"
+  ],
+  "answer_index": 0,
+  "explanation": "In a third conditional (an unreal past condition), the if-clause takes the past perfect: 'If he had prepared more thoroughly'. 'Would have' belongs only in the main clause. Part (B), 'he might have cleared', is a correct main-clause form.",
+  "shortcut": "Third conditional: If + had + V3, would/might/could + have + V3. Never 'would have' after 'if'.",
+  "company_tags": [
+   "tcs_nqt",
+   "infosys",
+   "accenture"
+  ],
+  "difficulty": 4,
+  "time_sec": 45,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "ERR-TNS-01",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-ERR-0004",
+  "section": "verbal",
+  "topic": "error_spotting",
+  "subtopic": "tense",
+  "stem": "Identify the part of the sentence that contains a grammatical error. If there is no error, choose 'No error'.\n\n(A) By the time the bus reached the campus,\n(B) the first lecture already started\n(C) and the hall was full.",
+  "options": [
+   "A",
+   "B",
+   "C",
+   "No error"
+  ],
+  "answer_index": 1,
+  "explanation": "When one past action is completed before another past action, the earlier one takes the past perfect. The lecture started before the bus reached the campus, so part (B) should read 'the first lecture had already started'.",
+  "shortcut": "'By the time' + simple past in one clause signals past perfect (had + V3) in the other.",
+  "company_tags": [
+   "wipro",
+   "cognizant",
+   "capgemini"
+  ],
+  "difficulty": 2,
+  "time_sec": 40,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "ERR-TNS-02",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-ERR-0005",
+  "section": "verbal",
+  "topic": "error_spotting",
+  "subtopic": "prepositions_articles",
+  "stem": "Identify the part of the sentence that contains a grammatical error.\n\n(A) She has been preparing\n(B) for the aptitude test\n(C) since three months\n(D) and now feels confident.",
+  "options": [
+   "A",
+   "B",
+   "C",
+   "D"
+  ],
+  "answer_index": 2,
+  "explanation": "'Since' is used with a point in time (since March, since 2023); 'for' is used with a period of time. 'Three months' is a period, so part (C) should read 'for three months'.",
+  "shortcut": "Since + point of time; for + length of time.",
+  "company_tags": [
+   "tcs_nqt",
+   "cognizant",
+   "wipro"
+  ],
+  "difficulty": 2,
+  "time_sec": 40,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "ERR-PRP-01",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-ERR-0006",
+  "section": "verbal",
+  "topic": "error_spotting",
+  "subtopic": "subject_verb",
+  "stem": "Identify the part of the sentence that contains a grammatical error.\n\n(A) The manager, along with\n(B) his two assistants\n(C) who joined last month,\n(D) are expected at the review meeting.",
+  "options": [
+   "A",
+   "B",
+   "C",
+   "D"
+  ],
+  "answer_index": 3,
+  "explanation": "Phrases such as 'along with', 'as well as' and 'together with' do not make the subject plural. The subject is 'the manager' (singular), so part (D) should read 'is expected at the review meeting'.",
+  "shortcut": "Ignore 'along with / as well as / together with' phrases when finding the subject.",
+  "company_tags": [
+   "accenture",
+   "infosys",
+   "capgemini"
+  ],
+  "difficulty": 4,
+  "time_sec": 45,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "ERR-SVA-03",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-ERR-0007",
+  "section": "verbal",
+  "topic": "error_spotting",
+  "subtopic": "prepositions_articles",
+  "stem": "Identify the part of the sentence that contains a grammatical error.\n\n(A) The selection panel comprises of\n(B) three senior engineers\n(C) and an HR manager\n(D) from the head office.",
+  "options": [
+   "A",
+   "B",
+   "C",
+   "D"
+  ],
+  "answer_index": 0,
+  "explanation": "'Comprise' means 'consist of' and takes a direct object without 'of': 'The panel comprises three senior engineers'. Part (A) is therefore wrong ('consists of' or 'is composed of' would also be correct). In (C), 'an HR manager' is correct because 'HR' begins with a vowel sound ('aitch').",
+  "shortcut": "Comprises = consists of; never 'comprises of'. Choose a/an by sound, not spelling.",
+  "company_tags": [
+   "tcs_nqt",
+   "infosys",
+   "accenture"
+  ],
+  "difficulty": 5,
+  "time_sec": 50,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "ERR-PRP-02",
+  "version": 1
+ },
+ {
+  "id": "Q-VRB-ERR-0008",
+  "section": "verbal",
+  "topic": "error_spotting",
+  "subtopic": "subject_verb",
+  "stem": "Find the part of the sentence that has an error:\nEach of the students (A) / have submitted (B) / their resume (C) / on time (D).",
+  "options": [
+   "A",
+   "B",
+   "C",
+   "D"
+  ],
+  "answer_index": 1,
+  "explanation": "\"Each of the students\" takes a singular verb, so \"have submitted\" in part B should be \"has submitted\".",
+  "shortcut": "Each/every/either + singular verb",
+  "company_tags": [
+   "wipro"
+  ],
+  "difficulty": 2,
+  "time_sec": 40,
+  "source": "seed",
+  "seed_id": null,
+  "status": "golden",
+  "variant_group": "ERR-EACH-PACK",
+  "version": 1
+ }
+]
