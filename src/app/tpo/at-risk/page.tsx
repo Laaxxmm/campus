@@ -24,11 +24,11 @@ export default async function AtRisk({ searchParams }: { searchParams: Promise<{
           {risk.map((r) => {
             const msg = nudgeText(r, app, r.batchId ? drive.get(r.batchId) : null);
             return (
-              <li key={r.id} className="flex flex-col gap-2 rounded-md border border-border bg-bg p-3 md:flex-row md:items-center">
+              <li key={r.id} className="flex flex-col gap-2 rounded-md border border-border bg-bg p-4 md:flex-row md:items-center">
                 <div className="min-w-0 flex-1">
                   <Link href={`/tpo/students/${r.id}`} className="font-medium text-ink-900 hover:underline">{r.name}</Link>
                   <span className="ml-2 text-xs text-text-600">{r.batch} · {r.atRiskReasons.join(" · ")}</span>
-                  <p className="mt-1 text-xs text-text-600">{msg}</p>
+                  <p className="mt-2 text-xs text-text-600">{msg}</p>
                 </div>
                 <CopyButton text={msg} />
               </li>

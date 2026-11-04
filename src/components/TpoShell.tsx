@@ -29,18 +29,18 @@ export function TpoShell({ children, title, collegeName, crumbs = [], actions }:
         <div className="flex items-center justify-between px-4 py-4 md:block">
           <div>
             <div className="flex items-center gap-2 text-lg font-bold"><BarChart3 aria-hidden className="h-5 w-5 text-accent-500" />LearnCrew</div>
-            {collegeName && <div className="mt-0.5 text-xs text-white/70">{collegeName}</div>}
+            {collegeName && <div className="text-xs text-white/70">{collegeName}</div>}
           </div>
         </div>
         <nav aria-label="TPO" className="flex gap-1 overflow-x-auto px-2 pb-2 md:flex-col md:overflow-visible">
           {items.map(({ href, label, Icon }) => (
-            <Link key={href} href={href} className="flex min-h-11 items-center gap-2 whitespace-nowrap rounded-sm px-3 text-sm text-white/85 hover:bg-ink-700 hover:text-white">
+            <Link key={href} href={href} className="flex min-h-11 items-center gap-2 whitespace-nowrap rounded-sm px-4 text-sm text-white/85 hover:bg-ink-700 hover:text-white">
               <Icon aria-hidden className="h-4 w-4" />
               {label}
             </Link>
           ))}
           <form action={logout} className="md:mt-4">
-            <button type="submit" className="flex min-h-11 items-center gap-2 rounded-sm px-3 text-sm text-white/85 hover:bg-ink-700"><LogOut aria-hidden className="h-4 w-4" />Sign out</button>
+            <button type="submit" className="flex min-h-11 items-center gap-2 rounded-sm px-4 text-sm text-white/85 hover:bg-ink-700"><LogOut aria-hidden className="h-4 w-4" />Sign out</button>
           </form>
         </nav>
       </aside>
@@ -55,7 +55,7 @@ export function TpoShell({ children, title, collegeName, crumbs = [], actions }:
             ))}
           </nav>
         )}
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
           <h1 className="text-2xl font-bold text-ink-900">{title}</h1>
           {actions}
         </div>

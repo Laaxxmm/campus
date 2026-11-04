@@ -19,7 +19,7 @@ export default function DevLogin() {
   return (
     <main className="mx-auto max-w-md px-4 py-10">
       <h1 className="text-2xl font-bold text-ink-900">Demo login</h1>
-      <p className="mt-1 text-sm text-text-600">Dev/preview only — skips the email step for seeded accounts.</p>
+      <p className="mt-2 text-sm text-text-600">Dev/preview only — skips the email step for seeded accounts.</p>
       <ul className="mt-6 space-y-2">
         {DEMO.map((d) => (
           <li key={d.email}>

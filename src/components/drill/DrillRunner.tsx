@@ -109,7 +109,7 @@ export function DrillRunner({ drillId, items, initialResults, explainEnabled }: 
         <OfflineBanner />
         <main className="mx-auto flex max-w-md flex-1 flex-col items-center justify-center px-4 text-center">
           <CloudUpload aria-hidden className="h-12 w-12 text-ink-900" />
-          <h1 className="mt-3 text-xl font-bold">All 10 answered!</h1>
+          <h1 className="mt-4 text-xl font-bold">All 10 answered!</h1>
           <p className="mt-2 text-text-600" data-testid="sync-status">
             {synced}/{items.length} synced. {online ? "Syncing…" : "We'll grade the rest as soon as you're online."}
           </p>
@@ -131,7 +131,7 @@ export function DrillRunner({ drillId, items, initialResults, explainEnabled }: 
   return (
     <div className="flex min-h-dvh flex-col bg-surface">
       <OfflineBanner />
-      <header className="sticky top-0 z-10 space-y-2 bg-surface px-4 pb-2 pt-3">
+      <header className="sticky top-0 z-10 space-y-2 bg-surface px-4 pb-2 pt-4">
         <div className="flex items-center justify-between text-xs text-text-600">
           <a href="/today" className="flex min-h-11 min-w-11 items-center" aria-label="Exit drill"><X className="h-5 w-5" /></a>
           <span className="tabular">Q {local.current + 1} / {items.length}</span>
@@ -147,7 +147,7 @@ export function DrillRunner({ drillId, items, initialResults, explainEnabled }: 
         </article>
       </main>
 
-      <footer className="fixed inset-x-0 bottom-0 z-20 border-t border-border bg-bg/95 px-4 pb-4 pt-3 backdrop-blur">
+      <footer className="fixed inset-x-0 bottom-0 z-20 border-t border-border bg-bg/95 px-4 pb-4 pt-4 backdrop-blur">
         <div className="mx-auto max-w-md space-y-2">
           {q.options.map((opt, i) => (
             <OptionButton key={i} label={LETTERS[i]} text={opt} state={optionState(i)} onClick={() => {
@@ -158,15 +158,15 @@ export function DrillRunner({ drillId, items, initialResults, explainEnabled }: 
               }} />
           ))}
           {!answered && (
-            <div className="flex gap-2 pt-1">
-              <button type="button" onClick={() => submit(null)} className="min-h-11 px-3 text-sm text-text-600">Skip</button>
+            <div className="flex gap-2 pt-2">
+              <button type="button" onClick={() => submit(null)} className="min-h-11 px-4 text-sm text-text-600">Skip</button>
               <button type="button" disabled={selected === null || busy} onClick={() => submit(selected)} className="min-h-12 flex-1 rounded-md bg-ink-900 font-semibold text-white disabled:opacity-40">
                 Check answer
               </button>
             </div>
           )}
           {answered && !result && (
-            <div className="flex items-center gap-2 pt-1">
+            <div className="flex items-center gap-2 pt-2">
               <p className="flex-1 text-sm text-text-600" data-testid="pending-note">Saved offline · will be graded when you reconnect</p>
               <button type="button" onClick={next} className="min-h-12 rounded-md bg-ink-900 px-6 font-semibold text-white">Next</button>
             </div>

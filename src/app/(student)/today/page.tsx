@@ -42,12 +42,12 @@ export default async function Today() {
       {drillError || !s.drill ? (
         <EmptyState icon={Clock} title="Today's drill isn't ready" body="Your college's question bank is still being set up. Check back soon." />
       ) : (
-        <section className="rounded-md bg-ink-900 p-5 text-white shadow-sm" data-testid="drill-card">
+        <section className="rounded-md bg-ink-900 p-6 text-white shadow-sm" data-testid="drill-card">
           <div className="text-sm opacity-90">Today&apos;s drill · 10 Q · ~10 min</div>
           {done ? (
             <>
               <div className="mt-2 text-3xl font-bold tabular">{s.drill.score}/10</div>
-              <p className="mt-1 text-sm opacity-90">Done for today. Next drill unlocks tomorrow at 5 AM.</p>
+              <p className="mt-2 text-sm opacity-90">Done for today. Next drill unlocks tomorrow at 5 AM.</p>
               <Link href={`/drill/${s.drill.id}/done`} className="mt-4 flex min-h-12 items-center justify-center rounded-md bg-white/15 font-semibold">See result</Link>
             </>
           ) : (
@@ -65,9 +65,9 @@ export default async function Today() {
         <form key={a.id} action={startAssignedPack} className="rounded-md border border-accent-500 bg-accent-50 p-4" data-testid="assigned-pack">
           <input type="hidden" name="assignment" value={a.id} />
           <p className="text-xs font-semibold uppercase tracking-wide text-ink-700">From your TPO</p>
-          <p className="mt-1 font-semibold text-ink-900">Focus pack: {a.topics.map(topicName).join(", ")}</p>
+          <p className="mt-2 font-semibold text-ink-900">Focus pack: {a.topics.map(topicName).join(", ")}</p>
           <p className="text-sm text-text-600">{a.questionsPerDay} questions a day{a.dueOn ? ` · until ${a.dueOn}` : ""}{a.note ? ` · ${a.note}` : ""}</p>
-          <button type="submit" className="mt-3 min-h-11 w-full rounded-sm bg-ink-900 font-semibold text-white">Start pack</button>
+          <button type="submit" className="mt-4 min-h-11 w-full rounded-sm bg-ink-900 font-semibold text-white">Start pack</button>
         </form>
       ))}
 
@@ -75,7 +75,7 @@ export default async function Today() {
         <ReadinessRing score={s.readiness} label={`${companyName(s.company)} ready`} />
         <div className="text-sm text-text-600">
           <p className="font-semibold text-text-900">Placement readiness</p>
-          <p className="mt-1">Based on your topic ratings for {companyName(s.company)}. 70+ means you&apos;re in good shape.</p>
+          <p className="mt-2">Based on your topic ratings for {companyName(s.company)}. 70+ means you&apos;re in good shape.</p>
           <Link href="/progress" className="mt-2 inline-block font-semibold text-ink-900">See details →</Link>
         </div>
       </section>
@@ -85,7 +85,7 @@ export default async function Today() {
           <h2 className="mb-2 text-sm font-semibold text-text-600">Work on these</h2>
           <div className="flex flex-wrap gap-2">
             {s.weakest.map((w) => (
-              <span key={w.topic} className="rounded-pill border border-border bg-bg px-3 py-1.5 text-sm">{w.name}</span>
+              <span key={w.topic} className="rounded-pill border border-border bg-bg px-4 py-2 text-sm">{w.name}</span>
             ))}
           </div>
         </section>

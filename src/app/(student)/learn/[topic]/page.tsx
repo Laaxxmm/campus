@@ -20,11 +20,11 @@ export default async function Learn({ params }: { params: Promise<{ topic: strin
       <Link href="/companies" className="inline-flex min-h-11 items-center gap-1 text-sm text-ink-900"><ArrowLeft aria-hidden className="h-4 w-4" />Companies</Link>
       <h1 className="text-xl font-bold text-ink-900">{t.name}</h1>
       <p className="text-sm text-text-600">Read the cards (about a minute each), then test yourself.</p>
-      <ul className="space-y-3" data-testid="concept-cards">
+      <ul className="space-y-4" data-testid="concept-cards">
         {cards.map((c) => (
           <li key={c.id} className="rounded-md border border-border bg-bg p-4">
             <h2 className="font-semibold text-ink-900">{c.title}</h2>
-            <div className="mt-1 text-sm leading-relaxed">{renderStem(c.body)}</div>
+            <div className="mt-2 text-sm leading-relaxed">{renderStem(c.body)}</div>
             {c.example && <div className="mt-2 text-sm">{renderStem(c.example)}</div>}
             {c.interviewTip && <p className="mt-2 flex gap-2 rounded-sm bg-accent-50 p-2 text-xs"><Lightbulb aria-hidden className="h-4 w-4 shrink-0 text-accent-600" />{c.interviewTip}</p>}
           </li>

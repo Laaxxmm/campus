@@ -9,6 +9,7 @@ const tones = {
   warn: "bg-accent-50 text-text-900 border-accent-50",
 } as const;
 
+/** Chip: radius 9999, 4px inner block padding (the one 4px exception besides icon gaps), 8px inline. */
 export function Badge({ tone = "neutral", className, ...props }: React.HTMLAttributes<HTMLSpanElement> & { tone?: keyof typeof tones }) {
-  return <span className={cn("inline-flex items-center rounded-pill border px-2.5 py-0.5 text-xs font-medium", tones[tone], className)} {...props} />;
+  return <span className={cn("inline-flex items-center gap-1 rounded-pill border px-2 py-1 text-xs font-medium leading-none", tones[tone], className)} {...props} />;
 }

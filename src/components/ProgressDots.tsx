@@ -8,7 +8,7 @@ const cls: Record<DotState, string> = {
 };
 export function ProgressDots({ states }: { states: DotState[] }) {
   return (
-    <ol className="flex items-center justify-center gap-1.5" aria-label="Progress">
+    <ol className="flex items-center justify-center gap-2" aria-label="Progress">
       {states.map((s, i) => (
         <li key={i} className={`h-2.5 w-2.5 rounded-pill ${cls[s]}`} aria-label={`Question ${i + 1}: ${s}`} />
       ))}

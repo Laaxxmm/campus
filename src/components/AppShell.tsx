@@ -18,7 +18,7 @@ export function AppShell({ children, header }: { children: React.ReactNode; head
   return (
     <div className="mx-auto flex min-h-dvh max-w-md flex-col bg-surface">
       {header}
-      <main className="flex-1 px-4 pb-24 pt-3">{children}</main>
+      <main className="flex-1 px-4 pb-24 pt-4">{children}</main>
       <nav aria-label="Primary" className="no-print fixed inset-x-0 bottom-0 z-20 border-t border-border bg-bg">
         <ul className="mx-auto grid max-w-md grid-cols-5">
           {items.map((it) => {

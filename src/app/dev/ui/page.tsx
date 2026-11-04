@@ -23,17 +23,17 @@ export default function DevUi() {
     <main className="mx-auto max-w-3xl space-y-8 px-4 py-8">
       <h1 className="text-3xl font-bold text-ink-900">Design system</h1>
       <section>
-        <h2 className="mb-3 text-lg font-semibold">Tokens</h2>
+        <h2 className="mb-4 text-lg font-semibold">Tokens</h2>
         <div className="grid grid-cols-3 gap-2 sm:grid-cols-5">
           {swatches.map((s) => (
             <div key={s} className="rounded-sm border border-border bg-bg p-2 text-xs">
-              <div className="mb-1 h-10 rounded-sm" style={{ background: `var(--${s})` }} />
+              <div className="mb-2 h-10 rounded-sm" style={{ background: `var(--${s})` }} />
               {s}
             </div>
           ))}
         </div>
       </section>
-      <section className="space-y-3">
+      <section className="space-y-4">
         <h2 className="text-lg font-semibold">Buttons</h2>
         <div className="flex flex-wrap gap-2">
           <Button>Primary</Button>
@@ -43,7 +43,7 @@ export default function DevUi() {
           <Button disabled>Disabled</Button>
         </div>
       </section>
-      <section className="space-y-3">
+      <section className="space-y-4">
         <h2 className="text-lg font-semibold">Badges, inputs, cards</h2>
         <div className="flex flex-wrap gap-2">
           <Badge>Neutral</Badge>
@@ -58,7 +58,7 @@ export default function DevUi() {
           <p className="text-sm text-text-600">Border + subtle shadow, 12px radius.</p>
         </Card>
       </section>
-      <section className="space-y-3">
+      <section className="space-y-4">
         <h2 className="text-lg font-semibold">Gamification</h2>
         <div className="flex items-center gap-4">
           <StreakFlame days={7} />
@@ -76,7 +76,7 @@ export default function DevUi() {
         <OptionButton label="C" text="Correct" state="correct" />
         <OptionButton label="D" text="Wrong" state="wrong" />
       </section>
-      <section className="grid grid-cols-2 gap-3">
+      <section className="grid grid-cols-2 gap-4">
         <KpiCard label="Weekly active" value="68%" hint="target ≥ 60%" tone="good" />
         <KpiCard label="At risk" value={12} tone="bad" />
       </section>

@@ -21,11 +21,11 @@ export default async function Companies({ searchParams }: { searchParams: Promis
     if (p) cards.push({ p, r: await readinessFor(p, signals), dream: dream?.company === key });
   }
   return (
-    <div className="space-y-5">
+    <div className="space-y-6">
       <h1 className="text-xl font-bold text-ink-900">Companies</h1>
       <p className="text-sm text-text-600">Your crack-path for each target: the bar, the rounds, and what to practise next. Preparation guidance — never a promise of selection.</p>
-      {cards.length === 0 && <p className="rounded-sm bg-accent-50 p-3 text-sm">Pick your target companies below to see your gap to each bar.</p>}
-      <ul className="space-y-3" data-testid="company-cards">
+      {cards.length === 0 && <p className="rounded-sm bg-accent-50 p-4 text-sm">Pick your target companies below to see your gap to each bar.</p>}
+      <ul className="space-y-4" data-testid="company-cards">
         {cards.map(({ p, r, dream }) => (
           <li key={p.key}>
             <Link href={`/companies/${p.key}`} className="block rounded-md border border-border bg-bg p-4 shadow-sm hover:border-ink-700">
@@ -44,20 +44,20 @@ export default async function Companies({ searchParams }: { searchParams: Promis
           </li>
         ))}
       </ul>
-      {dream?.company.startsWith("dream:") && <p className="text-sm text-text-600"><Star aria-hidden className="mr-1 inline h-4 w-4 text-accent-600" />Dream: {dream.dreamName} — we don&apos;t have a verified profile for it yet; your readiness for the closest pattern above still applies.</p>}
+      {dream?.company.startsWith("dream:") && <p className="text-sm text-text-600"><Star aria-hidden className="mr-2 inline h-4 w-4 text-accent-600" />Dream: {dream.dreamName} — we don&apos;t have a verified profile for it yet; your readiness for the closest pattern above still applies.</p>}
 
-      <form action={saveTargets} className="space-y-3 rounded-md border border-border bg-bg p-4" data-testid="target-picker">
+      <form action={saveTargets} className="space-y-4 rounded-md border border-border bg-bg p-4" data-testid="target-picker">
         <h2 className="font-semibold text-ink-900">Your targets (up to {MAX_TARGETS})</h2>
         {sp.error && <p role="alert" className="text-sm text-danger-500">{sp.error}</p>}
         {sp.saved && <p role="status" className="text-sm text-success-700">Saved.</p>}
         <div className="grid grid-cols-2 gap-2">
           {profiles.map((p) => (
-            <label key={p.key} className="flex min-h-11 items-center gap-2 rounded-sm border border-border px-3 text-sm">
+            <label key={p.key} className="flex min-h-11 items-center gap-2 rounded-sm border border-border px-4 text-sm">
               <input type="checkbox" name="companies" value={p.key} defaultChecked={picked.includes(p.key)} className="h-5 w-5 accent-ink-900" />{p.name}
             </label>
           ))}
         </div>
-        <label className="block text-sm">Dream company (optional)<Input name="dream" defaultValue={dream?.dreamName ?? ""} placeholder="e.g. Zoho, Google" className="mt-1" /></label>
+        <label className="block text-sm">Dream company (optional)<Input name="dream" defaultValue={dream?.dreamName ?? ""} placeholder="e.g. Zoho, Google" className="mt-2" /></label>
         <Button type="submit" variant="secondary" className="w-full">Save targets</Button>
       </form>
     </div>

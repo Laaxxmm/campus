@@ -52,7 +52,7 @@ export function CsvDropzone({ collegeId }: { collegeId?: string }) {
         <FileUp aria-hidden className="h-8 w-8 text-ink-900" />
         <p className="mt-2 font-semibold">Drop your roster CSV here</p>
         <p className="text-sm text-text-600">Columns: name, email, roll_no, batch (Excel → Save as CSV)</p>
-        <button type="button" onClick={() => input.current?.click()} className="mt-3 min-h-11 rounded-sm bg-ink-900 px-4 text-sm font-semibold text-white hover:bg-ink-700">
+        <button type="button" onClick={() => input.current?.click()} className="mt-4 min-h-11 rounded-sm bg-ink-900 px-4 text-sm font-semibold text-white hover:bg-ink-700">
           Choose file
         </button>
         <input
@@ -81,23 +81,23 @@ export function CsvDropzone({ collegeId }: { collegeId?: string }) {
       </div>
       {pending && <div className="h-24 animate-pulse rounded-md bg-ink-50" aria-label="Checking file" />}
       {fatal && (
-        <p role="alert" className="rounded-sm bg-danger-50 p-3 text-sm text-danger-700">
+        <p role="alert" className="rounded-sm bg-danger-50 p-4 text-sm text-danger-700">
           {fatal}
         </p>
       )}
       {p && !pending && (
-        <section className="space-y-3" data-testid="import-preview">
+        <section className="space-y-4" data-testid="import-preview">
           <div className="flex flex-wrap gap-2 text-sm">
-            <span className="rounded-pill bg-success-50 px-3 py-1">{p.counts.new} new</span>
-            <span className="rounded-pill bg-ink-50 px-3 py-1">{p.counts.update} updates</span>
-            <span className="rounded-pill bg-surface px-3 py-1">{p.counts.unchanged} unchanged</span>
-            <span className={cn("rounded-pill px-3 py-1", p.counts.error ? "bg-coral-50 text-ink-900" : "bg-surface")} data-testid="error-count">
+            <span className="rounded-pill bg-success-50 px-4 py-1">{p.counts.new} new</span>
+            <span className="rounded-pill bg-ink-50 px-4 py-1">{p.counts.update} updates</span>
+            <span className="rounded-pill bg-surface px-4 py-1">{p.counts.unchanged} unchanged</span>
+            <span className={cn("rounded-pill px-4 py-1", p.counts.error ? "bg-coral-50 text-ink-900" : "bg-surface")} data-testid="error-count">
               {p.counts.error} with errors
             </span>
-            <span className={cn("rounded-pill px-3 py-1", p.overSeats ? "bg-danger-50 text-danger-700" : "bg-surface")}>
+            <span className={cn("rounded-pill px-4 py-1", p.overSeats ? "bg-danger-50 text-danger-700" : "bg-surface")}>
               Seats {p.seats.after}/{p.seats.limit}
             </span>
-            {p.newBatches.length > 0 && <span className="rounded-pill bg-accent-50 px-3 py-1">New batches: {p.newBatches.join(", ")}</span>}
+            {p.newBatches.length > 0 && <span className="rounded-pill bg-accent-50 px-4 py-1">New batches: {p.newBatches.join(", ")}</span>}
           </div>
           {p.overSeats && (
             <p role="alert" className="text-sm text-danger-500">
@@ -108,12 +108,12 @@ export function CsvDropzone({ collegeId }: { collegeId?: string }) {
             <table className="w-full text-sm">
               <thead className="sticky top-0 bg-surface text-left text-xs text-text-600">
                 <tr>
-                  <th className="px-3 py-2">Line</th>
-                  <th className="px-3 py-2">Name</th>
-                  <th className="px-3 py-2">Email</th>
-                  <th className="px-3 py-2">Roll no</th>
-                  <th className="px-3 py-2">Batch</th>
-                  <th className="px-3 py-2">Status</th>
+                  <th className="px-4 py-2">Line</th>
+                  <th className="px-4 py-2">Name</th>
+                  <th className="px-4 py-2">Email</th>
+                  <th className="px-4 py-2">Roll no</th>
+                  <th className="px-4 py-2">Batch</th>
+                  <th className="px-4 py-2">Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -122,12 +122,12 @@ export function CsvDropzone({ collegeId }: { collegeId?: string }) {
                   .slice(0, 500)
                   .map((r) => (
                     <tr key={r.line} className={cn("border-t border-border", r.status === "error" && "bg-coral-50")}>
-                      <td className="px-3 py-1.5 tabular">{r.line}</td>
-                      <td className="px-3 py-1.5">{r.name}</td>
-                      <td className="px-3 py-1.5">{r.email}</td>
-                      <td className="px-3 py-1.5">{r.rollNo}</td>
-                      <td className="px-3 py-1.5">{r.batch}</td>
-                      <td className="px-3 py-1.5">{r.status === "error" ? <span className="text-ink-900">{r.errors.join("; ")}</span> : r.status}</td>
+                      <td className="px-4 py-2 tabular">{r.line}</td>
+                      <td className="px-4 py-2">{r.name}</td>
+                      <td className="px-4 py-2">{r.email}</td>
+                      <td className="px-4 py-2">{r.rollNo}</td>
+                      <td className="px-4 py-2">{r.batch}</td>
+                      <td className="px-4 py-2">{r.status === "error" ? <span className="text-ink-900">{r.errors.join("; ")}</span> : r.status}</td>
                     </tr>
                   ))}
               </tbody>
@@ -154,11 +154,11 @@ export function CsvDropzone({ collegeId }: { collegeId?: string }) {
       )}
       {done &&
         (done.ok ? (
-          <p role="status" className="rounded-sm bg-success-50 p-3 text-sm" data-testid="import-result">
+          <p role="status" className="rounded-sm bg-success-50 p-4 text-sm" data-testid="import-result">
             Imported: {done.created} new, {done.updated} updated, {done.unchanged} unchanged, {done.skipped} skipped. {done.invited ? `${done.invited} invites sent.` : ""}
           </p>
         ) : (
-          <p role="alert" className="rounded-sm bg-danger-50 p-3 text-sm text-danger-700">
+          <p role="alert" className="rounded-sm bg-danger-50 p-4 text-sm text-danger-700">
             {done.error}
           </p>
         ))}

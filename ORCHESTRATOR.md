@@ -1,4 +1,4 @@
-# LearnCrew Campus — Orchestrator Prompt v3 (4 Nov 2026) — Placement Readiness Coach
+# LearnCrew Campus — Orchestrator Prompt v4 (4 Nov 2026, design-quality upgrade) — Placement Readiness Coach
 Covers: top-notch UI design system, hardened multi-tenant backend, test-every-feature QA gates, parallel cloud-session run.
 
 ## A. Parallel cloud session — do this once
@@ -62,9 +62,52 @@ Voice: calm, clear, encouraging coaching — "a rhythm that respects your week".
 | text-900 #111827, text-600 #4B5563, text-400 #9CA3AF | body/meta |
 Heatmap scale (TPO): #FEE2E2 → #FEF3C7 → #D9F99D → #86EFAC → #16A34A.
 Typography: Inter (next/font, fallback system-ui). Scale 12/14/16/18/20/24/30/36; weights 400/500/600/700; line-height 1.5 body, 1.2 headings. Tabular nums for timers/scores.
-Spacing: 4px base (4,8,12,16,24,32,48,64). Sections spacious (py-12 mobile, py-20 desktop).
-Radius: 8 inputs, 12 cards, 9999 chips. Shadows: sm only; cards = border + subtle shadow.
+Spacing: 8pt grid — see Layout & spacing below (overrides any 4px scale).
+Radius: 8 inputs, 12 cards, 9999 chips. Shadows: elevation-0/1/2 only (see Card spec). Re-theme shadcn fully — no zinc defaults.
 Motion: 150–200ms ease-out; respect prefers-reduced-motion.
+## Layout & spacing (v4 — product-grade, NOT shadcn defaults)
+- **8pt grid only**: spacing tokens 8/16/24/32/40/48/64/80/96. 4px allowed ONLY for icon-to-label gaps and chip inner padding. Lint: grep for `p-1|p-3|p-5|m-3|gap-3|gap-5` etc. in PRs → fail.
+- **Containers**: student app `max-w-[1120px]`, reading/mock stem `max-w-[720px]` (≈70ch), TPO `max-w-[1440px]`; always `mx-auto`.
+- **Gutters**: 16px mobile (<640), 24px tablet, 32px desktop (≥1024).
+- **Rhythm**: tight inside cards (8–16 between related items), airy between sections (48 mobile / 64–80 desktop). Section header → content = 24. Never stack two cards with <16 gap.
+- **Page header**: min 72px tall desktop / 56 mobile; title 24–30/600 + 16px subtitle text-600; actions right-aligned on same baseline; 32px below header before content. Never cramped headers, never a title touching the nav.
+- **Card padding**: 24 mobile / 32 desktop, consistent across the app; card grids use 24 gap; columns aligned to a 12-col grid (gap 24); all card tops in a row align, equal heights in a row.
+- **Baselines**: timer, palette header, section tabs and score numerals share one baseline in exam chrome; numbers use `tabular-nums` + `font-feature-settings:"tnum"`.
+- **No orphan whitespace**: no empty right column on desktop; if content is single-column, center it in the reading container.
+
+## Placement rules
+- **Exam chrome**: sticky top bar (64px) = test name left · TimerBar center · Submit right; section tabs sticky directly below (48px). Content never scrolls under chrome without a 1px border + backdrop.
+- **Question layout**: stem in left column (reading width), options full-width stacked option cards (min 56px tall, 16px padding, radio left, letter key A–D). Prev / Mark for review / Clear / Save&Next in a sticky bottom action bar (72px).
+- **Palette**: right rail 320px on desktop (≥1024), sticky, scroll internally; mobile/tablet = bottom-sheet drawer opened by a "Questions 12/30" button. Palette grid of 40px squares, 8 gap, legend below.
+- **Results/insights**: hero score card full width (score 48–60px/700 tabular, percentile + accuracy beside it), then insight cards **2-col on desktop**, 1-col mobile; "Focus this week" pinned first.
+- **TPO heatmap**: full-bleed within the 1440 container, filter bar (batch, branch, company, date) sticky under page header; heatmap cells min 40px, row/col headers sticky; legend top-right.
+
+## Visual hierarchy
+- **One primary CTA per screen** (amber or ink-900 filled); everything else secondary (outline) or ghost.
+- **60/30/10**: 60% white/surface #F7F8FB, 30% ink-900/ink-700 (nav, headings, structure), 10% amber accent (CTA, streak, key highlights). Success/danger only for semantic state.
+- Scores and KPIs: large tabular numerals (36–60px), label 12–14/500 uppercase tracking-wide text-600 above.
+- **Quiet chrome**: nav/sidebar low-contrast, 1px borders, no heavy shadows. Content is the loudest thing.
+- Banned "AI look": gray text on gray cards, every card same weight, default shadcn zinc palette, centered everything, icon+title+paragraph tile grids, gradient blobs, emoji headers.
+
+## Component specs (exact)
+- **Button**: sm 36px (desktop dense tables only), md 44px (default), lg 52px (primary page CTA / exam Submit). Padding x 16/20/24, radius 8, font 14/16 600, icon 20 with 8 gap. States: hover darken 1 step, active translateY(1px), focus 2px info-500 ring + 2px offset, disabled 40% opacity, loading = spinner replaces icon, width locked.
+- **Card**: radius 12, 1px border #E5E7EB, elevation-0 default; elevation-1 `0 1px 2px rgba(15,27,61,.06), 0 1px 3px rgba(15,27,61,.08)` for interactive; hover elevation-2 `0 4px 12px rgba(15,27,61,.08)`; header 16/600 + optional meta right; 16 gap header→body.
+- **TimerBar**: 40px pill, tabular 20/600 mm:ss (hh:mm:ss >60 min), thin 4px progress under it; states neutral ink → amber <5 min → coral <1 min (+ aria-live polite announce at 5 and 1 min), never flashing.
+- **OptionCard**: 56px min, selected = 2px ink-900 border + surface tint; review mode correct/your-answer badges.
+- **Palette cell**: 40×40, radius 8, states unvisited (border), visited-unanswered (coral outline), answered (ink fill), flagged (amber dot corner), current (2px info ring).
+- **Inputs** 44px, label above 14/500, helper 12 text-600, 8 gaps.
+- Every component shown in all states on `/dev/ui`.
+
+## Visual QA checklist (screenshot gate — `docs/screens/CHECKLIST.md`)
+Capture Playwright screenshots at 360, 768, 1280, 1440 for: landing, login, Today, drill, mock pre-test, in-mock (desktop palette + mobile drawer open), submit dialog, result, review, insights, company crack-path, profile coach, TPO overview heatmap, admin queue. For each, tick:
+- [ ] spacing on 8pt grid; card padding 24/32 consistent
+- [ ] columns + card tops aligned; baselines in exam chrome aligned
+- [ ] tap targets ≥44px (automated check over all interactive elements)
+- [ ] no orphan whitespace / no empty columns
+- [ ] no overlapping, clipping, horizontal scroll, or text under sticky chrome
+- [ ] exactly one primary CTA
+- [ ] header not cramped (≥32 below)
+Phase FAILS if Lighthouse a11y <95 on any route or any checklist box unticked. Also add Playwright visual-regression snapshots (`toHaveScreenshot`, maxDiffPixelRatio 0.01).
 ## Components (build in `src/components/ui`, Storybook-free; show them on `/dev/ui` page in dev only)
 Button (primary ink, CTA amber, ghost), Card (program-card style), Chip (schedule/section chips), Badge (trust/difficulty), StarRating, Accordion (FAQ), Tabs, Dialog, Toast, ProgressDots, TimerBar, StreakFlame, Heatmap, EmptyState, Skeleton, BottomNav (mobile), Sidebar (TPO desktop).
 ## Navigation
@@ -287,7 +330,7 @@ Student tabs: Today · Practice · Mocks · **Insights** · **Companies** · **P
 
 # PHASES (each ends with its QA gate — phase is ✅ only when gate green). Insights are built WITH measurement, not after ship.
 ### Phase 0 — Design system + architecture docs
-`docs/DESIGN.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md` (IDOR, CSRF, brute force, answer leakage, cheating, prompt injection, PII), `docs/PRODUCT.md` (6 pillars, readiness formula). Gate: docs exist, tokens compile, schema incl. coach tables typechecks.
+`docs/DESIGN.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md` (IDOR, CSRF, brute force, answer leakage, cheating, prompt injection, PII), `docs/PRODUCT.md` (6 pillars, readiness formula). `docs/DESIGN.md` must include the layout grid, placement wireframes (ASCII) for in-mock desktop/mobile, results, insights, TPO heatmap, and component specs. Gate: docs exist, tokens compile, schema typechecks, `/dev/ui` renders all components in all states, spacing lint passes, screenshots of `/dev/ui` + wireframe-matching mock shell at 360/1280 pass the Visual QA checklist.
 ### Phase 1 — Scaffold
 Next.js, Tailwind tokens, shadcn re-themed, Drizzle, env.ts, Vitest, Playwright, CI, security headers, `/dev/ui`. Gate: CI green, header test.
 ### Phase 2 — Auth + roles + tenancy
@@ -325,7 +368,7 @@ Lighthouse ≥90/95, k6 200 concurrent mock-takers, backups, error pages, LLM co
 | TPO students/assign/export | /tpo/* | ✗ | ✓ own | ✓ | redirect | e2e + CSV + no-draft-leak |
 | Admin | /admin/* | ✗ | ✗ | ✓ (re-auth) | redirect | e2e + audit |
 | Health | /api/health | ✓ | ✓ | ✓ | ✓ | unit |
-Plus CSRF, headers, cookies, gitleaks, pnpm audit, axe, Lighthouse, 360px screenshots in `docs/screens/`. Any red: fix, rerun full matrix.
+Plus CSRF, headers, cookies, gitleaks, pnpm audit, axe, Lighthouse, Visual QA checklist screenshots (360/768/1280/1440) in `docs/screens/` with every box ticked, visual-regression green, Lighthouse a11y ≥95 every route. Any red (incl. any unticked visual box): fix, rerun full matrix.
 
 # DEFINITION OF DONE
 All phases ✅, Phase 12 matrix fully green, deployed on Railway, README with run/deploy/env, demo accounts (student/tpo/admin) seeded for one pilot college. Then write "DONE" in PROGRESS with the prod URL and stop.

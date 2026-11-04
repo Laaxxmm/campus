@@ -11,21 +11,21 @@ export function InsightCard({ text, focusTopics, compact = false }: { text: Insi
       </h2>
       {text.whatsWrong.length > 0 && (
         <>
-          <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-text-600">What&apos;s going wrong</p>
-          <ul className="mt-1 space-y-1.5 text-sm" data-testid="whats-wrong">
+          <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-text-600">What&apos;s going wrong</p>
+          <ul className="mt-2 space-y-2 text-sm" data-testid="whats-wrong">
             {text.whatsWrong.map((w, i) => <li key={i} className="flex gap-2"><span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-pill bg-coral-500" />{w}</li>)}
           </ul>
         </>
       )}
       {text.focus.length > 0 && !compact && (
         <>
-          <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-text-600">Focus this week</p>
-          <ul className="mt-1 space-y-1 text-sm" data-testid="focus-list">
+          <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-text-600">Focus this week</p>
+          <ul className="mt-2 space-y-2 text-sm" data-testid="focus-list">
             {text.focus.map((f) => <li key={f.topic} className="flex items-center gap-2"><Target aria-hidden className="h-4 w-4 text-ink-700" />{f.line}</li>)}
           </ul>
         </>
       )}
-      {text.note && <p className="mt-3 text-xs text-text-600" data-testid="insight-note">{text.note}</p>}
+      {text.note && <p className="mt-4 text-xs text-text-600" data-testid="insight-note">{text.note}</p>}
       {focusTopics.length > 0 && (
         <form action={startFocusDrill} className="mt-4">
           <input type="hidden" name="topics" value={focusTopics.join(",")} />

@@ -31,7 +31,7 @@ export default async function Onboarding({ searchParams }: { searchParams: Promi
     <main className="mx-auto max-w-md px-4 py-6">
       <h1 className="text-xl font-bold">{t.onboarding.title}</h1>
       {error === "consent" && (
-        <p role="alert" className="mt-3 rounded-md bg-danger-50 p-3 text-sm text-danger-700">
+        <p role="alert" className="mt-4 rounded-md bg-danger-50 p-4 text-sm text-danger-700">
           {t.onboarding.mustConsent}
         </p>
       )}
@@ -46,7 +46,7 @@ export default async function Onboarding({ searchParams }: { searchParams: Promi
         </div>
         <div>
           <label htmlFor="batchId" className="block text-sm font-medium">{t.onboarding.batch}</label>
-          <select id="batchId" name="batchId" defaultValue={me.batchId ?? ""} className="h-11 w-full rounded-md border border-border bg-bg px-3">
+          <select id="batchId" name="batchId" defaultValue={me.batchId ?? ""} className="h-11 w-full rounded-md border border-border bg-bg px-4">
             <option value="">—</option>
             {myBatches.map((b) => (
               <option key={b.id} value={b.id}>{b.name}</option>
@@ -55,16 +55,16 @@ export default async function Onboarding({ searchParams }: { searchParams: Promi
         </div>
         <div>
           <label htmlFor="target" className="block text-sm font-medium">{t.onboarding.target}</label>
-          <select id="target" name="target" defaultValue={defaultTarget} className="h-11 w-full rounded-md border border-border bg-bg px-3">
+          <select id="target" name="target" defaultValue={defaultTarget} className="h-11 w-full rounded-md border border-border bg-bg px-4">
             {COMPANIES.map((c) => (
               <option key={c.id} value={c.id}>{c.name}</option>
             ))}
           </select>
         </div>
-        <section className="rounded-md border border-border bg-bg p-3 text-sm">
+        <section className="rounded-md border border-border bg-bg p-4 text-sm">
           <h2 className="font-semibold">{t.onboarding.consentTitle}</h2>
-          <p className="mt-1 text-text-600">{t.onboarding.consentBody}</p>
-          <label className="mt-3 flex min-h-11 items-center gap-3">
+          <p className="mt-2 text-text-600">{t.onboarding.consentBody}</p>
+          <label className="mt-4 flex min-h-11 items-center gap-4">
             <input type="checkbox" name="consent" className="h-5 w-5 accent-ink-900" />
             <span>
               {t.onboarding.consentCheck} (<a href="/privacy" className="text-ink-900 underline">Privacy</a>)

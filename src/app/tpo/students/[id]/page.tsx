@@ -35,7 +35,7 @@ export default async function StudentDetail({ params, searchParams }: { params: 
         <section className="rounded-md border border-border bg-bg p-4">
           <h2 className="mb-2 font-semibold text-ink-900">Readiness now</h2>
           <ul className="grid grid-cols-2 gap-2 text-sm">
-            {s.readinessNow.map((r) => <li key={r.company} className="flex justify-between rounded-sm bg-surface px-2 py-1"><span>{r.name}</span><span className="font-semibold tabular">{r.score}</span></li>)}
+            {s.readinessNow.map((r) => <li key={r.company} className="flex justify-between rounded-sm bg-surface px-2 py-2"><span>{r.name}</span><span className="font-semibold tabular">{r.score}</span></li>)}
             {!s.readinessNow.length && <li className="text-text-600">No snapshot yet.</li>}
           </ul>
         </section>
@@ -54,7 +54,7 @@ export default async function StudentDetail({ params, searchParams }: { params: 
       <div className="mt-4 grid gap-4 lg:grid-cols-3" data-testid="coach-detail">
         <section className="rounded-md border border-border bg-bg p-4 lg:col-span-2">
           <h2 className="mb-2 font-semibold text-ink-900">Latest insights</h2>
-          {coach?.insights.length ? coach.insights.map((i, k) => <div key={k} className="mb-2 text-sm"><div className="font-medium">{(i.text as InsightText).headline}</div><ul className="list-disc pl-5 text-text-600">{(i.text as InsightText).whatsWrong.map((w, j) => <li key={j}>{w}</li>)}</ul></div>) : <p className="text-sm text-text-600">No insights yet.</p>}
+          {coach?.insights.length ? coach.insights.map((i, k) => <div key={k} className="mb-2 text-sm"><div className="font-medium">{(i.text as InsightText).headline}</div><ul className="list-disc pl-6 text-text-600">{(i.text as InsightText).whatsWrong.map((w, j) => <li key={j}>{w}</li>)}</ul></div>) : <p className="text-sm text-text-600">No insights yet.</p>}
           <h2 className="mb-2 mt-4 font-semibold text-ink-900">Readiness by target (v3)</h2>
           <ul className="grid gap-2 sm:grid-cols-2">{coach?.readiness.map((x) => <li key={x.company} className="rounded-sm bg-surface p-2 text-sm"><div className="flex justify-between"><span>{x.name}</span><b className="tabular">{x.r.score}</b></div><div className="text-xs text-text-600">apt {x.r.aptitude.score} · tech {x.r.tech.score} · cons {x.r.consistency.score} · profile {x.r.profile.score}{x.r.interviewReady ? " · interview-ready" : ""}</div></li>)}</ul>
         </section>
@@ -81,14 +81,14 @@ export default async function StudentDetail({ params, searchParams }: { params: 
         <section className="rounded-md border border-border bg-bg p-4">
           <h2 className="mb-2 font-semibold text-ink-900">Last 14 drills</h2>
           <ul className="divide-y divide-border text-sm">
-            {s.drills.map((d) => <li key={d.id} className="flex justify-between py-1.5"><span>{d.date}</span><span className="tabular">{d.completedAt ? `${d.score}/10` : "incomplete"}</span></li>)}
+            {s.drills.map((d) => <li key={d.id} className="flex justify-between py-2"><span>{d.date}</span><span className="tabular">{d.completedAt ? `${d.score}/10` : "incomplete"}</span></li>)}
           </ul>
         </section>
         <section className="rounded-md border border-border bg-bg p-4">
           <h2 className="mb-2 font-semibold text-ink-900">Mock tests</h2>
           <ul className="divide-y divide-border text-sm">
-            {s.mocks.map((m) => <li key={m.id} className="flex justify-between py-1.5"><span>{m.title}</span><span className="tabular">{m.endedAt ? `${m.marks}/${m.n}` : "in progress"}{m.tabSwitches ? ` · ${m.tabSwitches} tab switches` : ""}</span></li>)}
-            {!s.mocks.length && <li className="py-1.5 text-text-600">No mocks taken.</li>}
+            {s.mocks.map((m) => <li key={m.id} className="flex justify-between py-2"><span>{m.title}</span><span className="tabular">{m.endedAt ? `${m.marks}/${m.n}` : "in progress"}{m.tabSwitches ? ` · ${m.tabSwitches} tab switches` : ""}</span></li>)}
+            {!s.mocks.length && <li className="py-2 text-text-600">No mocks taken.</li>}
           </ul>
         </section>
       </div>

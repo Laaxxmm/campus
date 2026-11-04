@@ -10,7 +10,7 @@ export default function Privacy() {
       <h2 className="mt-8 text-xl font-semibold">Who is responsible</h2>
       <p className="mt-2">Your college (the Data Fiduciary) registers you on LearnCrew Campus for placement preparation. LearnCrew processes your data on the college&apos;s behalf.</p>
       <h2 className="mt-6 text-xl font-semibold">What we collect</h2>
-      <ul className="mt-2 list-disc space-y-1 pl-5">
+      <ul className="mt-2 list-disc space-y-2 pl-6">
         <li>Name, college email, roll number, batch — from your college&apos;s roster.</li>
         <li>Your answers, time taken, streaks, XP and mock-test results.</li>
         <li>Basic usage events (e.g. drill started) without device fingerprinting.</li>

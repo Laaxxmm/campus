@@ -31,12 +31,12 @@ export default async function Profile({ searchParams }: { searchParams: Promise<
   const p = await profileFor(user.id);
   const sp = await searchParams;
   return (
-    <div className="space-y-5">
+    <div className="space-y-6">
       <h1 className="text-xl font-bold text-ink-900">Profile</h1>
       <section className="rounded-md border border-border bg-bg p-4">
         <p className="text-lg font-semibold">{p?.name}</p>
         <p className="text-sm text-text-600">{p?.email}</p>
-        <dl className="mt-3 grid grid-cols-2 gap-2 text-sm">
+        <dl className="mt-4 grid grid-cols-2 gap-2 text-sm">
           <dt className="text-text-600">College</dt><dd>{p?.college ?? "—"}</dd>
           <dt className="text-text-600">Batch</dt><dd>{p?.batch ?? "—"}</dd>
           <dt className="text-text-600">Roll no.</dt><dd>{p?.rollNo ?? "—"}</dd>
@@ -45,17 +45,17 @@ export default async function Profile({ searchParams }: { searchParams: Promise<
       </section>
       <form action={changeTarget} className="space-y-2 rounded-md border border-border bg-bg p-4">
         <label htmlFor="target" className="block text-sm font-semibold">Target company</label>
-        <select id="target" name="target" defaultValue={p?.targetCompany ?? p?.batchTarget ?? "tcs_nqt"} className="h-11 w-full rounded-sm border border-border bg-bg px-3">
+        <select id="target" name="target" defaultValue={p?.targetCompany ?? p?.batchTarget ?? "tcs_nqt"} className="h-11 w-full rounded-sm border border-border bg-bg px-4">
           {COMPANIES.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
         </select>
         <Button type="submit" variant="secondary" className="w-full">Save</Button>
         {sp.saved && <p role="status" className="text-sm text-success-700">Saved. Tomorrow&apos;s drill will focus on this pattern.</p>}
       </form>
       <nav className="divide-y divide-border rounded-md border border-border bg-bg">
-        <Link href="/profile-coach" className="flex min-h-12 items-center gap-3 px-4"><FileUser className="h-5 w-5 text-ink-900" aria-hidden /> <span className="flex-1">Profile coach (resume + LinkedIn)</span><ChevronRight className="h-4 w-4 text-text-400" aria-hidden /></Link>
-        <Link href="/progress" className="flex min-h-12 items-center gap-3 px-4"><TrendingUp className="h-5 w-5 text-ink-900" aria-hidden /> <span className="flex-1">Progress &amp; topic mastery</span><ChevronRight className="h-4 w-4 text-text-400" aria-hidden /></Link>
-        <Link href="/leaderboard" className="flex min-h-12 items-center gap-3 px-4"><Trophy className="h-5 w-5 text-accent-600" aria-hidden /> <span className="flex-1">Batch leaderboard</span><ChevronRight className="h-4 w-4 text-text-400" aria-hidden /></Link>
-        <Link href="/privacy" className="flex min-h-12 items-center gap-3 px-4"><ShieldCheck className="h-5 w-5 text-ink-900" aria-hidden /> <span className="flex-1">Privacy &amp; your data</span><ChevronRight className="h-4 w-4 text-text-400" aria-hidden /></Link>
+        <Link href="/profile-coach" className="flex min-h-12 items-center gap-4 px-4"><FileUser className="h-5 w-5 text-ink-900" aria-hidden /> <span className="flex-1">Profile coach (resume + LinkedIn)</span><ChevronRight className="h-4 w-4 text-text-400" aria-hidden /></Link>
+        <Link href="/progress" className="flex min-h-12 items-center gap-4 px-4"><TrendingUp className="h-5 w-5 text-ink-900" aria-hidden /> <span className="flex-1">Progress &amp; topic mastery</span><ChevronRight className="h-4 w-4 text-text-400" aria-hidden /></Link>
+        <Link href="/leaderboard" className="flex min-h-12 items-center gap-4 px-4"><Trophy className="h-5 w-5 text-accent-600" aria-hidden /> <span className="flex-1">Batch leaderboard</span><ChevronRight className="h-4 w-4 text-text-400" aria-hidden /></Link>
+        <Link href="/privacy" className="flex min-h-12 items-center gap-4 px-4"><ShieldCheck className="h-5 w-5 text-ink-900" aria-hidden /> <span className="flex-1">Privacy &amp; your data</span><ChevronRight className="h-4 w-4 text-text-400" aria-hidden /></Link>
       </nav>
       <form action={askDeletion} className="rounded-md border border-border bg-bg p-4 text-sm">
         <p className="text-text-600">You can ask us to delete your account and practice data (DPDP Act, 2023). Your college is informed.</p>

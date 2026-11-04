@@ -24,12 +24,12 @@ export function ExplanationSheet({ result, onNext, last, explainEnabled, correct
           {result.correct ? `Correct! +${result.xp} XP` : result.chosenDisplayed === null ? "Skipped" : "Not quite"}
         </p>
         {!result.correct && correctText && (
-          <p className="mt-1 text-sm font-semibold text-ink-900" data-testid="correct-answer">
+          <p className="mt-2 text-sm font-semibold text-ink-900" data-testid="correct-answer">
             Answer: {["A", "B", "C", "D"][result.correctDisplayed]}. {correctText}
           </p>
         )}
         <p className="mt-2 text-sm leading-relaxed text-text-900">{result.explanation}</p>
-        {result.shortcut && <p className="mt-2 rounded-md bg-ink-50 p-2 text-sm text-ink-700"><Zap aria-hidden className="mr-1 inline h-4 w-4" />Shortcut: {result.shortcut}</p>}
+        {result.shortcut && <p className="mt-2 rounded-md bg-ink-50 p-2 text-sm text-ink-700"><Zap aria-hidden className="mr-2 inline h-4 w-4" />Shortcut: {result.shortcut}</p>}
         {explainEnabled && !result.correct && !more && (
           <button type="button" onClick={explainMore} disabled={loading} className="mt-2 min-h-11 text-sm font-semibold text-ink-900">
             {loading ? "Thinking…" : "Explain more"}

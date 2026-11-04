@@ -1,4 +1,4 @@
-/* LearnCrew design tokens — docs/DESIGN.md (v2: navy + amber) */
+/* LearnCrew design tokens — docs/DESIGN.md (v4: navy + amber, 8pt grid) */
 :root {
   --ink-900: #0f1b3d; /* primary: headers, primary buttons, nav */
   --ink-700: #23315c;
@@ -24,6 +24,13 @@
   --radius-input: 8px;
   --radius-card: 12px;
   --radius-pill: 9999px;
+  /* elevation (v4 card spec) */
+  --elevation-1: 0 1px 2px rgba(15, 27, 61, 0.06), 0 1px 3px rgba(15, 27, 61, 0.08);
+  --elevation-2: 0 4px 12px rgba(15, 27, 61, 0.08);
+  /* layout (v4) */
+  --container-app: 1120px;
+  --container-reading: 720px;
+  --container-wide: 1440px;
   --heat-0: #fee2e2;
   --heat-1: #fef3c7;
   --heat-2: #d9f99d;

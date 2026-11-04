@@ -35,11 +35,11 @@ export function StudentsTable({ rows, batches }: { rows: StudentRow[]; batches: 
   }, [rows, q, batch, risk, sort]);
   const exportHref = `/tpo/students/export${batch ? `?batch=${batch}` : ""}`;
   return (
-    <div className="space-y-3">
-      <div className="no-print flex flex-wrap items-end gap-3">
-        <label className="text-sm">Search<input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Name, email or roll no." className="mt-1 block h-11 w-64 rounded-sm border border-border bg-bg px-3" /></label>
+    <div className="space-y-4">
+      <div className="no-print flex flex-wrap items-end gap-4">
+        <label className="text-sm">Search<input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Name, email or roll no." className="mt-2 block h-11 w-64 rounded-sm border border-border bg-bg px-4" /></label>
         <label className="text-sm">Batch
-          <select value={batch} onChange={(e) => setBatch(e.target.value)} className="mt-1 block h-11 rounded-sm border border-border bg-bg px-3">
+          <select value={batch} onChange={(e) => setBatch(e.target.value)} className="mt-2 block h-11 rounded-sm border border-border bg-bg px-4">
             <option value="">All batches</option>
             {batches.map((b) => <option key={b.id} value={b.id}>{b.name}</option>)}
           </select>
@@ -53,7 +53,7 @@ export function StudentsTable({ rows, batches }: { rows: StudentRow[]; batches: 
           <thead className="bg-surface text-left text-xs text-text-600">
             <tr>
               {COLS.map((c) => (
-                <th key={c.key} scope="col" className={`px-3 py-2 ${c.num ? "text-right" : ""}`} aria-sort={sort.key === c.key ? (sort.dir === 1 ? "ascending" : "descending") : "none"}>
+                <th key={c.key} scope="col" className={`px-4 py-2 ${c.num ? "text-right" : ""}`} aria-sort={sort.key === c.key ? (sort.dir === 1 ? "ascending" : "descending") : "none"}>
                   <button type="button" onClick={() => setSort((s) => ({ key: c.key, dir: s.key === c.key ? (s.dir === 1 ? -1 : 1) : c.num ? -1 : 1 }))} className="inline-flex min-h-8 items-center gap-1 font-semibold hover:text-ink-900">
                     {c.label}<ArrowDownUp aria-hidden className="h-3 w-3" />
                   </button>
@@ -64,14 +64,14 @@ export function StudentsTable({ rows, batches }: { rows: StudentRow[]; batches: 
           <tbody>
             {shown.map((r) => (
               <tr key={r.id} className="border-t border-border">
-                <td className="px-3 py-2"><Link href={`/tpo/students/${r.id}`} className="font-medium text-ink-900 hover:underline">{r.name}</Link><div className="text-xs text-text-600">{r.rollNo ?? r.email}</div></td>
-                <td className="px-3 py-2">{r.batch ?? "—"}</td>
-                <td className="px-3 py-2 text-right tabular">{r.streak}</td>
-                <td className="px-3 py-2 text-right tabular">{r.drills7}</td>
-                <td className="px-3 py-2 text-right tabular">{r.accuracy30 === null ? "—" : `${r.accuracy30}%`}</td>
-                <td className={`px-3 py-2 text-right tabular ${r.readiness !== null && r.readiness < 40 ? "font-semibold text-danger-500" : ""}`}>{r.readiness ?? "—"}</td>
-                <td className="px-3 py-2 text-right tabular">{r.xp}</td>
-                <td className="px-3 py-2 text-right tabular">{r.inactiveDays === null ? "never" : r.inactiveDays === 0 ? "today" : `${r.inactiveDays}d ago`}</td>
+                <td className="px-4 py-2"><Link href={`/tpo/students/${r.id}`} className="font-medium text-ink-900 hover:underline">{r.name}</Link><div className="text-xs text-text-600">{r.rollNo ?? r.email}</div></td>
+                <td className="px-4 py-2">{r.batch ?? "—"}</td>
+                <td className="px-4 py-2 text-right tabular">{r.streak}</td>
+                <td className="px-4 py-2 text-right tabular">{r.drills7}</td>
+                <td className="px-4 py-2 text-right tabular">{r.accuracy30 === null ? "—" : `${r.accuracy30}%`}</td>
+                <td className={`px-4 py-2 text-right tabular ${r.readiness !== null && r.readiness < 40 ? "font-semibold text-danger-500" : ""}`}>{r.readiness ?? "—"}</td>
+                <td className="px-4 py-2 text-right tabular">{r.xp}</td>
+                <td className="px-4 py-2 text-right tabular">{r.inactiveDays === null ? "never" : r.inactiveDays === 0 ? "today" : `${r.inactiveDays}d ago`}</td>
               </tr>
             ))}
           </tbody>

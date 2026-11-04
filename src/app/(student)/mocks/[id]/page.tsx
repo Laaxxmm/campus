@@ -23,16 +23,16 @@ export default async function MockIntro({ params }: { params: Promise<{ id: stri
   const m = await mockSummary(user, id);
   if (!m) notFound();
   return (
-    <div className="space-y-5">
+    <div className="space-y-6">
       <Link href="/mocks" className="inline-flex min-h-11 items-center gap-1 text-sm text-ink-900"><ArrowLeft aria-hidden className="h-4 w-4" /> All mocks</Link>
       <div>
         <div className="text-xs font-semibold uppercase tracking-wide text-text-600">{companyName(m.company)}</div>
         <h1 className="text-2xl font-bold text-ink-900">{m.title}</h1>
       </div>
       <dl className="grid grid-cols-3 gap-2 text-center">
-        <div className="rounded-md border border-border bg-bg p-3"><dt className="text-xs text-text-600">Questions</dt><dd className="text-xl font-bold tabular">{m.questionCount}</dd></div>
-        <div className="rounded-md border border-border bg-bg p-3"><dt className="text-xs text-text-600">Duration</dt><dd className="text-xl font-bold tabular">{Math.round(m.durationSec / 60)}m</dd></div>
-        <div className="rounded-md border border-border bg-bg p-3"><dt className="text-xs text-text-600">Marking</dt><dd className="text-sm font-bold">+{m.markCorrect} / {m.negativeMark ? `−${m.negativeMark}` : "0"}</dd></div>
+        <div className="rounded-md border border-border bg-bg p-4"><dt className="text-xs text-text-600">Questions</dt><dd className="text-xl font-bold tabular">{m.questionCount}</dd></div>
+        <div className="rounded-md border border-border bg-bg p-4"><dt className="text-xs text-text-600">Duration</dt><dd className="text-xl font-bold tabular">{Math.round(m.durationSec / 60)}m</dd></div>
+        <div className="rounded-md border border-border bg-bg p-4"><dt className="text-xs text-text-600">Marking</dt><dd className="text-sm font-bold">+{m.markCorrect} / {m.negativeMark ? `−${m.negativeMark}` : "0"}</dd></div>
       </dl>
       <section className="rounded-md border border-border bg-bg p-4">
         <h2 className="font-semibold">Sections</h2>
@@ -44,7 +44,7 @@ export default async function MockIntro({ params }: { params: Promise<{ id: stri
       </section>
       <section className="rounded-md border border-border bg-bg p-4 text-sm">
         <h2 className="font-semibold">Instructions</h2>
-        <ul className="mt-2 list-disc space-y-1 pl-5 text-text-600">
+        <ul className="mt-2 list-disc space-y-2 pl-6 text-text-600">
           <li>{m.instructions}</li>
           <li>The timer runs on our server — closing the app doesn&apos;t pause it. The test submits automatically at 0:00.</li>
           <li>Use the question palette to jump around; &ldquo;Mark for review&rdquo; flags a question to revisit.</li>

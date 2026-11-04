@@ -16,7 +16,7 @@ export function OptionButton({ label, text, state, onClick }: { label: string; t
       onClick={onClick}
       disabled={state !== "idle" && state !== "selected"}
       data-state={state}
-      className={cn("flex min-h-12 w-full items-center gap-3 rounded-md border-2 px-3 py-2 text-left text-base transition-colors", styles[state])}
+      className={cn("flex min-h-12 w-full items-center gap-4 rounded-md border-2 px-4 py-2 text-left text-base transition-colors", styles[state])}
     >
       <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-pill bg-surface text-sm font-semibold">{label}</span>
       <span className="flex-1">{text}</span>

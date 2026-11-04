@@ -16,19 +16,19 @@ export default async function Insights({ searchParams }: { searchParams: Promise
   const o = await insightsOverview(user);
   const latest = o.recent[0];
   return (
-    <div className="space-y-5">
+    <div className="space-y-6">
       <h1 className="text-xl font-bold text-ink-900">Insights</h1>
-      {sp.error && <p role="alert" className="rounded-sm bg-coral-50 p-3 text-sm">Not enough questions for that focus yet — try again after your next drill.</p>}
+      {sp.error && <p role="alert" className="rounded-sm bg-coral-50 p-4 text-sm">Not enough questions for that focus yet — try again after your next drill.</p>}
       {o.progress.length > 0 && (
         <section className="rounded-md border border-border bg-bg p-4" data-testid="weekly-focus">
           <h2 className="font-semibold text-ink-900">Focus this week</h2>
-          <ul className="mt-3 space-y-3">
+          <ul className="mt-4 space-y-4">
             {o.progress.map((p) => {
               const pct = Math.min(100, Math.round((100 * p.done) / Math.max(1, p.target)));
               return (
                 <li key={p.topic}>
                   <div className="flex justify-between text-sm"><span className="font-medium">{p.name}</span><span className="tabular text-text-600">{p.done}/{p.target} questions</span></div>
-                  <div className="mt-1 h-2 overflow-hidden rounded-pill bg-surface" role="meter" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label={`${p.name} weekly target`}>
+                  <div className="mt-2 h-2 overflow-hidden rounded-pill bg-surface" role="meter" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label={`${p.name} weekly target`}>
                     <div className="h-full bg-ink-900" style={{ width: `${pct}%` }} />
                   </div>
                 </li>
@@ -45,7 +45,7 @@ export default async function Insights({ searchParams }: { searchParams: Promise
         <InsightCard text={latest.text as InsightText} focusTopics={[]} />
       ) : (
         <EmptyState icon={Lightbulb} title="Your first insight arrives after a drill" body="Finish today's 10 questions — we'll show what's going wrong and what to focus on.">
-          <Link href="/today" className="mt-3 inline-block font-semibold text-info-500 underline">Go to Today</Link>
+          <Link href="/today" className="mt-4 inline-block font-semibold text-info-500 underline">Go to Today</Link>
         </EmptyState>
       )}
       {o.recent.length > 1 && (
@@ -53,10 +53,10 @@ export default async function Insights({ searchParams }: { searchParams: Promise
           <h2 className="mb-2 text-sm font-semibold text-text-600">Earlier</h2>
           <ul className="space-y-2">
             {o.recent.slice(1).map((r) => (
-              <li key={r.id} className="rounded-md border border-border bg-bg p-3 text-sm">
+              <li key={r.id} className="rounded-md border border-border bg-bg p-4 text-sm">
                 <div className="text-xs text-text-600">{r.createdAt.toLocaleDateString("en-IN", { timeZone: "Asia/Kolkata", day: "numeric", month: "short" })} · {r.mockAttemptId ? "Mock" : "Drill"}</div>
-                <div className="mt-0.5 font-medium">{(r.text as InsightText).headline}</div>
-                {(r.facts as InsightFacts).focus.length > 0 && <div className="mt-0.5 text-xs text-text-600">Focus: {(r.text as InsightText).focus.map((f) => f.line.split(" — ")[0]).join(", ")}</div>}
+                <div className="font-medium">{(r.text as InsightText).headline}</div>
+                {(r.facts as InsightFacts).focus.length > 0 && <div className="text-xs text-text-600">Focus: {(r.text as InsightText).focus.map((f) => f.line.split(" — ")[0]).join(", ")}</div>}
               </li>
             ))}
           </ul>

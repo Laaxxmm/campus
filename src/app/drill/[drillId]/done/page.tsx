@@ -42,11 +42,11 @@ export default async function DrillDone({ params }: { params: Promise<{ drillId:
       <p className="mt-6 rounded-md bg-ink-50 px-4 py-2 text-sm text-ink-700">Come back tomorrow — new drill at 5 AM.</p>
       {insight && <div className="mt-6 w-full"><InsightCard text={insight.text as InsightText} focusTopics={(insight.facts as InsightFacts).focus.map((f) => f.topic)} /></div>}
       <ShareButton text={`I scored ${score}/10 on today's LearnCrew placement drill 🔥 ${st?.current ?? 0}-day streak!`} />
-      <ol className="mt-6 w-full space-y-1 text-left text-sm">
+      <ol className="mt-6 w-full space-y-2 text-left text-sm">
         {data.items.map((it, i) => {
           const r = data.results.find((x) => x.questionId === it.id);
           return (
-            <li key={it.id} className="flex items-center gap-2 rounded-md bg-bg px-3 py-2">
+            <li key={it.id} className="flex items-center gap-2 rounded-md bg-bg px-4 py-2">
               <span className={r?.correct ? "text-success-700" : "text-danger-500"}>{r ? (r.correct ? "✓" : "✗") : "•"}</span>
               <span className="truncate">Q{i + 1}. {it.stem.split("\n")[0]}</span>
             </li>

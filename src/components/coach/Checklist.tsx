@@ -16,7 +16,7 @@ export function Checklist({ c, testid }: { c: C; testid: string }) {
         ))}
       </ul>
       {(c.keywordsMissing.length > 0 || c.keywordsFound.length > 0) && (
-        <p className="mt-3 text-xs text-text-600">Target-company keywords — found: {c.keywordsFound.join(", ") || "none"} · missing: {c.keywordsMissing.join(", ") || "none"} (add only skills you really have).</p>
+        <p className="mt-4 text-xs text-text-600">Target-company keywords — found: {c.keywordsFound.join(", ") || "none"} · missing: {c.keywordsMissing.join(", ") || "none"} (add only skills you really have).</p>
       )}
     </div>
   );

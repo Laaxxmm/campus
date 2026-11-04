@@ -27,6 +27,8 @@
   --radius-md: var(--radius-card);
   --radius-lg: var(--radius-card);
   --radius-pill: var(--radius-pill);
+  --shadow-e1: var(--elevation-1);
+  --shadow-e2: var(--elevation-2);
   --font-sans: var(--font-inter), Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif;
 }
 
@@ -36,7 +38,7 @@ h1, h2, h3 { line-height: 1.2; }
 * { transition-timing-function: ease-out; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
 body { font-family: var(--font-sans); -webkit-tap-highlight-color: transparent; }
-.tabular { font-variant-numeric: tabular-nums; }
+.tabular { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
 
 @media print {
   .no-print { display: none !important; }

@@ -5,7 +5,7 @@ export function renderStem(src: string): ReactNode {
   const parts = src.split(/```[a-zA-Z]*\n?/);
   return parts.map((part, i) =>
     i % 2 === 1 ? (
-      <pre key={i} className="my-2 overflow-x-auto rounded-md bg-text-900 p-3 text-sm leading-relaxed text-white">
+      <pre key={i} className="my-2 overflow-x-auto rounded-md bg-text-900 p-4 text-sm leading-relaxed text-white">
         <code>{part.replace(/\n$/, "")}</code>
       </pre>
     ) : (
@@ -27,8 +27,8 @@ function textBlock(part: string): ReactNode[] {
       out.push(
         <div key={`t${i}`} className="my-2 overflow-x-auto">
           <table className="min-w-full border-collapse text-sm">
-            <thead><tr>{head.map((c, k) => <th key={k} scope="col" className="border border-border bg-surface px-2 py-1 text-left font-semibold">{inline(c)}</th>)}</tr></thead>
-            <tbody>{body.map((r, k) => <tr key={k}>{r.map((c, m) => <td key={m} className="border border-border px-2 py-1 tabular">{inline(c)}</td>)}</tr>)}</tbody>
+            <thead><tr>{head.map((c, k) => <th key={k} scope="col" className="border border-border bg-surface px-2 py-2 text-left font-semibold">{inline(c)}</th>)}</tr></thead>
+            <tbody>{body.map((r, k) => <tr key={k}>{r.map((c, m) => <td key={m} className="border border-border px-2 py-2 tabular">{inline(c)}</td>)}</tr>)}</tbody>
           </table>
         </div>,
       );
@@ -51,7 +51,7 @@ function inline(line: string): ReactNode[] {
   while ((m = re.exec(line))) {
     if (m.index > last) out.push(text(line.slice(last, m.index)));
     const tok = m[0];
-    out.push(tok.startsWith("`") ? <code key={k++} className="rounded bg-surface px-1 font-mono text-[0.95em]">{tok.slice(1, -1)}</code> : <strong key={k++}>{tok.slice(2, -2)}</strong>);
+    out.push(tok.startsWith("`") ? <code key={k++} className="rounded bg-surface px-2 font-mono text-[0.95em]">{tok.slice(1, -1)}</code> : <strong key={k++}>{tok.slice(2, -2)}</strong>);
     last = m.index + tok.length;
   }
   if (last < line.length) out.push(text(line.slice(last)));

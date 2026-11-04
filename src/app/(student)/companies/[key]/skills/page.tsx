@@ -31,12 +31,12 @@ export default async function Skills({ params, searchParams }: { params: Promise
           <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-text-600">{lvl === "required" ? "Required" : "Nice to have"}</h2>
           <ul className="space-y-2" data-testid={`skills-${lvl}`}>
             {items.filter((i) => i.level === lvl).map((i) => (
-              <li key={i.key} className="rounded-md border border-border bg-bg p-3" data-testid="skill-item" data-status={i.status}>
+              <li key={i.key} className="rounded-md border border-border bg-bg p-4" data-testid="skill-item" data-status={i.status}>
                 <div className="flex items-center justify-between gap-2"><span className="font-medium">{i.name}</span><Badge tone={TONE[i.status]}>{i.status}</Badge></div>
-                <p className="mt-1 text-xs text-text-600">{i.source === "auto" ? "Measured from your practice" : "Self-declared"} · {i.note}</p>
+                <p className="mt-2 text-xs text-text-600">{i.source === "auto" ? "Measured from your practice" : "Self-declared"} · {i.note}</p>
                 <div className="mt-2 flex flex-wrap items-center gap-2 text-sm">
                   {i.action.focusTopics?.length ? (
-                    <form action={startFocusDrill}><input type="hidden" name="topics" value={i.action.focusTopics.join(",")} /><button type="submit" className="min-h-10 rounded-sm bg-ink-900 px-3 text-xs font-semibold text-white">{i.action.label}</button></form>
+                    <form action={startFocusDrill}><input type="hidden" name="topics" value={i.action.focusTopics.join(",")} /><button type="submit" className="min-h-10 rounded-sm bg-ink-900 px-4 text-xs font-semibold text-white">{i.action.label}</button></form>
                   ) : (
                     <span className="text-text-900">{i.action.label}</span>
                   )}
@@ -47,7 +47,7 @@ export default async function Skills({ params, searchParams }: { params: Promise
                     <input type="hidden" name="skill" value={i.key} /><input type="hidden" name="back" value={back} />
                     <select name="status" defaultValue={i.status} aria-label={`${i.name} status`} className="h-10 rounded-sm border border-border bg-bg px-2"><option value="have">have</option><option value="weak">weak</option><option value="missing">missing</option></select>
                     <input name="evidence" placeholder="evidence (project, course…)" maxLength={200} aria-label={`${i.name} evidence`} className="h-10 min-w-0 flex-1 rounded-sm border border-border px-2" />
-                    <button type="submit" className="min-h-10 rounded-sm border border-border px-3">Update</button>
+                    <button type="submit" className="min-h-10 rounded-sm border border-border px-4">Update</button>
                   </form>
                 )}
               </li>

@@ -10,7 +10,7 @@ export default function CheckEmail() {
       <MailCheck aria-hidden className="mx-auto h-12 w-12 text-ink-900" />
       <h1 className="mt-4 text-xl font-semibold">{t.login.checkTitle}</h1>
       <p className="mt-2 text-text-600">{t.login.checkBody}</p>
-      {devLinksExposed() && <p className="mt-6 rounded-md bg-accent-50 p-3 text-xs">{t.login.devHint}</p>}
+      {devLinksExposed() && <p className="mt-6 rounded-md bg-accent-50 p-4 text-xs">{t.login.devHint}</p>}
     </main>
   );
 }

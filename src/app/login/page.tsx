@@ -32,13 +32,13 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
     <main className="mx-auto flex min-h-dvh max-w-sm flex-col justify-center px-4">
       <div className="mb-8 text-2xl font-bold text-ink-900">{t.appName}</div>
       <h1 className="text-xl font-semibold">{t.login.title}</h1>
-      <p className="mt-1 text-sm text-text-600">{t.login.subtitle}</p>
+      <p className="mt-2 text-sm text-text-600">{t.login.subtitle}</p>
       {msg && (
-        <p role="alert" className="mt-4 rounded-md bg-danger-50 p-3 text-sm text-danger-700">
+        <p role="alert" className="mt-4 rounded-md bg-danger-50 p-4 text-sm text-danger-700">
           {msg}
         </p>
       )}
-      <form action={sendLink} className="mt-6 space-y-3">
+      <form action={sendLink} className="mt-6 space-y-4">
         <label className="block text-sm font-medium" htmlFor="email">
           {t.login.email}
         </label>

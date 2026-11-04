@@ -35,17 +35,17 @@ export default async function WeakTopics({ searchParams }: { searchParams: Promi
   const [topics, assignments] = await Promise.all([cohortWeakTopics(user, { ...opts, batchId: batch?.id }), assignmentsForCollege(user, opts)]);
   return (
     <TpoShell title="Weak topics" collegeName={college.name} crumbs={[{ href: "/tpo", label: "Overview" }, { href: "/tpo/weak-topics", label: "Weak topics" }]}>
-      {sp.assigned && <p role="status" className="mb-4 rounded-sm bg-success-50 p-3 text-sm">Focus pack on {topicName(sp.topic ?? "")} assigned to {sp.assigned} students. They&apos;ll see it on their Today screen.</p>}
-      {sp.error && <p role="alert" className="mb-4 rounded-sm bg-danger-50 p-3 text-sm text-danger-700">{sp.error}</p>}
-      <form method="get" className="mb-4 flex items-end gap-3">
-        <label className="text-sm">Batch<select name="batch" defaultValue={batch?.id ?? ""} className="mt-1 block h-11 rounded-sm border border-border bg-bg px-3"><option value="">All batches</option>{bl.map((b) => <option key={b.id} value={b.id}>{b.name}</option>)}</select></label>
+      {sp.assigned && <p role="status" className="mb-4 rounded-sm bg-success-50 p-4 text-sm">Focus pack on {topicName(sp.topic ?? "")} assigned to {sp.assigned} students. They&apos;ll see it on their Today screen.</p>}
+      {sp.error && <p role="alert" className="mb-4 rounded-sm bg-danger-50 p-4 text-sm text-danger-700">{sp.error}</p>}
+      <form method="get" className="mb-4 flex items-end gap-4">
+        <label className="text-sm">Batch<select name="batch" defaultValue={batch?.id ?? ""} className="mt-2 block h-11 rounded-sm border border-border bg-bg px-4"><option value="">All batches</option>{bl.map((b) => <option key={b.id} value={b.id}>{b.name}</option>)}</select></label>
         <Button type="submit" variant="secondary">Show</Button>
       </form>
-      <p className="mb-3 text-sm text-text-600">Students counted only with ≥ 5 questions on a topic in the last 30 days, below 50% accuracy.</p>
+      <p className="mb-4 text-sm text-text-600">Students counted only with ≥ 5 questions on a topic in the last 30 days, below 50% accuracy.</p>
       {topics.length === 0 ? <EmptyState title="No weak topics with enough data" body="As students practise, weak topics appear here." /> : (
         <ul className="space-y-2" data-testid="weak-topics">
           {topics.slice(0, 15).map((t) => (
-            <li key={t.topic} className="flex flex-col gap-3 rounded-md border border-border bg-bg p-3 md:flex-row md:items-center">
+            <li key={t.topic} className="flex flex-col gap-4 rounded-md border border-border bg-bg p-4 md:flex-row md:items-center">
               <div className="min-w-0 flex-1">
                 <div className="font-medium text-ink-900">{t.name} <span className="text-xs font-normal text-text-600">· {t.section}</span></div>
                 <div className="text-sm text-text-600"><b className="tabular text-text-900">{t.weakCount}</b> of {t.measured} measured students below 50% · cohort accuracy {t.avgAccuracy}%</div>

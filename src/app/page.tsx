@@ -8,7 +8,7 @@ const MAIL = "mailto:pilot@learncrew.in?subject=LearnCrew%20Campus%20pilot&body=
 export default function Landing() {
   return (
     <div className="bg-bg text-text-900">
-      <header className="mx-auto flex max-w-6xl items-center justify-between px-4 py-5">
+      <header className="mx-auto flex max-w-6xl items-center justify-between px-4 py-6">
         <div className="flex items-center gap-2 text-lg font-bold text-ink-900"><BarChart3 aria-hidden className="h-5 w-5 text-accent-500" />LearnCrew Campus</div>
         <Link href="/login" className="inline-flex min-h-11 items-center rounded-sm px-4 text-sm font-semibold text-ink-900 hover:bg-ink-50">Log in</Link>
       </header>
@@ -16,13 +16,13 @@ export default function Landing() {
       <main>
       <section className="mx-auto max-w-6xl px-4 py-12 md:py-20">
         <p className="text-sm font-semibold uppercase tracking-wide text-ink-700">For Training &amp; Placement Officers</p>
-        <h1 className="mt-3 max-w-3xl text-4xl font-bold leading-tight text-ink-900 md:text-5xl">Know who&apos;s ready for next month&apos;s drive — and who needs a push.</h1>
-        <p className="mt-5 max-w-2xl text-lg text-text-600">Every student gets a 10-question aptitude drill a day, adapted to their level and their target company. You get readiness per company, topic heatmaps by batch, and an at-risk list with ready-to-send nudges.</p>
-        <div className="mt-8 flex flex-wrap gap-3">
+        <h1 className="mt-4 max-w-3xl text-4xl font-bold leading-tight text-ink-900 md:text-5xl">Know who&apos;s ready for next month&apos;s drive — and who needs a push.</h1>
+        <p className="mt-6 max-w-2xl text-lg text-text-600">Every student gets a 10-question aptitude drill a day, adapted to their level and their target company. You get readiness per company, topic heatmaps by batch, and an at-risk list with ready-to-send nudges.</p>
+        <div className="mt-8 flex flex-wrap gap-4">
           <a href={MAIL} className="inline-flex min-h-12 items-center rounded-sm bg-accent-500 px-6 font-semibold text-ink-900 hover:bg-accent-600">Book a free pilot</a>
           <Link href="/login" className="inline-flex min-h-12 items-center rounded-sm border border-border px-6 font-semibold text-ink-900 hover:bg-surface">Student or TPO login</Link>
         </div>
-        <p className="mt-3 text-sm text-text-600">TCS NQT · Infosys · Accenture · Cognizant · Wipro · Capgemini patterns</p>
+        <p className="mt-4 text-sm text-text-600">TCS NQT · Infosys · Accenture · Cognizant · Wipro · Capgemini patterns</p>
       </section>
 
       <section className="bg-surface py-12 md:py-20">
@@ -34,7 +34,7 @@ export default function Landing() {
           ].map(({ Icon, t, b }) => (
             <div key={t} className="rounded-md border border-border bg-bg p-6 shadow-sm">
               <Icon aria-hidden className="h-6 w-6 text-ink-900" />
-              <h2 className="mt-3 text-lg font-semibold text-ink-900">{t}</h2>
+              <h2 className="mt-4 text-lg font-semibold text-ink-900">{t}</h2>
               <p className="mt-2 text-text-600">{b}</p>
             </div>
           ))}
@@ -51,8 +51,8 @@ export default function Landing() {
             { Icon: FileText, t: "Weekly report", b: "A one-page summary for your principal: activity, readiness trend, weakest topics. Print or save as PDF." },
           ].map(({ Icon, t, b }) => (
             <li key={t} className="flex gap-4">
-              <Icon aria-hidden className="mt-1 h-6 w-6 shrink-0 text-accent-600" />
-              <div><h3 className="font-semibold text-ink-900">{t}</h3><p className="mt-1 text-text-600">{b}</p></div>
+              <Icon aria-hidden className="mt-2 h-6 w-6 shrink-0 text-accent-600" />
+              <div><h3 className="font-semibold text-ink-900">{t}</h3><p className="mt-2 text-text-600">{b}</p></div>
             </li>
           ))}
         </ul>
@@ -71,7 +71,7 @@ export default function Landing() {
               <div key={t.n} className="rounded-md border border-border bg-bg p-6 shadow-sm">
                 <h3 className="font-semibold text-ink-900">{t.n}</h3>
                 <p className="mt-2 text-3xl font-bold text-ink-900">{t.p}<span className="text-base font-normal text-text-600"> / student / year</span></p>
-                <ul className="mt-4 space-y-1 text-sm text-text-600">{t.f.map((x) => <li key={x}>• {x}</li>)}</ul>
+                <ul className="mt-4 space-y-2 text-sm text-text-600">{t.f.map((x) => <li key={x}>• {x}</li>)}</ul>
               </div>
             ))}
           </div>
@@ -79,7 +79,7 @@ export default function Landing() {
       </section>
 
       </main>
-      <footer className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-8 text-sm text-text-600">
+      <footer className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-8 text-sm text-text-600">
         <span className="inline-flex items-center gap-2"><ShieldCheck aria-hidden className="h-4 w-4" />DPDP-ready: consent, export and deletion built in.</span>
         <span><Link href="/privacy" className="underline">Privacy</Link> · <a href={MAIL} className="underline">pilot@learncrew.in</a></span>
       </footer>
