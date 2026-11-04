@@ -1,0 +1,336 @@
+[
+  {
+    "id": "Q-TEC-SWE-0001",
+    "section": "tech",
+    "topic": "software_engineering",
+    "subtopic": "sdlc_agile",
+    "stem": "In Scrum, who is accountable for ordering and prioritising the Product Backlog?",
+    "options": [
+      "Scrum Master",
+      "Development team",
+      "Product Owner",
+      "Project sponsor"
+    ],
+    "answer_index": 2,
+    "explanation": "The Product Owner is accountable for Product Backlog management: creating items, ordering them by value and keeping the backlog transparent. The Scrum Master coaches the team and removes impediments; developers build the increment.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "infosys",
+      "accenture"
+    ],
+    "difficulty": 1,
+    "time_sec": 30,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "SWE-SCRUM-PO-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-SWE-0002",
+    "section": "tech",
+    "topic": "software_engineering",
+    "subtopic": "sdlc_agile",
+    "stem": "For which kind of project is the classic Waterfall model the most suitable choice?",
+    "options": [
+      "Requirements are well understood, fixed and unlikely to change",
+      "Requirements are expected to change every few weeks",
+      "The customer wants a working demo after every two weeks",
+      "The product idea is still being explored with users"
+    ],
+    "answer_index": 0,
+    "explanation": "Waterfall finishes each phase before the next starts, so late changes are costly. It fits projects whose requirements are clear and stable up front; changing or exploratory requirements suit iterative or Agile models.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "wipro",
+      "cognizant"
+    ],
+    "difficulty": 2,
+    "time_sec": 45,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "SWE-SDLC-WATERFALL-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-SWE-0003",
+    "section": "tech",
+    "topic": "software_engineering",
+    "subtopic": "sdlc_agile",
+    "stem": "Which Scrum event is used to inspect the product increment with stakeholders at the end of a sprint and adapt the backlog?",
+    "options": [
+      "Daily Scrum",
+      "Sprint Planning",
+      "Sprint Retrospective",
+      "Sprint Review"
+    ],
+    "answer_index": 3,
+    "explanation": "The Sprint Review shows the increment to stakeholders and adapts the Product Backlog. The Retrospective, held after it, looks at the team's own process. Daily Scrum is a 15-minute sync; Sprint Planning starts the sprint.",
+    "shortcut": null,
+    "company_tags": [
+      "infosys",
+      "accenture",
+      "capgemini"
+    ],
+    "difficulty": 3,
+    "time_sec": 45,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "SWE-SCRUM-EVENTS-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-SWE-0004",
+    "section": "tech",
+    "topic": "software_engineering",
+    "subtopic": "sdlc_agile",
+    "stem": "In the V-model, acceptance testing is planned against which development phase on the left arm of the V?",
+    "options": [
+      "Coding",
+      "Requirements analysis",
+      "Low-level (module) design",
+      "High-level (architectural) design"
+    ],
+    "answer_index": 1,
+    "explanation": "Each V-model phase has a matching test level: requirements analysis pairs with acceptance testing, system design with system testing, architectural design with integration testing, and module design with unit testing.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "cognizant",
+      "wipro"
+    ],
+    "difficulty": 4,
+    "time_sec": 60,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "SWE-SDLC-VMODEL-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-SWE-0005",
+    "section": "tech",
+    "topic": "software_engineering",
+    "subtopic": "testing",
+    "stem": "Testing done by a limited group of real end users in their own environment, just before general release, is called:",
+    "options": [
+      "Alpha testing",
+      "Beta testing",
+      "Unit testing",
+      "Smoke testing"
+    ],
+    "answer_index": 1,
+    "explanation": "Beta testing is done by real users at their own sites before the public release. Alpha testing is done earlier, at the developer's site, usually by internal staff. Unit and smoke testing are not user-driven.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "infosys",
+      "wipro"
+    ],
+    "difficulty": 2,
+    "time_sec": 30,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "SWE-TEST-ALPHABETA-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-SWE-0006",
+    "section": "tech",
+    "topic": "software_engineering",
+    "subtopic": "testing",
+    "stem": "A form accepts an integer age from 18 to 60 (both inclusive). Which set of inputs best represents boundary value analysis for this field?",
+    "options": [
+      "17, 18, 60, 61",
+      "18, 39, 60",
+      "25, 40, 55",
+      "10, 39, 70"
+    ],
+    "answer_index": 0,
+    "explanation": "Boundary value analysis tests values at and just outside each boundary: 17 and 18 at the lower edge, 60 and 61 at the upper edge. The other sets are mostly mid-range or equivalence-class picks and skip at least one edge.",
+    "shortcut": null,
+    "company_tags": [
+      "accenture",
+      "cognizant",
+      "capgemini"
+    ],
+    "difficulty": 3,
+    "time_sec": 60,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "SWE-TEST-BVA-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-SWE-0007",
+    "section": "tech",
+    "topic": "software_engineering",
+    "subtopic": "testing",
+    "stem": "The control-flow graph of a single function (one connected component) has 10 edges and 8 nodes. What is its McCabe cyclomatic complexity?",
+    "options": [
+      "2",
+      "3",
+      "4",
+      "18"
+    ],
+    "answer_index": 2,
+    "explanation": "Cyclomatic complexity M = E − N + 2P = 10 − 8 + 2 × 1 = 4. This is also the number of linearly independent paths, so at least 4 test cases are needed for basis-path coverage.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "capgemini"
+    ],
+    "difficulty": 4,
+    "time_sec": 75,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "SWE-TEST-CYCLO-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-SWE-0008",
+    "section": "tech",
+    "topic": "software_engineering",
+    "subtopic": "testing",
+    "stem": "In top-down integration testing, lower-level modules that are not yet ready are temporarily replaced by:",
+    "options": [
+      "Drivers",
+      "Stubs",
+      "Oracles",
+      "Debuggers"
+    ],
+    "answer_index": 1,
+    "explanation": "Top-down integration starts from the main module, so missing called modules are replaced by stubs that return canned responses. Bottom-up integration does the reverse and uses drivers to call the modules under test.",
+    "shortcut": null,
+    "company_tags": [
+      "infosys",
+      "wipro",
+      "cognizant"
+    ],
+    "difficulty": 3,
+    "time_sec": 45,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "SWE-TEST-STUBDRIVER-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-SWE-0009",
+    "section": "tech",
+    "topic": "software_engineering",
+    "subtopic": "git_basics",
+    "stem": "Which Git command downloads new commits from the remote but does not change your current branch or working files?",
+    "options": [
+      "git pull",
+      "git fetch",
+      "git clone",
+      "git push"
+    ],
+    "answer_index": 1,
+    "explanation": "git fetch updates the remote-tracking branches (such as origin/main) only. git pull is fetch followed by a merge (or rebase) into your current branch, git clone creates a new repository, and git push uploads commits.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "accenture",
+      "infosys"
+    ],
+    "difficulty": 1,
+    "time_sec": 30,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "SWE-GIT-FETCHPULL-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-SWE-0010",
+    "section": "tech",
+    "topic": "software_engineering",
+    "subtopic": "git_basics",
+    "stem": "You ran git add app.js by mistake. Which command removes app.js from the staging area while keeping your edits in the working tree?",
+    "options": [
+      "git restore --staged app.js",
+      "git checkout -- app.js",
+      "git rm app.js",
+      "git commit --amend"
+    ],
+    "answer_index": 0,
+    "explanation": "git restore --staged (older form: git reset HEAD app.js) unstages the file and keeps the working-tree changes. git checkout -- discards working-tree edits, git rm deletes the file, and --amend rewrites the last commit.",
+    "shortcut": null,
+    "company_tags": [
+      "accenture",
+      "capgemini",
+      "cognizant"
+    ],
+    "difficulty": 3,
+    "time_sec": 60,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "SWE-GIT-UNSTAGE-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-SWE-0011",
+    "section": "tech",
+    "topic": "software_engineering",
+    "subtopic": "git_basics",
+    "stem": "Branch feature has 3 commits on top of commit C. Meanwhile main has 2 new commits on top of C. On feature you run git rebase main. What is the result?",
+    "options": [
+      "feature gets one new merge commit and keeps its 3 original commits",
+      "feature keeps its 3 commits with the same hashes, now after main",
+      "main now contains the 3 feature commits",
+      "feature now has 3 commits on top of main, with new hashes"
+    ],
+    "answer_index": 3,
+    "explanation": "Rebase replays feature's 3 commits on top of main's tip. Because each commit's parent changes, Git creates new commits with new hashes; no merge commit is made and main itself is not moved. That is why shared branches should not be rebased.",
+    "shortcut": null,
+    "company_tags": [
+      "accenture",
+      "capgemini"
+    ],
+    "difficulty": 5,
+    "time_sec": 90,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "SWE-GIT-REBASE-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-SWE-0012",
+    "section": "tech",
+    "topic": "software_engineering",
+    "subtopic": "git_basics",
+    "stem": "What happens after running git reset --soft HEAD~1 on a branch with a clean working tree?",
+    "options": [
+      "The last commit is removed and its changes are discarded",
+      "The last commit is removed and its changes are left unstaged in the working tree",
+      "The last commit is removed and its changes stay staged, ready to recommit",
+      "A new commit is created that reverses the last commit"
+    ],
+    "answer_index": 2,
+    "explanation": "--soft moves the branch pointer back one commit but leaves both the index and working tree untouched, so the changes remain staged. --mixed (default) unstages them, --hard discards them, and git revert adds an undo commit.",
+    "shortcut": null,
+    "company_tags": [
+      "infosys",
+      "capgemini",
+      "accenture"
+    ],
+    "difficulty": 4,
+    "time_sec": 75,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "SWE-GIT-RESET-01",
+    "version": 1
+  }
+]

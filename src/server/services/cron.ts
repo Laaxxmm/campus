@@ -44,18 +44,25 @@ export async function weekly(now = new Date()) {
         select user_id, correct, row_number() over (partition by user_id order by created_at desc) rn from attempts where user_id in ${ids}
       ) t where rn <= 50 group by user_id`);
     const accBy = new Map(acc.map((r) => [r.user_id, r.acc]));
-    const rows = ids.flatMap((uid) => {
+    const { getProfile, readinessFor: v3, studentSignals } = await import("./companies");
+    const profiles = new Map<string, Awaited<ReturnType<typeof getProfile>>>();
+    for (const b of bps) profiles.set(b.company, await getProfile(b.company));
+    const rows = [];
+    for (const uid of ids) {
       const ratings = new Map(sk.filter((s) => s.userId === uid).map((s) => [s.topic, s.rating]));
-      return bps.map((b) => {
-        const r = readiness({ company: b.company, sectionWeights: b.sectionWeights as Record<string, number>, topicWeights: b.topicWeights as Record<string, number> }, topicsBySection, ratings, accBy.get(uid) ?? null);
-        return { userId: uid, company: b.company, week, score: r.score, topicBreakdown: r.breakdown };
-      });
-    });
+      const signals = profiles.size ? await studentSignals(uid) : null;
+      for (const b of bps) {
+        const legacy = readiness({ company: b.company, sectionWeights: b.sectionWeights as Record<string, number>, topicWeights: b.topicWeights as Record<string, number> }, topicsBySection, ratings, accBy.get(uid) ?? null);
+        const p = profiles.get(b.company);
+        const r = p && signals ? await v3(p, signals) : null; // v3 is the headline score when the company is profiled
+        rows.push({ userId: uid, company: b.company, week, score: r?.score ?? legacy.score, topicBreakdown: legacy.breakdown, breakdown: r ? { aptitude: r.aptitude, tech: r.tech, consistency: r.consistency, profile: r.profile, interviewReady: r.interviewReady } : null });
+      }
+    }
     if (rows.length)
       await db
         .insert(readinessSnapshots)
         .values(rows)
-        .onConflictDoUpdate({ target: [readinessSnapshots.userId, readinessSnapshots.company, readinessSnapshots.week], set: { score: sql`excluded.score`, topicBreakdown: sql`excluded.topic_breakdown` } });
+        .onConflictDoUpdate({ target: [readinessSnapshots.userId, readinessSnapshots.company, readinessSnapshots.week], set: { score: sql`excluded.score`, topicBreakdown: sql`excluded.topic_breakdown`, breakdown: sql`excluded.breakdown` } });
     snapshots += rows.length;
   }
   const retired = await retireLeaked(now);

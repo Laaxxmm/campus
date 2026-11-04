@@ -1,0 +1,77 @@
+[
+ {
+  "id": "C-TEC-SQL-0001",
+  "topic": "sql",
+  "skill_key": "sql",
+  "branches": [
+   "cse_it",
+   "all"
+  ],
+  "title": "SQL joins at a glance",
+  "body": "INNER JOIN returns only row pairs that satisfy the ON condition. LEFT (OUTER) JOIN returns every left-table row, with NULLs where no right row matches. RIGHT JOIN is the mirror image. FULL OUTER JOIN keeps unmatched rows from both sides; MySQL lacks it, so emulate it with a LEFT JOIN UNION a RIGHT JOIN. CROSS JOIN is the Cartesian product (m × n rows). A SELF JOIN joins a table to itself using aliases, for example an employee and their manager. With outer joins, a filter on the right table placed in WHERE removes the NULL rows and silently turns the join into an inner join, so put it in ON instead.",
+  "example": "-- employees with no department\nSELECT e.name\nFROM emp e LEFT JOIN dept d ON e.dept_id = d.dept_id\nWHERE d.dept_id IS NULL;",
+  "interview_tip": "Be ready to sketch Venn diagrams and to write an anti-join (LEFT JOIN … IS NULL, or NOT EXISTS). Counting rows for a small sample is a common written-round question.",
+  "status": "golden",
+  "version": 1
+ },
+ {
+  "id": "C-TEC-SQL-0002",
+  "topic": "sql",
+  "skill_key": "sql",
+  "branches": [
+   "cse_it",
+   "all"
+  ],
+  "title": "WHERE vs HAVING and query order",
+  "body": "SQL clauses are evaluated logically in this order: FROM/JOIN → WHERE → GROUP BY → HAVING → SELECT → DISTINCT → ORDER BY → LIMIT. WHERE filters individual rows before grouping, so it cannot use aggregates. HAVING filters groups after aggregation, so it can. Every non-aggregated column in SELECT must appear in GROUP BY; standard SQL and MySQL's ONLY_FULL_GROUP_BY enforce this. Because SELECT runs after WHERE, a column alias defined in SELECT cannot be used in WHERE (MySQL does allow it in HAVING and ORDER BY). Filter with WHERE whenever you can, because shrinking the data before grouping is cheaper.",
+  "example": "SELECT dept, COUNT(*) AS n\nFROM emp\nWHERE salary > 30000      -- row filter\nGROUP BY dept\nHAVING COUNT(*) > 5       -- group filter\nORDER BY n DESC;",
+  "interview_tip": "If asked 'WHERE vs HAVING', give the evaluation order. It explains every rule, including why aggregates and SELECT aliases fail in WHERE.",
+  "status": "golden",
+  "version": 1
+ },
+ {
+  "id": "C-TEC-SQL-0003",
+  "topic": "sql",
+  "skill_key": "sql",
+  "branches": [
+   "cse_it",
+   "all"
+  ],
+  "title": "NULL semantics and three-valued logic",
+  "body": "NULL means 'unknown or missing', not zero or an empty string. Any comparison with NULL, including NULL = NULL, yields UNKNOWN, and WHERE keeps only rows whose condition is TRUE. Test for it with IS NULL or IS NOT NULL. Aggregates such as SUM, AVG, MIN, MAX and COUNT(col) ignore NULLs; COUNT(*) counts every row. As a result, AVG(col) can differ from SUM(col)/COUNT(*). The classic trap: `x NOT IN (subquery)` returns no rows if the subquery yields any NULL, whereas NOT EXISTS behaves as expected. Use COALESCE(col, default) to substitute values. GROUP BY puts all NULLs into one group.",
+  "example": "SELECT COUNT(*), COUNT(bonus), AVG(bonus) FROM emp;\n-- bonus = 100, NULL, 300  →  3, 2, 200\nSELECT * FROM emp WHERE bonus = NULL;   -- always 0 rows\nSELECT * FROM emp WHERE bonus IS NULL;  -- correct",
+  "interview_tip": "Mentioning the NOT IN versus NOT EXISTS pitfall unprompted signals real SQL experience. Interviewers love it.",
+  "status": "golden",
+  "version": 1
+ },
+ {
+  "id": "C-TEC-SQL-0004",
+  "topic": "sql",
+  "skill_key": "sql",
+  "branches": [
+   "cse_it",
+   "all"
+  ],
+  "title": "DELETE vs TRUNCATE vs DROP",
+  "body": "DELETE is DML. It removes the rows that match an optional WHERE clause one at a time, fires DELETE triggers, is fully logged and can be rolled back inside a transaction. TRUNCATE is DDL. It removes all rows at once without a WHERE clause, uses minimal logging, is much faster, resets AUTO_INCREMENT in MySQL and does not fire DELETE triggers. In MySQL it causes an implicit commit, so it cannot be rolled back. DROP is DDL. It removes the table entirely: its data, structure, indexes, constraints and privileges. Other DDL commands are CREATE, ALTER and RENAME; DML commands are INSERT, UPDATE, DELETE and MERGE.",
+  "example": "DELETE FROM logs WHERE created < '2024-01-01';  -- selected rows\nTRUNCATE TABLE logs;                            -- all rows, keep table\nDROP TABLE logs;                                -- table gone",
+  "interview_tip": "Rollback behaviour depends on the dialect: in PostgreSQL and SQL Server, TRUNCATE inside a transaction can be rolled back. Saying 'in MySQL…' shows precision.",
+  "status": "golden",
+  "version": 1
+ },
+ {
+  "id": "C-TEC-SQL-0005",
+  "topic": "sql",
+  "skill_key": "sql",
+  "branches": [
+   "cse_it",
+   "all"
+  ],
+  "title": "Subqueries vs joins, EXISTS and correlation",
+  "body": "A subquery is a query nested inside another. A scalar subquery returns a single value, for example `salary > (SELECT AVG(salary) FROM emp)`. IN, ANY and ALL compare against a list. A correlated subquery references the outer row, so it is logically re-evaluated for each outer row, for example comparing against the average of that row's own department. EXISTS returns TRUE as soon as one matching row exists, is NULL-safe, and suits semi-joins and anti-joins. Many subqueries can be rewritten as joins, and optimizers often do this automatically. Prefer whichever form is clearer. Use a JOIN when you need columns from both tables, and EXISTS when you only need to test whether matching rows exist.",
+  "example": "-- second-highest distinct salary\nSELECT MAX(salary) FROM emp\nWHERE salary < (SELECT MAX(salary) FROM emp);\n\n-- Nth highest (MySQL 8): DENSE_RANK() OVER (ORDER BY salary DESC)",
+  "interview_tip": "The 'second or Nth highest salary' question is near-universal. Know the subquery, LIMIT/OFFSET with DISTINCT, and DENSE_RANK versions, and how each handles ties.",
+  "status": "golden",
+  "version": 1
+ }
+]

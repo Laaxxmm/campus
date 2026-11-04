@@ -1,0 +1,333 @@
+[
+  {
+    "id": "Q-TEC-MEC-0001",
+    "section": "tech",
+    "topic": "mech_core",
+    "subtopic": "thermodynamics",
+    "stem": "Which law of thermodynamics forms the basis of temperature measurement with a thermometer?",
+    "options": [
+      "Zeroth law",
+      "First law",
+      "Second law",
+      "Third law"
+    ],
+    "answer_index": 0,
+    "explanation": "The zeroth law says that if two bodies are each in thermal equilibrium with a third body, they are in equilibrium with each other. The thermometer acts as that third body, which makes temperature measurement meaningful.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "wipro"
+    ],
+    "difficulty": 1,
+    "time_sec": 30,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "MEC-THERMO-ZEROTH-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-MEC-0002",
+    "section": "tech",
+    "topic": "mech_core",
+    "subtopic": "thermodynamics",
+    "stem": "A closed system receives 50 kJ of heat and does 20 kJ of work on its surroundings. What is the change in its internal energy?",
+    "options": [
+      "+70 kJ",
+      "+30 kJ",
+      "−30 kJ",
+      "−70 kJ"
+    ],
+    "answer_index": 1,
+    "explanation": "First law for a closed system: ΔU = Q − W, taking heat added and work done by the system as positive. ΔU = 50 − 20 = +30 kJ, so internal energy rises by 30 kJ.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "infosys",
+      "cognizant"
+    ],
+    "difficulty": 2,
+    "time_sec": 45,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "MEC-THERMO-FIRST-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-MEC-0003",
+    "section": "tech",
+    "topic": "mech_core",
+    "subtopic": "thermodynamics",
+    "stem": "A Carnot engine works between a source at 527 °C and a sink at 27 °C. What is its thermal efficiency?",
+    "options": [
+      "5.1%",
+      "37.5%",
+      "94.9%",
+      "62.5%"
+    ],
+    "answer_index": 3,
+    "explanation": "Use absolute temperatures: T1 = 527 + 273 = 800 K, T2 = 27 + 273 = 300 K. η = 1 − T2/T1 = 1 − 300/800 = 0.625 = 62.5%. 94.9% comes from wrongly using °C values.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "wipro",
+      "capgemini"
+    ],
+    "difficulty": 3,
+    "time_sec": 60,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "MEC-THERMO-CARNOT-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-MEC-0004",
+    "section": "tech",
+    "topic": "mech_core",
+    "subtopic": "thermodynamics",
+    "stem": "An air-standard Otto cycle has a compression ratio of 8. Taking γ = 1.4, what is its thermal efficiency (approximately)?",
+    "options": [
+      "43.5%",
+      "56.5%",
+      "64.2%",
+      "87.5%"
+    ],
+    "answer_index": 1,
+    "explanation": "Otto efficiency η = 1 − 1/r^(γ−1) = 1 − 1/8^0.4. 8^0.4 ≈ 2.297, so η ≈ 1 − 0.435 = 0.565, about 56.5%. 87.5% is the mistake of using 1 − 1/r.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "cognizant"
+    ],
+    "difficulty": 4,
+    "time_sec": 90,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "MEC-THERMO-OTTO-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-MEC-0005",
+    "section": "tech",
+    "topic": "mech_core",
+    "subtopic": "thermodynamics",
+    "stem": "A Carnot engine working between 800 K and 300 K receives 100 kJ of heat. All its work drives a Carnot refrigerator working between 250 K and 300 K. How much heat does the refrigerator extract from the 250 K space?",
+    "options": [
+      "62.5 kJ",
+      "312.5 kJ",
+      "375 kJ",
+      "520.8 kJ"
+    ],
+    "answer_index": 1,
+    "explanation": "Engine: η = 1 − 300/800 = 0.625, so W = 62.5 kJ. Refrigerator COP = T_L/(T_H − T_L) = 250/50 = 5. Heat extracted = 5 × 62.5 = 312.5 kJ. 375 kJ is the heat rejected at 300 K (312.5 + 62.5).",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "capgemini"
+    ],
+    "difficulty": 5,
+    "time_sec": 150,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "MEC-THERMO-CARNOT-REF-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-MEC-0006",
+    "section": "tech",
+    "topic": "mech_core",
+    "subtopic": "strength_materials",
+    "stem": "The ratio of lateral strain to longitudinal (axial) strain in a uniaxially loaded bar, within the elastic limit, is called:",
+    "options": [
+      "Young's modulus",
+      "Bulk modulus",
+      "Modulus of rigidity",
+      "Poisson's ratio"
+    ],
+    "answer_index": 3,
+    "explanation": "Poisson's ratio ν = −(lateral strain)/(longitudinal strain); for most metals it is about 0.25–0.35. Young's modulus relates normal stress to strain, rigidity modulus relates shear stress to shear strain, and bulk modulus relates pressure to volumetric strain.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "wipro",
+      "infosys"
+    ],
+    "difficulty": 1,
+    "time_sec": 30,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "MEC-SOM-POISSON-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-MEC-0007",
+    "section": "tech",
+    "topic": "mech_core",
+    "subtopic": "strength_materials",
+    "stem": "In Indian standard (IS 456) notation, what does concrete grade M25 indicate?",
+    "options": [
+      "Characteristic compressive strength of 25 N/mm² on 150 mm cubes at 28 days",
+      "Mix proportion of 1 : 2.5 cement to sand",
+      "Tensile strength of 25 N/mm² at 7 days",
+      "Cement content of 25 kg per bag of mix"
+    ],
+    "answer_index": 0,
+    "explanation": "M stands for mix and the number is the characteristic compressive strength in N/mm² (MPa) of 150 mm cubes tested at 28 days. So M25 means 25 N/mm², below which not more than 5% of results are expected to fall.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "wipro",
+      "cognizant"
+    ],
+    "difficulty": 2,
+    "time_sec": 45,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "MEC-CIVIL-CONCRETE-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-MEC-0008",
+    "section": "tech",
+    "topic": "mech_core",
+    "subtopic": "strength_materials",
+    "stem": "A tie rod carries an axial tensile load of 50 kN. The material's yield strength is 250 MPa and a factor of safety of 2.5 on yield is required. What minimum cross-sectional area is needed?",
+    "options": [
+      "80 mm²",
+      "200 mm²",
+      "500 mm²",
+      "1250 mm²"
+    ],
+    "answer_index": 2,
+    "explanation": "Allowable stress = yield strength / FoS = 250 / 2.5 = 100 MPa (N/mm²). Area = load / allowable stress = 50,000 N / 100 N/mm² = 500 mm². 200 mm² ignores the factor of safety.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "infosys",
+      "capgemini"
+    ],
+    "difficulty": 3,
+    "time_sec": 75,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "MEC-SOM-FOS-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-MEC-0009",
+    "section": "tech",
+    "topic": "mech_core",
+    "subtopic": "strength_materials",
+    "stem": "A steel rod 2 m long with a cross-sectional area of 100 mm² carries an axial tensile load of 20 kN. Taking E = 200 GPa and assuming elastic behaviour, what is its elongation?",
+    "options": [
+      "0.02 mm",
+      "0.2 mm",
+      "2 mm",
+      "20 mm"
+    ],
+    "answer_index": 2,
+    "explanation": "δ = PL/(AE) = (20,000 N × 2000 mm)/(100 mm² × 200,000 N/mm²) = 4×10⁷ / 2×10⁷ = 2 mm. The stress is 200 MPa, so the strain is 0.001. Keep units consistent: E in N/mm² and lengths in mm.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "wipro",
+      "cognizant"
+    ],
+    "difficulty": 4,
+    "time_sec": 90,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "MEC-SOM-ELONG-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-MEC-0010",
+    "section": "tech",
+    "topic": "mech_core",
+    "subtopic": "manufacturing",
+    "stem": "Which casting process uses a wax pattern that is coated with a ceramic slurry and then melted out before pouring the metal?",
+    "options": [
+      "Investment casting",
+      "Sand casting",
+      "Die casting",
+      "Centrifugal casting"
+    ],
+    "answer_index": 0,
+    "explanation": "Investment (lost-wax) casting coats a wax pattern with ceramic, melts the wax out and pours metal into the shell. It gives fine detail and good finish, e.g. turbine blades and jewellery. Die casting uses reusable metal dies.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "wipro"
+    ],
+    "difficulty": 2,
+    "time_sec": 45,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "MEC-MFG-CASTING-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-MEC-0011",
+    "section": "tech",
+    "topic": "mech_core",
+    "subtopic": "manufacturing",
+    "stem": "Which arc welding process uses a non-consumable tungsten electrode with an inert shielding gas such as argon?",
+    "options": [
+      "Shielded metal arc welding (SMAW)",
+      "Gas tungsten arc welding (GTAW/TIG)",
+      "Gas metal arc welding (GMAW/MIG)",
+      "Submerged arc welding (SAW)"
+    ],
+    "answer_index": 1,
+    "explanation": "TIG (GTAW) uses a non-consumable tungsten electrode with inert gas shielding, with filler added separately if needed. MIG feeds a consumable wire electrode, SMAW uses a flux-coated consumable stick, and SAW uses a consumable wire under granular flux.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "cognizant",
+      "infosys"
+    ],
+    "difficulty": 2,
+    "time_sec": 45,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "MEC-MFG-WELD-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-MEC-0012",
+    "section": "tech",
+    "topic": "mech_core",
+    "subtopic": "manufacturing",
+    "stem": "A 50 mm diameter bar is turned on a lathe at a spindle speed of 300 rpm. What is the cutting speed?",
+    "options": [
+      "4.71 m/min",
+      "15.0 m/min",
+      "47.1 m/min",
+      "94.2 m/min"
+    ],
+    "answer_index": 2,
+    "explanation": "Cutting speed V = πDN/1000 with D in mm and N in rpm. V = π × 50 × 300 / 1000 ≈ 47.1 m/min. 94.2 m/min doubles the diameter and 15.0 m/min drops π.",
+    "shortcut": null,
+    "company_tags": [
+      "wipro",
+      "capgemini"
+    ],
+    "difficulty": 3,
+    "time_sec": 60,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "MEC-MFG-CUTSPEED-01",
+    "version": 1
+  }
+]

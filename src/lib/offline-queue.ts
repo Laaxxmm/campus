@@ -1,6 +1,6 @@
 "use client";
 /** IndexedDB queue of unsynced attempts. Falls back to localStorage if IndexedDB is unavailable. */
-export type QueuedAttempt = { clientId: string; drillId: string; questionId: string; displayedIndex: number | null; timeMs: number; at: number };
+export type QueuedAttempt = { clientId: string; drillId: string; questionId: string; displayedIndex: number | null; timeMs: number; answerChanges?: number; at: number };
 
 const DB = "learncrew";
 const STORE = "attempts";

@@ -1,0 +1,159 @@
+{
+  "key": "capgemini",
+  "name": "Capgemini",
+  "version": 1,
+  "updated_at": "2026-11-04",
+  "roles": [
+    { "key": "analyst", "name": "Analyst", "note": "Base fresher track. FACE Prep reports ~₹4.0–4.5 LPA; verify in your offer." },
+    { "key": "senior_analyst", "name": "Senior Analyst", "note": "Same test; per FACE Prep, a higher aptitude cutoff plus an advanced technical interview, at ~₹6.5–7.5 LPA (secondary figure)." }
+  ],
+  "rounds": [
+    {
+      "key": "pseudocode",
+      "name": "Pseudocode / Technical MCQs",
+      "kind": "aptitude",
+      "duration_min": null,
+      "sections": [{ "section": "Pseudocode MCQs", "questions": null, "minutes": null }],
+      "what_they_check": "Reading and tracing code logic: loops, recursion, arrays, bit operations and basic CS concepts. Sources disagree on size (e.g. 30 questions in 30 minutes vs 25 in 25 vs 40 in 40), so counts are unknown.",
+      "prep": [
+        "Trace output of C-style pseudocode with nested loops and recursion by hand.",
+        "Revise bitwise operators, operator precedence and integer division behaviour.",
+        "Revise basic OOP, DBMS and OS MCQ facts that appear alongside pseudocode."
+      ],
+      "negative_marking": null
+    },
+    {
+      "key": "english",
+      "name": "English Communication Test",
+      "kind": "communication",
+      "duration_min": null,
+      "sections": [{ "section": "Grammar, vocabulary, reading comprehension", "questions": null, "minutes": null }],
+      "what_they_check": "Written English via MCQs on grammar, reading comprehension and vocabulary. Most sources say ~30 questions in ~30 minutes; FACE Prep gives a shorter figure.",
+      "prep": [
+        "Practise error-spotting and sentence-correction sets.",
+        "Do one timed reading-comprehension passage daily.",
+        "Revise common vocabulary (synonyms, antonyms, fill-in-the-blanks)."
+      ],
+      "negative_marking": null
+    },
+    {
+      "key": "game_aptitude",
+      "name": "Quantitative & Game-based Aptitude",
+      "kind": "aptitude",
+      "duration_min": null,
+      "sections": [
+        { "section": "Quantitative aptitude", "questions": null, "minutes": null },
+        { "section": "Game-based cognitive games", "questions": null, "minutes": null }
+      ],
+      "what_they_check": "Numerical ability plus cognitive skills (memory, pattern recognition, deductive reasoning) through short games. Most sources say four games (~20–30 minutes); one candidate source describes more.",
+      "prep": [
+        "Try sample game-based assessments (grid memory, switch/pattern games, deductive logic) to learn the mechanics.",
+        "Practise core quant: percentages, ratios, averages, simple data interpretation.",
+        "Stay calm: game difficulty often adapts as you answer correctly."
+      ],
+      "negative_marking": null
+    },
+    {
+      "key": "behavioural",
+      "name": "Behavioural Competency Test",
+      "kind": "hr",
+      "duration_min": null,
+      "sections": [],
+      "what_they_check": "Work-style and personality via paired statements (a Glassdoor review names it as ADEPT-15 style). Reported as ~20 minutes and non-eliminatory by FACE Prep.",
+      "prep": [
+        "Answer consistently; similar statements repeat in different forms.",
+        "Read each pair carefully and pick the one closest to how you actually work.",
+        "Do not rush: it is reported to be untimed or loosely timed."
+      ],
+      "negative_marking": null
+    },
+    {
+      "key": "technical_interview",
+      "name": "Technical Interview",
+      "kind": "technical",
+      "duration_min": null,
+      "sections": [],
+      "what_they_check": "Projects, OOP, DBMS, OS, DSA basics and one language (per candidate reviews). Senior Analyst candidates face a more advanced technical interview.",
+      "prep": [
+        "Explain your project's architecture and your role in detail.",
+        "Revise OOP pillars, SQL queries and normalization.",
+        "Practise one or two simple coding questions you can write and explain live."
+      ],
+      "negative_marking": null
+    },
+    {
+      "key": "hr_interview",
+      "name": "HR Interview",
+      "kind": "hr",
+      "duration_min": null,
+      "sections": [],
+      "what_they_check": "Communication, flexibility and fit; followed by document verification before the offer (per FACE Prep).",
+      "prep": [
+        "Prepare answers on relocation and shifts.",
+        "Prepare 'Why Capgemini?' using its official careers content.",
+        "Keep all academic documents ready for verification."
+      ],
+      "negative_marking": null
+    }
+  ],
+  "cutoffs": {
+    "approx": true,
+    "aptitude_percent": null,
+    "sectional": true,
+    "note": "Not published by Capgemini. Secondary sources agree on per-section qualifying thresholds (clearing the overall score alone is not enough) and that Senior Analyst needs a higher cutoff, but the reported percentages conflict and are candidate-reported, so no number is given here.",
+    "source_refs": [2, 5]
+  },
+  "branch_expectations": {
+    "cse_it": {
+      "eligible": true,
+      "coding": "basic",
+      "tech_topics": ["dsa_basics", "oop_concepts", "dbms", "sql", "operating_systems", "computer_networks", "java", "python"],
+      "note": "The online test emphasises pseudocode rather than a separate coding round; CSE/IT candidates should target Senior Analyst and expect deeper DSA/OS questions."
+    },
+    "ece_eee": {
+      "eligible": true,
+      "coding": "basic",
+      "tech_topics": ["c_language", "oop_concepts", "dbms", "sql", "ece_core"],
+      "note": "Generally eligible for fresher drives (confirm branch list in your notice). Strong pseudocode tracing and one language suffice for Analyst."
+    },
+    "mech_civil": {
+      "eligible": true,
+      "coding": "basic",
+      "tech_topics": ["c_language", "python", "sql", "mech_core"],
+      "note": "Generally eligible (confirm in notice). Focus on pseudocode, English and game-based aptitude; be ready to explain your interest in IT."
+    },
+    "all": {
+      "eligible": true,
+      "coding": "basic",
+      "tech_topics": ["c_language", "sql", "oop_concepts"],
+      "note": "A secondary guide (Unstop) cites above 60% in the qualifying degree and no backlogs. Capgemini's official page says rounds vary by role and may include a coding/technical assessment or group discussion."
+    }
+  },
+  "jd_skills": [
+    { "skill_key": "pseudocode", "level": "required", "roles": [], "note": "Pseudocode section of the online test." },
+    { "skill_key": "aptitude_quant", "level": "required", "roles": [], "note": "Quantitative aptitude section." },
+    { "skill_key": "aptitude_logical", "level": "required", "roles": [], "note": "Game-based cognitive section." },
+    { "skill_key": "aptitude_verbal", "level": "required", "roles": [], "note": "English communication test." },
+    { "skill_key": "c", "level": "required", "roles": [], "note": "One language for pseudocode tracing and the technical interview." },
+    { "skill_key": "oop", "level": "required", "roles": [], "note": "Common technical interview topic." },
+    { "skill_key": "dbms", "level": "required", "roles": [], "note": "Common technical interview topic." },
+    { "skill_key": "communication", "level": "required", "roles": [], "note": "English test and interviews." },
+    { "skill_key": "dsa", "level": "nice_to_have", "roles": ["senior_analyst"], "note": "Deeper DSA questions reported for Senior Analyst." },
+    { "skill_key": "cloud_basics", "level": "nice_to_have", "roles": [], "note": "Helpful talking point; not a stated requirement." }
+  ],
+  "hr_focus": [
+    "Willingness to relocate and work flexible shifts.",
+    "Why Capgemini and your career goals.",
+    "Communication clarity.",
+    "Document and eligibility verification before the offer."
+  ],
+  "sources": [
+    { "title": "Recruitment process - Capgemini India", "url": "https://www.capgemini.com/in-en/careers/join-capgemini/recruitment-process/", "accessed": "2026-11-04", "kind": "official" },
+    { "title": "Capgemini Syllabus and Test Pattern (placementpreparation.io)", "url": "https://www.placementpreparation.io/capgemini/syllabus-and-test-pattern/", "accessed": "2026-11-04", "kind": "secondary" },
+    { "title": "Capgemini Recruitment Process for Freshers (FACE Prep)", "url": "https://faceprep.in/article/capgemini-recruitment-process-for-freshers-capgemini-selection-procedure/", "accessed": "2026-11-04", "kind": "secondary" },
+    { "title": "Capgemini 2026 Pseudocode Round and GenAI Hiring Context (FACE Prep)", "url": "https://faceprep.in/article/capgemini-2026-pseudocode-round-and-genai-hiring-context/", "accessed": "2026-11-04", "kind": "secondary" },
+    { "title": "Capgemini Recruitment Process (Unstop)", "url": "https://unstop.com/blog/capgemini-recruitment-process/amp", "accessed": "2026-11-04", "kind": "secondary" },
+    { "title": "Capgemini Cutoff 2026: Section-wise Scores & Trends (PapersAdda)", "url": "https://papersadda.pages.dev/article/capgemini-cutoff-analysis-2026/", "accessed": "2026-11-04", "kind": "secondary" }
+  ],
+  "disclaimer": "Compiled from public sources on 2026-11-04. Patterns change every season; LearnCrew is not affiliated with Capgemini. This is preparation guidance, not a guarantee of selection."
+}

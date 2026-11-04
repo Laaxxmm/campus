@@ -12,7 +12,9 @@ export type EventName =
   | "roster_import"
   | "data_deletion_request"
   | "client_error"
-  | "sign_in";
+  | "sign_in"
+  | "hr_practiced"
+  | "profile_draft";
 
 export async function track(name: EventName, opts: { userId?: string | null; collegeId?: string | null; props?: Record<string, unknown> } = {}) {
   try {

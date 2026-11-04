@@ -1,7 +1,7 @@
 // All user-facing copy lives here so Hindi / regional translations can be added as sibling files.
 export const en = {
   appName: "LearnCrew",
-  nav: { today: "Today", mocks: "Mocks", progress: "Progress", profile: "Profile", board: "Leaderboard" },
+  nav: { today: "Today", mocks: "Mocks", progress: "Progress", profile: "Profile", board: "Leaderboard", insights: "Insights", companies: "Companies", me: "Me" },
   tpoNav: {
     overview: "Overview",
     heatmap: "Heatmap",

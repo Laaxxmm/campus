@@ -1,0 +1,149 @@
+{
+  "key": "wipro",
+  "name": "Wipro",
+  "version": 1,
+  "updated_at": "2026-11-04",
+  "roles": [
+    { "key": "elite", "name": "Elite NTH – Project Engineer", "note": "Wipro describes Elite as its technical graduate hiring program for newly graduated engineers. Secondary sources commonly cite ~₹3.5 LPA; verify in your offer." },
+    { "key": "turbo", "name": "Turbo – (Senior) Project Engineer", "note": "Higher track. Secondary sources describe the same test with a higher cutoff, possibly extra advanced coding, and a harder technical interview; reported CTC figures vary (~₹5.5–6.5 LPA)." }
+  ],
+  "rounds": [
+    {
+      "key": "aptitude",
+      "name": "Aptitude Test (Quant, Logical, Verbal)",
+      "kind": "aptitude",
+      "duration_min": 48,
+      "sections": [
+        { "section": "Quantitative Ability", "questions": null, "minutes": null },
+        { "section": "Logical Ability", "questions": null, "minutes": null },
+        { "section": "Verbal Ability", "questions": null, "minutes": null }
+      ],
+      "what_they_check": "Core aptitude and English. Older breakdowns (Hitbullseye) give ~48 minutes for aptitude within a ~128-minute test; a 2026 guide gives 60 minutes. Per-section question counts conflict across sources.",
+      "prep": [
+        "Practise speed arithmetic: percentages, averages, ratios, time & work.",
+        "Practise logical sets: coding-decoding, series, seating arrangement.",
+        "Practise grammar, synonyms/antonyms and short reading comprehension passages."
+      ],
+      "negative_marking": null
+    },
+    {
+      "key": "essay",
+      "name": "Written Communication Test (Essay)",
+      "kind": "communication",
+      "duration_min": 20,
+      "sections": [{ "section": "Essay writing", "questions": 1, "minutes": 20 }],
+      "what_they_check": "Structured written English: grammar, coherence and staying on topic. PrepInsta and Hitbullseye both list ~20 minutes.",
+      "prep": [
+        "Practise 200–300 word essays with an intro–body–conclusion structure in 20 minutes.",
+        "Proofread for grammar, spelling and sentence length before submitting.",
+        "Prepare simple opinion structures for common topics (technology, education, environment)."
+      ],
+      "negative_marking": null
+    },
+    {
+      "key": "coding",
+      "name": "Online Programming Test",
+      "kind": "coding",
+      "duration_min": 60,
+      "sections": [{ "section": "Programs", "questions": 2, "minutes": 60 }],
+      "what_they_check": "Ability to write two working programs in Java, C, C++ or Python (per PrepInsta/Hitbullseye). One secondary source says Turbo adds an extra advanced coding section; this is unconfirmed.",
+      "prep": [
+        "Practise easy–medium problems on arrays, strings, number theory and patterns.",
+        "Handle edge cases and input format exactly as stated.",
+        "For Turbo, add medium-level DSA (sorting, hashing, recursion)."
+      ],
+      "negative_marking": null
+    },
+    {
+      "key": "technical_interview",
+      "name": "Technical Interview",
+      "kind": "technical",
+      "duration_min": null,
+      "sections": [],
+      "what_they_check": "Programming fundamentals, your project, and CS basics; reported to be harder for Turbo.",
+      "prep": [
+        "Revise OOP, DBMS/SQL and one language in depth.",
+        "Be ready to explain the code you wrote in the online test.",
+        "Prepare a clear walkthrough of your project."
+      ],
+      "negative_marking": null
+    },
+    {
+      "key": "hr_interview",
+      "name": "HR Interview",
+      "kind": "hr",
+      "duration_min": null,
+      "sections": [],
+      "what_they_check": "Communication, flexibility on location/shifts, and understanding of the service agreement and offer terms.",
+      "prep": [
+        "Prepare answers on relocation and shift work.",
+        "Read and understand the service agreement terms before the interview.",
+        "Prepare a concise 'Why Wipro?' answer."
+      ],
+      "negative_marking": null
+    }
+  ],
+  "cutoffs": {
+    "approx": true,
+    "aptitude_percent": null,
+    "sectional": null,
+    "note": "Not published; Wipro has not officially disclosed cutoffs (FACE Prep). One prep site reports sectional minimums (notably verbal) and projects ~62–67% for Elite in 2026, but labels these as estimates/projections, so no number is given here.",
+    "source_refs": [4, 7]
+  },
+  "branch_expectations": {
+    "cse_it": {
+      "eligible": true,
+      "coding": "required",
+      "tech_topics": ["dsa_basics", "oop_concepts", "dbms", "sql", "java", "python", "operating_systems"],
+      "note": "Coding test is part of the process for everyone; CSE/IT candidates should aim for Turbo-level performance."
+    },
+    "ece_eee": {
+      "eligible": true,
+      "coding": "required",
+      "tech_topics": ["c_language", "oop_concepts", "dbms", "sql", "ece_core"],
+      "note": "Elite targets engineering graduates; confirm your branch is in the current notice. The two-program coding test still applies."
+    },
+    "mech_civil": {
+      "eligible": true,
+      "coding": "required",
+      "tech_topics": ["c_language", "python", "sql", "mech_core"],
+      "note": "Generally eligible as B.E/B.Tech graduates (confirm in notice); must still clear the coding test, so practise basic programs in one language."
+    },
+    "all": {
+      "eligible": true,
+      "coding": "required",
+      "tech_topics": ["c_language", "sql"],
+      "note": "Secondary sources cite 60% in 10th and 12th, 60% or 6.0 CGPA in graduation, full-time courses only, and at most one backlog at test time. Verify on careers.wipro.com."
+    }
+  },
+  "jd_skills": [
+    { "skill_key": "aptitude_quant", "level": "required", "roles": [], "note": "Quant section." },
+    { "skill_key": "aptitude_logical", "level": "required", "roles": [], "note": "Logical section." },
+    { "skill_key": "aptitude_verbal", "level": "required", "roles": [], "note": "Verbal section; a sectional minimum is reported." },
+    { "skill_key": "communication", "level": "required", "roles": [], "note": "Essay writing test and interviews." },
+    { "skill_key": "c", "level": "required", "roles": [], "note": "One of Java, C, C++ or Python for the programming test." },
+    { "skill_key": "dsa", "level": "required", "roles": ["turbo"], "note": "Stronger coding expected for Turbo." },
+    { "skill_key": "oop", "level": "required", "roles": [], "note": "Technical interview topic." },
+    { "skill_key": "dbms", "level": "required", "roles": [], "note": "Technical interview topic." },
+    { "skill_key": "projects", "level": "required", "roles": [], "note": "Discussed in technical interview." },
+    { "skill_key": "cloud_basics", "level": "nice_to_have", "roles": [], "note": "Helpful talking point; not a stated requirement." },
+    { "skill_key": "certifications", "level": "nice_to_have", "roles": [], "note": "Can strengthen your profile; not required." }
+  ],
+  "hr_focus": [
+    "Service agreement: secondary sources report a 12-month service agreement for Elite/Turbo; read the exact terms in your offer letter.",
+    "Willingness to relocate and work in shifts.",
+    "Why Wipro, and Elite vs Turbo expectations.",
+    "Written and spoken communication."
+  ],
+  "sources": [
+    { "title": "Elite National Talent Hunt - Wipro Careers", "url": "https://careers.wipro.com/elite", "accessed": "2026-11-04", "kind": "official" },
+    { "title": "Early Careers at Wipro", "url": "https://careers.wipro.com/content/Early-Careers/?locale=en_US", "accessed": "2026-11-04", "kind": "official" },
+    { "title": "Wipro Elite National Talent Hunt 2025 | Wipro Elite (PrepInsta)", "url": "https://prepinsta.com/wipro-nlth/national-level-talent-hunt-test/", "accessed": "2026-11-04", "kind": "secondary" },
+    { "title": "Wipro Elite NTH: Exam Pattern & Selection Process (Hitbullseye)", "url": "https://cpt.hitbullseye.com/wipro-elite-nlth-exam-pattern-and-syllabus.php", "accessed": "2026-11-04", "kind": "secondary" },
+    { "title": "Wipro NLTH 2026 Registration Dates and Test Pattern (FACE Prep)", "url": "https://faceprep.in/article/wipro-nlth-2026-registration-dates-and-test-pattern/", "accessed": "2026-11-04", "kind": "secondary" },
+    { "title": "Wipro Off Campus Drive 2026: Elite NTH Eligibility, Salary, Process and How to Apply (Weekday)", "url": "https://www.weekday.works/post/wipro-off-campus-drive-2026", "accessed": "2026-11-04", "kind": "secondary" },
+    { "title": "Wipro Elite vs Turbo 2026: Which Track to Choose (JobRise)", "url": "https://jobrise.io/en/blog/wipro-elite-vs-turbo-2026/", "accessed": "2026-11-04", "kind": "secondary" },
+    { "title": "Wipro Cutoff 2026: Section-wise Scores & Trends (PapersAdda)", "url": "https://papersadda.pages.dev/article/wipro-cutoff-analysis-2026/", "accessed": "2026-11-04", "kind": "secondary" }
+  ],
+  "disclaimer": "Compiled from public sources on 2026-11-04. Patterns change every season; LearnCrew is not affiliated with Wipro. This is preparation guidance, not a guarantee of selection."
+}

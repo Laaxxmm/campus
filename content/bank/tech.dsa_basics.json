@@ -1,0 +1,412 @@
+[
+  {
+    "id": "Q-TEC-DSA-0001",
+    "section": "tech",
+    "topic": "dsa_basics",
+    "subtopic": "trees_graphs",
+    "stem": "Which data structure is normally used to implement breadth-first search (BFS) on a graph?",
+    "options": [
+      "Stack",
+      "Queue",
+      "Min-heap",
+      "Hash table"
+    ],
+    "answer_index": 1,
+    "explanation": "BFS visits vertices level by level: the vertices discovered first must be expanded first, which is FIFO behaviour, so a queue is used. DFS uses a stack (or recursion); a hash set may track visited vertices but does not define the order.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "wipro",
+      "cognizant"
+    ],
+    "difficulty": 1,
+    "time_sec": 20,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "DSA-GRF-BFSDS-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-DSA-0002",
+    "section": "tech",
+    "topic": "dsa_basics",
+    "subtopic": "arrays_lists",
+    "stem": "What is the worst-case time to access the element at a given position in a singly linked list of n nodes?",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n log n)"
+    ],
+    "answer_index": 2,
+    "explanation": "Linked-list nodes are not stored contiguously, so there is no index arithmetic; you must follow next pointers from the head, up to n − 1 hops. Arrays give O(1) access by index.",
+    "shortcut": null,
+    "company_tags": [
+      "infosys",
+      "accenture"
+    ],
+    "difficulty": 1,
+    "time_sec": 20,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "DSA-ARR-LLACC-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-DSA-0003",
+    "section": "tech",
+    "topic": "dsa_basics",
+    "subtopic": "sorting_searching",
+    "stem": "In their standard textbook implementations, which of these sorting algorithms is stable?",
+    "options": [
+      "Quick sort",
+      "Heap sort",
+      "Selection sort",
+      "Merge sort"
+    ],
+    "answer_index": 3,
+    "explanation": "A stable sort keeps equal keys in their original relative order. Merge sort is stable when the merge takes from the left half on ties. Standard quick sort, heap sort and selection sort can move equal elements past each other through long-distance swaps.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "capgemini"
+    ],
+    "difficulty": 2,
+    "time_sec": 30,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "DSA-SRT-STABLE-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-DSA-0004",
+    "section": "tech",
+    "topic": "dsa_basics",
+    "subtopic": "sorting_searching",
+    "stem": "Bubble sort is implemented with a flag that stops the algorithm when a full pass makes no swaps. What is its time complexity on an already sorted array of n elements?",
+    "options": [
+      "O(n)",
+      "O(1)",
+      "O(n log n)",
+      "O(n²)"
+    ],
+    "answer_index": 0,
+    "explanation": "On sorted input the first pass compares the n − 1 adjacent pairs, makes no swaps, and the flag ends the sort. One linear pass gives the best case O(n). Without the flag it would still be O(n²).",
+    "shortcut": null,
+    "company_tags": [
+      "wipro",
+      "infosys"
+    ],
+    "difficulty": 2,
+    "time_sec": 30,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "DSA-SRT-BUBBLE-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-DSA-0005",
+    "section": "tech",
+    "topic": "dsa_basics",
+    "subtopic": "stacks_queues",
+    "stem": "Starting with an empty stack, these operations are performed in order:\n\npush(1), push(2), push(3), pop(), push(4), pop(), pop(), push(5), pop()\n\nIn what order are the values popped?",
+    "options": [
+      "3, 4, 2, 5",
+      "3, 2, 4, 5",
+      "1, 2, 3, 4",
+      "3, 4, 5, 2"
+    ],
+    "answer_index": 0,
+    "explanation": "Stack after pushes: [1, 2, 3] → pop 3 → push 4: [1, 2, 4] → pop 4 → pop 2 → push 5: [1, 5] → pop 5. Popped order is 3, 4, 2, 5, and 1 remains on the stack.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "accenture",
+      "cognizant"
+    ],
+    "difficulty": 2,
+    "time_sec": 45,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "DSA-STK-OPS-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-DSA-0006",
+    "section": "tech",
+    "topic": "dsa_basics",
+    "subtopic": "stacks_queues",
+    "stem": "Using a stack, evaluate the postfix expression:\n\n6 2 3 + * 4 -",
+    "options": [
+      "11",
+      "20",
+      "26",
+      "14"
+    ],
+    "answer_index": 2,
+    "explanation": "Push 6, 2, 3. '+' pops 3 and 2 and pushes 5. '*' pops 5 and 6 and pushes 30. Push 4. '-' pops 4 and 30 and pushes 30 − 4 = 26. The infix form is 6 × (2 + 3) − 4.",
+    "shortcut": null,
+    "company_tags": [
+      "infosys",
+      "wipro"
+    ],
+    "difficulty": 3,
+    "time_sec": 60,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "DSA-STK-POSTFIX-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-DSA-0007",
+    "section": "tech",
+    "topic": "dsa_basics",
+    "subtopic": "arrays_lists",
+    "stem": "What is the time complexity of the following code fragment in terms of n?\n\n```c\nint count = 0;\nfor (int i = 1; i < n; i = i * 2)\n    for (int j = 0; j < n; j++)\n        count++;\n```",
+    "options": [
+      "O(n)",
+      "O(n log n)",
+      "O(n²)",
+      "O(log n)"
+    ],
+    "answer_index": 1,
+    "explanation": "The outer loop doubles i (1, 2, 4, …) so it runs about log₂ n times. The inner loop runs n times for each outer iteration. Total work is n × log n, so the fragment is O(n log n).",
+    "shortcut": null,
+    "company_tags": [
+      "capgemini",
+      "cognizant",
+      "tcs_nqt"
+    ],
+    "difficulty": 3,
+    "time_sec": 45,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "DSA-ARR-LOOPCPX-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-DSA-0008",
+    "section": "tech",
+    "topic": "dsa_basics",
+    "subtopic": "trees_graphs",
+    "stem": "The keys 45, 25, 65, 15, 35, 55, 75, 30 are inserted in this order into an empty binary search tree. What is the preorder traversal of the resulting tree?",
+    "options": [
+      "15, 25, 30, 35, 45, 55, 65, 75",
+      "15, 30, 35, 25, 55, 75, 65, 45",
+      "45, 25, 65, 15, 35, 55, 75, 30",
+      "45, 25, 15, 35, 30, 65, 55, 75"
+    ],
+    "answer_index": 3,
+    "explanation": "Root 45; 25 and 65 are its children; 15 and 35 go under 25; 55 and 75 under 65; 30 is the left child of 35. Preorder (root, left, right) gives 45, 25, 15, 35, 30, 65, 55, 75. The distractors are the inorder, postorder and level-order traversals.",
+    "shortcut": null,
+    "company_tags": [
+      "accenture",
+      "infosys"
+    ],
+    "difficulty": 3,
+    "time_sec": 75,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "DSA-TRE-BSTPRE-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-DSA-0009",
+    "section": "tech",
+    "topic": "dsa_basics",
+    "subtopic": "arrays_lists",
+    "stem": "What does the function below return when called on the list 1 → 2 → 3 → 4?\n\n```c\nstruct Node { int data; struct Node *next; };\n\nstruct Node *f(struct Node *head) {\n    struct Node *prev = NULL, *cur = head;\n    while (cur != NULL) {\n        struct Node *nxt = cur->next;\n        cur->next = prev;\n        prev = cur;\n        cur = nxt;\n    }\n    return prev;\n}\n```",
+    "options": [
+      "A pointer to the head of the list 4 → 3 → 2 → 1",
+      "A pointer to the unchanged list 1 → 2 → 3 → 4",
+      "A pointer to node 4, whose next pointer is NULL",
+      "NULL, because cur ends as NULL"
+    ],
+    "answer_index": 0,
+    "explanation": "Each iteration reverses one link: node 1 points to NULL, node 2 to node 1, and so on. When cur becomes NULL, prev points to node 4, the new head of 4 → 3 → 2 → 1. This is iterative in-place reversal in O(n) time and O(1) extra space.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "wipro",
+      "capgemini"
+    ],
+    "difficulty": 3,
+    "time_sec": 60,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "DSA-ARR-LLREV-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-DSA-0010",
+    "section": "tech",
+    "topic": "dsa_basics",
+    "subtopic": "sorting_searching",
+    "stem": "A hash table has 7 slots (indices 0–6), uses h(k) = k mod 7 and resolves collisions by linear probing. The keys 10, 17, 24 and 3 are inserted in this order into the empty table. At which index is 3 stored?",
+    "options": [
+      "Index 3",
+      "Index 4",
+      "Index 5",
+      "Index 6"
+    ],
+    "answer_index": 3,
+    "explanation": "All four keys hash to 3. 10 takes index 3; 17 probes 3 then 4; 24 probes 3, 4, then 5; 3 probes 3, 4, 5 and lands at 6. This shows primary clustering: keys pile up in one run of slots.",
+    "shortcut": null,
+    "company_tags": [
+      "infosys",
+      "cognizant"
+    ],
+    "difficulty": 4,
+    "time_sec": 75,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "DSA-SRC-HASHLP-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-DSA-0011",
+    "section": "tech",
+    "topic": "dsa_basics",
+    "subtopic": "trees_graphs",
+    "stem": "An undirected graph has edges A–B, A–C, B–D, B–E, C–F and E–F. A recursive depth-first search starts at A and always visits unvisited neighbours in alphabetical order. What is the order in which vertices are visited?",
+    "options": [
+      "A, B, D, E, F, C",
+      "A, B, C, D, E, F",
+      "A, C, F, E, B, D",
+      "A, B, D, E, C, F"
+    ],
+    "answer_index": 0,
+    "explanation": "A → B (first neighbour) → D (dead end, back to B) → E → F (via E–F) → C (via F–C). All vertices are visited: A, B, D, E, F, C. A, B, C, D, E, F is the BFS order; C cannot come before F because F is reached from E first.",
+    "shortcut": null,
+    "company_tags": [
+      "accenture",
+      "tcs_nqt"
+    ],
+    "difficulty": 4,
+    "time_sec": 90,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "DSA-GRF-DFS-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-DSA-0012",
+    "section": "tech",
+    "topic": "dsa_basics",
+    "subtopic": "stacks_queues",
+    "stem": "A queue is implemented with two stacks: enqueue pushes onto stack In; dequeue pops from stack Out, first moving all elements from In to Out only when Out is empty. What is the amortised time per dequeue over a long sequence of operations?",
+    "options": [
+      "O(n)",
+      "O(log n)",
+      "O(1)",
+      "O(n²)"
+    ],
+    "answer_index": 2,
+    "explanation": "A single dequeue can cost O(n) when Out is empty, but each element is pushed onto In once, moved to Out once and popped once. That is a constant number of operations per element, so the amortised cost of a dequeue is O(1).",
+    "shortcut": null,
+    "company_tags": [
+      "capgemini",
+      "infosys"
+    ],
+    "difficulty": 4,
+    "time_sec": 60,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "DSA-STK-2STKQ-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-DSA-0013",
+    "section": "tech",
+    "topic": "dsa_basics",
+    "subtopic": "stacks_queues",
+    "stem": "The values 1, 2, 3, 4 are pushed onto a stack in this order, and pops may be done at any time in between. Which output sequence is impossible?",
+    "options": [
+      "2, 1, 4, 3",
+      "3, 1, 4, 2",
+      "3, 2, 4, 1",
+      "1, 3, 2, 4"
+    ],
+    "answer_index": 1,
+    "explanation": "To output 3 first, push 1, 2, 3 and pop 3. Now 2 is on top of 1, so 1 cannot be popped before 2. The others are possible, e.g. 3, 2, 4, 1: push 1, 2, 3; pop 3; pop 2; push 4; pop 4; pop 1.",
+    "shortcut": null,
+    "company_tags": [
+      "wipro",
+      "cognizant",
+      "tcs_nqt"
+    ],
+    "difficulty": 4,
+    "time_sec": 75,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "DSA-STK-PERM-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-DSA-0014",
+    "section": "tech",
+    "topic": "dsa_basics",
+    "subtopic": "trees_graphs",
+    "stem": "How many leaf nodes does a complete binary tree with 100 nodes have?",
+    "options": [
+      "49",
+      "51",
+      "50",
+      "64"
+    ],
+    "answer_index": 2,
+    "explanation": "Number the nodes 1–100 in level order, as in a heap. Node i has a child only if 2i ≤ 100, so nodes 1–50 are internal and nodes 51–100 are leaves: 50 leaves. In general a complete binary tree with n nodes has ⌈n/2⌉ leaves.",
+    "shortcut": "leaves = ⌈n/2⌉",
+    "company_tags": [
+      "infosys",
+      "accenture"
+    ],
+    "difficulty": 4,
+    "time_sec": 60,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "DSA-TRE-LEAVES-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-DSA-0015",
+    "section": "tech",
+    "topic": "dsa_basics",
+    "subtopic": "sorting_searching",
+    "stem": "What is the minimum number of comparisons needed in the worst case to find both the maximum and the minimum of 100 distinct numbers?",
+    "options": [
+      "198",
+      "148",
+      "150",
+      "99"
+    ],
+    "answer_index": 1,
+    "explanation": "Compare the elements in pairs (50 comparisons). The 50 larger ones compete for the maximum (49 comparisons) and the 50 smaller ones for the minimum (49 comparisons). Total = 50 + 49 + 49 = 148 = ⌈3n/2⌉ − 2. Separate scans would take 2(n − 1) = 198.",
+    "shortcut": "⌈3n/2⌉ − 2",
+    "company_tags": [
+      "tcs_nqt",
+      "capgemini"
+    ],
+    "difficulty": 5,
+    "time_sec": 90,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "DSA-SRC-MINMAX-01",
+    "version": 1
+  }
+]

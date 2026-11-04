@@ -50,7 +50,7 @@ export function dedupe<T extends { stem: string }>(items: T[], existing: { stem:
 export function makeIdAllocator(existingIds: Iterable<string>) {
   const max = new Map<string, number>();
   for (const id of existingIds) {
-    const m = id.match(/^(Q-[A-Z]{3}-[A-Z]{3})-(\d{4})$/);
+    const m = id.match(/^([QC]-[A-Z]{3}-[A-Z]{3})-(\d{4})$/);
     if (m) max.set(m[1], Math.max(max.get(m[1]) ?? 0, Number(m[2])));
   }
   return (prefix: string) => {

@@ -26,6 +26,7 @@ export function DrillRunner({ drillId, items, initialResults, explainEnabled }: 
   const [startedAt, setStartedAt] = useState(() => Date.now());
   const [now, setNow] = useState(() => Date.now());
   const [busy, setBusy] = useState(false);
+  const changes = useRef(0); // v3 event: how often the student switched options before checking
   const hydrated = useRef(false);
 
   // Restore local progress (offline answers) and cache drill JSON for offline reloads.
@@ -79,7 +80,8 @@ export function DrillRunner({ drillId, items, initialResults, explainEnabled }: 
     const clientId = `${drillId}:${q.id}:${crypto.randomUUID().slice(0, 8)}`;
     const timeMs = Date.now() - startedAt;
     setLocal((l) => ({ ...l, answers: { ...l.answers, [q.id]: { displayed, clientId } } }));
-    await enqueue({ clientId, drillId, questionId: q.id, displayedIndex: displayed, timeMs, at: Date.now() });
+    await enqueue({ clientId, drillId, questionId: q.id, displayedIndex: displayed, timeMs, answerChanges: changes.current, at: Date.now() });
+    changes.current = 0;
     if (navigator.onLine) applySync(await flush());
     setBusy(false);
   }
@@ -148,7 +150,12 @@ export function DrillRunner({ drillId, items, initialResults, explainEnabled }: 
       <footer className="fixed inset-x-0 bottom-0 z-20 border-t border-border bg-bg/95 px-4 pb-4 pt-3 backdrop-blur">
         <div className="mx-auto max-w-md space-y-2">
           {q.options.map((opt, i) => (
-            <OptionButton key={i} label={LETTERS[i]} text={opt} state={optionState(i)} onClick={() => (answered ? undefined : selected === i ? submit(i) : setSelected(i))} />
+            <OptionButton key={i} label={LETTERS[i]} text={opt} state={optionState(i)} onClick={() => {
+                if (answered) return;
+                if (selected === i) return void submit(i);
+                if (selected !== null) changes.current += 1;
+                setSelected(i);
+              }} />
           ))}
           {!answered && (
             <div className="flex gap-2 pt-1">

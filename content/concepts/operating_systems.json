@@ -1,0 +1,82 @@
+[
+  {
+    "id": "C-TEC-OSY-0001",
+    "topic": "operating_systems",
+    "skill_key": "os",
+    "branches": [
+      "cse_it",
+      "ece_eee",
+      "all"
+    ],
+    "title": "Process vs thread",
+    "body": "A process is a program in execution with its own address space: code, data, heap, open files and at least one thread. A thread is the unit the CPU schedules; it has its own program counter, registers and stack but shares the process's code, globals, heap and files with sibling threads. Creating and switching threads is cheaper because no new address space or page-table switch is needed. The trade-off: one misbehaving thread can corrupt shared data or crash the whole process, while processes are isolated and must use IPC (pipes, shared memory, message queues) to communicate.",
+    "example": "A browser may run each tab as a separate process for isolation, while one tab uses several threads for rendering, networking and JavaScript.",
+    "interview_tip": "Say clearly what threads share (heap, globals, files) and what they do not (stack, registers, PC). Interviewers often follow up with that exact question.",
+    "status": "golden",
+    "version": 1
+  },
+  {
+    "id": "C-TEC-OSY-0002",
+    "topic": "operating_systems",
+    "skill_key": "os",
+    "branches": [
+      "cse_it",
+      "ece_eee",
+      "all"
+    ],
+    "title": "CPU scheduling: FCFS, SJF, Round Robin",
+    "body": "The scheduler picks which ready process gets the CPU. FCFS runs processes in arrival order; it is simple but a long job delays everyone behind it (convoy effect). SJF picks the shortest burst and gives the minimum average waiting time, but needs burst estimates and can starve long jobs; its preemptive form is SRTF. Round Robin gives each process a fixed time quantum in turn, which suits time-sharing: a very large quantum behaves like FCFS, a very small one wastes time on context switches. Key formulas: turnaround = completion − arrival; waiting = turnaround − burst.",
+    "example": "Bursts 10, 4, 2 (all arrive at 0). FCFS waits: 0, 10, 14 → average 8. SJF order 2, 4, 10 → waits 0, 2, 6 → average 2.67.",
+    "interview_tip": "Always draw a Gantt chart before computing averages; most mistakes come from skipping it.",
+    "status": "golden",
+    "version": 1
+  },
+  {
+    "id": "C-TEC-OSY-0003",
+    "topic": "operating_systems",
+    "skill_key": "os",
+    "branches": [
+      "cse_it",
+      "ece_eee",
+      "all"
+    ],
+    "title": "Paging and page faults",
+    "body": "Paging splits a process's logical memory into fixed-size pages and physical memory into frames of the same size, removing external fragmentation. A logical address is split into page number and offset; the page table maps page numbers to frames, and a TLB caches recent mappings to avoid an extra memory access. If a referenced page is not in memory, a page fault occurs: the OS loads it from disk, evicting a victim page if no frame is free. Common replacement policies are FIFO (can show Belady's anomaly), LRU and Optimal (a theoretical benchmark). Too many faults cause thrashing.",
+    "example": "32-bit address, 4 KB pages: offset = 12 bits, page number = 20 bits, so the page table has 2^20 entries.",
+    "interview_tip": "Know the difference between internal fragmentation (paging, last page partly unused) and external fragmentation (contiguous allocation).",
+    "status": "golden",
+    "version": 1
+  },
+  {
+    "id": "C-TEC-OSY-0004",
+    "topic": "operating_systems",
+    "skill_key": "os",
+    "branches": [
+      "cse_it",
+      "ece_eee",
+      "all"
+    ],
+    "title": "Deadlock: conditions and handling",
+    "body": "A deadlock is a set of processes each waiting for a resource held by another, so none can proceed. It needs four conditions together (Coffman): mutual exclusion, hold and wait, no preemption, and circular wait. Strategies: prevention breaks one condition, for example by acquiring locks in a fixed global order to rule out circular wait; avoidance grants a request only if the system stays in a safe state (Banker's algorithm); detection and recovery lets deadlock happen, finds cycles in a wait-for graph and then kills or rolls back processes; many general-purpose OSes simply ignore the problem (ostrich approach).",
+    "example": "n processes each needing at most k instances of one resource: n(k − 1) + 1 instances guarantee no deadlock.",
+    "interview_tip": "Distinguish deadlock (nobody progresses) from starvation (some process waits indefinitely while others progress).",
+    "status": "golden",
+    "version": 1
+  },
+  {
+    "id": "C-TEC-OSY-0005",
+    "topic": "operating_systems",
+    "skill_key": "os",
+    "branches": [
+      "cse_it",
+      "ece_eee",
+      "all"
+    ],
+    "title": "Semaphores and mutexes",
+    "body": "A semaphore is an integer variable accessed only through two atomic operations: wait (P) decrements it and blocks the caller if no unit is available, and signal (V) increments it and wakes a waiting process. A binary semaphore (0 or 1) can enforce mutual exclusion; a counting semaphore tracks several identical resources, such as free buffer slots in the producer-consumer problem. A mutex is a lock with ownership: only the thread that locked it should unlock it. Misordered waits on two semaphores can cause deadlock, and forgetting a signal can block processes forever.",
+    "example": "Producer-consumer: empty = N, full = 0, mutex = 1. Producer: wait(empty); wait(mutex); add; signal(mutex); signal(full).",
+    "interview_tip": "If asked 'mutex vs binary semaphore', mention ownership: a semaphore can be signalled by a different thread, which makes it suitable for signalling between threads.",
+    "status": "golden",
+    "version": 1
+  }
+]

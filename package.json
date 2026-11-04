@@ -14,7 +14,8 @@
     "db:migrate": "node scripts/migrate.mjs",
     "db:seed": "tsx scripts/seed.ts",
     "db:studio": "drizzle-kit studio",
-    "bank:validate": "tsx scripts/validate-bank.ts"
+    "bank:validate": "tsx scripts/validate-bank.ts",
+    "content:validate": "tsx scripts/validate-content.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.4.0",

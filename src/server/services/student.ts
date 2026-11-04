@@ -22,16 +22,24 @@ export async function readinessFor(userId: string, company: string) {
   return readiness(bp, topicsBySection, new Map(sk.map((s) => [s.topic, s.rating])), await recentAccuracy(userId));
 }
 
+/** v3 readiness (with breakdown) when the company has a profile; v2 blueprint readiness otherwise. */
+export async function headlineReadiness(userId: string, company: string) {
+  const { getProfile, readinessFor: v3, studentSignals } = await import("./companies");
+  const p = await getProfile(company);
+  if (p) return v3(p, await studentSignals(userId));
+  return readinessFor(userId, company);
+}
+
 export async function todaySummary(userId: string) {
   const today = istDate();
   const [u] = await db.select({ xp: users.xp, name: users.name }).from(users).where(eq(users.id, userId));
   const [st] = await db.select().from(streaks).where(eq(streaks.userId, userId));
-  const [drill] = await db.select().from(drills).where(and(eq(drills.userId, userId), eq(drills.date, today)));
+  const [drill] = await db.select().from(drills).where(and(eq(drills.userId, userId), eq(drills.date, today), eq(drills.kind, "daily")));
   const answered = drill
     ? (await db.select({ n: sql<number>`count(*)::int` }).from(attempts).where(and(eq(attempts.userId, userId), eq(attempts.drillId, drill.id))))[0].n
     : 0;
   const company = await targetCompanyFor(userId);
-  const r = await readinessFor(userId, company);
+  const r = await headlineReadiness(userId, company);
   const sk = await db.select().from(skills).where(eq(skills.userId, userId)).orderBy(skills.rating).limit(3);
   return {
     today,

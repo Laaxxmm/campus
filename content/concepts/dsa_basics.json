@@ -1,0 +1,77 @@
+[
+  {
+    "id": "C-TEC-DSA-0001",
+    "topic": "dsa_basics",
+    "skill_key": "dsa",
+    "branches": [
+      "cse_it",
+      "all"
+    ],
+    "title": "Time complexity and Big-O",
+    "body": "Big-O describes how running time (or memory) grows with input size n in the worst case, ignoring constants and lower-order terms. Common classes from fastest to slowest: O(1), O(log n), O(n), O(n log n), O(n²), O(2ⁿ). Rules of thumb: sequential steps add, nested loops multiply, and a loop that halves or doubles its variable runs O(log n) times. Typical costs: array index O(1), binary search O(log n), merge sort and heap sort O(n log n), bubble, insertion and selection sort O(n²) in the worst case. A stable sort keeps equal keys in their original order; merge and insertion sort are stable.",
+    "example": "for (i = 1; i < n; i *= 2) for (j = 0; j < n; j++) → log n × n = O(n log n).",
+    "interview_tip": "State best, average and worst cases separately when asked about quick sort: O(n log n) average, O(n²) worst.",
+    "status": "golden",
+    "version": 1
+  },
+  {
+    "id": "C-TEC-DSA-0002",
+    "topic": "dsa_basics",
+    "skill_key": "dsa",
+    "branches": [
+      "cse_it",
+      "all"
+    ],
+    "title": "Stack vs queue",
+    "body": "A stack is LIFO (last in, first out): push and pop happen at the top in O(1). It is used for function calls, undo, expression evaluation, bracket matching and DFS. A queue is FIFO (first in, first out): enqueue at the rear, dequeue at the front, both O(1). It is used for scheduling, buffers and BFS. Both can be built on arrays or linked lists; an array-based queue is usually circular so that freed slots are reused. Variants include the deque (insert and delete at both ends) and the priority queue (removes the highest-priority item, usually built on a heap).",
+    "example": "Postfix 6 2 3 + * 4 −: push 6, 2, 3; + gives 5; * gives 30; push 4; − gives 26.",
+    "interview_tip": "Be ready to implement a queue with two stacks: dequeue is O(n) worst case but O(1) amortised.",
+    "status": "golden",
+    "version": 1
+  },
+  {
+    "id": "C-TEC-DSA-0003",
+    "topic": "dsa_basics",
+    "skill_key": "dsa",
+    "branches": [
+      "cse_it",
+      "all"
+    ],
+    "title": "Binary search tree (BST)",
+    "body": "A BST is a binary tree in which every key in a node's left subtree is smaller than the node and every key in its right subtree is larger. Search, insert and delete take O(h), where h is the height: O(log n) when the tree is balanced, but O(n) when keys are inserted in sorted order and the tree becomes a chain. Self-balancing trees such as AVL and red-black trees keep h = O(log n). Traversals: inorder (left, root, right) gives keys in sorted order; preorder (root, left, right) is used to copy a tree; postorder (left, right, root) is used to delete one.",
+    "example": "Insert 45, 25, 65, 15, 35: inorder = 15, 25, 35, 45, 65; preorder = 45, 25, 15, 35, 65.",
+    "interview_tip": "When deleting a node with two children, replace it with its inorder successor (smallest key in the right subtree) or its inorder predecessor.",
+    "status": "golden",
+    "version": 1
+  },
+  {
+    "id": "C-TEC-DSA-0004",
+    "topic": "dsa_basics",
+    "skill_key": "dsa",
+    "branches": [
+      "cse_it",
+      "all"
+    ],
+    "title": "BFS vs DFS",
+    "body": "Both traverse a graph in O(V + E) time with adjacency lists and mark vertices as visited to avoid loops. Breadth-first search uses a queue and explores level by level, so in an unweighted graph it finds shortest paths in number of edges. Depth-first search uses a stack or recursion and goes as deep as possible before backtracking. It suits cycle detection, topological sorting, connected components and maze or puzzle search. The visit order depends on the start vertex and the order in which neighbours are taken, so state that order when tracing.",
+    "example": "Edges A–B, A–C, B–D, B–E, C–F, E–F; start A, alphabetical: BFS = A B C D E F, DFS = A B D E F C.",
+    "interview_tip": "For 'shortest path in an unweighted grid', say BFS; for weighted graphs with non-negative weights, say Dijkstra.",
+    "status": "golden",
+    "version": 1
+  },
+  {
+    "id": "C-TEC-DSA-0005",
+    "topic": "dsa_basics",
+    "skill_key": "dsa",
+    "branches": [
+      "cse_it",
+      "all"
+    ],
+    "title": "Hashing and collisions",
+    "body": "A hash table stores keys in an array, using a hash function to compute each key's index, which gives O(1) average-time insert, search and delete. A collision occurs when two keys map to the same index. Chaining keeps a linked list (or tree) of entries in each slot. Open addressing stores everything in the array and probes for another slot: linear probing (next slot), quadratic probing, or double hashing. The load factor (entries ÷ slots) drives performance; tables resize, typically doubling, when it grows too high. With many collisions the worst case degrades to O(n).",
+    "example": "Size 7, h(k) = k mod 7, linear probing: inserting 10, 17, 24, 3 fills slots 3, 4, 5, 6 (all hash to 3).",
+    "interview_tip": "Mention that a good hash function spreads keys uniformly, and that Java's HashMap and Python's dict are real-world hash tables.",
+    "status": "golden",
+    "version": 1
+  }
+]

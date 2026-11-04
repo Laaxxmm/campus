@@ -1,0 +1,72 @@
+[
+  {
+    "id": "C-TEC-ECE-0001",
+    "topic": "ece_core",
+    "skill_key": "ece_core",
+    "branches": [
+      "ece_eee"
+    ],
+    "title": "Logic gates and Boolean simplification",
+    "body": "Basic gates are AND, OR and NOT; derived gates are NAND, NOR, XOR and XNOR. NAND and NOR are universal gates because any Boolean function can be built from either alone. Simplify expressions with Boolean laws: A + A′ = 1, A·A′ = 0, A + AB = A (absorption), A + A′B = A + B, and De Morgan's theorems (A·B)′ = A′ + B′ and (A + B)′ = A′·B′. Karnaugh maps group adjacent 1s in powers of two (1, 2, 4, 8), making groups as large as possible, to get the minimal sum-of-products form. Fewer terms mean fewer gates, lower cost and less delay.",
+    "example": "F = AB + AB′ + A′B = A(B + B′) + A′B = A + A′B = A + B.",
+    "interview_tip": "Be ready to build NOT, AND and OR from NAND gates on paper: NOT = NAND with tied inputs, AND = NAND followed by NOT, OR = NAND of inverted inputs.",
+    "status": "golden",
+    "version": 1
+  },
+  {
+    "id": "C-TEC-ECE-0002",
+    "topic": "ece_core",
+    "skill_key": "ece_core",
+    "branches": [
+      "ece_eee"
+    ],
+    "title": "Flip-flops: SR, D, JK and T",
+    "body": "A flip-flop is a 1-bit memory element that changes state on a clock edge. SR has an invalid state when S = R = 1. D copies its input to Q at the clock edge, so it is used in registers. JK removes the SR problem: J = K = 1 toggles the output. T toggles when T = 1 and holds when T = 0, which suits counters. A latch is level-triggered, while a flip-flop is edge-triggered. An n-bit counter needs n flip-flops and counts up to 2^n states; in a ripple counter the flip-flop delays add up, which limits the maximum clock speed.",
+    "example": "JK table: 00 hold, 01 reset, 10 set, 11 toggle. A mod-10 (decade) counter needs 4 flip-flops, since 2^3 = 8 < 10 ≤ 16 = 2^4.",
+    "interview_tip": "Know the race-around condition in level-triggered JK flip-flops and its fixes: edge triggering or a master-slave arrangement.",
+    "status": "golden",
+    "version": 1
+  },
+  {
+    "id": "C-TEC-ECE-0003",
+    "topic": "ece_core",
+    "skill_key": "eee_core",
+    "branches": [
+      "ece_eee"
+    ],
+    "title": "Ohm's law, KVL and KCL",
+    "body": "Ohm's law states V = IR for a resistor at constant temperature. Kirchhoff's Current Law (KCL): the algebraic sum of currents at a node is zero, because charge is conserved. Kirchhoff's Voltage Law (KVL): the algebraic sum of voltages around any closed loop is zero, because energy is conserved. Series resistors add (R = R1 + R2) and carry the same current; parallel resistors combine as 1/R = 1/R1 + 1/R2 and share the same voltage. Power P = VI = I²R = V²/R. Nodal analysis applies KCL at nodes; mesh analysis applies KVL around loops.",
+    "example": "12 V across 2 Ω in series with (6 Ω ∥ 3 Ω = 2 Ω): I = 12/4 = 3 A. The parallel pair has 6 V across it, so 2 A flows in the 3 Ω and 1 A in the 6 Ω.",
+    "interview_tip": "State which conservation law each Kirchhoff law comes from. That is the follow-up most interviewers ask.",
+    "status": "golden",
+    "version": 1
+  },
+  {
+    "id": "C-TEC-ECE-0004",
+    "topic": "ece_core",
+    "skill_key": "ece_core",
+    "branches": [
+      "ece_eee"
+    ],
+    "title": "Op-amp basics and the golden rules",
+    "body": "An ideal op-amp has infinite open-loop gain, infinite input impedance, zero output impedance and infinite bandwidth. With negative feedback, two golden rules apply: no current flows into the inputs, and the output adjusts until both inputs are at the same voltage (virtual short). Inverting amplifier gain = −Rf/Rin. Non-inverting gain = 1 + Rf/R1. A voltage follower (gain 1) is used as a buffer. A real op-amp output cannot go beyond its supply rails, so a large input drives it into saturation. Without feedback, an op-amp acts as a comparator.",
+    "example": "Inverting, Rf = 100 kΩ, Rin = 10 kΩ, Vin = 0.5 V → Vout = −5 V. Non-inverting with the same resistors → gain 11, Vout = 5.5 V.",
+    "interview_tip": "Explain 'virtual ground' in the inverting amplifier: the non-inverting input is grounded, so the inverting input is also held near 0 V.",
+    "status": "golden",
+    "version": 1
+  },
+  {
+    "id": "C-TEC-ECE-0005",
+    "topic": "ece_core",
+    "skill_key": "ece_core",
+    "branches": [
+      "ece_eee"
+    ],
+    "title": "Sampling theorem and aliasing",
+    "body": "The Nyquist–Shannon sampling theorem states that a band-limited signal whose highest frequency is fmax can be reconstructed exactly from its samples if the sampling rate fs ≥ 2·fmax. The minimum rate 2·fmax is called the Nyquist rate. Sampling slower than this causes aliasing: high-frequency components fold back and appear as false lower frequencies that cannot be removed afterwards. To prevent aliasing, an anti-aliasing low-pass filter removes components above fs/2 before sampling. In practice systems sample a little faster than the Nyquist rate, for example 44.1 kHz audio for a roughly 20 kHz audio band.",
+    "example": "x(t) = 3cos(200πt) + 5sin(600πt) has components at 100 Hz and 300 Hz, so the Nyquist rate is 2 × 300 = 600 samples/s.",
+    "interview_tip": "Convert ω to f first (f = ω/2π). Many candidates double the angular frequency by mistake.",
+    "status": "golden",
+    "version": 1
+  }
+]

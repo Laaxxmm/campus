@@ -1,0 +1,402 @@
+[
+  {
+    "id": "HR-0001",
+    "kind": "hr",
+    "companies": [],
+    "question": "Tell me about yourself.",
+    "why_they_ask": "It is an easy opener that shows how clearly you communicate, what you consider important about yourself, and whether your story connects to the role. Your answer often decides the next few questions.",
+    "structure": ["Present: who you are now", "Past: 2–3 relevant highlights", "Future: why this role fits next", "Close with a hook they can ask about"],
+    "model_answer_outline": "Present: \"I am [name], a final-year [branch] student at [college], [city].\" Mention one current focus, e.g. \"I am building [your project] using [tech].\" Past: pick two or three highlights that matter for an IT role — [internship / certification / hackathon / club role] — and one line on what each taught you. Avoid repeating your entire resume. Future: \"I am looking to start my career in [software development / testing / support] where I can learn on real client projects, and [company]'s training and project exposure fit that.\" End with something they can pick up: \"I can tell you more about [project] if useful.\" Keep it 60–90 seconds. Personal details (family, hometown, hobbies) are fine in one short line if they add something genuine, such as a hobby that shows discipline.",
+    "avoid": ["Reciting your resume line by line", "Starting with your father's occupation and family details at length", "Going beyond two minutes", "Memorising a script that sounds robotic"]
+  },
+  {
+    "id": "HR-0002",
+    "kind": "hr",
+    "companies": [],
+    "question": "What are your strengths?",
+    "why_they_ask": "They want to see self-awareness and whether your strengths are useful in a service-company role: learning, reliability, communication, teamwork. They also check whether you can back a claim with evidence.",
+    "structure": ["Name one or two strengths", "Give a short real example for each", "Link to how it helps in this job"],
+    "model_answer_outline": "Pick strengths you can prove, not a list of adjectives. Example shape: \"One strength is [consistency / picking up new tools quickly / explaining things clearly].\" Evidence: \"During [semester / project / internship], I [specific action — e.g. learnt SQL in two weeks to finish the database part of our project / held weekly check-ins for our team of four].\" Result: \"[outcome — submitted on time, scored X, reduced bugs].\" Link: \"In a role like [role], this helps because client projects often need [quick learning / clear updates / steady work].\" Two strengths with examples are stronger than five without. If asked for more, have a third ready.",
+    "avoid": ["Listing many adjectives with no example", "Claiming generic traits like 'hardworking' without proof", "Choosing strengths unrelated to the job", "Sounding arrogant or comparing yourself to classmates"]
+  },
+  {
+    "id": "HR-0003",
+    "kind": "hr",
+    "companies": [],
+    "question": "What is your greatest weakness?",
+    "why_they_ask": "They are testing honesty and self-awareness, and whether you take steps to improve. A real weakness with a sensible improvement plan is more convincing than a disguised strength.",
+    "structure": ["Name a genuine, non-critical weakness", "Show its impact briefly", "Describe what you are doing about it", "Share current progress"],
+    "model_answer_outline": "Choose something real but not central to the role, e.g. [public speaking / hesitating to ask doubts / over-spending time on details / limited exposure to a tool]. Impact: \"In [situation], this meant [small consequence — I took longer to finish / did not raise a doubt early].\" Action: \"Since then I have [joined the college debate club / started asking questions in the first standup of a group task / set time limits for each part of an assignment / taken an online course on X].\" Progress: \"In my recent [project review / presentation], I [specific improvement]. I am still working on it, but it is much better.\" Keep the tone calm and matter-of-fact.",
+    "avoid": ["Saying 'I am a perfectionist' or 'I work too hard' as a disguised strength", "Picking a weakness that is core to the job, like 'I cannot work in teams'", "Saying you have no weakness", "Giving the weakness without any improvement step"]
+  },
+  {
+    "id": "HR-0004",
+    "kind": "hr",
+    "companies": [],
+    "question": "Why should we hire you?",
+    "why_they_ask": "They want a short summary of your fit: skills, attitude and readiness to learn. It also tests whether you understand what a fresher role at a service company actually needs.",
+    "structure": ["What the role needs (as you understand it)", "Two or three matching points with proof", "Your learning attitude", "Short confident close"],
+    "model_answer_outline": "Start with your understanding: \"For a [role] fresher, I believe you need someone who can learn quickly, communicate clearly and work reliably in a team.\" Match: \"I have [skill — e.g. basics of Java and SQL] which I used in [project]; I [completed certification / internship at X] where I [result]; and in [team activity] I [coordinated / delivered].\" Attitude: \"I know there is a lot I will learn in training, and I am ready for it — I have already started [small self-learning step].\" Close: \"So I think I can become productive quickly and keep growing with the team.\" Do not run down other candidates; you do not know them.",
+    "avoid": ["Saying 'because I need this job' as the main reason", "Comparing yourself with other candidates", "Overclaiming expertise you cannot demonstrate", "Giving a one-line answer with no evidence"]
+  },
+  {
+    "id": "HR-0005",
+    "kind": "hr",
+    "companies": [],
+    "question": "Are you willing to relocate to any location in India?",
+    "why_they_ask": "Service companies place freshers based on project needs across many cities. They want to know if location will block your joining or cause early attrition, and whether your answer is honest.",
+    "structure": ["Give a clear answer", "Share your reasoning", "Mention any genuine constraint honestly", "Show flexibility where you can"],
+    "model_answer_outline": "If you are open: \"Yes, I am open to relocating. Starting my career in a new city is also a chance to become independent, and I have [lived in a hostel / managed on my own] during college.\" If you have a real constraint, say it calmly rather than saying yes and dropping out later: \"I am open to most locations. I have [a family responsibility / a health need], so [city or region] would help, but I understand placement depends on project needs and I am willing to discuss it.\" Many students worry about language in a new state — you can add that you are comfortable adapting. Before the interview, check with your family so your answer matches reality.",
+    "avoid": ["Saying yes without meaning it and backing out after the offer", "Giving a long list of conditions", "Showing visible reluctance or making a face", "Assuming you can choose your location"]
+  },
+  {
+    "id": "HR-0006",
+    "kind": "hr",
+    "companies": [],
+    "question": "Are you comfortable working in rotational or night shifts?",
+    "why_they_ask": "Many client projects run across time zones, especially support and operations roles. They need to know whether you can handle shifts and whether you have thought about what it involves.",
+    "structure": ["Clear answer", "Why you can manage it", "How you would handle health and routine", "Any genuine constraint, honestly"],
+    "model_answer_outline": "If yes: \"Yes, I understand many projects support clients in other time zones, so shifts can be part of the work. I can adjust my routine — during [exams / project deadlines / an internship] I worked late hours and managed it by [planning sleep, keeping fixed meal times].\" Show that you have thought about it: \"I would keep a fixed sleep schedule for each shift and stay in touch with my team for handovers.\" If you have a real constraint (health, safety of commute, caregiving), state it politely and ask: \"Could you tell me how shifts usually work for freshers in this role?\" It is fine to ask about transport or shift policy — that shows maturity, not reluctance.",
+    "avoid": ["Saying yes casually and refusing later", "Responding with 'only day shift' without explanation", "Dismissing health concerns completely", "Assuming every role has night shifts — ask if unsure"]
+  },
+  {
+    "id": "HR-0007",
+    "kind": "hr",
+    "companies": [],
+    "question": "Do you have plans for higher studies like an MS, MBA or M.Tech?",
+    "why_they_ask": "Companies invest in training freshers and want to know if you might leave soon. They are checking honesty and whether your career plan includes them for a reasonable period.",
+    "structure": ["Honest answer about current plans", "Your priority for the next few years", "How work experience fits your long-term goal"],
+    "model_answer_outline": "Be truthful. If not planning soon: \"My focus right now is to start working and build industry skills. I may consider higher studies later, but only after I have a few years of experience and know which area I want to specialise in.\" If you are genuinely considering it: \"I am interested in [MBA / M.Tech in X] in the long term, but I believe real project experience will make that decision clearer. For the next few years, I want to grow in this role.\" You can mention that some companies support part-time learning or certifications — framed as interest, not a demand. If you have already applied somewhere for this year, do not hide it if directly asked; say what you will decide and when.",
+    "avoid": ["Lying that you have no plans when you have already applied", "Saying you will leave after one year for an MS", "Sounding as if the job is only a backup option", "Over-explaining entrance exam scores"]
+  },
+  {
+    "id": "HR-0008",
+    "kind": "hr",
+    "companies": [],
+    "question": "This role may include a service agreement or minimum commitment period. How do you feel about that?",
+    "why_they_ask": "If a company has such terms, they want to confirm you understand them and are making an informed decision. They are checking for commitment and maturity, not trying to trap you.",
+    "structure": ["Acknowledge you would read the terms", "Show you value stability and learning", "Ask clarifying questions politely if needed"],
+    "model_answer_outline": "Terms differ by company, role and year, so do not assume details — read the offer documents yourself. A balanced answer: \"I understand companies invest in training freshers, so a commitment period can be reasonable. I would read the terms carefully in the offer letter before accepting. My intention is to stay, learn and grow here for the first few years anyway, so I do not see it as a problem.\" If something is unclear, it is fine to ask: \"Could you tell me where I can find the exact terms?\" Discuss the decision with your family before signing. Never sign something you have not read, and never agree in the interview to something you do not intend to honour.",
+    "avoid": ["Agreeing to terms you have not read", "Arguing about the terms in the interview", "Assuming amounts or durations you heard from seniors are current", "Saying you will break the agreement if something better comes"]
+  },
+  {
+    "id": "HR-0009",
+    "kind": "hr",
+    "companies": [],
+    "question": "What are your salary expectations?",
+    "why_they_ask": "For fresher roles the package is usually fixed for the role, so they mostly check whether your expectations are realistic and whether money is your only motivation.",
+    "structure": ["Acknowledge it is a standard fresher role", "State you are fine with the company's standard offer", "Mention what matters beyond salary"],
+    "model_answer_outline": "Most campus offers at service companies have a standard package for each role, so a calm answer works best: \"As a fresher, I understand the package is generally standard for this role, and I am comfortable with what [company] offers for it. At this stage, learning, training and good project exposure matter most to me.\" If they insist on a number, you can say you would go with the range communicated for the role during the placement drive. Look up the figure your placement cell shared rather than relying on rumours. If you are asked about a different, higher role track, it is fine to say you would like to be considered for it if you qualify.",
+    "avoid": ["Quoting a figure based on rumours or friends' offers", "Saying 'whatever you give' in a way that sounds careless", "Making salary sound like the only reason you applied", "Bargaining hard for a standard campus role"]
+  },
+  {
+    "id": "HR-0010",
+    "kind": "hr",
+    "companies": [],
+    "question": "Where do you see yourself in five years?",
+    "why_they_ask": "They want to know whether you have a sensible direction, whether it fits the company's career paths, and whether you are likely to stay and grow rather than leave quickly.",
+    "structure": ["Near term: learn and deliver", "Mid term: deepen a skill area", "Five years: responsibility you hope to hold", "Tie it back to the company"],
+    "model_answer_outline": "Keep it realistic and linked to growth inside the company. \"In the first one or two years, I want to complete training well and become a dependable member of my project team, delivering [code / test cases / support tickets] with good quality.\" Then: \"After that, I would like to go deeper into [an area that interests you — cloud, data, testing automation, a domain like banking].\" Five years: \"I see myself as someone who [owns modules / mentors new joiners / leads a small module or client interaction], with [relevant certifications].\" Close: \"I would like to do this growth here, because [company] has [training programmes / variety of projects].\" It is fine to not know every detail.",
+    "avoid": ["Saying 'in your chair' or anything that sounds dismissive", "Naming a plan that clearly means leaving the company", "Being so vague it sounds like you have not thought about it", "Promising unrealistic titles like 'project manager in two years'"]
+  },
+  {
+    "id": "HR-0011",
+    "kind": "hr",
+    "companies": [],
+    "question": "I see a gap year in your education. Can you explain it?",
+    "why_they_ask": "They are not trying to judge you; they want an honest explanation and to see what you did during that time. A clear, calm answer removes the doubt quickly.",
+    "structure": ["State the reason briefly and honestly", "What you did or learnt during that time", "Why it will not affect your work now"],
+    "model_answer_outline": "Give the real reason in one or two sentences — common ones include [preparing for an entrance exam / health / family situation / financial reasons / changing stream]. You do not have to share private details: \"I took a year off due to a family health matter; I have shared what I am comfortable sharing.\" Then show what you did: \"During that time I [prepared for JEE / NEET / helped in the family business / learnt basics of programming / did a course].\" Close: \"That year taught me [discipline / responsibility], and it is fully behind me now — my focus is on starting my career.\" Keep the tone steady; a gap is common and does not need an apology.",
+    "avoid": ["Making up a cover story", "Getting defensive or emotional", "Sharing more private detail than you are comfortable with", "Over-apologising"]
+  },
+  {
+    "id": "HR-0012",
+    "kind": "hr",
+    "companies": [],
+    "question": "You had a backlog in your degree. What happened, and how did you handle it?",
+    "why_they_ask": "They check honesty, how you handle setbacks, and whether you meet the eligibility criteria. Owning the mistake and showing how you recovered matters more than the backlog itself.",
+    "structure": ["Acknowledge it honestly", "Brief cause, without excuses", "What you did to clear it", "What changed afterwards"],
+    "model_answer_outline": "Always be truthful — backlogs appear on marksheets and are verified, so hiding one can cost you the offer later. \"Yes, I had a backlog in [subject] in [semester].\" Cause, briefly and owning it: \"I underestimated the subject and did not prepare consistently.\" Action: \"I [made a study plan / took help from a senior or faculty / solved previous papers] and cleared it in [next attempt / semester].\" Change: \"Since then I [plan preparation earlier / have had no backlogs / improved my CGPA to X].\" If a backlog is still active, say so and state when you will clear it. Check the company's eligibility rules beforehand so you are not surprised.",
+    "avoid": ["Denying or hiding a backlog", "Blaming the teacher, paper or university", "Giving a long emotional story", "Being unaware of the company's eligibility rules on backlogs"]
+  },
+  {
+    "id": "HR-0013",
+    "kind": "hr",
+    "companies": [],
+    "question": "Why do you want to work at an IT services company rather than a product company or startup?",
+    "why_they_ask": "They want to know if you understand what service work involves — client projects, varied technologies, process — and whether you chose it thoughtfully rather than as a fallback.",
+    "structure": ["What you understand about service work", "What attracts you to it", "How it fits your career stage"],
+    "model_answer_outline": "Show understanding, not comparison: \"In a services company, I would work on projects for clients in different industries, often with structured training and established processes.\" Attraction: \"As a fresher, that exposure helps me learn [multiple technologies / how large projects are run / client communication] early. I also value [structured training / stability / mentoring].\" Fit: \"I want strong fundamentals and real project experience first; this environment is good for that.\" You can be honest that you also applied elsewhere — nearly everyone does — without ranking companies. Do not run down startups or product companies.",
+    "avoid": ["Saying it is a backup because you could not get a product job", "Criticising startups or product companies", "Showing no idea of what client projects involve", "Mentioning only job security"]
+  },
+  {
+    "id": "HR-0014",
+    "kind": "hr",
+    "companies": [],
+    "question": "Do you have any other offers? What will you do if you get a better offer later?",
+    "why_they_ask": "They want an honest picture and a sense of how serious you are about joining. It also checks whether you will respect commitments and placement-cell rules.",
+    "structure": ["Answer factually about current offers", "State your interest in this company", "Explain how you will decide, respecting rules"],
+    "model_answer_outline": "Be factual: \"Currently I have [no offers / an offer from X / results awaited from Y].\" Never invent an offer to appear in demand — it can be checked and damages trust. Interest: \"I am interested in [company] because [one real reason].\" On a later offer: \"I will follow my college placement policy and make a considered decision. Once I accept an offer, I intend to honour it.\" If your college has a one-offer rule, mention you are aware of it. A calm, honest answer is better than a dramatic promise like 'I will never leave'.",
+    "avoid": ["Inventing offers to create pressure", "Hiding an offer when asked directly", "Saying you will drop them for any better package", "Over-promising lifelong loyalty"]
+  },
+  {
+    "id": "HR-0015",
+    "kind": "hr",
+    "companies": [],
+    "question": "How do you handle criticism or negative feedback?",
+    "why_they_ask": "In client projects you will get code review comments, manager feedback and client corrections. They want to see that you stay calm, learn, and act on feedback.",
+    "structure": ["Your general approach", "A real example", "What you changed", "What you learnt"],
+    "model_answer_outline": "Approach: \"I try to listen fully first, ask questions to understand, and not take it personally.\" Example: \"In [project review / internship / lab], my [guide / mentor] pointed out that [my documentation was unclear / my code had no error handling / my slides were too text-heavy].\" Change: \"I [asked for an example of good practice / rewrote the section / added test cases] and asked them to check again.\" Learning: \"Now I [review my work against a checklist before submitting / ask for feedback earlier].\" You can admit it felt uncomfortable at first — that sounds genuine.",
+    "avoid": ["Claiming you have never received criticism", "Describing an example where you argued and 'won'", "Blaming the person who gave feedback", "Giving only theory with no example"]
+  },
+  {
+    "id": "HR-0016",
+    "kind": "hr",
+    "companies": [],
+    "question": "Do you have any questions for us?",
+    "why_they_ask": "Your questions show interest, preparation and maturity. Saying 'no questions' can look like low interest, while one thoughtful question leaves a good last impression.",
+    "structure": ["Thank them briefly", "Ask one or two genuine questions", "Avoid questions already answered"],
+    "model_answer_outline": "Prepare three questions and ask one or two that were not already covered. Good options: \"What does the training for freshers in this role usually focus on?\" \"What skills would help me prepare before joining?\" \"How are freshers typically assigned to projects?\" \"What do successful freshers in this team do differently in their first year?\" You may ask practical questions like the expected joining timeline, phrased politely. Close with \"Thank you for your time.\" Avoid asking things easily found on the website or placement notice.",
+    "avoid": ["Saying 'No, nothing' and ending abruptly", "Opening with leave, salary hikes or work-from-home demands", "Asking something already explained in the pre-placement talk", "Asking too many questions when time is short"]
+  },
+  {
+    "id": "HR-0017",
+    "kind": "behavioural",
+    "companies": [],
+    "question": "Tell me about a time you had a conflict with a teammate. How did you resolve it?",
+    "why_they_ask": "Project teams in service companies are large and diverse. They want to see that you can disagree respectfully, focus on the work, and reach a solution without escalating unnecessarily.",
+    "structure": ["Situation", "Task", "Action", "Result"],
+    "model_answer_outline": "Situation: \"In our [mini project / final-year project / hackathon team] of [N] members, a teammate and I disagreed about [which framework to use / how to divide work / the design of the database].\" Task: \"We had to decide quickly because [deadline / review was in X days].\" Action: \"I spoke to them privately instead of arguing in the group, listened to their reasons, and suggested we [compare both options against the requirement / build a quick prototype / ask our guide]. I agreed to [their part of the idea] where it was better.\" Result: \"We chose [option], finished [on time / with good feedback], and worked better together afterwards.\" Learning: one line on what you would repeat. Keep the teammate anonymous and the tone fair.",
+    "avoid": ["Painting the teammate as the villain", "Choosing a story where nothing was resolved", "Describing a personal fight unrelated to work", "Taking all the credit for the resolution"]
+  },
+  {
+    "id": "HR-0018",
+    "kind": "behavioural",
+    "companies": [],
+    "question": "Describe a time you failed at something. What did you learn?",
+    "why_they_ask": "Everyone fails sometimes. They want to see ownership, reflection and recovery — whether you learn from setbacks rather than hide or blame.",
+    "structure": ["Situation", "What went wrong (own it)", "What you did next", "Result and lesson"],
+    "model_answer_outline": "Pick a real, moderate failure — e.g. [not clearing a coding round / a project demo that crashed / losing a competition / poor marks in a subject]. Situation: \"In [context], I [goal].\" What went wrong: \"I [did not test on the demo machine / started preparation late / ignored a weak area].\" Own your part, without excessive self-criticism. Next: \"I [analysed the mistakes / made a preparation plan / practised on [platform] for X weeks / set up a checklist].\" Result: \"In [next attempt / next review], I [cleared it / the demo went smoothly].\" Lesson: \"I now [test early / plan backwards from deadlines].\" Choose a failure from which there is a clear lesson.",
+    "avoid": ["Picking a 'failure' that is actually a success", "Blaming others or bad luck", "Choosing something serious like academic dishonesty", "Ending without a lesson or change"]
+  },
+  {
+    "id": "HR-0019",
+    "kind": "behavioural",
+    "companies": [],
+    "question": "Tell me about a time you worked under tight deadline pressure.",
+    "why_they_ask": "Client projects have release dates and urgent fixes. They want to see how you prioritise, stay calm, and communicate when time is short.",
+    "structure": ["Situation", "Task", "Action", "Result"],
+    "model_answer_outline": "Situation: \"Before our [project submission / internship deliverable / college fest], we had [X days] left and [problem — a module was incomplete / a teammate fell ill / requirements changed].\" Task: \"I was responsible for [your part].\" Action: \"I listed the remaining work, separated must-have from nice-to-have, and [split tasks / informed the guide early about what might slip / worked in focused blocks].\" Mention one specific thing, e.g. dropping a non-essential feature or asking for help. Result: \"We submitted on time with [core features working], and [feedback / marks].\" Lesson: \"I learnt to raise risks early instead of hoping to catch up.\" Avoid presenting all-nighters as the main solution.",
+    "avoid": ["Glorifying staying up all night as the only strategy", "A story where the deadline was missed with no learning", "Taking credit for the whole team's work", "Being vague about what you personally did"]
+  },
+  {
+    "id": "HR-0020",
+    "kind": "behavioural",
+    "companies": [],
+    "question": "Describe a time you took a leadership role in a college project or activity.",
+    "why_they_ask": "Even freshers coordinate tasks and influence others. They want to see initiative, organising ability, and how you lead without formal authority.",
+    "structure": ["Situation", "Task", "Action", "Result"],
+    "model_answer_outline": "Leadership does not need a title. Situation: \"In [final-year project / NSS camp / tech fest / department event], our team of [N] had [goal] but [problem — no clear plan / low participation].\" Task: \"I volunteered to [coordinate / set the plan].\" Action: \"I [broke the work into parts by each person's strength / set short weekly targets / kept a shared tracker on Google Sheets / ran 15-minute check-ins], and [helped a member who was stuck].\" Result: \"We [finished on time / had X participants / got appreciated by the HoD], and [a measurable point].\" Reflection: \"I learnt that leading means removing obstacles for others, not doing everything myself.\"",
+    "avoid": ["Claiming you did everything alone", "Equating leadership with giving orders", "Choosing a story with no clear outcome", "Exaggerating the scale of the event"]
+  },
+  {
+    "id": "HR-0021",
+    "kind": "behavioural",
+    "companies": [],
+    "question": "Tell me about a time you had to learn something new very quickly.",
+    "why_they_ask": "Freshers are often put on projects using technologies they have never seen. They want evidence that you can learn independently and apply it fast.",
+    "structure": ["Situation", "Task", "Action (how you learnt)", "Result"],
+    "model_answer_outline": "Situation: \"For [hackathon / internship / project], we needed [technology — e.g. React, Flask, Arduino, Power BI] which I had not used.\" Task: \"I had [X days] to build [feature].\" Action — be specific about your method: \"I [followed the official documentation / did a short free course / built a small sample first / asked a senior / searched errors on forums], and focused only on what the task needed.\" Result: \"I delivered [feature] in [time], and [it worked in the demo / the team used it].\" Learning: \"I now start with a tiny working example and expand from there.\" This shows a repeatable learning approach, which matters more than the specific tool.",
+    "avoid": ["Being vague about how you learnt", "Claiming mastery after a few days", "Choosing something trivial", "Not mentioning the outcome"]
+  },
+  {
+    "id": "HR-0022",
+    "kind": "behavioural",
+    "companies": [],
+    "question": "Tell me about a time you disagreed with a senior, faculty member or guide.",
+    "why_they_ask": "At work you will sometimes disagree with a lead or client. They want to see respectful disagreement backed by reasons, and acceptance of the final decision.",
+    "structure": ["Situation", "Your view and the reason", "How you raised it", "Outcome and what you learnt"],
+    "model_answer_outline": "Situation: \"My [project guide / club senior / internship mentor] suggested [approach], but I felt [alternative] would be better because [reason — time, simplicity, data].\" How you raised it: \"I asked for a few minutes, showed [a small comparison / a prototype / data], and said I was happy to go either way.\" Outcome: either \"They agreed to try my approach and it [result]\" or \"They explained [constraint I did not know], and we went with their plan — I understood it better afterwards.\" Learning: \"I learnt to bring evidence, raise points privately and respectfully, and fully support the final decision.\" Both outcomes are fine.",
+    "avoid": ["Sounding disrespectful toward the person", "Describing a public argument", "Implying you always know better", "Refusing to go along with the final decision"]
+  },
+  {
+    "id": "HR-0023",
+    "kind": "behavioural",
+    "companies": [],
+    "question": "Tell me about a time you had to manage several priorities at once.",
+    "why_they_ask": "Work brings parallel tasks, meetings and learning. They want to see planning and prioritisation, not just effort.",
+    "structure": ["Situation", "Task", "Action", "Result"],
+    "model_answer_outline": "Situation: \"In [semester], I had [end-semester exams], [final-year project review] and [placement preparation / an internship / a club event] all in the same few weeks.\" Task: \"I needed to do reasonably well in all without dropping any.\" Action: \"I listed deadlines, gave each task a priority, and [blocked fixed hours daily for aptitude practice / told the event team early about my limited time / used a simple planner].\" Mention one trade-off you made consciously. Result: \"I [cleared exams with X], [project review went well], and [cleared Y round].\" Learning: \"Planning a week ahead and communicating early helped more than working longer hours.\"",
+    "avoid": ["Saying you simply worked harder without a method", "Dropping a commitment without telling anyone", "Choosing a story with no result", "Listing tasks without explaining choices"]
+  },
+  {
+    "id": "HR-0024",
+    "kind": "behavioural",
+    "companies": [],
+    "question": "Describe a situation where a team member was not contributing. What did you do?",
+    "why_they_ask": "They want to see whether you handle uneven effort constructively — talk, support, escalate fairly — rather than complaining or doing everything yourself.",
+    "structure": ["Situation", "Task", "Action", "Result"],
+    "model_answer_outline": "Situation: \"In our [project] group, one member was missing meetings and had not started [their module].\" Task: \"We needed their part for [review date].\" Action: \"Instead of complaining, I spoke to them one-on-one and asked what was going on. They were [struggling with the topic / dealing with a personal issue / unclear about the task]. I [explained the task / paired with them for a session / helped them pick a smaller part]. We also agreed on a check-in date.\" If needed: \"When it still did not move, we informed our guide politely and redistributed some work.\" Result: \"We completed [module], and they contributed [specific part].\" Keep it respectful — no names or blame.",
+    "avoid": ["Naming or mocking the person", "Silently doing their work and resenting it", "Going straight to the faculty without talking first", "Making it about your own superiority"]
+  },
+  {
+    "id": "HR-0025",
+    "kind": "behavioural",
+    "companies": [],
+    "question": "Tell me about a mistake you made and how you corrected it.",
+    "why_they_ask": "Mistakes happen in real projects. They want people who admit errors quickly, fix them, and prevent repeats — not people who hide them.",
+    "structure": ["Situation", "The mistake", "How you fixed it and who you informed", "Prevention and lesson"],
+    "model_answer_outline": "Situation: \"While working on [project / internship task / lab assignment], I [mistake — pushed code that broke another module / submitted the wrong file / misread a requirement / deleted test data].\" Admit it plainly. Fix: \"As soon as I noticed, I informed [teammates / mentor], [reverted the change / corrected the file / clarified the requirement], and checked nothing else was affected.\" Prevention: \"Since then I [test before pushing / use branches / re-read requirements and confirm my understanding / keep backups].\" Lesson: \"Telling people early made it a small issue instead of a big one.\" Pick a real, moderate mistake.",
+    "avoid": ["Saying you never make mistakes", "Hiding the mistake in the story until someone else found it", "Picking a serious ethical lapse", "Not explaining how you prevent it now"]
+  },
+  {
+    "id": "HR-0026",
+    "kind": "behavioural",
+    "companies": [],
+    "question": "Tell me about a time you went beyond what was expected of you.",
+    "why_they_ask": "They are looking for ownership and initiative — whether you do a little more when it helps the team or the end user.",
+    "structure": ["Situation", "What was expected", "What extra you did and why", "Result"],
+    "model_answer_outline": "Situation: \"In [project / internship / club], my task was [basic requirement].\" Extra: \"I noticed [a gap — no user guide / slow loading / juniors struggling with setup], so I [wrote a short README / added input validation / made a setup video / created practice sheets] after finishing my own work.\" Why: \"I thought it would [save time / reduce errors / help the next batch].\" Result: \"[It was used by X people / the guide appreciated it / juniors used it the next semester].\" Make clear the extra did not come at the cost of your main task.",
+    "avoid": ["Exaggerating small things", "Doing extra work that ignored the main task", "Sounding as if others were lazy", "Choosing something with no real impact"]
+  },
+  {
+    "id": "HR-0027",
+    "kind": "behavioural",
+    "companies": [],
+    "question": "Describe a time when plans changed suddenly and you had to adapt.",
+    "why_they_ask": "Client requirements change often. They want to see flexibility, a calm response, and practical re-planning.",
+    "structure": ["Situation", "The change", "How you adapted", "Result"],
+    "model_answer_outline": "Situation: \"We were [preparing a project demo / organising an event / doing an internship task] when [change — the guide changed the scope / the venue was cancelled / the API we used stopped working / a team member left].\" Reaction: \"Instead of panicking, I [re-listed what was still possible / discussed options with the team / quickly checked alternatives].\" Action: \"We [switched to another library / moved the event online / re-divided work].\" Result: \"We [still delivered on time / delivered most of it], and [feedback].\" Learning: \"I now keep a backup option for critical parts.\"",
+    "avoid": ["Complaining about the change", "Showing you froze and others fixed it", "A story with no clear action from you", "Overly long background"]
+  },
+  {
+    "id": "HR-0028",
+    "kind": "behavioural",
+    "companies": [],
+    "question": "Tell me about a time you worked with people from different backgrounds or regions.",
+    "why_they_ask": "Service companies have teams across states and countries, with different languages and working styles. They want to see respect, adaptability and clear communication.",
+    "structure": ["Situation", "The difference or challenge", "What you did", "Result and learning"],
+    "model_answer_outline": "Situation: \"In [hostel / inter-college event / internship / online course group], I worked with people from [different states / countries / branches], who spoke [different languages].\" Challenge: \"At first, [communication was slow / people had different working styles / some were hesitant in English or Hindi].\" Action: \"I [used simple language / wrote down decisions in a shared chat / made sure quieter members got a chance to speak / learnt a few phrases of their language].\" Result: \"We [completed the task / won / became friends], and I learnt [specific lesson].\" Keep the tone warm and respectful about all groups.",
+    "avoid": ["Stereotyping any region or community", "Saying differences never matter at all", "A story where you did not personally act", "Joking about accents or languages"]
+  },
+  {
+    "id": "HR-0029",
+    "kind": "technical_hr",
+    "companies": [],
+    "question": "Explain your final-year project as if I am not from a technical background.",
+    "why_they_ask": "You will need to explain technical work to managers and clients. This checks clarity, real understanding of your own project, and your ability to drop jargon.",
+    "structure": ["The problem in everyday words", "What your solution does", "How it works, in simple steps", "Your role and the result"],
+    "model_answer_outline": "Problem: \"Many [people / shops / farmers / students] face [problem] — for example, [relatable example].\" Solution: \"We built [an app / a device / a system] that [one-line benefit].\" How: explain in 3 simple steps using an everyday comparison, e.g. \"It takes [input], checks it against [past data] — a bit like how [familiar analogy] — and then [output].\" Your role: \"I handled [module], which meant [plain description].\" Result: \"In testing it [worked for X cases / reduced time from A to B].\" Limitations: \"It still needs [improvement].\" Be ready for follow-up technical questions on your part. Practise explaining it to a family member first.",
+    "avoid": ["Using jargon like 'CNN with ReLU layers' without explaining", "Not knowing parts of your own project", "Claiming the whole project as solo work", "Exaggerating results or accuracy"]
+  },
+  {
+    "id": "HR-0030",
+    "kind": "technical_hr",
+    "companies": [],
+    "question": "Tell me about a technology or tool you learnt recently.",
+    "why_they_ask": "This tests curiosity and self-learning — key in a services role where technologies change across projects. They may also ask a follow-up question on it.",
+    "structure": ["What you learnt and why", "How you learnt it", "What you built or did with it", "What you plan to learn next"],
+    "model_answer_outline": "What and why: \"Recently I learnt [Git / SQL joins / Python pandas / AWS basics / Selenium / a low-code tool] because [project needed it / I saw it in job descriptions / curiosity].\" How: \"I used [official docs / a free course / YouTube / a certification], spending about [time].\" Applied: \"I built [small project / automated X / solved Y problems] — [link on resume or GitHub if any].\" Honest level: \"I am comfortable with [basics], and still learning [advanced part].\" Next: \"Next I want to learn [related topic].\" Choose something you can answer two or three follow-up questions on.",
+    "avoid": ["Naming a buzzword you cannot explain", "Claiming expert level after a short course", "Picking something you learnt years ago", "No practical application at all"]
+  },
+  {
+    "id": "HR-0031",
+    "kind": "technical_hr",
+    "companies": [],
+    "question": "You are from a non-CS branch. Why do you want to move into IT?",
+    "why_they_ask": "Many ECE, EEE, mechanical and civil students join IT. They want a genuine reason and evidence you have prepared, and they check that you will stay motivated.",
+    "structure": ["Respect for your core branch", "What drew you to IT", "Steps you have taken", "How your branch background helps"],
+    "model_answer_outline": "Start positively: \"I enjoyed [core subjects — e.g. control systems, thermodynamics, surveying], and they built my problem-solving.\" Draw: \"In [semester], I used [MATLAB / Python / C for a lab or project], and enjoyed seeing logic turn into results quickly. That made me explore programming further.\" Evidence: \"I have since [learnt C / Java / Python, practised on coding platforms, done a certification, built a small project like X].\" Bridge: \"My [branch] background helps me understand [domains — manufacturing, embedded systems, power, infrastructure], which many IT clients work in.\" Avoid suggesting your branch was a mistake or that core jobs are bad.",
+    "avoid": ["Saying core jobs pay less or have no scope", "Implying you only chose IT because everyone does", "Having no proof of IT preparation", "Speaking negatively about your branch"]
+  },
+  {
+    "id": "HR-0032",
+    "kind": "technical_hr",
+    "companies": [],
+    "question": "What is your favourite subject, and why?",
+    "why_they_ask": "This often leads into technical questions on that subject. They also see what genuinely interests you and how well you know it.",
+    "structure": ["Name the subject", "What you find interesting", "Where you applied it", "Be ready for basics"],
+    "model_answer_outline": "Pick a subject you can answer questions on — common safe choices are [DBMS, OOP, Data Structures, Operating Systems, Computer Networks], or a core subject for non-CS branches. Why: \"I like [DBMS] because [it connects to almost every real application / I like how normalisation removes redundancy].\" Application: \"I used it in [project — designed the tables for X / wrote queries for Y].\" Prepare: revise key definitions, two or three common interview questions, and one example from your project. If asked a question you do not know, say \"I am not sure, but I think [reasoning]\" rather than guessing confidently.",
+    "avoid": ["Naming a subject you have not revised", "Choosing a subject just to sound impressive", "Saying 'I like all subjects'", "Bluffing on follow-up questions"]
+  },
+  {
+    "id": "HR-0033",
+    "kind": "technical_hr",
+    "companies": [],
+    "question": "What was the biggest technical challenge in your project, and how did you solve it?",
+    "why_they_ask": "This checks whether you actually built your part, how you debug and research, and whether you can explain a problem and solution clearly.",
+    "structure": ["The problem", "Why it was hard", "Steps you tried", "Final solution and result"],
+    "model_answer_outline": "Problem: \"In [project], we faced [issue — data was inconsistent / the model overfitted / the sensor readings were noisy / the app was slow on mobile / deployment failed].\" Why hard: \"[Reason — limited data, no prior experience, unclear errors].\" Steps: \"I first [checked logs / reproduced it on a small case], then tried [option A], which did not work because [reason], then [option B — added validation, used caching, applied filtering, read documentation, asked on a forum or a senior].\" Result: \"This [fixed it / improved X from A to B].\" Learning: \"I learnt to isolate a problem before changing many things.\" Keep numbers honest.",
+    "avoid": ["Choosing a challenge someone else solved", "Inventing metrics", "Being too vague ('there were many bugs')", "Getting lost in long technical detail"]
+  },
+  {
+    "id": "HR-0034",
+    "kind": "technical_hr",
+    "companies": [],
+    "question": "How do you keep your technical skills up to date?",
+    "why_they_ask": "Technology changes across client projects. They want to see a simple, real learning habit — not a long list of resources you rarely use.",
+    "structure": ["Your regular habit", "Specific sources", "A recent example", "What you are learning now"],
+    "model_answer_outline": "Habit: \"I try to [spend 30–45 minutes most days / solve a few coding problems a week / do one small project each month].\" Sources: name two or three you actually use — [official documentation, a free course platform, a coding practice site, a tech newsletter or channel, college club sessions]. Example: \"Recently, I [learnt X / completed Y certification / built Z] this way.\" Now: \"Currently I am learning [topic] because [reason linked to the role].\" Honesty matters more than volume — one real habit beats ten names.",
+    "avoid": ["Listing many sources you cannot talk about", "Saying you only study what college teaches", "No concrete recent example", "Name-dropping trends without understanding"]
+  },
+  {
+    "id": "HR-0035",
+    "kind": "company_specific",
+    "companies": ["tcs_nqt"],
+    "question": "Why do you want to join TCS?",
+    "why_they_ask": "They want to see that you have researched the company beyond its name, that your reasons are genuine, and that your goals fit what TCS offers freshers.",
+    "structure": ["What you know about TCS", "What attracts you", "How it fits your goals"],
+    "model_answer_outline": "Know: \"TCS is one of India's largest IT services companies and part of the Tata group, working with clients across many industries and countries.\" Use only facts you have checked on the official website or in the pre-placement talk — [a recent initiative, a domain area, a learning platform they mentioned]. Attraction: \"I value [the scale and variety of projects / structured training for freshers / the Tata group's reputation for values].\" Personal fit: \"I want to build strong fundamentals and work on [domain or technology you like], and TCS gives freshers that exposure.\" Add one personal touch, e.g. what a senior told you about their experience, without exaggeration.",
+    "avoid": ["Saying only 'it is a big brand' or 'job security'", "Quoting numbers you have not verified", "Mixing up facts with another company", "Sounding as if any company would do"]
+  },
+  {
+    "id": "HR-0036",
+    "kind": "company_specific",
+    "companies": ["infosys"],
+    "question": "What do you know about Infosys's training for freshers, such as at its Mysuru campus?",
+    "why_they_ask": "Infosys is widely known for its fresher training programme at Mysuru. They want to see you have done basic research and are ready for an intensive learning phase with assessments.",
+    "structure": ["What you know, generally", "Why training matters to you", "How you are preparing", "Ask a question if appropriate"],
+    "model_answer_outline": "Keep facts general and verified: \"I understand Infosys runs a structured foundation training programme for freshers, and its Mysuru campus is well known as a large training centre. Training typically covers programming fundamentals and technologies, followed by assessments.\" Do not quote durations or rules unless your placement cell or the official site states them for your batch. Why it matters: \"As a fresher, I see this as a strong base before joining projects.\" Preparation: \"I am revising [programming basics, DBMS, OOP] and practising [coding / aptitude] so I can keep pace.\" You may ask: \"What would help me do well in the training phase?\" Show eagerness, not anxiety.",
+    "avoid": ["Stating training durations or pass rules as facts you have not verified", "Treating training as a holiday or campus tour", "Sounding worried about the assessments", "Confusing details with another company's programme"]
+  },
+  {
+    "id": "HR-0037",
+    "kind": "company_specific",
+    "companies": ["accenture"],
+    "question": "Why Accenture?",
+    "why_they_ask": "They check whether you understand Accenture's breadth beyond coding — consulting, technology and operations — and whether your interests match the role you applied for.",
+    "structure": ["What you understand about Accenture", "Link to your role", "Your personal reason"],
+    "model_answer_outline": "Know: \"Accenture is a global professional services company that works across consulting, technology and operations for clients in many industries.\" Add one verified point from their website or the pre-placement talk — [a technology focus like cloud or AI, a client domain, a learning programme]. Link: \"For the [Associate Software Engineer / analyst] role I applied for, I would get exposure to [delivery / client work / different technologies].\" Personal: \"I like that work there combines technology with business problems — in my project on [X], I enjoyed understanding the user's need, not just writing code.\" Keep the answer to under a minute.",
+    "avoid": ["Getting basic facts about the company wrong", "Only praising its size", "Quoting unverified headcount or revenue", "Not knowing which role you applied for"]
+  },
+  {
+    "id": "HR-0038",
+    "kind": "company_specific",
+    "companies": ["cognizant"],
+    "question": "Why do you want to work at Cognizant?",
+    "why_they_ask": "They want a reason that is specific to Cognizant and shows preparation, plus a sense that you will engage with the training and project work it offers.",
+    "structure": ["What you know about Cognizant", "What attracts you", "Fit with your skills and goals"],
+    "model_answer_outline": "Know: \"Cognizant is a global IT services and consulting company that works with clients in industries such as [healthcare, banking, retail — check their site for current focus areas].\" Use a fact from the pre-placement talk or official website rather than hearsay. Attraction: \"I am interested in [a domain they work in / digital engineering / testing / data], and the variety of client industries would help me learn how technology is used in real businesses.\" Fit: \"I have [skill / project] in [area], and I would like to grow it through [their training and project exposure].\" Mention any genuine connection, such as interest in a particular domain from your project.",
+    "avoid": ["A generic answer that fits any company", "Unverified claims about packages or role tracks", "Talking only about job security", "Confusing it with another company's facts"]
+  },
+  {
+    "id": "HR-0039",
+    "kind": "company_specific",
+    "companies": ["wipro"],
+    "question": "Why Wipro?",
+    "why_they_ask": "They are checking for genuine interest, basic research and alignment with Wipro's values and training, rather than a memorised answer.",
+    "structure": ["What you know", "Values or initiatives that appeal to you", "How you see yourself contributing"],
+    "model_answer_outline": "Know: \"Wipro is one of India's well-known IT services companies, headquartered in Bengaluru, working with clients across many countries.\" Values: Wipro publishes its values on its website — read them and pick one that genuinely connects to you, with a short example from your college life. You may also mention, if you have read about it, its long-standing association with social and education initiatives — keep it general. Contribution: \"I want to start in [role], learn through the training programme and grow in [area you like].\" Keep it personal, not a copy of the website.",
+    "avoid": ["Reading values back without a personal link", "Quoting financial figures you have not checked", "Saying 'my friend works there' as the only reason", "Mixing up facts with other companies"]
+  },
+  {
+    "id": "HR-0040",
+    "kind": "company_specific",
+    "companies": ["capgemini"],
+    "question": "What do you know about Capgemini, and why do you want to join?",
+    "why_they_ask": "They want basic awareness of the company — it is European-headquartered with a large presence in India — and a reason that connects to your interests and the role.",
+    "structure": ["Basic facts you are sure about", "What interests you", "Fit with your goals"],
+    "model_answer_outline": "Know: \"Capgemini is a global consulting and technology services company headquartered in France, with a large workforce in India working with clients worldwide.\" Add one verified detail from their website or the pre-placement talk — [a service area, a technology focus, a learning initiative]. Interest: \"Working for a company with a European base and global clients would expose me to [international clients / different working cultures / varied technologies].\" Fit: \"I want to start in [role] and build skills in [area], and Capgemini's projects in [area] match that.\" Keep facts minimal and accurate rather than impressive.",
+    "avoid": ["Getting basic facts like headquarters wrong", "Quoting rankings or numbers you have not verified", "A generic answer that fits any company", "Overloading the answer with facts and no personal reason"]
+  }
+]

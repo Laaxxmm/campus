@@ -3,7 +3,7 @@ import { sql } from "drizzle-orm";
 import { pgTable, pgEnum, uuid, text, integer, boolean, timestamp, date, jsonb, real, primaryKey, index, uniqueIndex, vector } from "drizzle-orm/pg-core";
 
 export const role = pgEnum("role", ["student", "tpo", "admin", "content", "superadmin"]);
-export const section = pgEnum("section", ["quant", "logical", "verbal", "coding"]);
+export const section = pgEnum("section", ["quant", "logical", "verbal", "coding", "tech"]);
 export const qStatus = pgEnum("q_status", ["draft", "review", "golden", "retired"]);
 export const qSource = pgEnum("q_source", ["seed", "llm_variant", "tpo"]);
 export const plan = pgEnum("plan", ["pilot", "starter", "placement", "premium"]);
@@ -33,6 +33,7 @@ export const users = pgTable("users", {             // Auth.js-compatible
   emailVerified: timestamp("email_verified"), image: text("image"),
   rollNo: text("roll_no"), consentAt: timestamp("consent_at"),   // DPDP consent
   targetCompany: text("target_company"),               // D5: student's own pick at onboarding (falls back to batch)
+  branch: text("branch"),                              // v3: cse_it | ece_eee | mech_civil (falls back to batch.branch)
   xp: integer("xp").notNull().default(0),
   lastActiveAt: timestamp("last_active_at"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
@@ -105,7 +106,10 @@ export const drills = pgTable("drills", {
   questionIds: text("question_ids").array().notNull(),
   optionOrder: jsonb("option_order").$type<number[][]>().notNull(),  // per-student shuffle
   completedAt: timestamp("completed_at"), score: integer("score"),
-}, t => [uniqueIndex("drills_user_date_uq").on(t.userId, t.date)]);
+  kind: text("kind").$type<"daily" | "focus">().notNull().default("daily"),   // v3: focus drills from insights / TPO packs
+  focusTopics: text("focus_topics").array(),
+  assignmentId: uuid("assignment_id"),
+}, t => [uniqueIndex("drills_user_date_uq").on(t.userId, t.date).where(sql`kind = 'daily'`), index("drills_user_kind_idx").on(t.userId, t.kind)]);
 
 export const attempts = pgTable("attempts", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -116,6 +120,8 @@ export const attempts = pgTable("attempts", {
   mockAttemptId: uuid("mock_attempt_id"),
   chosenIndex: integer("chosen_index"), correct: boolean("correct").notNull(),
   timeMs: integer("time_ms").notNull(),
+  answerChanges: integer("answer_changes").notNull().default(0),   // v3 events: how often the choice changed before submit
+  marked: boolean("marked").notNull().default(false),               // flagged for review (mocks)
   createdAt: timestamp("created_at").defaultNow().notNull(),
 }, t => [uniqueIndex("attempts_client_uq").on(t.userId, t.clientId), index("attempts_user_q_idx").on(t.userId, t.questionId), index("attempts_user_time_idx").on(t.userId, t.createdAt)]);
 
@@ -165,7 +171,7 @@ export const mockAttempts = pgTable("mock_attempts", {
   tabSwitches: integer("tab_switches").notNull().default(0),
   startedAt: timestamp("started_at").defaultNow().notNull(), endsAt: timestamp("ends_at").notNull(), endedAt: timestamp("ended_at"),
   // v2 exam UX (D17): autosaved answer sheet keyed by question id, per-student option order, outcome detail
-  answers: jsonb("answers").$type<Record<string, { choice: number | null; flagged: boolean; visited: boolean; timeMs: number }>>().notNull().default({}),
+  answers: jsonb("answers").$type<Record<string, { choice: number | null; flagged: boolean; visited: boolean; timeMs: number; changes?: number }>>().notNull().default({}),
   optionOrder: jsonb("option_order").$type<number[][]>().notNull().default([]),
   sectionEndsAt: jsonb("section_ends_at").$type<Record<string, string>>(),
   autoSubmitted: boolean("auto_submitted").notNull().default(false),
@@ -183,6 +189,7 @@ export const readinessSnapshots = pgTable("readiness_snapshots", {
   userId: uuid("user_id").notNull().references(() => users.id),
   company: text("company").notNull(), week: text("week").notNull(),   // ISO week "2026-W45"
   score: integer("score").notNull(), topicBreakdown: jsonb("topic_breakdown"),
+  breakdown: jsonb("breakdown"),   // v3: {aptitude, tech, consistency, profile} each 0–100 + why
 }, t => [primaryKey({ columns: [t.userId, t.company, t.week] })]);
 
 export const companyBlueprints = pgTable("company_blueprints", {
@@ -224,3 +231,103 @@ export const invites = pgTable("invites", {
   collegeId: uuid("college_id").notNull(), email: text("email").notNull(),
   role: role("role").notNull(), sentAt: timestamp("sent_at"), acceptedAt: timestamp("accepted_at"),
 });
+
+// ───────────────────────── v3: readiness coach ─────────────────────────
+export const targetCompanies = pgTable("target_companies", {
+  userId: uuid("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  company: text("company").notNull(), isDream: boolean("is_dream").notNull().default(false),
+  dreamName: text("dream_name"),   // free-text dream company (not one of the profiled companies)
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, t => [primaryKey({ columns: [t.userId, t.company] })]);
+
+export const companyProfiles = pgTable("company_profiles", {
+  key: text("key").primaryKey(), name: text("name").notNull(), version: integer("version").notNull(),
+  roles: jsonb("roles").notNull(), rounds: jsonb("rounds").notNull(), cutoffs: jsonb("cutoffs").notNull(),
+  branchExpectations: jsonb("branch_expectations").notNull(), jdSkills: jsonb("jd_skills").notNull(),
+  hrFocus: jsonb("hr_focus").notNull(), sources: jsonb("sources").notNull(), disclaimer: text("disclaimer").notNull(),
+  status: qStatus("status").notNull().default("golden"),
+  updatedAt: date("updated_at").notNull(),
+});
+
+export const conceptCards = pgTable("concept_cards", {
+  id: text("id").primaryKey(), topic: text("topic").notNull(), skillKey: text("skill_key").notNull(),
+  branches: text("branches").array().notNull(), title: text("title").notNull(), body: text("body").notNull(),
+  example: text("example"), interviewTip: text("interview_tip"),
+  status: qStatus("status").notNull().default("golden"), version: integer("version").notNull().default(1),
+}, t => [index("concept_topic_idx").on(t.topic)]);
+
+export const hrQuestions = pgTable("hr_questions", {
+  id: text("id").primaryKey(), kind: text("kind").notNull(), companies: text("companies").array().notNull(),
+  question: text("question").notNull(), whyTheyAsk: text("why_they_ask").notNull(),
+  structure: jsonb("structure").$type<string[]>().notNull(), outline: text("outline").notNull(), avoid: jsonb("avoid").$type<string[]>().notNull(),
+});
+
+export const skillTags = pgTable("skill_tags", {
+  key: text("key").primaryKey(), kind: text("kind").$type<"aptitude" | "tech" | "soft">().notNull(), branch: text("branch"), name: text("name").notNull(),
+});
+
+export const studentSkills = pgTable("student_skills", {
+  userId: uuid("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  skillKey: text("skill_key").notNull(),
+  status: text("status").$type<"have" | "weak" | "missing">().notNull(),
+  source: text("source").$type<"auto" | "self">().notNull(),   // auto = from attempts; self = student-declared
+  evidence: text("evidence"),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, t => [primaryKey({ columns: [t.userId, t.skillKey] })]);
+
+export const attemptInsights = pgTable("attempt_insights", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  userId: uuid("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  drillId: uuid("drill_id"), mockAttemptId: uuid("mock_attempt_id"),
+  facts: jsonb("facts").notNull(), text: jsonb("text").notNull(), model: text("model").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, t => [uniqueIndex("insight_drill_uq").on(t.drillId), uniqueIndex("insight_mock_uq").on(t.mockAttemptId), index("insight_user_idx").on(t.userId, t.createdAt)]);
+
+export const weeklyFocus = pgTable("weekly_focus", {
+  userId: uuid("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  weekStart: date("week_start").notNull(),
+  topics: jsonb("topics").notNull(), dailyTargets: jsonb("daily_targets").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, t => [primaryKey({ columns: [t.userId, t.weekStart] })]);
+
+export const consents = pgTable("consents", {   // v3: explicit consent records (DPDP)
+  id: uuid("id").primaryKey().defaultRandom(),
+  userId: uuid("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  kind: text("kind").$type<"dpdp" | "resume_storage" | "ai_drafts">().notNull(),
+  grantedAt: timestamp("granted_at").defaultNow().notNull(), revokedAt: timestamp("revoked_at"),
+}, t => [index("consents_user_idx").on(t.userId, t.kind)]);
+
+export const profileReviews = pgTable("profile_reviews", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  userId: uuid("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  kind: text("kind").$type<"resume" | "linkedin">().notNull(),
+  input: jsonb("input"),                 // resume text only when consented; LinkedIn self-entered fields
+  checklist: jsonb("checklist").notNull(),
+  score: integer("score").notNull(),
+  draftText: jsonb("draft_text"), model: text("model"),
+  consent: boolean("consent").notNull().default(false),
+  sharedWithTpo: boolean("shared_with_tpo").notNull().default(false),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, t => [index("profile_reviews_user_idx").on(t.userId, t.kind, t.createdAt)]);
+
+export const llmUsage = pgTable("llm_usage", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  userId: uuid("user_id"), collegeId: uuid("college_id"),
+  feature: text("feature").notNull(), model: text("model").notNull(),
+  inputTokens: integer("input_tokens").notNull().default(0), outputTokens: integer("output_tokens").notNull().default(0),
+  cachedTokens: integer("cached_tokens").notNull().default(0), costUsd: real("cost_usd").notNull().default(0),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, t => [index("llm_usage_user_idx").on(t.userId, t.feature, t.createdAt), index("llm_usage_college_idx").on(t.collegeId, t.createdAt)]);
+
+export const focusAssignments = pgTable("focus_assignments", {   // TPO "assign focus pack to N students"
+  id: uuid("id").primaryKey().defaultRandom(),
+  collegeId: uuid("college_id").notNull().references(() => colleges.id),
+  topics: text("topics").array().notNull(), questionsPerDay: integer("questions_per_day").notNull().default(5),
+  dueOn: date("due_on"), note: text("note"),
+  createdBy: uuid("created_by").notNull(), createdAt: timestamp("created_at").defaultNow().notNull(),
+}, t => [index("focus_assign_college_idx").on(t.collegeId)]);
+export const focusAssignmentStudents = pgTable("focus_assignment_students", {
+  assignmentId: uuid("assignment_id").notNull().references(() => focusAssignments.id, { onDelete: "cascade" }),
+  userId: uuid("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  completedAt: timestamp("completed_at"),
+}, t => [primaryKey({ columns: [t.assignmentId, t.userId] })]);

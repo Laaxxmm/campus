@@ -1,0 +1,72 @@
+[
+  {
+    "id": "C-TEC-MEC-0001",
+    "topic": "mech_core",
+    "skill_key": "mech_core",
+    "branches": [
+      "mech_civil"
+    ],
+    "title": "Laws of thermodynamics",
+    "body": "Zeroth law: if two bodies are each in thermal equilibrium with a third, they are in equilibrium with each other; this is the basis of temperature measurement. First law: energy is conserved; for a closed system ΔU = Q − W, where Q is heat added and W is work done by the system. Second law: Kelvin–Planck says no cyclic engine can turn all heat from one reservoir into work; Clausius says heat cannot flow from cold to hot without external work. It introduces entropy. Third law: the entropy of a perfect crystal approaches zero as temperature approaches absolute zero.",
+    "example": "A gas gets 50 kJ of heat and does 20 kJ of work: ΔU = 50 − 20 = +30 kJ.",
+    "interview_tip": "A perpetual motion machine of the first kind violates the first law; one of the second kind violates the second law. Interviewers like this question.",
+    "status": "golden",
+    "version": 1
+  },
+  {
+    "id": "C-TEC-MEC-0002",
+    "topic": "mech_core",
+    "skill_key": "mech_core",
+    "branches": [
+      "mech_civil"
+    ],
+    "title": "Carnot, Otto and Diesel cycle efficiency",
+    "body": "The Carnot cycle sets the maximum efficiency between two temperatures: η = 1 − T_L/T_H, with temperatures in kelvin. The Otto cycle (petrol engine, constant-volume heat addition) has η = 1 − 1/r^(γ−1), so it depends only on the compression ratio r and γ. The Diesel cycle (constant-pressure heat addition) also depends on the cut-off ratio. For the same compression ratio, Otto is more efficient than Diesel; for the same maximum pressure and temperature, Diesel is more efficient. Diesel engines run at higher compression ratios (about 14–22) than petrol engines (about 8–12).",
+    "example": "Carnot between 800 K and 300 K: η = 1 − 300/800 = 62.5%. Otto with r = 8, γ = 1.4: η = 1 − 1/8^0.4 ≈ 56.5%.",
+    "interview_tip": "Always convert °C to K before using Carnot's formula. Using Celsius values is the most common mistake.",
+    "status": "golden",
+    "version": 1
+  },
+  {
+    "id": "C-TEC-MEC-0003",
+    "topic": "mech_core",
+    "skill_key": "mech_core",
+    "branches": [
+      "mech_civil"
+    ],
+    "title": "Stress, strain, Young's modulus and factor of safety",
+    "body": "Normal stress σ = P/A (N/mm² = MPa); strain ε = δL/L has no unit. Within the elastic limit Hooke's law holds: σ = Eε, where E is Young's modulus (about 200 GPa for steel, 70 GPa for aluminium). So axial elongation δ = PL/(AE). Poisson's ratio is lateral strain divided by longitudinal strain, about 0.3 for steel. Factor of safety (FoS) = failure stress / allowable (working) stress; ductile materials usually use yield strength, brittle materials use ultimate strength. A higher FoS is used when loads are uncertain or failure is dangerous.",
+    "example": "Yield 250 MPa, FoS 2.5 → allowable 100 MPa. For a 50 kN load, area = 50,000/100 = 500 mm².",
+    "interview_tip": "Know the mild-steel stress–strain curve: proportional limit, elastic limit, upper and lower yield points, ultimate stress and fracture.",
+    "status": "golden",
+    "version": 1
+  },
+  {
+    "id": "C-TEC-MEC-0004",
+    "topic": "mech_core",
+    "skill_key": "mech_core",
+    "branches": [
+      "mech_civil"
+    ],
+    "title": "Manufacturing basics: casting, welding, machining",
+    "body": "Casting pours molten metal into a mould: sand casting suits large, low-volume parts; die casting uses reusable metal dies for high-volume non-ferrous parts; investment (lost-wax) casting gives fine detail. Welding joins metals by fusion: arc welding (SMAW stick, MIG with a consumable wire, TIG with a non-consumable tungsten electrode), gas welding (oxy-acetylene) and resistance spot welding. Machining removes material: turning on a lathe, milling, drilling and grinding. Cutting speed V = πDN/1000 m/min, with D in mm and N in rpm. Forming processes such as forging, rolling and extrusion shape metal without removing material.",
+    "example": "Turning a 50 mm bar at 300 rpm: V = π × 50 × 300 / 1000 ≈ 47.1 m/min.",
+    "interview_tip": "Name one product made by each process, e.g. engine block (sand casting), crankshaft (forging), car body (spot welding). It makes the answer concrete.",
+    "status": "golden",
+    "version": 1
+  },
+  {
+    "id": "C-TEC-MEC-0005",
+    "topic": "mech_core",
+    "skill_key": "civil_core",
+    "branches": [
+      "mech_civil"
+    ],
+    "title": "Concrete grades and basic levelling",
+    "body": "Under IS 456, concrete grade M20 or M25 gives the characteristic compressive strength in N/mm² of 150 mm cubes at 28 days; not more than 5% of results should fall below it. M20 is the usual minimum for reinforced concrete. Strength depends mainly on the water–cement ratio: more water means lower strength. In levelling, a backsight (BS) is the first reading taken after setting up, on a point of known reduced level (RL). Height of instrument HI = RL + BS, and the RL of a new point = HI − foresight (FS).",
+    "example": "Benchmark RL 100.000 m, BS 1.450 m → HI = 101.450 m. FS on point P = 2.300 m → RL of P = 99.150 m.",
+    "interview_tip": "Remember that a larger staff reading means a lower point. This helps you check rise-and-fall calculations quickly.",
+    "status": "golden",
+    "version": 1
+  }
+]

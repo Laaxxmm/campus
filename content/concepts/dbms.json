@@ -1,0 +1,77 @@
+[
+ {
+  "id": "C-TEC-DBM-0001",
+  "topic": "dbms",
+  "skill_key": "dbms",
+  "branches": [
+   "cse_it",
+   "all"
+  ],
+  "title": "Normalization: 1NF to BCNF",
+  "body": "Normalization splits tables to remove redundancy and update anomalies. 1NF: every cell holds one atomic value, with no repeating groups. 2NF: 1NF, and no non-prime attribute depends on only part of a composite candidate key (no partial dependency). 3NF: 2NF, and no non-prime attribute depends on another non-key attribute (no transitive dependency). Formally, every FD X → Y must have X a superkey or Y prime. BCNF: for every non-trivial FD X → Y, X must be a superkey. BCNF is stricter than 3NF, and a lossless BCNF decomposition may not preserve every dependency.",
+  "example": "Student(roll, name, dept_id, dept_name)\nroll → dept_id, dept_id → dept_name   (transitive)\n3NF fix: Student(roll, name, dept_id) + Dept(dept_id, dept_name)",
+  "interview_tip": "Say each form in one line, then justify with a functional dependency. Interviewers often ask why 3NF is used in practice: it is dependency-preserving and usually good enough.",
+  "status": "golden",
+  "version": 1
+ },
+ {
+  "id": "C-TEC-DBM-0002",
+  "topic": "dbms",
+  "skill_key": "dbms",
+  "branches": [
+   "cse_it",
+   "all"
+  ],
+  "title": "ACID properties",
+  "body": "A transaction is a unit of work that must satisfy ACID. Atomicity: all of its operations take effect or none do, and a failure rolls everything back (via undo logs). Consistency: a transaction moves the database from one valid state to another, respecting constraints such as keys, checks and balances. Isolation: concurrent transactions do not see each other's intermediate states; the degree depends on the isolation level. Durability: once a transaction commits, its changes survive crashes, because write-ahead logs are flushed to stable storage before the commit is acknowledged.",
+  "example": "Transfer ₹500 from A to B:\nBEGIN;\nUPDATE acct SET bal = bal - 500 WHERE id = 'A';\nUPDATE acct SET bal = bal + 500 WHERE id = 'B';\nCOMMIT;   -- crash before COMMIT ⇒ both updates undone",
+  "interview_tip": "Use the bank-transfer example and map each letter to what could go wrong without it. Mention logging and recovery for atomicity and durability, and locking or MVCC for isolation.",
+  "status": "golden",
+  "version": 1
+ },
+ {
+  "id": "C-TEC-DBM-0003",
+  "topic": "dbms",
+  "skill_key": "dbms",
+  "branches": [
+   "cse_it",
+   "all"
+  ],
+  "title": "Isolation levels and anomalies",
+  "body": "The SQL standard defines four isolation levels by the anomalies they allow. READ UNCOMMITTED allows dirty reads (reading data another transaction has not committed). READ COMMITTED prevents dirty reads but allows non-repeatable reads (the same row returns different values when read twice). REPEATABLE READ prevents both, but the standard still allows phantoms (a repeated range query returns new rows). SERIALIZABLE prevents all three, so the result equals some serial order. Higher levels mean more locking or aborts and less concurrency. Defaults differ: READ COMMITTED in PostgreSQL, Oracle and SQL Server; REPEATABLE READ in MySQL InnoDB.",
+  "example": "Level            Dirty  Non-repeat  Phantom\nREAD UNCOMMITTED  yes     yes        yes\nREAD COMMITTED    no      yes        yes\nREPEATABLE READ   no      no         yes*\nSERIALIZABLE      no      no         no\n* allowed by the standard; InnoDB largely prevents it",
+  "interview_tip": "Draw this table from memory. Knowing MySQL's default (REPEATABLE READ) and the dirty versus non-repeatable versus phantom distinction is what most interviewers probe.",
+  "status": "golden",
+  "version": 1
+ },
+ {
+  "id": "C-TEC-DBM-0004",
+  "topic": "dbms",
+  "skill_key": "dbms",
+  "branches": [
+   "cse_it",
+   "all"
+  ],
+  "title": "Keys: super, candidate, primary, foreign",
+  "body": "A super key is any set of attributes that uniquely identifies a row. A candidate key is a minimal super key: remove any attribute and it stops being unique. The primary key is the candidate key chosen as the main identifier; it is unique and NOT NULL, and a table has only one. The remaining candidate keys are alternate keys, usually enforced with UNIQUE. A foreign key is a column whose values must match a primary or unique key in another table, or be NULL. It enforces referential integrity, with actions such as CASCADE, SET NULL or RESTRICT. A composite key spans several columns.",
+  "example": "Emp(emp_id, email, name, dept_id)\nSuper keys: {emp_id}, {emp_id, name}, {email}, …\nCandidate keys: {emp_id}, {email}\nPrimary key: emp_id; alternate key: email (UNIQUE)\nForeign key: dept_id → Dept(dept_id)",
+  "interview_tip": "A common follow-up asks for the difference between a primary key and UNIQUE. Answer: one primary key per table, never NULL, and often the clustered index; many UNIQUE constraints are allowed, and they usually accept NULLs.",
+  "status": "golden",
+  "version": 1
+ },
+ {
+  "id": "C-TEC-DBM-0005",
+  "topic": "dbms",
+  "skill_key": "dbms",
+  "branches": [
+   "cse_it",
+   "all"
+  ],
+  "title": "Indexes: clustered, non-clustered, B+ tree",
+  "body": "An index is an auxiliary structure that speeds up lookups at the cost of extra storage and slower writes. Most databases use B+ trees: balanced, with sorted keys and linked leaves, so they handle equality, range queries and ORDER BY. Hash indexes handle only equality. A clustered index stores the rows themselves in key order, so a table has at most one. In InnoDB the primary key is the clustered index. Non-clustered indexes store the key plus a pointer to the row, and a table can have many. A composite index (a, b) helps queries filtering on a, or on a and b, but not on b alone (the leftmost-prefix rule).",
+  "example": "CREATE INDEX idx_name ON customers(last_name, first_name);\n-- uses index:  WHERE last_name = 'Rao'\n-- uses index:  WHERE last_name = 'Rao' AND first_name = 'Amit'\n-- no seek:     WHERE first_name = 'Amit'",
+  "interview_tip": "Mention the trade-off: indexes slow down INSERT, UPDATE and DELETE and use disk space, and they help little on low-selectivity columns such as gender. Name the indexes you would add for a slow query.",
+  "status": "golden",
+  "version": 1
+ }
+]

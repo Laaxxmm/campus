@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { ClipboardList, Home, TrendingUp, User } from "lucide-react";
+import { Building2, ClipboardList, Home, Lightbulb, User } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { t } from "@/i18n/en";
@@ -8,8 +8,9 @@ import { t } from "@/i18n/en";
 const items = [
   { href: "/today", label: t.nav.today, Icon: Home },
   { href: "/mocks", label: t.nav.mocks, Icon: ClipboardList },
-  { href: "/progress", label: t.nav.progress, Icon: TrendingUp },
-  { href: "/profile", label: t.nav.profile, Icon: User },
+  { href: "/insights", label: t.nav.insights, Icon: Lightbulb },
+  { href: "/companies", label: t.nav.companies, Icon: Building2 },
+  { href: "/profile", label: t.nav.me, Icon: User },
 ];
 
 export function AppShell({ children, header }: { children: React.ReactNode; header?: React.ReactNode }) {
@@ -19,7 +20,7 @@ export function AppShell({ children, header }: { children: React.ReactNode; head
       {header}
       <main className="flex-1 px-4 pb-24 pt-3">{children}</main>
       <nav aria-label="Primary" className="no-print fixed inset-x-0 bottom-0 z-20 border-t border-border bg-bg">
-        <ul className="mx-auto grid max-w-md grid-cols-4">
+        <ul className="mx-auto grid max-w-md grid-cols-5">
           {items.map((it) => {
             const active = path?.startsWith(it.href);
             return (

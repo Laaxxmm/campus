@@ -1,0 +1,135 @@
+{
+  "key": "cognizant",
+  "name": "Cognizant",
+  "version": 1,
+  "updated_at": "2026-11-04",
+  "roles": [
+    { "key": "genc", "name": "GenC (Programmer Analyst Trainee)", "note": "Base track. Secondary sources say all candidates are first evaluated for GenC. Cognizant's official GenC page describes the program as its hiring and development program for emerging talent in India." },
+    { "key": "genc_next", "name": "GenC Next", "note": "Higher track requiring coding. Secondary sources cite ~₹6.75 LPA from earlier campus material; no verified 2026 CTC found." },
+    { "key": "genc_pro", "name": "GenC Pro", "note": "Mid/upper track named in 2026 campus material per secondary sources; detailed round structure not confirmed." }
+  ],
+  "rounds": [
+    {
+      "key": "communication",
+      "name": "Communication Assessment",
+      "kind": "communication",
+      "duration_min": null,
+      "sections": [],
+      "what_they_check": "Spoken English through reading and repeat-sentence style tasks (per placementpreparation.io). Timings reported by sources are inconsistent.",
+      "prep": [
+        "Practise reading short passages aloud clearly.",
+        "Practise listen-and-repeat drills for sentence accuracy.",
+        "Test your microphone and take it in a quiet room."
+      ],
+      "negative_marking": null
+    },
+    {
+      "key": "aptitude",
+      "name": "Aptitude Assessment (Quant, Verbal, Reasoning)",
+      "kind": "aptitude",
+      "duration_min": 100,
+      "sections": [
+        { "section": "Numerical Ability", "questions": 25, "minutes": null },
+        { "section": "Verbal Ability", "questions": 20, "minutes": null },
+        { "section": "Reasoning Ability", "questions": 35, "minutes": null }
+      ],
+      "what_they_check": "Quant, English and logical reasoning; reported as an elimination round with sectional cutoffs. The 25/20/35 split in 100 minutes is from a GenC Next pattern on placementpreparation.io; FACE Prep describes shorter GenC formats (e.g. ~55 questions in 60 minutes), so expect variation.",
+      "prep": [
+        "Do not neglect English: candidate reports say the verbal sectional cutoff is where many fail.",
+        "Practise arithmetic (percentages, profit & loss, time & work) and number series.",
+        "Practise logical puzzles, blood relations and direction sense under time pressure."
+      ],
+      "negative_marking": false
+    },
+    {
+      "key": "coding",
+      "name": "Coding Assessment (GenC Next / GenC Pro)",
+      "kind": "coding",
+      "duration_min": null,
+      "sections": [{ "section": "Coding problems", "questions": null, "minutes": null }],
+      "what_they_check": "Problem-solving in a language of your choice. Sources conflict on format (e.g. 2 problems in 45 minutes vs 4 problems in 120 minutes), so counts and time are unknown. Older material mentions 'Automata Fix' style debugging.",
+      "prep": [
+        "Practise easy–medium array, string and math problems.",
+        "Practise fixing buggy code snippets (debugging-style questions).",
+        "Get comfortable with one language's input/output and standard collections."
+      ],
+      "negative_marking": null
+    },
+    {
+      "key": "interview",
+      "name": "Technical + HR Interview",
+      "kind": "technical",
+      "duration_min": null,
+      "sections": [],
+      "what_they_check": "Basics of programming, DBMS and your projects, plus flexibility on location and shifts. Secondary sources describe a combined technical and HR discussion; GenC Next/Pro interviews go deeper.",
+      "prep": [
+        "Explain your project end to end, including what you would improve.",
+        "Revise OOP, SQL queries and one language's fundamentals.",
+        "Prepare honest answers on relocation, shifts and why Cognizant."
+      ],
+      "negative_marking": null
+    }
+  ],
+  "cutoffs": {
+    "approx": true,
+    "aptitude_percent": null,
+    "sectional": true,
+    "note": "Not published; Cognizant does not release cutoffs. Secondary sources agree sectional cutoffs apply (a very low score in any section is reported to be a reject) and give candidate-reported targets in correct-answer counts rather than percentages, so no single percentage is given.",
+    "source_refs": [3, 6]
+  },
+  "branch_expectations": {
+    "cse_it": {
+      "eligible": true,
+      "coding": "required",
+      "tech_topics": ["dsa_basics", "oop_concepts", "dbms", "sql", "java", "python", "operating_systems"],
+      "note": "Aim for GenC Next/Pro, which require the coding assessment."
+    },
+    "ece_eee": {
+      "eligible": true,
+      "coding": "basic",
+      "tech_topics": ["c_language", "oop_concepts", "dbms", "sql", "ece_core"],
+      "note": "Generally eligible for B.E/B.Tech tracks (confirm in your drive notice). GenC can be cleared with aptitude and communication; coding needed for Next/Pro."
+    },
+    "mech_civil": {
+      "eligible": true,
+      "coding": "basic",
+      "tech_topics": ["c_language", "python", "sql", "mech_core"],
+      "note": "Typically eligible for GenC as engineering graduates (confirm in notice). Focus on aptitude, English and basic programming/SQL."
+    },
+    "all": {
+      "eligible": true,
+      "coding": "basic",
+      "tech_topics": ["sql", "c_language"],
+      "note": "Secondary sources commonly cite 60% or 6.0 CGPA (some drives differ), no active backlogs, and for GenC Next an overall gap of at most 2 years. Cognizant's official GenC page currently lists Analyst Trainee openings for 2024–2026 batches with a three-year degree; engineering-track rules come from your drive notice."
+    }
+  },
+  "jd_skills": [
+    { "skill_key": "aptitude_quant", "level": "required", "roles": [], "note": "Numerical ability section." },
+    { "skill_key": "aptitude_logical", "level": "required", "roles": [], "note": "Reasoning section." },
+    { "skill_key": "aptitude_verbal", "level": "required", "roles": [], "note": "Verbal section with a reportedly strict sectional cutoff." },
+    { "skill_key": "communication", "level": "required", "roles": [], "note": "Separate communication assessment." },
+    { "skill_key": "java", "level": "required", "roles": ["genc_next", "genc_pro"], "note": "One programming language for the coding assessment (any common language)." },
+    { "skill_key": "dsa", "level": "required", "roles": ["genc_next", "genc_pro"], "note": "Coding problems for higher tracks." },
+    { "skill_key": "sql", "level": "required", "roles": [], "note": "Common technical interview topic." },
+    { "skill_key": "oop", "level": "required", "roles": [], "note": "Common technical interview topic." },
+    { "skill_key": "projects", "level": "required", "roles": [], "note": "Discussed in the interview." },
+    { "skill_key": "certifications", "level": "nice_to_have", "roles": ["genc_next", "genc_pro"], "note": "Secondary sources say certifications are considered when placing candidates into higher tracks." },
+    { "skill_key": "cloud_basics", "level": "nice_to_have", "roles": [], "note": "Helpful for interviews; not a stated requirement." }
+  ],
+  "hr_focus": [
+    "Flexibility on job location and shifts.",
+    "Why Cognizant, and which GenC track you are aiming for.",
+    "Clear spoken English and confidence.",
+    "Academic eligibility checks (percentage, backlogs, gaps)."
+  ],
+  "sources": [
+    { "title": "Generation Cognizant (GenC) Program", "url": "https://careers.cognizant.com/india-en/pathways-to-cognizant/genc-program/", "accessed": "2026-11-04", "kind": "official" },
+    { "title": "Cognizant GenC Syllabus and Test Pattern (placementpreparation.io)", "url": "https://www.placementpreparation.io/cognizant-genc/syllabus-and-test-pattern/", "accessed": "2026-11-04", "kind": "secondary" },
+    { "title": "Cognizant GenC Next Syllabus and Test Pattern (placementpreparation.io)", "url": "https://www.placementpreparation.io/cognizant-genc-next/syllabus-and-test-pattern/", "accessed": "2026-11-04", "kind": "secondary" },
+    { "title": "Cognizant Aptitude Questions: 2026 GenC Test Pattern & Prep Guide (FACE Prep)", "url": "https://www.faceprep.in/article/cognizant-aptitude-questions-for-cognizant-aptitude-test-2019/", "accessed": "2026-11-04", "kind": "secondary" },
+    { "title": "Cognizant Off Campus Drive 2026: GenC, GenC Next and Elevate Eligibility, Salary and Process (Weekday)", "url": "https://www.weekday.works/post/cognizant-off-campus-drive-2026", "accessed": "2026-11-04", "kind": "secondary" },
+    { "title": "Cognizant GenC Next Eligibility Criteria (placementpreparation.io)", "url": "https://www.placementpreparation.io/cognizant-genc-next/eligibility-criteria/", "accessed": "2026-11-04", "kind": "secondary" },
+    { "title": "Cognizant Cutoff 2026: Section-Wise Score Analysis (PapersAdda)", "url": "https://papersadda.pages.dev/article/cognizant-cutoff-analysis-2026/", "accessed": "2026-11-04", "kind": "secondary" }
+  ],
+  "disclaimer": "Compiled from public sources on 2026-11-04. Patterns change every season; LearnCrew is not affiliated with Cognizant. This is preparation guidance, not a guarantee of selection."
+}

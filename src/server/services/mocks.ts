@@ -204,6 +204,7 @@ export async function saveAnswers(student: Student, attemptId: string, patch: Sa
       const displayed = p.choice;
       const choice = displayed === undefined ? cur.choice : displayed === null ? null : Number.isInteger(displayed) && displayed >= 0 && displayed < 4 ? a.optionOrder[i][displayed] : cur.choice;
       next[qid] = {
+        changes: (cur.changes ?? 0) + (cur.choice !== null && choice !== cur.choice ? 1 : 0),
         choice,
         flagged: p.flagged ?? cur.flagged,
         visited: p.visited ?? cur.visited ?? true,
@@ -245,6 +246,8 @@ async function finalize(a: AttemptRow, m: MockRow, now: Date, auto: boolean) {
         chosenIndex: locked.answers[q.id].choice,
         correct: locked.answers[q.id].choice === q.answerIndex,
         timeMs: locked.answers[q.id].timeMs,
+        answerChanges: locked.answers[q.id].changes ?? 0,
+        marked: Boolean(locked.answers[q.id].flagged),
         createdAt: endedAt,
       }));
     if (rowsToInsert.length) await tx.insert(attempts).values(rowsToInsert).onConflictDoNothing();

@@ -1,0 +1,72 @@
+[
+  {
+    "id": "C-TEC-SWE-0001",
+    "topic": "software_engineering",
+    "skill_key": "git",
+    "branches": [
+      "all"
+    ],
+    "title": "Git's three areas: working tree, staging, repository",
+    "body": "Git tracks changes through three places. The working tree holds the files you edit. The staging area (index) holds the exact snapshot you plan to commit; git add moves changes there. The repository stores committed snapshots permanently; git commit records the staged snapshot with a message and a unique hash. git status shows what differs between these areas. Staging lets you commit only part of your edits, keeping each commit small and focused. To undo, git restore file discards working-tree edits, and git restore --staged file unstages a file without losing your edits.",
+    "example": "Edit a.py and b.py → git add a.py → git commit -m \"Fix login bug\". Only a.py goes into the commit; b.py stays modified in the working tree.",
+    "interview_tip": "Draw the three boxes and the arrows (add, commit, restore) when asked. It shows you understand Git, not just the commands.",
+    "status": "golden",
+    "version": 1
+  },
+  {
+    "id": "C-TEC-SWE-0002",
+    "topic": "software_engineering",
+    "skill_key": "git",
+    "branches": [
+      "all"
+    ],
+    "title": "Merge vs rebase",
+    "body": "Both combine work from two branches. git merge keeps history as it happened: if both branches moved, it creates a merge commit with two parents; if only one moved, it simply fast-forwards the pointer. git rebase replays your branch's commits on top of another branch's tip, creating new commits with new hashes and a straight, linear history. Merge is safe for shared branches because it never rewrites existing commits. Rebase gives cleaner history but rewrites commits, so the golden rule is: never rebase commits others have already pulled. Teams often rebase local feature branches, then merge them into main.",
+    "example": "On feature: git rebase main → feature's commits now sit after main's latest commit. On main: git merge feature → a fast-forward, or a merge commit if main moved again.",
+    "interview_tip": "Say clearly that rebase rewrites history and merge preserves it, then state the golden rule. That one line answers most follow-up questions.",
+    "status": "golden",
+    "version": 1
+  },
+  {
+    "id": "C-TEC-SWE-0003",
+    "topic": "software_engineering",
+    "skill_key": "git",
+    "branches": [
+      "all"
+    ],
+    "title": "Branching and pull requests",
+    "body": "A branch in Git is just a movable pointer to a commit, so creating one is cheap. Teams keep main stable and do each feature or bug fix on its own short-lived branch (git switch -c feature/login). When the work is ready, it is pushed and a pull request (merge request) is opened so teammates can review the code and CI can run tests before merging. Common strategies are GitHub Flow (feature branches off main) and Git Flow (separate develop, release and hotfix branches). Small, frequently merged branches mean fewer merge conflicts.",
+    "example": "git switch -c fix/null-check → commit → git push -u origin fix/null-check → open a pull request → review and CI pass → merge into main → delete the branch.",
+    "interview_tip": "Mention a real flow you used in a project, even a college one: branch, pull request, review, merge. Interviewers value practice over definitions.",
+    "status": "golden",
+    "version": 1
+  },
+  {
+    "id": "C-TEC-SWE-0004",
+    "topic": "software_engineering",
+    "skill_key": "testing",
+    "branches": [
+      "all"
+    ],
+    "title": "Levels of testing: unit to acceptance",
+    "body": "Testing happens at four main levels. Unit testing checks the smallest pieces (functions, classes) in isolation, usually by developers with frameworks like JUnit or pytest. Integration testing checks that modules work together; top-down integration uses stubs for missing lower modules, bottom-up uses drivers. System testing checks the complete application against the requirements, covering both functional and non-functional aspects such as performance and security. Acceptance testing confirms the product meets business needs: alpha testing at the developer's site, beta testing by real users in their own environment. In the V-model each level pairs with a design phase.",
+    "example": "Login feature: unit test the password-hash function; integration test login with the database; system test the full sign-in flow on a staging server; users accept it in UAT.",
+    "interview_tip": "Remember the V-model pairs: requirements ↔ acceptance, system design ↔ system test, architecture ↔ integration, module design ↔ unit.",
+    "status": "golden",
+    "version": 1
+  },
+  {
+    "id": "C-TEC-SWE-0005",
+    "topic": "software_engineering",
+    "skill_key": "testing",
+    "branches": [
+      "all"
+    ],
+    "title": "Black-box vs white-box; smoke and regression",
+    "body": "Black-box testing checks behaviour against requirements without looking at the code, using techniques such as equivalence partitioning (one value per valid or invalid class) and boundary value analysis (values at and just outside each limit). White-box testing uses knowledge of the code: statement, branch and path coverage, with cyclomatic complexity (E − N + 2P) giving the number of independent paths. Smoke testing is a quick check that a new build's critical functions work at all. Regression testing re-runs existing tests after a change to make sure nothing that worked before is now broken.",
+    "example": "Field accepts 1–100: equivalence classes are <1, 1–100, >100; boundary values are 0, 1, 100, 101.",
+    "interview_tip": "If asked smoke vs sanity: smoke is broad and shallow on a new build; sanity is narrow and focused on one fixed area.",
+    "status": "golden",
+    "version": 1
+  }
+]

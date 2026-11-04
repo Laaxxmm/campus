@@ -5,6 +5,10 @@ import { requireRole, requireUser } from "@/lib/authz";
 import { companyName } from "@/lib/companies";
 import { MockError, mockResult } from "@/server/services/mocks";
 import { ReviewList } from "@/components/mock/ReviewList";
+import { insightForMock } from "@/server/services/insights";
+import { InsightCard } from "@/components/insights/InsightCard";
+import type { InsightText } from "@/lib/insights/text";
+import type { InsightFacts } from "@/lib/insights/rules";
 
 export const dynamic = "force-dynamic";
 const SECTION: Record<string, string> = { quant: "Quant", logical: "Logical", verbal: "Verbal", coding: "Coding" };
@@ -20,6 +24,7 @@ export default async function MockResultPage({ params }: { params: Promise<{ id:
     if (e instanceof MockError && e.status === 409) redirect(`/mocks/attempt/${id}`);
     throw e;
   }
+  const insight = await insightForMock(user, id);
   return (
     <main className="mx-auto max-w-3xl space-y-5 px-4 py-6">
       <Link href="/mocks" className="inline-flex min-h-11 items-center gap-1 text-sm text-ink-900"><ArrowLeft aria-hidden className="h-4 w-4" /> Mocks</Link>
@@ -49,6 +54,7 @@ export default async function MockResultPage({ params }: { params: Promise<{ id:
         </ul>
         <p className="mt-3 text-xs text-text-600">{r.correct} correct · {r.wrong} wrong · {r.skipped} skipped{r.tabSwitches ? ` · ${r.tabSwitches} tab switch${r.tabSwitches > 1 ? "es" : ""} recorded` : ""}</p>
       </section>
+      {insight && <InsightCard text={insight.text as InsightText} focusTopics={(insight.facts as InsightFacts).focus.map((f) => f.topic)} />}
       <ReviewList items={r.review} />
     </main>
   );

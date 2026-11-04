@@ -14,3 +14,9 @@
 | Secrets | repo | `.env*` gitignored, `.env.example` placeholders only, env validated by `src/env.ts`; gitleaks in CI | CI |
 | PII in logs / LLM | logs, weekly narrative | logs carry ids not emails; LLM gets aggregated numbers only | review |
 | DPDP | consent, deletion | consent captured at onboarding (`consent_at`), privacy page, deletion request route, admin export/delete | e2e |
+| Prompt injection via resume / profile text | Profile coach drafts | Resume text wrapped as data, instruction-like lines stripped, model output Zod-validated (unknown keys dropped), never executed; drafts shown as text only | `tests/profile-coach.test.ts` (injection fixtures) |
+| PII to LLM | Drafts, insight phrasing, TPO narrative | Phone/email/address/URLs removed before any LLM call; insights + reports send computed facts only | `tests/profile-coach.test.ts`, `tests/insights.test.ts` |
+| LLM cost abuse | Drafts, explain-more, phrasing | Per-user monthly draft quota + per-minute rate limits; every call logged to `llm_usage` | quota tests |
+| Draft privacy | Resume/LinkedIn drafts | Visible to the student only; TPO sees checklist scores, never drafts, unless the student shares | `tests/tpo-coach.test.ts` |
+| Resume file retention | Upload | Parsed in memory, temp file deleted in `finally`; text stored only with `resume_storage` consent | `tests/profile-coach.test.ts` |
+

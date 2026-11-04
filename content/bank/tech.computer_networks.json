@@ -1,0 +1,414 @@
+[
+  {
+    "id": "Q-TEC-CNW-0001",
+    "section": "tech",
+    "topic": "computer_networks",
+    "subtopic": "osi_tcpip",
+    "stem": "Which OSI layer is responsible for choosing the path a packet takes across multiple networks using logical (IP) addresses?",
+    "options": [
+      "Network layer",
+      "Data link layer",
+      "Transport layer",
+      "Session layer"
+    ],
+    "answer_index": 0,
+    "explanation": "The Network layer (layer 3) handles logical addressing and routing between networks; routers work here. The Data link layer moves frames within one link using MAC addresses, and the Transport layer provides end-to-end delivery between processes.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "wipro"
+    ],
+    "difficulty": 1,
+    "time_sec": 30,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "CNW-OSI-ROUTE-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-CNW-0002",
+    "section": "tech",
+    "topic": "computer_networks",
+    "subtopic": "protocols",
+    "stem": "What is the default TCP port used by HTTPS?",
+    "options": [
+      "80",
+      "443",
+      "8080",
+      "21"
+    ],
+    "answer_index": 1,
+    "explanation": "HTTPS (HTTP over TLS) listens on TCP port 443 by default. Port 80 is plain HTTP, 8080 is a common alternative HTTP port, and 21 is the FTP control port.",
+    "shortcut": null,
+    "company_tags": [
+      "accenture",
+      "cognizant",
+      "infosys"
+    ],
+    "difficulty": 1,
+    "time_sec": 20,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "CNW-PROT-PORT-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-CNW-0003",
+    "section": "tech",
+    "topic": "computer_networks",
+    "subtopic": "protocols",
+    "stem": "Which statement about UDP is correct?",
+    "options": [
+      "It sets up a connection with a three-way handshake before sending data",
+      "It automatically retransmits lost segments",
+      "It is connectionless and does not guarantee delivery or ordering of datagrams",
+      "It provides flow control using a sliding window"
+    ],
+    "answer_index": 2,
+    "explanation": "UDP sends independent datagrams with no connection setup, acknowledgements, retransmission or flow control, which keeps overhead low (useful for DNS queries, streaming and gaming). The handshake, retransmission and sliding-window flow control are TCP features.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "infosys",
+      "capgemini"
+    ],
+    "difficulty": 2,
+    "time_sec": 30,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "CNW-PROT-UDP-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-CNW-0004",
+    "section": "tech",
+    "topic": "computer_networks",
+    "subtopic": "osi_tcpip",
+    "stem": "Which of the following devices makes forwarding decisions using MAC addresses?",
+    "options": [
+      "Hub",
+      "Repeater",
+      "Router",
+      "Switch"
+    ],
+    "answer_index": 3,
+    "explanation": "A switch is a Data link (layer 2) device: it learns which MAC address is reachable on which port and forwards frames only there. Hubs and repeaters are physical-layer devices that just regenerate signals; routers forward packets by IP address.",
+    "shortcut": null,
+    "company_tags": [
+      "wipro",
+      "cognizant"
+    ],
+    "difficulty": 2,
+    "time_sec": 30,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "CNW-OSI-DEVICE-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-CNW-0005",
+    "section": "tech",
+    "topic": "computer_networks",
+    "subtopic": "protocols",
+    "stem": "A host knows the IPv4 address of another machine on the same LAN but needs that machine's MAC address to send a frame. Which protocol does it use?",
+    "options": [
+      "DNS",
+      "DHCP",
+      "ARP",
+      "ICMP"
+    ],
+    "answer_index": 2,
+    "explanation": "ARP (Address Resolution Protocol) broadcasts \"who has this IP?\" on the LAN and the owner replies with its MAC address. DNS maps names to IP addresses, DHCP assigns IP configuration, and ICMP carries error and diagnostic messages such as ping.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "accenture"
+    ],
+    "difficulty": 2,
+    "time_sec": 30,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "CNW-PROT-ARP-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-CNW-0006",
+    "section": "tech",
+    "topic": "computer_networks",
+    "subtopic": "protocols",
+    "stem": "Ordinary DNS queries from a client to its resolver are normally carried over which transport protocol and port?",
+    "options": [
+      "TCP port 80",
+      "UDP port 53",
+      "UDP port 67",
+      "TCP port 25"
+    ],
+    "answer_index": 1,
+    "explanation": "DNS uses port 53; small, ordinary queries go over UDP for speed, while TCP port 53 is used for large responses and zone transfers. UDP 67 is the DHCP server port, TCP 25 is SMTP and TCP 80 is HTTP.",
+    "shortcut": null,
+    "company_tags": [
+      "infosys",
+      "capgemini"
+    ],
+    "difficulty": 2,
+    "time_sec": 30,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "CNW-PROT-DNS-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-CNW-0007",
+    "section": "tech",
+    "topic": "computer_networks",
+    "subtopic": "osi_tcpip",
+    "stem": "In the four-layer TCP/IP model, the TCP/IP Application layer covers the OSI Application layer plus the functions of which two other OSI layers?",
+    "options": [
+      "Session and Presentation",
+      "Transport and Network",
+      "Data link and Physical",
+      "Network and Session"
+    ],
+    "answer_index": 0,
+    "explanation": "TCP/IP has Application, Transport, Internet and Network Access (link) layers. OSI's Session and Presentation functions (dialogue control, encoding, encryption) are handled inside TCP/IP applications. OSI Data link and Physical map to Network Access.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "cognizant",
+      "wipro"
+    ],
+    "difficulty": 3,
+    "time_sec": 45,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "CNW-OSI-MAP-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-CNW-0008",
+    "section": "tech",
+    "topic": "computer_networks",
+    "subtopic": "protocols",
+    "stem": "During a TCP three-way handshake, the client sends a SYN with initial sequence number 1000. The server picks initial sequence number 5000. What does the server's SYN-ACK segment carry?",
+    "options": [
+      "Sequence number 5000, acknowledgement number 1001",
+      "Sequence number 5001, acknowledgement number 1000",
+      "Sequence number 1001, acknowledgement number 5000",
+      "Sequence number 5000, acknowledgement number 1000"
+    ],
+    "answer_index": 0,
+    "explanation": "The server sends its own ISN as the sequence number (5000). A SYN consumes one sequence number, so the server acknowledges the next byte it expects from the client: 1000 + 1 = 1001. The client's final ACK then carries ack = 5001.",
+    "shortcut": null,
+    "company_tags": [
+      "accenture",
+      "infosys"
+    ],
+    "difficulty": 3,
+    "time_sec": 60,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "CNW-PROT-TCPHS-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-CNW-0009",
+    "section": "tech",
+    "topic": "computer_networks",
+    "subtopic": "addressing_subnetting",
+    "stem": "How many usable host addresses are available in a single /26 IPv4 subnet?",
+    "options": [
+      "62",
+      "64",
+      "30",
+      "126"
+    ],
+    "answer_index": 0,
+    "explanation": "A /26 leaves 32 − 26 = 6 host bits, giving 2^6 = 64 addresses. The network address and broadcast address cannot be assigned to hosts, so 64 − 2 = 62 are usable.",
+    "shortcut": "usable hosts = 2^(32 − prefix) − 2",
+    "company_tags": [
+      "tcs_nqt",
+      "wipro",
+      "capgemini"
+    ],
+    "difficulty": 3,
+    "time_sec": 45,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "CNW-SUB-HOSTS-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-CNW-0010",
+    "section": "tech",
+    "topic": "computer_networks",
+    "subtopic": "addressing_subnetting",
+    "stem": "A host has IP address 192.168.10.77/27. What are the network address and the broadcast address of its subnet?",
+    "options": [
+      "Network 192.168.10.72, broadcast 192.168.10.79",
+      "Network 192.168.10.0, broadcast 192.168.10.255",
+      "Network 192.168.10.64, broadcast 192.168.10.127",
+      "Network 192.168.10.64, broadcast 192.168.10.95"
+    ],
+    "answer_index": 3,
+    "explanation": "A /27 has 32 addresses per block, so subnets start at .0, .32, .64, .96, … Since 64 ≤ 77 < 96, the host is in the block 64–95: network 192.168.10.64 and broadcast 192.168.10.95.",
+    "shortcut": "block size = 256 − last non-255 mask octet",
+    "company_tags": [
+      "cognizant",
+      "infosys",
+      "accenture"
+    ],
+    "difficulty": 4,
+    "time_sec": 75,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "CNW-SUB-NETBC-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-CNW-0011",
+    "section": "tech",
+    "topic": "computer_networks",
+    "subtopic": "addressing_subnetting",
+    "stem": "The network 172.16.0.0/16 must be split into at least 50 equal-sized subnets, keeping as many hosts per subnet as possible. Which subnet mask should be used, and how many usable hosts does each subnet get?",
+    "options": [
+      "255.255.248.0 with 2046 usable hosts",
+      "255.255.252.0 with 1022 usable hosts",
+      "255.255.254.0 with 510 usable hosts",
+      "255.255.255.0 with 254 usable hosts"
+    ],
+    "answer_index": 1,
+    "explanation": "50 subnets need 6 borrowed bits (2^5 = 32 is too few, 2^6 = 64 is enough), giving /22 = 255.255.252.0. That leaves 10 host bits: 2^10 − 2 = 1022 hosts. /21 gives only 32 subnets; /23 and /24 work but waste host space.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "capgemini"
+    ],
+    "difficulty": 4,
+    "time_sec": 90,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "CNW-SUB-BORROW-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-CNW-0012",
+    "section": "tech",
+    "topic": "computer_networks",
+    "subtopic": "addressing_subnetting",
+    "stem": "With subnet mask 255.255.255.240, which pair of hosts is in the same subnet?",
+    "options": [
+      "172.20.8.14 and 172.20.8.17",
+      "172.20.8.31 and 172.20.8.33",
+      "172.20.8.19 and 172.20.8.30",
+      "172.20.8.47 and 172.20.8.48"
+    ],
+    "answer_index": 2,
+    "explanation": "255.255.255.240 is /28, so blocks of 16 start at 0, 16, 32, 48, … Both .19 and .30 lie in 16–31. The other pairs straddle a block boundary: .14 and .17 (at 16), .31 and .33 (at 32), .47 and .48 (at 48).",
+    "shortcut": null,
+    "company_tags": [
+      "wipro",
+      "accenture"
+    ],
+    "difficulty": 4,
+    "time_sec": 75,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "CNW-SUB-SAME-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-CNW-0013",
+    "section": "tech",
+    "topic": "computer_networks",
+    "subtopic": "protocols",
+    "stem": "In an HTTPS session, how is the bulk of the application data (pages, form data) encrypted after the TLS handshake finishes?",
+    "options": [
+      "With the server's private key, for every message",
+      "With the certificate authority's public key",
+      "It is not encrypted; HTTPS only signs the data",
+      "With symmetric session keys agreed during the handshake"
+    ],
+    "answer_index": 3,
+    "explanation": "The TLS handshake uses the server's certificate (asymmetric cryptography) for authentication and to agree on shared secrets. All later application data is encrypted with fast symmetric session keys. Asymmetric operations are too slow for bulk data.",
+    "shortcut": null,
+    "company_tags": [
+      "infosys",
+      "cognizant",
+      "capgemini"
+    ],
+    "difficulty": 4,
+    "time_sec": 60,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "CNW-PROT-TLS-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-CNW-0014",
+    "section": "tech",
+    "topic": "computer_networks",
+    "subtopic": "addressing_subnetting",
+    "stem": "A router has the routing table below and receives a packet for 10.1.5.130. Which interface does it forward the packet on?\n\n```\nDestination       Interface\n10.1.0.0/16       A\n10.1.4.0/22       B\n10.1.5.128/25     C\n0.0.0.0/0         D\n```",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer_index": 2,
+    "explanation": "All four entries match: 10.1.0.0/16 (10.1.x.x), 10.1.4.0/22 (10.1.4.0–10.1.7.255), 10.1.5.128/25 (10.1.5.128–255) and the default route. Routers apply longest prefix match, so the /25 entry wins and the packet leaves on C.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "accenture"
+    ],
+    "difficulty": 5,
+    "time_sec": 90,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "CNW-SUB-LPM-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-CNW-0015",
+    "section": "tech",
+    "topic": "computer_networks",
+    "subtopic": "addressing_subnetting",
+    "stem": "The block 192.168.5.0/24 must be divided with VLSM for LAN-A (100 hosts), LAN-B (50 hosts) and LAN-C (20 hosts). Which allocation (LAN-A, LAN-B, LAN-C) is valid?",
+    "options": [
+      "192.168.5.0/25, 192.168.5.64/26, 192.168.5.192/27",
+      "192.168.5.0/25, 192.168.5.128/26, 192.168.5.192/27",
+      "192.168.5.0/26, 192.168.5.64/26, 192.168.5.128/27",
+      "192.168.5.0/25, 192.168.5.128/27, 192.168.5.160/26"
+    ],
+    "answer_index": 1,
+    "explanation": "/25 gives 126 hosts (0–127), /26 gives 62 (128–191) and /27 gives 30 (192–223): all fit without overlap. The others fail: .64/26 lies inside .0/25; a /26 (62 hosts) cannot hold 100; .128/27 (30 hosts) cannot hold 50, and .160/26 is not on a 64-boundary.",
+    "shortcut": null,
+    "company_tags": [
+      "infosys",
+      "wipro",
+      "cognizant"
+    ],
+    "difficulty": 5,
+    "time_sec": 120,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "CNW-SUB-VLSM-01",
+    "version": 1
+  }
+]

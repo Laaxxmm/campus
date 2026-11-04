@@ -1,0 +1,142 @@
+{
+  "key": "infosys",
+  "name": "Infosys",
+  "version": 1,
+  "updated_at": "2026-11-04",
+  "roles": [
+    { "key": "systems_engineer", "name": "Systems Engineer (Trainee)", "note": "Mass-hiring role. Infosys's ESG report says campus hires (System Engineering Trainees, DSEs, SPs) go through a 19–23 week Foundation Program at the Global Education Center, Mysore." },
+    { "key": "dse", "name": "Digital Specialist Engineer (DSE)", "note": "Higher-tier role selected through a coding-based assessment; secondary sources commonly cite ~₹6.25 LPA." },
+    { "key": "sp", "name": "Specialist Programmer (SP)", "note": "Listed by Infosys as a graduate role for in-depth programming. Also reachable via HackWithInfy pre-placement interviews. Package figures vary widely across sources." }
+  ],
+  "rounds": [
+    {
+      "key": "se_online_test",
+      "name": "Online Test (Systems Engineer)",
+      "kind": "aptitude",
+      "duration_min": 100,
+      "sections": [
+        { "section": "Reasoning Ability", "questions": 15, "minutes": 25 },
+        { "section": "Mathematical Ability", "questions": 10, "minutes": 35 },
+        { "section": "Verbal Ability", "questions": 20, "minutes": 20 },
+        { "section": "Pseudocode", "questions": 5, "minutes": 10 },
+        { "section": "Puzzle Solving", "questions": 4, "minutes": 10 }
+      ],
+      "what_they_check": "Reasoning, quantitative ability, English and computational thinking (pseudocode output, puzzles). Several secondary sources agree on the 15/10/20/5/4 question split; section timings vary slightly between sources, and the total is reported as ~100 minutes. Sectional and overall cutoffs are reported.",
+      "prep": [
+        "Practise data-sufficiency, arrangements and syllogism sets for Reasoning (the hardest section per many candidates).",
+        "Mathematical Ability has few questions but long time: practise multi-step word problems, P&C and probability.",
+        "Practise tracing pseudocode output for loops, recursion and bitwise operators.",
+        "Do timed verbal sets (sentence correction, reading comprehension) to protect the verbal sectional cutoff."
+      ],
+      "negative_marking": null
+    },
+    {
+      "key": "sp_dse_coding",
+      "name": "Coding Assessment (SP / DSE)",
+      "kind": "coding",
+      "duration_min": 180,
+      "sections": [{ "section": "Coding problems (increasing difficulty)", "questions": null, "minutes": 180 }],
+      "what_they_check": "Problem-solving and algorithmic depth. Most secondary sources describe 3 problems of increasing difficulty (easy/medium/hard) in 3 hours; a December 2025 candidate report mentions 4 problems in 180 minutes, so the count is left unknown.",
+      "prep": [
+        "Practise medium-level DSA: greedy, two pointers, binary search, prefix sums, graphs (BFS/DFS).",
+        "Learn dynamic programming patterns (knapsack, LIS, grid DP) for the hardest problem.",
+        "Aim to fully pass the easier problems first, then attempt partial solutions on the hard one.",
+        "Practise under a 3-hour timer to build stamina."
+      ],
+      "negative_marking": null
+    },
+    {
+      "key": "technical_interview",
+      "name": "Technical Interview",
+      "kind": "technical",
+      "duration_min": null,
+      "sections": [],
+      "what_they_check": "Your project, one programming language, OOP, DBMS and DSA basics (per secondary guides). SP/DSE interviews go deeper into coding and, for DSE, digital/emerging-tech topics.",
+      "prep": [
+        "Revise OOP concepts with code examples in your chosen language.",
+        "Practise SQL queries and explain normalization and keys.",
+        "Be ready to code or dry-run a simple problem live and explain its complexity."
+      ],
+      "negative_marking": null
+    },
+    {
+      "key": "hr_interview",
+      "name": "HR Interview",
+      "kind": "hr",
+      "duration_min": null,
+      "sections": [],
+      "what_they_check": "Communication, attitude, flexibility on location and training, and fit. Sources say an HR round happens in some drives and is sometimes merged with the technical round.",
+      "prep": [
+        "Prepare answers on relocating to Mysuru for the Foundation Program and later to any project location.",
+        "Research Infosys's business and training model so 'Why Infosys?' sounds specific.",
+        "Practise a short, structured self-introduction."
+      ],
+      "negative_marking": null
+    }
+  ],
+  "cutoffs": {
+    "approx": true,
+    "aptitude_percent": null,
+    "sectional": true,
+    "note": "Not published; Infosys does not release official cutoffs. Secondary sources say both sectional and overall cutoffs exist. One prep site projects ~70–72% overall for the SE track, but labels it a projection, and older candidate reports cite lower figures, so no single number is given here.",
+    "source_refs": [5, 7]
+  },
+  "branch_expectations": {
+    "cse_it": {
+      "eligible": true,
+      "coding": "required",
+      "tech_topics": ["dsa_basics", "oop_concepts", "dbms", "sql", "operating_systems", "computer_networks", "java", "python"],
+      "note": "SE test includes pseudocode; SP/DSE require the coding assessment. CSE/IT candidates are expected to target SP/DSE and should be strong in DSA."
+    },
+    "ece_eee": {
+      "eligible": true,
+      "coding": "basic",
+      "tech_topics": ["c_language", "oop_concepts", "dbms", "sql", "dsa_basics", "ece_core"],
+      "note": "Eligible for SE (confirm branch list in your drive notice). Pseudocode and basic programming are tested for everyone; SP/DSE still require the full coding assessment."
+    },
+    "mech_civil": {
+      "eligible": true,
+      "coding": "basic",
+      "tech_topics": ["c_language", "python", "dbms", "sql", "mech_core"],
+      "note": "Typically eligible for SE (confirm in notice). Focus on aptitude, pseudocode and one language; Infosys trains hires in its Foundation Program."
+    },
+    "all": {
+      "eligible": true,
+      "coding": "basic",
+      "tech_topics": ["c_language", "dbms", "sql"],
+      "note": "Secondary sources commonly cite 60% or 6.0 CGPA throughout and no active backlogs; one guide reports 65% for graduation. Eligibility can vary by college and drive."
+    }
+  },
+  "jd_skills": [
+    { "skill_key": "aptitude_logical", "level": "required", "roles": ["systems_engineer"], "note": "Reasoning Ability and Puzzle sections." },
+    { "skill_key": "aptitude_quant", "level": "required", "roles": ["systems_engineer"], "note": "Mathematical Ability section." },
+    { "skill_key": "aptitude_verbal", "level": "required", "roles": ["systems_engineer"], "note": "Verbal Ability section (20 questions)." },
+    { "skill_key": "pseudocode", "level": "required", "roles": ["systems_engineer"], "note": "Pseudocode section in the online test." },
+    { "skill_key": "dsa", "level": "required", "roles": ["sp", "dse"], "note": "3-hour coding assessment for SP/DSE." },
+    { "skill_key": "java", "level": "required", "roles": [], "note": "One programming language in depth (Java, Python, C/C++ all used by candidates)." },
+    { "skill_key": "oop", "level": "required", "roles": [], "note": "Common technical interview topic." },
+    { "skill_key": "dbms", "level": "required", "roles": [], "note": "DBMS and SQL basics in technical interview." },
+    { "skill_key": "projects", "level": "required", "roles": [], "note": "Expect detailed questions on your project." },
+    { "skill_key": "communication", "level": "required", "roles": [], "note": "Verbal section and interviews." },
+    { "skill_key": "web_basics", "level": "nice_to_have", "roles": ["dse"], "note": "DSE is described as focused on digital/full-stack work." },
+    { "skill_key": "certifications", "level": "nice_to_have", "roles": ["sp"], "note": "One source lists InfyTQ as preferred for SP; not an official requirement." }
+  ],
+  "hr_focus": [
+    "Willingness to relocate to Mysuru for the Foundation Program and then to any location.",
+    "Why Infosys and which role (SE/DSE/SP) fits you.",
+    "Clarity and confidence in communication.",
+    "Learning attitude for a long training program and new technologies."
+  ],
+  "sources": [
+    { "title": "Infosys Careers - Graduates", "url": "https://www.infosys.com/careers/graduates.html", "accessed": "2026-11-04", "kind": "official" },
+    { "title": "Infosys Careers - HackWithInfy", "url": "https://www.infosys.com/careers/hackwithinfy.html", "accessed": "2026-11-04", "kind": "official" },
+    { "title": "Digital Skilling - Infosys ESG Report 2026", "url": "https://www.infosys.com/about/esg/reports/2025-26/social-digital-talent.html", "accessed": "2026-11-04", "kind": "official" },
+    { "title": "Infosys Power Programmers - Strategic Technology Group", "url": "https://www.infosys.com/careers/power-programmers.html", "accessed": "2026-11-04", "kind": "official" },
+    { "title": "Infosys Syllabus and Test Pattern (placementpreparation.io)", "url": "https://www.placementpreparation.io/infosys/syllabus-and-test-pattern/", "accessed": "2026-11-04", "kind": "secondary" },
+    { "title": "Test Pattern & Selection Procedure of Infosys (Hitbullseye)", "url": "https://cpt.hitbullseye.com/Infosys-Test-Pattern.php", "accessed": "2026-11-04", "kind": "secondary" },
+    { "title": "Infosys Interview Questions 2026: Online Test, Technical and HR (Weekday)", "url": "https://www.weekday.works/post/infosys-interview-questions", "accessed": "2026-11-04", "kind": "secondary" },
+    { "title": "Infosys Cutoff 2026: Score Trends, Tier Analysis & Strategy (PapersAdda)", "url": "https://papersadda.pages.dev/article/infosys-cutoff-analysis-2026/", "accessed": "2026-11-04", "kind": "secondary" },
+    { "title": "How to Crack Infosys Specialist Programmer & DSE Interview in 2026 (Great Learning)", "url": "https://www.mygreatlearning.com/blog/infosys-sp-dse-interview-guide-2026/", "accessed": "2026-11-04", "kind": "secondary" }
+  ],
+  "disclaimer": "Compiled from public sources on 2026-11-04. Patterns change every season; LearnCrew is not affiliated with Infosys. This is preparation guidance, not a guarantee of selection."
+}

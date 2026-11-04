@@ -1,0 +1,77 @@
+[
+ {
+  "id": "C-TEC-OOC-0001",
+  "topic": "oop_concepts",
+  "skill_key": "oop",
+  "branches": [
+   "cse_it",
+   "all"
+  ],
+  "title": "The four pillars of OOP",
+  "body": "Encapsulation bundles data with the methods that operate on it and restricts direct access, typically with private fields and public methods that validate input. Abstraction exposes what an object does and hides how it does it, through abstract classes and interfaces. Inheritance lets a class reuse and extend another class (an IS-A relationship); Java allows a single superclass but multiple interfaces. Polymorphism means one interface with many forms. Compile-time polymorphism is method overloading. Run-time polymorphism is method overriding with dynamic dispatch through a base-class reference.",
+  "example": "class Account {\n  private double balance;               // encapsulation\n  public void deposit(double amt) {\n    if (amt > 0) balance += amt;\n  }\n}\nShape s = new Circle();  s.area();     // run-time polymorphism",
+  "interview_tip": "For each pillar give a one-line definition plus a real example such as a bank account, shapes or vehicles. Be ready to explain how encapsulation differs from abstraction.",
+  "status": "golden",
+  "version": 1
+ },
+ {
+  "id": "C-TEC-OOC-0002",
+  "topic": "oop_concepts",
+  "skill_key": "oop",
+  "branches": [
+   "cse_it",
+   "all"
+  ],
+  "title": "Overloading vs overriding",
+  "body": "Overloading means several methods in the same class share a name but have different parameter lists (in number, type or order). The compiler picks one using the declared argument types, which is compile-time or static polymorphism. Return type alone cannot distinguish overloads. Overriding means a subclass redefines an inherited method with the same signature and a compatible (covariant) return type, without weaker access. The call is resolved at run time from the actual object type, which is dynamic dispatch. Static, private and final methods cannot be overridden; a static method with the same signature in a subclass hides the parent's method instead.",
+  "example": "class Calc { int add(int a, int b) {…}  double add(double a, double b) {…} } // overload\nclass Animal { void sound() { print(\"…\"); } }\nclass Dog extends Animal { @Override void sound() { print(\"Bark\"); } } // override",
+  "interview_tip": "Mention @Override: it makes the compiler catch an accidental overload, such as a typo in the parameter types.",
+  "status": "golden",
+  "version": 1
+ },
+ {
+  "id": "C-TEC-OOC-0003",
+  "topic": "oop_concepts",
+  "skill_key": "oop",
+  "branches": [
+   "cse_it",
+   "all"
+  ],
+  "title": "Abstract class vs interface (Java)",
+  "body": "An abstract class can have constructors, instance fields, concrete methods and abstract methods. A class can extend only one, so it suits closely related classes that share state or code. An interface defines a contract. Its fields are implicitly public static final, it has no constructors, and since Java 8 it can contain default and static methods, plus private methods since Java 9. A class can implement many interfaces, which is how Java supports multiple inheritance of type. Neither can be instantiated directly. Choose an interface for a capability shared by unrelated classes (Comparable, Runnable) and an abstract class for a common base with shared implementation.",
+  "example": "abstract class Employee {\n  protected String name;\n  Employee(String n) { name = n; }\n  abstract double pay();\n}\ninterface Taxable { double TAX = 0.1; double tax(); }\nclass Manager extends Employee implements Taxable { … }",
+  "interview_tip": "Mentioning Java 8 default methods shows you know that 'interfaces have no method bodies' is outdated.",
+  "status": "golden",
+  "version": 1
+ },
+ {
+  "id": "C-TEC-OOC-0004",
+  "topic": "oop_concepts",
+  "skill_key": "oop",
+  "branches": [
+   "cse_it",
+   "all"
+  ],
+  "title": "SOLID principles",
+  "body": "S, Single Responsibility: a class should have one reason to change. O, Open/Closed: a class should be open for extension but closed for modification; add new classes instead of editing switch statements. L, Liskov Substitution: subtypes must be usable wherever the base type is expected without breaking its behaviour (a Square forced into Rectangle is the classic counter-example). I, Interface Segregation: prefer small, focused interfaces so that clients do not implement methods they do not need. D, Dependency Inversion: high-level code should depend on abstractions, not on concrete classes, usually achieved with dependency injection.",
+  "example": "// DIP + OCP\ninterface PaymentMethod { void pay(double amt); }\nclass UpiPayment implements PaymentMethod { … }\nclass CardPayment implements PaymentMethod { … }\nclass Checkout {\n  private final PaymentMethod pm;\n  Checkout(PaymentMethod pm) { this.pm = pm; }\n}",
+  "interview_tip": "Interviewers usually ask for a single principle with an example. Prepare one short code smell and its fix for each letter.",
+  "status": "golden",
+  "version": 1
+ },
+ {
+  "id": "C-TEC-OOC-0005",
+  "topic": "oop_concepts",
+  "skill_key": "oop",
+  "branches": [
+   "cse_it",
+   "all"
+  ],
+  "title": "Composition vs inheritance",
+  "body": "Inheritance (IS-A) reuses code by extending a class. It couples the child tightly to the parent's implementation, and changes in the base class can break subclasses (the fragile base class problem). Composition (HAS-A) builds a class from other objects and delegates work to them. It is more flexible, because parts can be swapped at run time, often behind interfaces. Composition is strong ownership: the part dies with the whole, as rooms do with a house. Aggregation is weak ownership: the part lives independently, as a professor does outside a department. The guideline 'favour composition over inheritance' means using inheritance only for true IS-A relationships that satisfy Liskov substitution.",
+  "example": "class Engine { void start() {…} }\nclass Car {\n  private final Engine engine = new Engine();  // composition\n  void start() { engine.start(); }              // delegation\n}",
+  "interview_tip": "Contrast 'a Car IS-A Vehicle' with 'a Car HAS-A Engine', then explain why composition makes testing and swapping implementations easier.",
+  "status": "golden",
+  "version": 1
+ }
+]

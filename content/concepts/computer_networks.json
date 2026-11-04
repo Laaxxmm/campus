@@ -1,0 +1,82 @@
+[
+  {
+    "id": "C-TEC-CNW-0001",
+    "topic": "computer_networks",
+    "skill_key": "networks",
+    "branches": [
+      "cse_it",
+      "ece_eee",
+      "all"
+    ],
+    "title": "OSI model vs TCP/IP model",
+    "body": "The OSI reference model has seven layers: Physical, Data link, Network, Transport, Session, Presentation and Application. The TCP/IP model, which the Internet actually uses, has four: Network Access (link), Internet, Transport and Application. OSI's top three layers map to the TCP/IP Application layer, and its bottom two to Network Access. Data units change name as they move down: data, segment (TCP) or datagram (UDP), packet, frame, bits. Typical devices: hub at Physical, switch at Data link, router at Network.",
+    "example": "Typing a URL: HTTP (Application) → TCP segment on port 443 (Transport) → IP packet (Network) → Ethernet frame with MAC addresses (Data link) → signals on the wire (Physical).",
+    "interview_tip": "A mnemonic for OSI from the bottom: 'Please Do Not Throw Sausage Pizza Away'.",
+    "status": "golden",
+    "version": 1
+  },
+  {
+    "id": "C-TEC-CNW-0002",
+    "topic": "computer_networks",
+    "skill_key": "networks",
+    "branches": [
+      "cse_it",
+      "ece_eee",
+      "all"
+    ],
+    "title": "TCP vs UDP",
+    "body": "Both are transport-layer protocols that use port numbers to reach processes. TCP is connection-oriented: it sets up a connection with a three-way handshake (SYN, SYN-ACK, ACK), numbers bytes, acknowledges and retransmits lost data, delivers in order, and applies flow control (sliding window) and congestion control. UDP is connectionless: it sends independent datagrams with an 8-byte header and no delivery, ordering or retransmission guarantees, which keeps latency and overhead low. Use TCP for web, email and file transfer; UDP suits DNS queries, VoIP, live streaming and online games, where speed matters more than perfect delivery.",
+    "example": "Client SYN seq = 1000 → server SYN-ACK seq = 5000, ack = 1001 → client ACK ack = 5001.",
+    "interview_tip": "Give one application for each and say why: losing a video frame is better than waiting for it to be retransmitted.",
+    "status": "golden",
+    "version": 1
+  },
+  {
+    "id": "C-TEC-CNW-0003",
+    "topic": "computer_networks",
+    "skill_key": "networks",
+    "branches": [
+      "cse_it",
+      "ece_eee",
+      "all"
+    ],
+    "title": "DNS, HTTP and HTTPS",
+    "body": "DNS translates domain names into IP addresses. A client asks its resolver (normally over UDP port 53); the resolver queries root, TLD and authoritative servers if needed, and caches answers according to their TTL. HTTP is a stateless request-response protocol (methods GET, POST, PUT, DELETE; status codes such as 200, 301, 404, 500), traditionally on port 80. HTTPS is HTTP over TLS on port 443: the TLS handshake authenticates the server with its certificate and agrees symmetric session keys, which then encrypt and integrity-protect all traffic. Cookies or tokens add state on top of stateless HTTP.",
+    "example": "Visiting a site: DNS lookup → TCP handshake → TLS handshake → HTTP GET → response 200 OK.",
+    "interview_tip": "'What happens when you type a URL?' is a very common question: walk through DNS, TCP, TLS, HTTP and rendering in order.",
+    "status": "golden",
+    "version": 1
+  },
+  {
+    "id": "C-TEC-CNW-0004",
+    "topic": "computer_networks",
+    "skill_key": "networks",
+    "branches": [
+      "cse_it",
+      "ece_eee",
+      "all"
+    ],
+    "title": "IPv4 addressing and subnetting",
+    "body": "An IPv4 address has 32 bits written as four octets. The prefix length (/n) or subnet mask says how many leading bits identify the network; the remaining bits identify hosts. A subnet with h host bits has 2^h addresses, of which 2^h − 2 are usable, because the first (network) and last (broadcast) addresses are reserved. Subnets begin at multiples of the block size, which is 256 minus the last mask octet that is not 255. Borrowing b host bits creates 2^b subnets. Private ranges are 10.0.0.0/8, 172.16.0.0/12 and 192.168.0.0/16.",
+    "example": "192.168.10.77/27: block size 32 → subnets .0, .32, .64, .96… → network .64, broadcast .95, usable .65–.94 (30 hosts).",
+    "interview_tip": "Practise block-size subnetting until it takes under a minute; binary conversion is slower in timed tests.",
+    "status": "golden",
+    "version": 1
+  },
+  {
+    "id": "C-TEC-CNW-0005",
+    "topic": "computer_networks",
+    "skill_key": "networks",
+    "branches": [
+      "cse_it",
+      "ece_eee",
+      "all"
+    ],
+    "title": "Hub, switch and router",
+    "body": "A hub is a Physical-layer device that repeats every incoming signal out of all other ports, so all devices share one collision domain. A switch works at the Data link layer: it learns which MAC address sits on which port and forwards each frame only where it needs to go, giving every port its own collision domain while the switch remains one broadcast domain. A router works at the Network layer: it connects different networks, forwards packets by destination IP address using longest prefix match, and separates broadcast domains. ARP links the two worlds by resolving an IP address to a MAC address on the local network.",
+    "example": "Routing table with 10.1.0.0/16 and 10.1.5.128/25: a packet for 10.1.5.130 matches both and follows the /25 entry.",
+    "interview_tip": "Mention collision domain vs broadcast domain; it is the cleanest way to contrast the three devices.",
+    "status": "golden",
+    "version": 1
+  }
+]

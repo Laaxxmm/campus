@@ -1,4 +1,4 @@
-# LearnCrew Campus — Orchestrator Prompt v2 (4 Nov 2026)
+# LearnCrew Campus — Orchestrator Prompt v3 (4 Nov 2026) — Placement Readiness Coach
 Covers: top-notch UI design system, hardened multi-tenant backend, test-every-feature QA gates, parallel cloud-session run.
 
 ## A. Parallel cloud session — do this once
@@ -6,7 +6,7 @@ Covers: top-notch UI design system, hardened multi-tenant backend, test-every-fe
 2. Paste EVERYTHING below the `=====` line as the first message. Never paste it again.
 3. Create `.env.local` from `.env.example` (the agent writes it) with placeholders:
    `DATABASE_URL=` (local Docker Postgres first), `AUTH_SECRET=` (`openssl rand -base64 32`), `ANTHROPIC_API_KEY=`, `EMAIL_SERVER=`/`RESEND_API_KEY=`, `APP_URL=http://localhost:3000`.
-4. Railway comes LATER (Phase 8): new project → Postgres plugin → deploy from GitHub → copy env vars.
+4. Railway comes LATER (Phase 10): new project → Postgres plugin → deploy from GitHub → copy env vars.
 5. Progress lives in `PROGRESS.md`. If the session pauses, type only `continue`. The agent never asks "what next" — it only pauses for secrets/logins.
 6. Running in parallel with other sessions: each session works on its own branch `phase-N-*`, reads PROGRESS.md first, and never redoes a phase marked ✅ with green tests.
 
@@ -41,7 +41,7 @@ Current phase: N — name | Last green: <timestamp> | Tests: unit X/X, e2e Y/Y
 - Never delete tests to pass. Never disable lint/type rules. Never commit secrets.
 
 # MODEL USE
-- Build/coding: Claude Sonnet (latest) in the session; Opus only for architecture review at Phase 0 and Phase 10.
+- Build/coding: Claude Sonnet (latest) in the session; Opus only for architecture review at Phase 0 and Phase 12; Haiku for insight phrasing + question verify; Sonnet for on-demand resume/LinkedIn drafts.
 - Question generation: Sonnet batch (JSON schema enforced via Zod); Haiku for tagging/difficulty checks and explanation rewrites; 10% human review queue in admin.
 
 # DESIGN SYSTEM (inspired by learncrew.org — recreate, do NOT copy logos/photos/copy)
@@ -261,45 +261,74 @@ export const invites = pgTable("invites", {
 {"id":"Q-QNT-PCT-0001","section":"quant","topic":"percentages","subtopic":"successive_change","stem":"...","options":["0%","−4%","+4%","−2%"],"answer_index":1,"explanation":"≤80 words","shortcut":"a+b+ab/100","company_tags":["tcs_nqt","infosys"],"difficulty":3,"time_sec":60,"source":"seed","seed_id":null,"status":"golden","variant_group":"PCT-SUCC-01","version":1}
 ```
 
-# PHASES (each ends with its QA gate — phase is ✅ only when gate green)
+# PRODUCT PILLARS (v3 — Campus is a READINESS COACH; mocks are the measurement layer)
+1. **Measure** — drills + real mocks (timer, palette, negative marks). Every attempt emits per-question events (topic, difficulty, time_ms, changed_answer, marked, correct).
+2. **Diagnose (Insight engine)** — after EVERY drill/mock: topic/skill gaps, time leaks (Q > 1.5× target time, skipped-then-wrong), negative-mark patterns (guessing rate on low-confidence topics), accuracy-vs-speed quadrant, trend vs last 3 attempts. Output: "What's going wrong" (≤3 bullets) + "Focus this week" (3 topics with daily Q targets) + auto-generated next drill.
+3. **Company crack-path** — student picks targets (TCS NQT, Infosys, Accenture, Wipro, Cognizant + 1 optional dream company). Per company: realistic bar (aptitude section cutoffs/time, coding/tech round expectation by branch: CSE/IT vs ECE/EEE vs Mech/Civil), round-by-round plan, technical MCQ + short concept drills tagged by role/stack (DBMS, OOP, OS, CN, SQL, Python/Java/C, DSA basics, branch core), HR/interview Qs with model-answer structure (STAR). Show "gap to bar" per round.
+4. **Missing-skills checklist** — compare readiness profile + self-declared skills/projects vs curated company JD patterns (`content/companies/*.json`, versioned, sourced, dated). Each item: have / weak / missing + one concrete action + resource link. Be REALISTIC: label "required" vs "nice-to-have"; never promise selection.
+5. **Resume + LinkedIn coach** — from readiness profile: which projects to highlight, keywords matching target company JD, weak sections (no metrics, no summary, skills list without evidence), headline/About suggestions. Templates first (deterministic, free); Claude Sonnet drafts only on explicit "Draft for me" click (rate-limited, per-student monthly quota, batch/offline for cohorts). Student copies text manually — **NEVER auto-post or connect to LinkedIn APIs**; no scraping of profiles. Resume upload: PDF → text server-side, store text only if consented, delete file after parse.
+6. **TPO cohort view** — cohort weak topics, interview-ready % (composite: aptitude ≥ company bar + tech concept score + resume checklist ≥80% + ≥1 mock interview-style set), per-company readiness funnel, not just mock scores. Actionable: "assign drill pack to 42 students weak in Time & Work".
+
+## Readiness score (deterministic, explainable — no black box)
+`readiness(company) = 0.40·aptitude_vs_cutoff + 0.30·tech_concepts + 0.15·consistency(streak/attempts) + 0.15·profile(resume+LI checklist)`; each component 0–100 with "why" breakdown shown in UI. Weights in config, unit-tested.
+
+## Insight engine rules
+- Pure TS rules in `src/lib/insights/*` compute facts from attempt events (deterministic, tested). Claude Haiku only rephrases facts into friendly text (input = computed JSON, no PII); fallback template if LLM fails. Cache per attempt.
+- Never show insight claims not backed by ≥5 attempts on that topic ("not enough data yet").
+
+## Extra schema (add to src/db/schema.ts in Phase 0)
+`target_companies(student_id, company_key, is_dream, created_at)`, `company_profiles(key, name, version, rounds jsonb, cutoffs jsonb, branch_expectations jsonb, jd_skills jsonb, sources jsonb, updated_at)`, `skill_tags(id, key, kind: aptitude|tech|soft, branch)`, `student_skills(student_id, skill_key, status: have|weak|missing, evidence, updated_at)`, `attempt_insights(attempt_id, facts jsonb, text, model, created_at)`, `weekly_focus(student_id, week_start, topics jsonb, daily_targets jsonb)`, `profile_reviews(student_id, kind: resume|linkedin, checklist jsonb, draft_text, model, consent bool, created_at)`, `readiness_snapshots(student_id, company_key, score, breakdown jsonb, taken_at)`. All tenant-scoped via college_id through student; same IDOR tests.
+
+## Extra security
+LLM prompt-injection guard on resume text (treat as data, strip instructions, output schema-validated by Zod); PII minimisation (no phone/address sent to Claude); DPDP consent screen before resume upload; per-user LLM quotas; drafts never visible to TPO unless student shares.
+
+## Navigation additions
+Student tabs: Today · Practice · Mocks · **Insights** · **Companies** · **Profile coach**. Result screen of every drill/mock ends with Insight card + "Start focus drill" CTA. TPO: Overview (interview-ready %) · Weak topics · Companies funnel · Students · Mocks.
+
+# PHASES (each ends with its QA gate — phase is ✅ only when gate green). Insights are built WITH measurement, not after ship.
 ### Phase 0 — Design system + architecture docs
-`docs/DESIGN.md` (tokens above), `docs/ARCHITECTURE.md`, `docs/SECURITY.md` (threat model: IDOR, CSRF, brute force, answer leakage, cheating). Gate: docs exist, tokens file compiles.
+`docs/DESIGN.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md` (IDOR, CSRF, brute force, answer leakage, cheating, prompt injection, PII), `docs/PRODUCT.md` (6 pillars, readiness formula). Gate: docs exist, tokens compile, schema incl. coach tables typechecks.
 ### Phase 1 — Scaffold
-Next.js, Tailwind theme from tokens, shadcn re-themed, Drizzle, env.ts, Vitest, Playwright, CI, security headers, `/dev/ui` component gallery. Gate: CI green, header test passes.
+Next.js, Tailwind tokens, shadcn re-themed, Drizzle, env.ts, Vitest, Playwright, CI, security headers, `/dev/ui`. Gate: CI green, header test.
 ### Phase 2 — Auth + roles + tenancy
-Auth.js, RBAC, scopedDb, rate limiter, audit logger. Gate: unit tests for RBAC matrix, IDOR tests, rate-limit test, cookie flags test.
-### Phase 3 — Question bank + generation pipeline
-Zod question schema (stem, options 4, correct idx, explanation, topic, subtopic, difficulty 1–5, pattern tag e.g. TCS-NQT-numerical, source). Claude batch gen → Haiku verify (solve independently; reject if disagree) → dedupe (normalised hash + similarity) → review queue → publish. Seed 600 Q (quant, logical, verbal, DI). Gate: schema tests, verifier test with fixtures, seed count check.
-### Phase 4 — Student daily drill + streak + PWA
-Gate: e2e: login → drill 10 Q → streak increments → offline shell loads; a11y check (axe) passes.
-### Phase 5 — Adaptive engine + real mocks
-Mock UX spec above, autosave/resume, server timing, scoring, negative marks, result + review mode. Gate: e2e full mock incl. refresh mid-test, auto-submit at timer 0 (fake clock), answer-leak test (no correct idx in pre-submit payloads).
-### Phase 6 — TPO dashboard
-Heatmap (batch × topic), readiness score, student drilldown, CSV export, create/schedule mock for batch. Gate: e2e TPO flows; TPO from college Y blocked.
-### Phase 7 — Admin
-Colleges, CSV student import (Zod row errors report), review queue, audit log viewer. Gate: import with bad rows test, audit entries asserted.
-### Phase 8 — Railway deploy
-Dockerfile/nixpacks, `railway.json`, migrations on deploy, health check, env list in README. Pause for Railway login only. Gate: deployed `/api/health` 200, smoke e2e against prod URL.
-### Phase 9 — Pilot hardening
-Lighthouse ≥90/95, load test 200 concurrent mock-takers (k6), backups enabled, error pages. Gate: reports committed in `docs/reports/`.
-### Phase 10 — Final QA matrix (blocks DONE)
-Create `docs/QA_MATRIX.md` and run every row (automated where possible, Playwright for UI):
+Auth.js, RBAC, scopedDb, rate limiter, audit logger, consent records. Gate: RBAC matrix, IDOR, rate-limit, cookie flags tests.
+### Phase 3 — Content: question bank + tech concept bank + company profiles
+Aptitude pipeline (Claude gen → Haiku verify → dedupe → review → publish), seed 600 aptitude Q. Tech concept bank: 300 MCQ + 100 short-concept cards tagged skill/role/branch (DBMS, OOP, OS, CN, SQL, DSA basics, langs, ECE/Mech core). `content/companies/{tcs,infosys,accenture,wipro,cognizant}.json` with rounds, cutoffs (marked "approx, source + date"), branch expectations, jd_skills; Zod-validated. Gate: schema tests, verifier fixtures, seed counts, every company file has sources.
+### Phase 4 — Drill + attempt events + streak + PWA
+Every answer logs event (time_ms, changed, marked). Gate: e2e login → drill 10 Q → events stored → streak → offline shell; axe pass.
+### Phase 5 — Real mocks + Insight engine v1
+Mock UX, autosave/resume, server timing, scoring, negative marks, review mode; insight rules (gaps, time leaks, negative-mark pattern, trend), result Insight card, Focus-this-week + auto focus drill. Gate: e2e full mock incl refresh/autosubmit/leak test; unit tests per insight rule with fixtures; "not enough data" path tested; LLM-down fallback test.
+### Phase 6 — Company crack-path + missing-skills checklist
+Target picker (5 + dream), per-company bar vs student, round plan, tech MCQ/concept drills by role/stack, HR question cards, skills checklist have/weak/missing with actions. Readiness score with breakdown. Gate: readiness formula unit tests, e2e pick company → see gap → start tech drill → checklist updates.
+### Phase 7 — Resume + LinkedIn coach
+Consent → resume PDF parse → checklist (sections, metrics, keywords vs target JD), LinkedIn checklist (headline, About, skills, featured projects) from self-entered fields; templates; "Draft for me" Sonnet with quota; copy buttons; no LinkedIn integration. Gate: prompt-injection fixture test, Zod output test, quota test, file deleted after parse test, TPO cannot see unshared drafts.
+### Phase 8 — TPO dashboard (coach view)
+Cohort weak topics heatmap, interview-ready % per company funnel, student drilldown (insights + checklist, not drafts), assign focus pack to segment, schedule mock, CSV export. Gate: e2e TPO flows; cross-college blocked.
+### Phase 9 — Admin
+Colleges, CSV import, question/tech/company-profile review queues, LLM usage/quota view, audit log. Gate: bad-rows import test, audit asserted.
+### Phase 10 — Railway deploy
+Dockerfile/nixpacks, `railway.json`, migrations, health check, env list. Pause for Railway login only. Gate: `/api/health` 200, prod smoke e2e.
+### Phase 11 — Pilot hardening
+Lighthouse ≥90/95, k6 200 concurrent mock-takers, backups, error pages, LLM cost report (₹/student/month). Gate: reports in `docs/reports/`.
+### Phase 12 — Final QA matrix (blocks DONE)
+`docs/QA_MATRIX.md`, run every row:
 | Area | Route/API | student | tpo | admin | anon | Test |
 |---|---|---|---|---|---|---|
 | Landing/login | /, /login | ✓ | ✓ | ✓ | ✓ | e2e auth |
-| Today/drill | /app/today, action submitAnswer | ✓ | ✗ | ✗ | redirect | e2e drill, rate-limit |
-| Mocks list/take/result/review | /app/mocks/* | ✓ own | ✗ | ✗ | redirect | e2e mock, resume, autosubmit, leak |
-| Progress/streak | /app/progress | ✓ own | ✗ | ✗ | redirect | e2e |
-| TPO overview/heatmap | /tpo | ✗ | ✓ own college | ✓ | redirect | e2e + IDOR |
-| TPO batches/students/export | /tpo/* | ✗ | ✓ own | ✓ | redirect | e2e + CSV |
-| TPO schedule mock | action createMock | ✗ | ✓ | ✓ | 401 | audit asserted |
-| Admin colleges/import/review/audit | /admin/* | ✗ | ✗ | ✓ (re-auth) | redirect | e2e + audit |
+| Today/drill | /app/today | ✓ | ✗ | ✗ | redirect | e2e drill, events, rate-limit |
+| Mocks take/result/review | /app/mocks/* | ✓ own | ✗ | ✗ | redirect | e2e mock, resume, autosubmit, leak |
+| Insights + focus | /app/insights | ✓ own | ✗ | ✗ | redirect | e2e + rule unit tests |
+| Companies crack-path | /app/companies/* | ✓ own | ✗ | ✗ | redirect | e2e + readiness tests |
+| Skills checklist | /app/companies/[k]/skills | ✓ own | ✗ | ✗ | redirect | e2e |
+| Profile coach | /app/profile-coach | ✓ own | ✗ | ✗ | redirect | consent, injection, quota, deletion |
+| TPO overview/weak topics/funnel | /tpo | ✗ | ✓ own college | ✓ | redirect | e2e + IDOR |
+| TPO students/assign/export | /tpo/* | ✗ | ✓ own | ✓ | redirect | e2e + CSV + no-draft-leak |
+| Admin | /admin/* | ✗ | ✗ | ✓ (re-auth) | redirect | e2e + audit |
 | Health | /api/health | ✓ | ✓ | ✓ | ✓ | unit |
-Plus: CSRF rejection test, security headers test, cookie flags, gitleaks clean, pnpm audit no high, axe zero serious, Lighthouse, mobile 360px screenshots of every main screen in `docs/screens/`.
-Every row must be ✅ in PROGRESS "Feature test registry". If any red: fix, rerun the full matrix.
+Plus CSRF, headers, cookies, gitleaks, pnpm audit, axe, Lighthouse, 360px screenshots in `docs/screens/`. Any red: fix, rerun full matrix.
 
 # DEFINITION OF DONE
-All phases ✅, Phase 10 matrix fully green, deployed on Railway, README with run/deploy/env, demo accounts (student/tpo/admin) seeded for one pilot college. Then write "DONE" in PROGRESS with the prod URL and stop.
+All phases ✅, Phase 12 matrix fully green, deployed on Railway, README with run/deploy/env, demo accounts (student/tpo/admin) seeded for one pilot college. Then write "DONE" in PROGRESS with the prod URL and stop.
 
 # START NOW
 If PROGRESS.md missing: create it and begin Phase 0. Otherwise resume from it. Do not ask what to do next.

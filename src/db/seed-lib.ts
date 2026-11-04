@@ -137,13 +137,18 @@ export async function counts() {
     select 'drills', count(*)::int from drills union all
     select 'attempts', count(*)::int from attempts union all
     select 'skills', count(*)::int from skills union all
-    select 'streaks', count(*)::int from streaks`);
+    select 'streaks', count(*)::int from streaks union all
+    select 'concept_cards', count(*)::int from concept_cards union all
+    select 'hr_questions', count(*)::int from hr_questions union all
+    select 'company_profiles', count(*)::int from company_profiles`);
   return Object.fromEntries(r.map((x) => [x.t, x.n]));
 }
 
 export async function seedAll(opts: SeedOptions) {
   const { seedQuestions, seedBlueprintsAndMocks, seedActivity, syncCollegeAccess } = await import("./seed-content");
   await seedQuestions();
+  const { seedV3Content } = await import("./seed-v3");
+  await seedV3Content();
   await seedBlueprintsAndMocks();
   const people = await seedPeople(opts);
   await syncCollegeAccess();

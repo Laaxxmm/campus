@@ -1,0 +1,414 @@
+[
+  {
+    "id": "Q-TEC-OSY-0001",
+    "section": "tech",
+    "topic": "operating_systems",
+    "subtopic": "processes_threads",
+    "stem": "Which of the following is shared by all threads belonging to the same process?",
+    "options": [
+      "Stack",
+      "Program counter",
+      "CPU register set",
+      "Heap memory and global variables"
+    ],
+    "answer_index": 3,
+    "explanation": "Threads of one process share its address space: code, global/static data, heap and open files. Each thread keeps its own stack, program counter and register set so it can execute independently.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "infosys",
+      "wipro"
+    ],
+    "difficulty": 1,
+    "time_sec": 30,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "OSY-THR-SHARE-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-OSY-0002",
+    "section": "tech",
+    "topic": "operating_systems",
+    "subtopic": "scheduling",
+    "stem": "Which of the following CPU scheduling algorithms is preemptive by design?",
+    "options": [
+      "First Come First Serve (FCFS)",
+      "Round Robin",
+      "Non-preemptive Shortest Job First",
+      "Non-preemptive Priority scheduling"
+    ],
+    "answer_index": 1,
+    "explanation": "Round Robin gives each process a fixed time quantum; when the quantum expires the running process is preempted and moved to the back of the ready queue. FCFS and the non-preemptive variants let a process run until it blocks or finishes.",
+    "shortcut": null,
+    "company_tags": [
+      "accenture",
+      "cognizant"
+    ],
+    "difficulty": 1,
+    "time_sec": 30,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "OSY-SCH-PREEMPT-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-OSY-0003",
+    "section": "tech",
+    "topic": "operating_systems",
+    "subtopic": "processes_threads",
+    "stem": "Why is a context switch between two threads of the same process usually cheaper than a context switch between two different processes?",
+    "options": [
+      "The threads share one address space, so page tables and memory mappings need not be switched",
+      "Threads have no registers that need to be saved",
+      "Thread switches never involve the operating system kernel",
+      "Threads cannot be preempted, so no state is saved"
+    ],
+    "answer_index": 0,
+    "explanation": "Every thread still has registers, a stack pointer and a program counter to save. The saving comes from the shared address space: the OS need not switch page tables, and TLB and cache contents stay useful, which makes thread switches lighter.",
+    "shortcut": null,
+    "company_tags": [
+      "infosys",
+      "capgemini"
+    ],
+    "difficulty": 2,
+    "time_sec": 45,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "OSY-THR-CTX-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-OSY-0004",
+    "section": "tech",
+    "topic": "operating_systems",
+    "subtopic": "deadlocks",
+    "stem": "Which of the following is NOT one of the four necessary (Coffman) conditions for a deadlock?",
+    "options": [
+      "Mutual exclusion",
+      "Hold and wait",
+      "Circular wait",
+      "Starvation"
+    ],
+    "answer_index": 3,
+    "explanation": "A deadlock requires mutual exclusion, hold and wait, no preemption and circular wait to hold simultaneously. Starvation (a process waiting indefinitely while others progress) is a different problem and is not a deadlock condition.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "wipro",
+      "cognizant"
+    ],
+    "difficulty": 2,
+    "time_sec": 30,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "OSY-DL-COND-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-OSY-0005",
+    "section": "tech",
+    "topic": "operating_systems",
+    "subtopic": "scheduling",
+    "stem": "Three processes arrive at time 0 in the order P1, P2, P3 with CPU burst times 10 ms, 4 ms and 2 ms. Using FCFS scheduling, what is the average waiting time?",
+    "options": [
+      "2.67 ms",
+      "13.33 ms",
+      "8 ms",
+      "5.33 ms"
+    ],
+    "answer_index": 2,
+    "explanation": "FCFS runs P1 (0–10), P2 (10–14), P3 (14–16). Waiting times are 0, 10 and 14 ms, so the average is 24/3 = 8 ms. (13.33 ms is the average turnaround time; 2.67 ms is what SJF would give.)",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "accenture"
+    ],
+    "difficulty": 3,
+    "time_sec": 60,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "OSY-SCH-FCFS-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-OSY-0006",
+    "section": "tech",
+    "topic": "operating_systems",
+    "subtopic": "memory_paging",
+    "stem": "A system uses 32-bit logical addresses, a page size of 4 KB and a single-level page table with 4-byte entries. What is the size of one process's page table?",
+    "options": [
+      "1 MB",
+      "4 MB",
+      "4 KB",
+      "16 MB"
+    ],
+    "answer_index": 1,
+    "explanation": "4 KB = 2^12 bytes, so 12 bits are the offset and 32 − 12 = 20 bits are the page number. The table has 2^20 entries × 4 bytes = 2^22 bytes = 4 MB.",
+    "shortcut": "entries = 2^(address bits − offset bits)",
+    "company_tags": [
+      "infosys",
+      "capgemini",
+      "cognizant"
+    ],
+    "difficulty": 3,
+    "time_sec": 75,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "OSY-PG-TBLSZ-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-OSY-0007",
+    "section": "tech",
+    "topic": "operating_systems",
+    "subtopic": "processes_threads",
+    "stem": "Assuming every call to fork() succeeds, how many times is \"Hi\" printed by the program below?\n\n```c\n#include <stdio.h>\n#include <unistd.h>\n\nint main(void) {\n    fork();\n    fork();\n    fork();\n    printf(\"Hi\\n\");\n    return 0;\n}\n```",
+    "options": [
+      "3",
+      "6",
+      "7",
+      "8"
+    ],
+    "answer_index": 3,
+    "explanation": "Each fork() doubles the number of processes executing the code that follows: 1 → 2 → 4 → 8. All 8 processes (the original plus 7 children) reach printf, so \"Hi\" is printed 8 times.",
+    "shortcut": "n consecutive forks → 2^n processes",
+    "company_tags": [
+      "tcs_nqt",
+      "wipro"
+    ],
+    "difficulty": 3,
+    "time_sec": 45,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "OSY-THR-FORK-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-OSY-0008",
+    "section": "tech",
+    "topic": "operating_systems",
+    "subtopic": "memory_paging",
+    "stem": "A process has 3 page frames, all initially empty. Using LRU (Least Recently Used) page replacement, how many page faults occur for the reference string below?\n\n1, 3, 0, 3, 5, 6, 3, 1, 3, 6, 5, 0",
+    "options": [
+      "8",
+      "7",
+      "9",
+      "10"
+    ],
+    "answer_index": 0,
+    "explanation": "Faults occur on 1, 3, 0 (cold), 5 (evicts 1), 6 (evicts 0), 1 (evicts 5), 5 (evicts 1) and 0 (evicts 3). The remaining references (3, 3, 3, 6) are hits. Total = 8. FIFO would give 9 and Optimal 7.",
+    "shortcut": null,
+    "company_tags": [
+      "accenture",
+      "capgemini"
+    ],
+    "difficulty": 3,
+    "time_sec": 90,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "OSY-PG-LRU-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-OSY-0009",
+    "section": "tech",
+    "topic": "operating_systems",
+    "subtopic": "scheduling",
+    "stem": "Consider four processes (times in ms):\n\n```\nProcess  Arrival  Burst\nP1       0        7\nP2       1        5\nP3       2        2\nP4       3        1\n```\n\nUsing non-preemptive Shortest Job First (SJF), what is the average waiting time?",
+    "options": [
+      "4.75 ms",
+      "6.75 ms",
+      "3.00 ms",
+      "5.25 ms"
+    ],
+    "answer_index": 0,
+    "explanation": "Only P1 is present at t = 0, so it runs 0–7. Then the shortest jobs go first: P4 (7–8), P3 (8–10), P2 (10–15). Waiting = start − arrival: P1 0, P4 4, P3 6, P2 9. Average = 19/4 = 4.75 ms.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "cognizant",
+      "infosys"
+    ],
+    "difficulty": 4,
+    "time_sec": 90,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "OSY-SCH-SJF-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-OSY-0010",
+    "section": "tech",
+    "topic": "operating_systems",
+    "subtopic": "scheduling",
+    "stem": "Three processes arrive at time 0 in the order P1, P2, P3 with burst times 6 ms, 3 ms and 4 ms. Using Round Robin with a time quantum of 2 ms, what is the average turnaround time?",
+    "options": [
+      "6.67 ms",
+      "9.33 ms",
+      "11 ms",
+      "10.33 ms"
+    ],
+    "answer_index": 2,
+    "explanation": "Gantt chart: P1 0–2, P2 2–4, P3 4–6, P1 6–8, P2 8–9 (done), P3 9–11 (done), P1 11–13 (done). Turnaround = completion − arrival = 13, 9, 11. Average = 33/3 = 11 ms.",
+    "shortcut": null,
+    "company_tags": [
+      "accenture",
+      "wipro",
+      "tcs_nqt"
+    ],
+    "difficulty": 4,
+    "time_sec": 105,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "OSY-SCH-RR-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-OSY-0011",
+    "section": "tech",
+    "topic": "operating_systems",
+    "subtopic": "deadlocks",
+    "stem": "Four processes share one resource type. Each process may need up to 3 instances of it at the same time. What is the minimum number of instances that guarantees a deadlock can never occur?",
+    "options": [
+      "8",
+      "9",
+      "10",
+      "12"
+    ],
+    "answer_index": 1,
+    "explanation": "Worst case: every process holds 3 − 1 = 2 instances and waits for one more, using 4 × 2 = 8 instances. With one extra instance (9), at least one process can finish and release its resources, so deadlock is impossible.",
+    "shortcut": "n(k − 1) + 1",
+    "company_tags": [
+      "infosys",
+      "capgemini"
+    ],
+    "difficulty": 4,
+    "time_sec": 60,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "OSY-DL-MINRES-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-OSY-0012",
+    "section": "tech",
+    "topic": "operating_systems",
+    "subtopic": "memory_paging",
+    "stem": "A paging system has a TLB lookup time of 10 ns and a main-memory access time of 100 ns. The TLB hit ratio is 90%, and a TLB miss needs one extra memory access to read the (single-level) page table. What is the effective memory access time?",
+    "options": [
+      "110 ns",
+      "120 ns",
+      "130 ns",
+      "210 ns"
+    ],
+    "answer_index": 1,
+    "explanation": "Hit: 10 + 100 = 110 ns. Miss: 10 + 100 (page table) + 100 (data) = 210 ns. EAT = 0.9 × 110 + 0.1 × 210 = 99 + 21 = 120 ns.",
+    "shortcut": null,
+    "company_tags": [
+      "cognizant",
+      "capgemini",
+      "wipro"
+    ],
+    "difficulty": 4,
+    "time_sec": 90,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "OSY-PG-EAT-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-OSY-0013",
+    "section": "tech",
+    "topic": "operating_systems",
+    "subtopic": "deadlocks",
+    "stem": "Binary semaphores S and Q are both initialised to 1. Two processes run concurrently:\n\n```\nP1:                 P2:\nwait(S);            wait(Q);\nwait(Q);            wait(S);\n/* critical */      /* critical */\nsignal(Q);          signal(S);\nsignal(S);          signal(Q);\n```\n\nWhich statement is correct?",
+    "options": [
+      "A deadlock can occur for some interleavings, but not necessarily on every run",
+      "A deadlock occurs on every run",
+      "A deadlock can never occur because both semaphores start at 1",
+      "Mutual exclusion is violated: both processes can be in the critical section together"
+    ],
+    "answer_index": 0,
+    "explanation": "If P1 gets S and P2 gets Q before either takes its second semaphore, each waits forever for the other: circular wait. If one process completes both waits first, the run finishes normally. Mutual exclusion holds because a process needs both semaphores.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "infosys"
+    ],
+    "difficulty": 4,
+    "time_sec": 90,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "OSY-DL-SEMORD-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-OSY-0014",
+    "section": "tech",
+    "topic": "operating_systems",
+    "subtopic": "scheduling",
+    "stem": "Consider four processes (times in ms):\n\n```\nProcess  Arrival  Burst\nP1       0        6\nP2       1        3\nP3       2        8\nP4       4        2\n```\n\nUsing preemptive SJF (Shortest Remaining Time First), what is the average waiting time?",
+    "options": [
+      "4.5 ms",
+      "6.25 ms",
+      "5.0 ms",
+      "3.5 ms"
+    ],
+    "answer_index": 3,
+    "explanation": "P1 runs 0–1; P2 (3 < 5 remaining) preempts and runs 1–4; P4 runs 4–6; P1 resumes 6–11; P3 runs 11–19. Waiting = completion − arrival − burst: P1 5, P2 0, P3 9, P4 0. Average = 14/4 = 3.5 ms.",
+    "shortcut": null,
+    "company_tags": [
+      "accenture",
+      "cognizant"
+    ],
+    "difficulty": 5,
+    "time_sec": 120,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "OSY-SCH-SRTF-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-OSY-0015",
+    "section": "tech",
+    "topic": "operating_systems",
+    "subtopic": "processes_threads",
+    "stem": "Binary semaphores S1 = 1 and S2 = 0. Two processes run concurrently forever:\n\n```\nProcess X:          Process Y:\nwhile (true) {      while (true) {\n    wait(S1);           wait(S2);\n    print(\"0\");         print(\"1\");\n    signal(S2);         signal(S1);\n}                   }\n```\n\nWhich output is guaranteed?",
+    "options": [
+      "Strictly alternating 1010…, always starting with 1",
+      "Any interleaving of 0s and 1s",
+      "Strictly alternating 0101…, always starting with 0",
+      "Nothing is printed because both processes block immediately"
+    ],
+    "answer_index": 2,
+    "explanation": "Only X can start, since S1 = 1 and S2 = 0. After printing 0, X signals S2 and must wait on S1, which only Y releases after printing 1. So the processes take turns, starting with X: 0, 1, 0, 1, …",
+    "shortcut": null,
+    "company_tags": [
+      "wipro",
+      "capgemini",
+      "infosys"
+    ],
+    "difficulty": 5,
+    "time_sec": 90,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "OSY-THR-SEMALT-01",
+    "version": 1
+  }
+]

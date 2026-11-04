@@ -1,0 +1,169 @@
+{
+  "key": "tcs_nqt",
+  "name": "TCS (National Qualifier Test)",
+  "version": 1,
+  "updated_at": "2026-11-04",
+  "roles": [
+    { "key": "ninja", "name": "TCS Ninja", "note": "Entry track. Official page says the current drive focuses on Prime and Digital, with Ninja offers still made based on test performance. Secondary sources report ~₹3.3–3.9 LPA; verify in your offer." },
+    { "key": "digital", "name": "TCS Digital", "note": "Requires attempting the Advanced section of the NQT (official). Secondary sources report ~₹7 LPA for UG." },
+    { "key": "prime", "name": "TCS Prime", "note": "Highest track; requires the Advanced section and a stronger technical interview. Secondary sources report ~₹9–11.5 LPA for UG." }
+  ],
+  "rounds": [
+    {
+      "key": "foundation",
+      "name": "NQT Foundation Section (Numerical, Verbal, Reasoning)",
+      "kind": "aptitude",
+      "duration_min": 75,
+      "sections": [
+        { "section": "Numerical Ability", "questions": null, "minutes": null },
+        { "section": "Verbal Ability", "questions": null, "minutes": null },
+        { "section": "Reasoning Ability", "questions": null, "minutes": null }
+      ],
+      "what_they_check": "Core aptitude speed and accuracy. Sources agree the Foundation part is ~75 minutes, but they give different per-section question counts (totals of ~65 Foundation questions are common), so counts are left unknown. Clearing Foundation is the basis for a Ninja interview call.",
+      "prep": [
+        "Drill percentages, ratios, time-speed-distance, time & work and number system under a timer.",
+        "Practise reading comprehension, sentence completion and error-spotting daily for verbal.",
+        "Practise seating arrangement, coding-decoding, series and syllogisms for reasoning.",
+        "Take full-length timed mocks on an iON-style interface to get used to section-wise timers."
+      ],
+      "negative_marking": false
+    },
+    {
+      "key": "advanced_aptitude",
+      "name": "NQT Advanced Section: Advanced Quantitative & Reasoning",
+      "kind": "aptitude",
+      "duration_min": 25,
+      "sections": [
+        { "section": "Advanced Quantitative Ability", "questions": null, "minutes": null },
+        { "section": "Advanced Reasoning Ability", "questions": null, "minutes": null }
+      ],
+      "what_they_check": "Harder multi-step quant and reasoning problems. Officially, attempting the Advanced section is required to be considered for Digital or Prime. Most secondary sources give a shared ~25-minute window; question counts differ between sources.",
+      "prep": [
+        "Practise higher-difficulty quant: permutations & combinations, probability, geometry and data interpretation.",
+        "Work on multi-condition puzzles and logical deduction sets.",
+        "Decide in advance which question types you will skip so you do not run out of time."
+      ],
+      "negative_marking": false
+    },
+    {
+      "key": "advanced_coding",
+      "name": "NQT Advanced Section: Advanced Coding",
+      "kind": "coding",
+      "duration_min": 90,
+      "sections": [{ "section": "Coding problems", "questions": null, "minutes": 90 }],
+      "what_they_check": "Ability to write correct, efficient code that passes hidden test cases. Secondary sources consistently report 90 minutes but differ on the number of problems (2–3), and some report that solving more problems leads toward Digital/Prime. Languages reported include C, C++, Java, Python and C#.",
+      "prep": [
+        "Solve array, string, hashing, sorting and basic dynamic-programming problems on an online judge.",
+        "Practise reading input exactly as specified (STDIN) and handling edge cases.",
+        "Pick one language and learn its standard library well enough to write code without an IDE."
+      ],
+      "negative_marking": false
+    },
+    {
+      "key": "technical_interview",
+      "name": "Technical Interview",
+      "kind": "technical",
+      "duration_min": null,
+      "sections": [],
+      "what_they_check": "Projects, one programming language in depth, OOP, DBMS/SQL, OS basics and simple coding, per candidate-reported experiences. Digital/Prime technical rounds are reported to be harder than Ninja.",
+      "prep": [
+        "Be ready to explain every line of your final-year/major project and your role in it.",
+        "Revise OOP pillars, SQL joins/group by, normalization and process vs thread.",
+        "Practise writing a short program (e.g. string reversal, prime check) on paper or a shared editor."
+      ],
+      "negative_marking": null
+    },
+    {
+      "key": "managerial_interview",
+      "name": "Managerial Round",
+      "kind": "hr",
+      "duration_min": null,
+      "sections": [],
+      "what_they_check": "Situational judgement, teamwork, problem solving and some technical depth. Candidate reports describe it as a hybrid round, mostly for Digital/Prime; some panels merge TR, MR and HR into one sitting.",
+      "prep": [
+        "Prepare 3–4 STAR stories (conflict in a team, a deadline you met, a failure you learned from).",
+        "Expect follow-up 'what would you do if…' questions on client or team scenarios.",
+        "Know what TCS does at a high level (services, industries) so you can connect your answers to the role."
+      ],
+      "negative_marking": null
+    },
+    {
+      "key": "hr_interview",
+      "name": "HR Interview",
+      "kind": "hr",
+      "duration_min": null,
+      "sections": [],
+      "what_they_check": "Communication, career goals, willingness to relocate and work flexible shifts, and document/eligibility checks.",
+      "prep": [
+        "Prepare a crisp 60-second self-introduction.",
+        "Have honest answers ready on relocation, night shifts and any academic gap.",
+        "Keep marksheets, ID and NQT registration details handy for verification."
+      ],
+      "negative_marking": null
+    }
+  ],
+  "cutoffs": {
+    "approx": true,
+    "aptitude_percent": 65,
+    "sectional": null,
+    "note": "Not officially published by TCS. One secondary site (PapersAdda) reports candidate-estimated Ninja Foundation cutoffs of ~62–67% for 2025 (midpoint used here) and higher ranges for Digital; it labels these as unofficial estimates, and units vary across sites (percent vs percentile). Treat as a rough target only.",
+    "source_refs": [3, 4]
+  },
+  "branch_expectations": {
+    "cse_it": {
+      "eligible": true,
+      "coding": "required",
+      "tech_topics": ["dsa_basics", "oop_concepts", "dbms", "sql", "operating_systems", "computer_networks", "java", "python", "c_language"],
+      "note": "Attempt the Advanced coding section: it is required for Digital/Prime consideration, and CSE/IT candidates are typically probed deeper on DSA and projects."
+    },
+    "ece_eee": {
+      "eligible": true,
+      "coding": "basic",
+      "tech_topics": ["c_language", "oop_concepts", "dbms", "sql", "dsa_basics", "ece_core"],
+      "note": "The NQT drive is open to B.E/B.Tech graduates (confirm branch list in the current notice). For Ninja, Foundation is the main hurdle; attempt Advanced coding if aiming for Digital. Interviewers may ask some core-subject questions."
+    },
+    "mech_civil": {
+      "eligible": true,
+      "coding": "basic",
+      "tech_topics": ["c_language", "python", "dbms", "sql", "mech_core"],
+      "note": "Eligible as B.E/B.Tech graduates per secondary summaries of the official drive. Focus on Foundation aptitude plus one language and SQL basics; expect questions on why you are moving to IT."
+    },
+    "all": {
+      "eligible": true,
+      "coding": "basic",
+      "tech_topics": ["c_language", "dbms", "sql"],
+      "note": "Secondary sources commonly cite 60% (or 6.0 CGPA) throughout academics, a gap of at most 24 months, and backlog rules that vary by source (no pending backlog vs at most one at test time). Check the official notice for your batch."
+    }
+  },
+  "jd_skills": [
+    { "skill_key": "aptitude_quant", "level": "required", "roles": ["ninja", "digital", "prime"], "note": "Numerical Ability in Foundation; advanced quant for Digital/Prime." },
+    { "skill_key": "aptitude_logical", "level": "required", "roles": ["ninja", "digital", "prime"], "note": "Reasoning Ability in Foundation and Advanced sections." },
+    { "skill_key": "aptitude_verbal", "level": "required", "roles": ["ninja", "digital", "prime"], "note": "Verbal Ability section of Foundation." },
+    { "skill_key": "dsa", "level": "required", "roles": ["digital", "prime"], "note": "Advanced Coding problems decide Digital/Prime eligibility." },
+    { "skill_key": "c", "level": "required", "roles": [], "note": "At least one language (C, C++, Java, Python or C# reported) for coding and the technical interview." },
+    { "skill_key": "oop", "level": "required", "roles": [], "note": "Commonly asked in technical interviews." },
+    { "skill_key": "dbms", "level": "required", "roles": [], "note": "DBMS/SQL basics are a frequent technical interview topic." },
+    { "skill_key": "sql", "level": "required", "roles": [], "note": "Joins, group by, simple queries." },
+    { "skill_key": "projects", "level": "required", "roles": [], "note": "Interviewers dig into your project and your contribution." },
+    { "skill_key": "communication", "level": "required", "roles": [], "note": "Assessed in managerial/HR rounds." },
+    { "skill_key": "os", "level": "nice_to_have", "roles": ["digital", "prime"], "note": "OS basics come up more in Digital/Prime interviews." },
+    { "skill_key": "cloud_basics", "level": "nice_to_have", "roles": ["digital", "prime"], "note": "Exposure to cloud/AI tools can help in Digital/Prime discussions; not a stated requirement." }
+  ],
+  "hr_focus": [
+    "Willingness to relocate anywhere in India and to work in shifts.",
+    "Why TCS, and which track (Ninja/Digital/Prime) you are targeting.",
+    "Academic gaps, backlogs and document consistency with your NQT application.",
+    "Clear communication and a confident self-introduction.",
+    "Situational/teamwork questions in the managerial round."
+  ],
+  "sources": [
+    { "title": "TCS All India NQT Hiring Batch of 2024, 2025 and 2026", "url": "https://www.tcs.com/careers/india/tcs-all-india-nqt-hiring", "accessed": "2026-11-04", "kind": "official" },
+    { "title": "TCS NQT Exam Pattern 2026: Sections, Duration, and Marking (FACE Prep)", "url": "https://www.faceprep.in/article/tcs-exam-pattern/", "accessed": "2026-11-04", "kind": "secondary" },
+    { "title": "TCS NQT Latest Syllabus & Test Pattern 2026 (placementpreparation.io)", "url": "https://www.placementpreparation.io/tcs-nqt/syllabus-and-test-pattern/", "accessed": "2026-11-04", "kind": "secondary" },
+    { "title": "TCS NQT Cutoff 2026: 2022–26 Trend (PapersAdda)", "url": "https://papersadda.pages.dev/article/tcs-nqt-cutoff-2026/", "accessed": "2026-11-04", "kind": "secondary" },
+    { "title": "TCS NQT 2026: Ninja, Digital and Prime Tracks Explained (FACE Prep)", "url": "https://faceprep.in/article/tcs-ninja-2019-tcs-digital-2019-updates-tcs-recruitment-2019/", "accessed": "2026-11-04", "kind": "secondary" },
+    { "title": "TCS Interview Questions 2026: NQT, Technical, Coding and HR (Weekday)", "url": "https://www.weekday.works/post/tcs-interview-questions", "accessed": "2026-11-04", "kind": "secondary" },
+    { "title": "TCS Eligibility Criteria 2026: Complete Guide for Freshers (PapersAdda)", "url": "https://papersadda.pages.dev/article/tcs-eligibility-criteria-2026/", "accessed": "2026-11-04", "kind": "secondary" }
+  ],
+  "disclaimer": "Compiled from public sources on 2026-11-04. Patterns change every season; LearnCrew is not affiliated with Tata Consultancy Services (TCS). This is preparation guidance, not a guarantee of selection."
+}

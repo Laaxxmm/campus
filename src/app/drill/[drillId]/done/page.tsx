@@ -2,6 +2,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { requireRole, requireUser } from "@/lib/authz";
 import { drillSummary } from "@/server/services/student";
+import { insightForDrill } from "@/server/services/insights";
+import { InsightCard } from "@/components/insights/InsightCard";
+import type { InsightText } from "@/lib/insights/text";
+import type { InsightFacts } from "@/lib/insights/rules";
 import { XP } from "@/lib/xp";
 import { StreakFlame } from "@/components/StreakFlame";
 import { ShareButton } from "./ShareButton";
@@ -19,6 +23,7 @@ export default async function DrillDone({ params }: { params: Promise<{ drillId:
   const score = d.score ?? data.results.filter((r) => r.correct).length;
   const xp = data.results.reduce((s, r) => s + r.xp, 0) + (d.completedAt ? XP.drillComplete : 0);
   const great = score >= 7;
+  const insight = d.completedAt ? await insightForDrill(user, d.id) : null;
   return (
     <main className="relative mx-auto flex min-h-dvh max-w-md flex-col items-center px-4 pb-10 pt-12 text-center">
       <p className="text-sm font-semibold text-text-600">{d.completedAt ? "Drill complete" : "Drill in progress"}</p>
@@ -35,6 +40,7 @@ export default async function DrillDone({ params }: { params: Promise<{ drillId:
         </div>
       </div>
       <p className="mt-6 rounded-md bg-ink-50 px-4 py-2 text-sm text-ink-700">Come back tomorrow — new drill at 5 AM.</p>
+      {insight && <div className="mt-6 w-full"><InsightCard text={insight.text as InsightText} focusTopics={(insight.facts as InsightFacts).focus.map((f) => f.topic)} /></div>}
       <ShareButton text={`I scored ${score}/10 on today's LearnCrew placement drill 🔥 ${st?.current ?? 0}-day streak!`} />
       <ol className="mt-6 w-full space-y-1 text-left text-sm">
         {data.items.map((it, i) => {

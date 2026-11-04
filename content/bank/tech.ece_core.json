@@ -1,0 +1,335 @@
+[
+  {
+    "id": "Q-TEC-ECE-0001",
+    "section": "tech",
+    "topic": "ece_core",
+    "subtopic": "digital_electronics",
+    "stem": "Which of the following is a universal gate, i.e. any Boolean function can be built using only this gate?",
+    "options": [
+      "NAND",
+      "XOR",
+      "AND",
+      "XNOR"
+    ],
+    "answer_index": 0,
+    "explanation": "NAND (and NOR) are universal: NOT, AND and OR can all be made from NAND gates alone, so any logic function can be built. XOR, XNOR and AND alone cannot produce every function.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "wipro",
+      "infosys"
+    ],
+    "difficulty": 1,
+    "time_sec": 30,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "ECE-GATE-UNIV-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-ECE-0002",
+    "section": "tech",
+    "topic": "ece_core",
+    "subtopic": "digital_electronics",
+    "stem": "Simplify the Boolean expression F = AB + AB′ + A′B.",
+    "options": [
+      "AB",
+      "A ⊕ B",
+      "A′ + B",
+      "A + B"
+    ],
+    "answer_index": 3,
+    "explanation": "AB + AB′ = A(B + B′) = A. Then F = A + A′B = (A + A′)(A + B) = A + B. Check: F is 0 only when A = B = 0, which is the OR function.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "cognizant",
+      "capgemini"
+    ],
+    "difficulty": 2,
+    "time_sec": 60,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "ECE-BOOL-SIMP-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-ECE-0003",
+    "section": "tech",
+    "topic": "ece_core",
+    "subtopic": "digital_electronics",
+    "stem": "Using a 3-variable K-map with A as the most significant bit, what is the minimal form of F(A, B, C) = Σm(0, 2, 4, 6)?",
+    "options": [
+      "A′",
+      "B′",
+      "C′",
+      "A′C′"
+    ],
+    "answer_index": 2,
+    "explanation": "Minterms 0, 2, 4, 6 are 000, 010, 100 and 110: every one has C = 0 and all combinations of A and B appear. The four cells form one group of four, giving F = C′.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "wipro"
+    ],
+    "difficulty": 3,
+    "time_sec": 75,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "ECE-KMAP-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-ECE-0004",
+    "section": "tech",
+    "topic": "ece_core",
+    "subtopic": "digital_electronics",
+    "stem": "What is the 8-bit two's complement representation of the decimal number −13?",
+    "options": [
+      "11110011",
+      "11110010",
+      "10001101",
+      "00001101"
+    ],
+    "answer_index": 0,
+    "explanation": "+13 = 00001101. Invert all bits to get 11110010 (one's complement), then add 1 to get 11110011. 10001101 is sign-magnitude form and 00001101 is +13.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "infosys",
+      "cognizant"
+    ],
+    "difficulty": 3,
+    "time_sec": 60,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "ECE-NUM-2SCOMP-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-ECE-0005",
+    "section": "tech",
+    "topic": "ece_core",
+    "subtopic": "digital_electronics",
+    "stem": "In a JK flip-flop, what happens at the active clock edge when J = 1 and K = 1?",
+    "options": [
+      "Output holds its previous state",
+      "Output resets to 0",
+      "Output sets to 1",
+      "Output toggles to the complement of its previous state"
+    ],
+    "answer_index": 3,
+    "explanation": "JK truth table: J=0,K=0 hold; J=0,K=1 reset; J=1,K=0 set; J=1,K=1 toggle. The toggle mode is what makes a JK (or T) flip-flop useful in counters.",
+    "shortcut": null,
+    "company_tags": [
+      "wipro",
+      "tcs_nqt",
+      "accenture"
+    ],
+    "difficulty": 1,
+    "time_sec": 30,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "ECE-FF-JK-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-ECE-0006",
+    "section": "tech",
+    "topic": "ece_core",
+    "subtopic": "signals_microprocessors",
+    "stem": "How much on-chip data RAM does the original (standard) 8051 microcontroller have?",
+    "options": [
+      "64 bytes",
+      "128 bytes",
+      "256 bytes",
+      "4 KB"
+    ],
+    "answer_index": 1,
+    "explanation": "The standard 8051 has 128 bytes of internal data RAM and 4 KB of on-chip program ROM, plus four 8-bit I/O ports, two 16-bit timers and a serial port. The 8052 variant raises internal RAM to 256 bytes.",
+    "shortcut": null,
+    "company_tags": [
+      "wipro",
+      "capgemini",
+      "cognizant"
+    ],
+    "difficulty": 3,
+    "time_sec": 45,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "ECE-8051-MEM-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-ECE-0007",
+    "section": "tech",
+    "topic": "ece_core",
+    "subtopic": "digital_electronics",
+    "stem": "A 4-bit asynchronous (ripple) counter uses flip-flops with a propagation delay of 10 ns each. What is the maximum clock frequency at which it can work reliably?",
+    "options": [
+      "100 MHz",
+      "50 MHz",
+      "25 MHz",
+      "10 MHz"
+    ],
+    "answer_index": 2,
+    "explanation": "In a ripple counter the delays add up: worst-case settling time = n × tpd = 4 × 10 ns = 40 ns. So fmax = 1 / 40 ns = 25 MHz. 100 MHz would ignore the ripple through the stages.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "capgemini"
+    ],
+    "difficulty": 4,
+    "time_sec": 90,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "ECE-CNTR-RIPPLE-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-ECE-0008",
+    "section": "tech",
+    "topic": "ece_core",
+    "subtopic": "analog_basics",
+    "stem": "A 2 Ω resistor is connected in series with a parallel combination of 6 Ω and 3 Ω across a 12 V DC source. What current flows through the 3 Ω resistor?",
+    "options": [
+      "1 A",
+      "2 A",
+      "3 A",
+      "4 A"
+    ],
+    "answer_index": 1,
+    "explanation": "6 Ω ∥ 3 Ω = 18/9 = 2 Ω, so total R = 4 Ω and source current = 12/4 = 3 A. Voltage across the parallel pair = 3 × 2 = 6 V, so the 3 Ω branch carries 6/3 = 2 A (the 6 Ω branch carries 1 A).",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "wipro",
+      "infosys"
+    ],
+    "difficulty": 3,
+    "time_sec": 90,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "ECE-CKT-SERPAR-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-ECE-0009",
+    "section": "tech",
+    "topic": "ece_core",
+    "subtopic": "analog_basics",
+    "stem": "An ideal op-amp is used as an inverting amplifier with Rf = 100 kΩ and Rin = 10 kΩ. If the input is +0.5 V DC, what is the output voltage?",
+    "options": [
+      "+5 V",
+      "−5 V",
+      "−0.05 V",
+      "+5.5 V"
+    ],
+    "answer_index": 1,
+    "explanation": "Inverting gain = −Rf/Rin = −100k/10k = −10. Vout = −10 × 0.5 V = −5 V. +5.5 V would be the non-inverting result (gain 1 + Rf/Rin = 11).",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "cognizant",
+      "accenture"
+    ],
+    "difficulty": 2,
+    "time_sec": 45,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "ECE-OPAMP-INV-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-ECE-0010",
+    "section": "tech",
+    "topic": "ece_core",
+    "subtopic": "analog_basics",
+    "stem": "A non-inverting op-amp amplifier has R1 = 1 kΩ (to ground) and Rf = 9 kΩ, and runs from ±12 V supplies. Assume the output can swing exactly to the rails. For Vin = +2 V DC, what is Vout?",
+    "options": [
+      "+20 V",
+      "−18 V",
+      "+18 V",
+      "+12 V"
+    ],
+    "answer_index": 3,
+    "explanation": "Ideal gain = 1 + Rf/R1 = 1 + 9 = 10, so the linear result would be +20 V. The output cannot exceed the +12 V rail, so it saturates at +12 V. −18 V would be the inverting answer (gain −9).",
+    "shortcut": null,
+    "company_tags": [
+      "capgemini",
+      "tcs_nqt"
+    ],
+    "difficulty": 5,
+    "time_sec": 90,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "ECE-OPAMP-SAT-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-ECE-0011",
+    "section": "tech",
+    "topic": "ece_core",
+    "subtopic": "signals_microprocessors",
+    "stem": "A signal x(t) = 3 cos(200πt) + 5 sin(600πt) is to be sampled without aliasing. What is its Nyquist rate?",
+    "options": [
+      "200 samples/s",
+      "300 samples/s",
+      "600 samples/s",
+      "1200 samples/s"
+    ],
+    "answer_index": 2,
+    "explanation": "The components are at 200π/2π = 100 Hz and 600π/2π = 300 Hz, so fmax = 300 Hz. The Nyquist rate is 2 × fmax = 600 samples/s. 300 confuses fmax with the sampling rate.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "wipro",
+      "infosys"
+    ],
+    "difficulty": 4,
+    "time_sec": 75,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "ECE-SAMPLING-01",
+    "version": 1
+  },
+  {
+    "id": "Q-TEC-ECE-0012",
+    "section": "tech",
+    "topic": "ece_core",
+    "subtopic": "signals_microprocessors",
+    "stem": "The 8085 microprocessor has a 16-bit address bus. What is the maximum memory it can address directly?",
+    "options": [
+      "8 KB",
+      "16 KB",
+      "64 KB",
+      "1 MB"
+    ],
+    "answer_index": 2,
+    "explanation": "A 16-bit address bus gives 2^16 = 65,536 distinct addresses. Each location holds one byte, so the 8085 can address 64 KB. 1 MB needs 20 address lines, as in the 8086.",
+    "shortcut": null,
+    "company_tags": [
+      "tcs_nqt",
+      "wipro",
+      "cognizant"
+    ],
+    "difficulty": 2,
+    "time_sec": 45,
+    "source": "seed",
+    "seed_id": null,
+    "status": "golden",
+    "variant_group": "ECE-8085-ADDR-01",
+    "version": 1
+  }
+]

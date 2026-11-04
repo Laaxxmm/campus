@@ -2,12 +2,14 @@ import { z } from "zod";
 import taxonomy from "../../content/taxonomy.json";
 import { COMPANY_IDS } from "./companies";
 
-export const SECTIONS = ["quant", "logical", "verbal", "coding"] as const;
+export const SECTIONS = ["quant", "logical", "verbal", "coding", "tech"] as const;
+/** Aptitude sections (mocks/readiness aptitude component); "tech" = technical concept bank (v3). */
+export const APTITUDE_SECTIONS = ["quant", "logical", "verbal", "coding"] as const;
 export type Section = (typeof SECTIONS)[number];
 
 type TaxTopic = { id: string; code: string; name: string; major: boolean; subtopics: string[] };
 export const TAXONOMY = taxonomy as { version: number; sections: Record<Section, TaxTopic[]> };
-export const SECTION_CODE: Record<Section, string> = { quant: "QNT", logical: "LOG", verbal: "VRB", coding: "COD" };
+export const SECTION_CODE: Record<Section, string> = { quant: "QNT", logical: "LOG", verbal: "VRB", coding: "COD", tech: "TEC" };
 
 export const TOPICS = Object.entries(TAXONOMY.sections).flatMap(([section, topics]) =>
   topics.map((t) => ({ ...t, section: section as Section })),
@@ -22,7 +24,7 @@ const norm = (s: string) => s.trim().toLowerCase().replace(/\s+/g, " ");
 
 export const QuestionJson = z
   .object({
-    id: z.string().regex(/^Q-(QNT|LOG|VRB|COD)-[A-Z]{3}-\d{4}$/, "id must look like Q-QNT-PCT-0001"),
+    id: z.string().regex(/^Q-(QNT|LOG|VRB|COD|TEC)-[A-Z]{3}-\d{4}$/, "id must look like Q-QNT-PCT-0001"),
     section: z.enum(SECTIONS),
     topic: z.string().min(1),
     subtopic: z.string().min(1),

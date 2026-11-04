@@ -1,4 +1,4 @@
-import { and, asc, desc, eq, gte, inArray, lte, notInArray, sql } from "drizzle-orm";
+import { and, asc, desc, eq, gte, inArray, lte, ne, notInArray, sql } from "drizzle-orm";
 import { db } from "@/db";
 import { attempts, batches, collegeQuestionAccess, companyBlueprints, drills, questions, reviewQueue, skills, streaks, users } from "@/db/schema";
 import { applyAttempt, canonicalIndex, composeDrill, NEW_SKILL, nextReview, optionOrder, topicPickWeight, type Blueprint, type Candidate } from "./adaptive";
@@ -38,7 +38,8 @@ export async function planDrill(userId: string, date: string) {
 
   const since = new Date(Date.now() - NO_REPEAT_DAYS * 86_400_000);
   const recentlySeen = db.select({ q: attempts.questionId }).from(attempts).where(and(eq(attempts.userId, userId), gte(attempts.createdAt, since)));
-  const base = and(eq(collegeQuestionAccess.collegeId, u.collegeId), eq(questions.status, "golden"));
+  // Daily drills are aptitude only; the tech concept bank is practised via crack-path / focus drills (v3).
+  const base = and(eq(collegeQuestionAccess.collegeId, u.collegeId), eq(questions.status, "golden"), ne(questions.section, "tech"));
   const cols = { id: questions.id, topic: questions.topic, difficulty: questions.difficulty };
   const candidates: Candidate[] = await db
     .select(cols)
@@ -81,12 +82,12 @@ export async function planDrill(userId: string, date: string) {
 
 /** Get or create the drill for (user, IST date). Race-safe via the unique index. */
 export async function getOrCreateDrill(userId: string, date = istDate()) {
-  const [existing] = await db.select().from(drills).where(and(eq(drills.userId, userId), eq(drills.date, date))).limit(1);
+  const [existing] = await db.select().from(drills).where(and(eq(drills.userId, userId), eq(drills.date, date), eq(drills.kind, "daily"))).limit(1);
   if (existing) return existing;
   const plan = await planDrill(userId, date);
   if (plan.questionIds.length === 0) throw new Error("no questions available for this college");
   await db.insert(drills).values({ userId, date, questionIds: plan.questionIds, optionOrder: plan.optionOrder }).onConflictDoNothing();
-  const [row] = await db.select().from(drills).where(and(eq(drills.userId, userId), eq(drills.date, date))).limit(1);
+  const [row] = await db.select().from(drills).where(and(eq(drills.userId, userId), eq(drills.date, date), eq(drills.kind, "daily"))).limit(1);
   return row;
 }
 
@@ -125,7 +126,7 @@ function resultFor(d: DrillRow, q: QuestionRow, a: { chosenIndex: number | null;
   };
 }
 
-export type SubmitInput = { clientId: string; drillId: string; questionId: string; displayedIndex: number | null; timeMs: number };
+export type SubmitInput = { clientId: string; drillId: string; questionId: string; displayedIndex: number | null; timeMs: number; answerChanges?: number };
 export type SubmitOutput = AttemptResultDto & { duplicate: boolean; drillCompleted: boolean; answered: number; score: number };
 
 /**
@@ -168,7 +169,7 @@ async function gradeInTx(userId: string, input: SubmitInput, now: Date): Promise
     const chosen = valid ? canonicalIndex(order, displayed) : null;
     const correct = chosen !== null && chosen === q.answerIndex;
     const timeMs = Math.max(0, Math.min(Math.round(input.timeMs) || 0, 30 * 60_000));
-    await tx.insert(attempts).values({ clientId: input.clientId.slice(0, 80), userId, questionId: q.id, drillId: d.id, chosenIndex: chosen, correct, timeMs, createdAt: now });
+    await tx.insert(attempts).values({ clientId: input.clientId.slice(0, 80), userId, questionId: q.id, drillId: d.id, chosenIndex: chosen, correct, timeMs, answerChanges: Math.max(0, Math.min(Math.round(input.answerChanges ?? 0), 20)), createdAt: now });
 
     // Skill (Elo + band)
     const [sk] = await tx.select().from(skills).where(and(eq(skills.userId, userId), eq(skills.topic, q.topic))).limit(1);

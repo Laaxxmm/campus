@@ -14,6 +14,7 @@ const Body = z.object({
         questionId: z.string().min(1).max(40),
         displayedIndex: z.number().int().min(0).max(3).nullable(),
         timeMs: z.number().int().min(0).max(24 * 3600_000),
+        answerChanges: z.number().int().min(0).max(50).optional(),
       }),
     )
     .max(50),

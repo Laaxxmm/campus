@@ -2,7 +2,7 @@
 import type { SectionScore } from "./mock-types";
 
 export type ScoredQ = { id: string; section: string; answerIndex: number };
-export type StoredAnswer = { choice: number | null; flagged: boolean; visited: boolean; timeMs: number }; // canonical choice
+export type StoredAnswer = { choice: number | null; flagged: boolean; visited: boolean; timeMs: number; changes?: number }; // canonical choice
 
 export function scoreAttempt(qs: ScoredQ[], answers: Record<string, StoredAnswer>, markCorrect: number, negativeMark: number) {
   const bySection = new Map<string, SectionScore>();

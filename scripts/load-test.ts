@@ -58,7 +58,7 @@ async function main() {
   const today = istDate();
   const ids = studs.slice(0, N).map((s) => s.id);
   // fresh drill for today
-  const old = await db.select({ id: drills.id }).from(drills).where(and(inArray(drills.userId, ids), eq(drills.date, today)));
+  const old = await db.select({ id: drills.id }).from(drills).where(and(inArray(drills.userId, ids), eq(drills.date, today), eq(drills.kind, "daily")));
   if (old.length) {
     await db.delete(attempts).where(inArray(attempts.drillId, old.map((d) => d.id)));
     await db.delete(drills).where(inArray(drills.id, old.map((d) => d.id)));
@@ -75,7 +75,7 @@ async function main() {
     ids.map(async (id, i) => {
       await sleep((i / N) * WINDOW * 1000);
       await timed(todaySamples, `${BASE}/today`, { headers: H(id) });
-      const [d] = await db.select().from(drills).where(and(eq(drills.userId, id), eq(drills.date, today)));
+      const [d] = await db.select().from(drills).where(and(eq(drills.userId, id), eq(drills.date, today), eq(drills.kind, "daily")));
       if (!d) return;
       for (let q = 0; q < d.questionIds.length; q++) {
         await sleep(1500 + Math.random() * 1500); // reading time, compressed

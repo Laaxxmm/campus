@@ -1,0 +1,152 @@
+{
+  "key": "accenture",
+  "name": "Accenture",
+  "version": 1,
+  "updated_at": "2026-11-04",
+  "roles": [
+    { "key": "ase", "name": "Associate Software Engineer (ASE)", "note": "Campus/off-campus role for B.E/B.Tech/M.E/M.Tech/MCA/MSc graduates per Accenture India campus listings. CTC was not shown on the listings found." },
+    { "key": "pada", "name": "Packaged App Development Associate", "note": "Official listing names preferred skills such as ABAP on HANA, Salesforce configuration, J2EE and .NET." }
+  ],
+  "rounds": [
+    {
+      "key": "cognitive_behavioural",
+      "name": "Behavioural & Cognitive Assessment",
+      "kind": "aptitude",
+      "duration_min": 40,
+      "sections": [
+        { "section": "Behavioural (personality)", "questions": null, "minutes": null },
+        { "section": "Cognitive (puzzles and numerical problems)", "questions": null, "minutes": null }
+      ],
+      "what_they_check": "Personality fit plus cognitive puzzles and numerical problems. Accenture's India campus support page lists ~40 minutes; sectional cut-offs must be cleared to move forward. Candidate reports sometimes describe a longer combined cognitive + technical test (~90 questions in ~90 minutes).",
+      "prep": [
+        "Practise abstract and critical reasoning puzzles (patterns, series, matrices).",
+        "Revise quick arithmetic: percentages, ratios and simple data interpretation.",
+        "Answer personality items consistently and honestly rather than guessing the 'ideal' answer."
+      ],
+      "negative_marking": null
+    },
+    {
+      "key": "technical_assessment",
+      "name": "Technical Assessment",
+      "kind": "technical",
+      "duration_min": 45,
+      "sections": [
+        { "section": "Common applications & MS Office", "questions": null, "minutes": null },
+        { "section": "Pseudocode", "questions": null, "minutes": null },
+        { "section": "Networking, security & cloud fundamentals", "questions": null, "minutes": null },
+        { "section": "Basic programming concepts", "questions": null, "minutes": null }
+      ],
+      "what_they_check": "Broad IT fundamentals, as listed on Accenture's India campus support page (~45 minutes).",
+      "prep": [
+        "Revise MS Excel/Word/PowerPoint features (formulas, shortcuts, formatting).",
+        "Practise pseudocode output questions on loops, arrays and recursion.",
+        "Revise networking basics (OSI, IP, DNS), security basics and cloud service models (IaaS/PaaS/SaaS)."
+      ],
+      "negative_marking": null
+    },
+    {
+      "key": "coding_assessment",
+      "name": "Coding Assessment",
+      "kind": "coding",
+      "duration_min": 60,
+      "sections": [{ "section": "Coding problems", "questions": 3, "minutes": 60 }],
+      "what_they_check": "Ability to solve problems in a backend, SQL or front-end language of your choice. Accenture's support page states 3 problems in 60 minutes; some 2024 candidate reports describe 2 easy problems, so expect variation by drive.",
+      "prep": [
+        "Practise easy–medium array and string problems (reversal, frequency counts, sorting).",
+        "Be comfortable writing basic SQL queries, since SQL is an allowed option.",
+        "Practise on a HackerRank-style editor; Accenture's global page points to a HackerRank sample test."
+      ],
+      "negative_marking": null
+    },
+    {
+      "key": "communication_assessment",
+      "name": "Communication Assessment",
+      "kind": "communication",
+      "duration_min": 30,
+      "sections": [],
+      "what_they_check": "Spoken and written English (pronunciation, fluency, sentence mastery, vocabulary). The support page says about 30 minutes, with login details sent separately. Several secondary sources describe it as non-eliminatory, but do not rely on that.",
+      "prep": [
+        "Practise reading passages aloud and repeating sentences clearly at a steady pace.",
+        "Use a quiet room and a working headset/microphone.",
+        "Practise short spoken answers and sentence-building drills."
+      ],
+      "negative_marking": null
+    },
+    {
+      "key": "interview",
+      "name": "Technical + HR Interview",
+      "kind": "technical",
+      "duration_min": null,
+      "sections": [],
+      "what_they_check": "Project understanding, programming fundamentals, aptitude to learn and communication. Secondary sources describe a technical interview followed by HR, sometimes combined.",
+      "prep": [
+        "Prepare a clear explanation of your project, tools used and your contribution.",
+        "Revise OOP, DBMS/SQL and one language's basics.",
+        "Prepare answers on relocation, shifts and why Accenture."
+      ],
+      "negative_marking": null
+    }
+  ],
+  "cutoffs": {
+    "approx": true,
+    "aptitude_percent": null,
+    "sectional": true,
+    "note": "Not published; Accenture's India campus support page states that sectional cut-offs must be cleared to progress, but no percentage is published. Secondary sources mention sectional and sub-sectional cut-offs without reliable figures. Accenture's global page says a failed assessment cannot be retaken for at least 90 days.",
+    "source_refs": [0, 3]
+  },
+  "branch_expectations": {
+    "cse_it": {
+      "eligible": true,
+      "coding": "required",
+      "tech_topics": ["dsa_basics", "oop_concepts", "dbms", "sql", "computer_networks", "operating_systems", "java", "python"],
+      "note": "Coding assessment is part of the process for everyone; CSE/IT candidates should aim to solve all problems."
+    },
+    "ece_eee": {
+      "eligible": true,
+      "coding": "required",
+      "tech_topics": ["c_language", "python", "sql", "computer_networks", "oop_concepts", "dbms"],
+      "note": "ASE listings name B.E/B.Tech degrees without a branch restriction in the summaries found (confirm on the listing). The same coding, technical and communication assessments apply."
+    },
+    "mech_civil": {
+      "eligible": true,
+      "coding": "required",
+      "tech_topics": ["c_language", "python", "sql", "computer_networks"],
+      "note": "Same assessment as other branches; focus on easy coding problems, SQL and the MS Office/networking/cloud basics in the technical assessment."
+    },
+    "all": {
+      "eligible": true,
+      "coding": "required",
+      "tech_topics": ["sql", "computer_networks", "c_language"],
+      "note": "Official listings mention no active backlogs, limited (≤23–24 months) prior experience, and exclusion if you took an Accenture assessment/interview in the last 3 months. Pass-out batches vary by listing."
+    }
+  },
+  "jd_skills": [
+    { "skill_key": "aptitude_logical", "level": "required", "roles": [], "note": "Cognitive puzzles in the behavioural & cognitive assessment." },
+    { "skill_key": "aptitude_quant", "level": "required", "roles": [], "note": "Numerical problems in the cognitive assessment." },
+    { "skill_key": "pseudocode", "level": "required", "roles": [], "note": "Listed in the technical assessment." },
+    { "skill_key": "networks", "level": "required", "roles": [], "note": "Networking and security fundamentals in the technical assessment." },
+    { "skill_key": "cloud_basics", "level": "required", "roles": [], "note": "Cloud fundamentals are listed as a technical assessment topic." },
+    { "skill_key": "python", "level": "required", "roles": [], "note": "One language for the coding assessment (backend, SQL or front-end languages allowed)." },
+    { "skill_key": "sql", "level": "required", "roles": [], "note": "SQL is an accepted coding option and common interview topic." },
+    { "skill_key": "communication", "level": "required", "roles": [], "note": "Dedicated communication assessment; listings ask for verbal and communication proficiency." },
+    { "skill_key": "problem_solving", "level": "required", "roles": [], "note": "Listings ask for analytical and problem-solving skills." },
+    { "skill_key": "java", "level": "nice_to_have", "roles": ["pada"], "note": "J2EE/.NET named as preferred skills for Packaged App Development Associate." },
+    { "skill_key": "certifications", "level": "nice_to_have", "roles": ["pada"], "note": "Exposure to SAP ABAP or Salesforce is preferred, not required." }
+  ],
+  "hr_focus": [
+    "Willingness to relocate to any of Accenture's Indian delivery cities and to work in shifts.",
+    "Communication clarity (also assessed separately).",
+    "Why Accenture and readiness to learn new platforms (SAP, Salesforce, cloud).",
+    "Eligibility checks: backlogs, pass-out year, prior Accenture assessments."
+  ],
+  "sources": [
+    { "title": "Welcome to the Support - Accenture (India campus portal)", "url": "https://indiacampus.accenture.com/myzone/accenture/1/support/", "accessed": "2026-11-04", "kind": "official" },
+    { "title": "Associate Software Engineer (ASE)! - Accenture", "url": "https://indiacampus.accenture.com/myzone/accenture/1/jobs/1273421/job-details/", "accessed": "2026-11-04", "kind": "official" },
+    { "title": "Packaged App Development Associate - Accenture", "url": "https://indiacampus.accenture.com/myzone/accenture/1/jobs/25377/job-details/", "accessed": "2026-11-04", "kind": "official" },
+    { "title": "Accenture Recruitment Process", "url": "https://www.accenture.com/in-en/careers/explore-careers/area-of-interest/journey-to-accenture", "accessed": "2026-11-04", "kind": "official" },
+    { "title": "Early Career Job Opportunities - Accenture India", "url": "https://www.accenture.com/in-en/careers/life-at-accenture/entry-level", "accessed": "2026-11-04", "kind": "official" },
+    { "title": "Accenture ASE Guide (GUVI blog)", "url": "https://www.guvi.in/blog/accenture-ase-guide/", "accessed": "2026-11-04", "kind": "secondary" },
+    { "title": "Accenture Recruitment Process (placementpreparation.io)", "url": "https://placementpreparation.io/accenture/recruitment-process", "accessed": "2026-11-04", "kind": "secondary" }
+  ],
+  "disclaimer": "Compiled from public sources on 2026-11-04. Patterns change every season; LearnCrew is not affiliated with Accenture. This is preparation guidance, not a guarantee of selection."
+}

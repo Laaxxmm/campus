@@ -450,6 +450,144 @@
      "trees_hashing"
     ]
    }
+  ],
+  "tech": [
+   {
+    "id": "dbms",
+    "code": "DBM",
+    "name": "DBMS",
+    "major": true,
+    "subtopics": [
+     "normalization",
+     "transactions_acid",
+     "keys_constraints",
+     "indexing"
+    ]
+   },
+   {
+    "id": "sql",
+    "code": "SQL",
+    "name": "SQL",
+    "major": true,
+    "subtopics": [
+     "select_joins",
+     "group_by",
+     "subqueries",
+     "ddl_dml"
+    ]
+   },
+   {
+    "id": "oop_concepts",
+    "code": "OOC",
+    "name": "OOP (concepts)",
+    "major": true,
+    "subtopics": [
+     "pillars",
+     "classes_objects",
+     "design_principles"
+    ]
+   },
+   {
+    "id": "operating_systems",
+    "code": "OSY",
+    "name": "Operating systems",
+    "major": true,
+    "subtopics": [
+     "processes_threads",
+     "scheduling",
+     "memory_paging",
+     "deadlocks"
+    ]
+   },
+   {
+    "id": "computer_networks",
+    "code": "CNW",
+    "name": "Computer networks",
+    "major": true,
+    "subtopics": [
+     "osi_tcpip",
+     "protocols",
+     "addressing_subnetting"
+    ]
+   },
+   {
+    "id": "dsa_basics",
+    "code": "DSA",
+    "name": "DSA basics",
+    "major": true,
+    "subtopics": [
+     "arrays_lists",
+     "stacks_queues",
+     "trees_graphs",
+     "sorting_searching"
+    ]
+   },
+   {
+    "id": "c_language",
+    "code": "CLG",
+    "name": "C programming",
+    "major": true,
+    "subtopics": [
+     "pointers",
+     "memory",
+     "operators_types"
+    ]
+   },
+   {
+    "id": "java",
+    "code": "JAV",
+    "name": "Java",
+    "major": true,
+    "subtopics": [
+     "core_syntax",
+     "collections",
+     "exceptions"
+    ]
+   },
+   {
+    "id": "python",
+    "code": "PYT",
+    "name": "Python",
+    "major": true,
+    "subtopics": [
+     "data_types",
+     "functions_scope",
+     "comprehensions"
+    ]
+   },
+   {
+    "id": "software_engineering",
+    "code": "SWE",
+    "name": "Software engineering & Git",
+    "major": false,
+    "subtopics": [
+     "sdlc_agile",
+     "testing",
+     "git_basics"
+    ]
+   },
+   {
+    "id": "ece_core",
+    "code": "ECE",
+    "name": "ECE/EEE core",
+    "major": false,
+    "subtopics": [
+     "digital_electronics",
+     "analog_basics",
+     "signals_microprocessors"
+    ]
+   },
+   {
+    "id": "mech_core",
+    "code": "MEC",
+    "name": "Mechanical/Civil core",
+    "major": false,
+    "subtopics": [
+     "thermodynamics",
+     "strength_materials",
+     "manufacturing"
+    ]
+   }
   ]
  }
 }
