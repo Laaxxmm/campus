@@ -1,5 +1,5 @@
 # PROGRESS — LearnCrew Campus
-Current phase: 8 — Railway deploy | Last green: 2026-11-05T00:50+05:30 | Tests: unit 192/192, e2e 24/24
+Current phase: 9 — Pilot hardening (8 waits for Railway login) | Last green: 2026-11-05T01:20+05:30 | Tests: unit 192/192, e2e 24/24
 Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived at docs/ORCHESTRATOR-v1.md; v1 phases 0–3 work carried over (same schema + stack).
 
 ## Phase checklist (✅ only when phase QA gate green)
@@ -11,16 +11,18 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 - [x] 5 — Adaptive engine + real mocks ✅ (Elo/bands/6-2-2/spaced review 17 tests; exam UX w/ palette, flags, keyboard, sectional timers, autosave+resume, negative marks, percentile, review mode; cron routes; e2e full mock + refresh, fake-clock auto-submit, leak, IDOR)
 - [x] 6 — TPO dashboard ✅ (KPIs, accuracy/mastery heatmap batch×topic & student×topic w/ company filter, students table + Excel-safe CSV export (audited), drill-down, at-risk + WhatsApp nudges, weekly report (template / Sonnet aggregates-only, cached), create/schedule mock (audited); services p95 ≤ 43 ms on 505 students; e2e incl. cross-college 404)
 - [x] 7 — Admin ✅ (roster CSV import w/ Zod row errors, seat limit, re-import idempotent, invites, rate limit, audit; batches + settings; content review queue w/ blind-QA side-by-side, approve → golden + college access → next drill; superadmin colleges/create+TPO invite, audit log viewer, DPDP export/delete with 15-min re-auth)
-- [ ] 8 — Railway deploy
+- [ ] 8 — Railway deploy — config ✅ (Dockerfile Node 22 standalone, non-root, healthcheck; railway.json; compose prod; DEPLOY.md). Verified locally: image builds, migrates, /api/health ok, cron 401/200, bad env → exit 1. BLOCKED on human: `railway login` + deploy (steps in docs/DEPLOY.md)
 - [ ] 9 — Pilot hardening
 - [ ] 10 — Final QA matrix
 
-## Current phase tasks (phase 8 — Railway deploy)
-- [ ] Dockerfile (standalone + migrate runtime), .dockerignore, railway.json, docker-compose.prod.yml
-- [ ] scripts/cron.mjs for cron service (done in phase 5) wired in DEPLOY.md
-- [ ] docs/DEPLOY.md exact steps; README env list
-- [ ] docker build + run against local DB → /api/health ok
-- [ ] STOP for human: railway login / deploy
+## Current phase tasks (phase 9 — pilot hardening)
+- [ ] /api/explain (cached per question×wrong option, 5/min/user, hidden without key)
+- [ ] error boundary + not-found pages; structured JSON logs; events (drill_started/completed, explain_more, tpo_export)
+- [ ] landing page for colleges (pitch + Book pilot mailto)
+- [ ] smoke suite e2e/smoke.spec.ts runnable against BASE_URL
+- [ ] load test: 500 students drill in 10 min (/api/sync p95 < 500 ms) + 200 concurrent mock-takers; results in docs/reports/
+- [ ] Lighthouse mobile (perf ≥ 90, a11y ≥ 95, PWA installable) → docs/reports/
+- [ ] docs/DEMO.md (TPO 5-minute walkthrough)
 
 ## Feature test registry
 | Feature | Test file | Status |
@@ -82,15 +84,17 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 - D19 2026-11-04: Spec said "Phase 4 random-by-band, Phase 5 adaptive"; drills used the adaptive composer from the start (same code path, tested in phase 5). Mocks record `attempts` rows for analytics but do not move Elo (drills train, mocks measure). Client `auto` flag on submit only labels the attempt; scoring always uses answers the server accepted before `ends_at` (+5 s grace).
 - D20 2026-11-05: TPO heatmap defaults to 30-day accuracy per topic (toggle: Elo mastery). With K=24 Elo moves ~±50 in 3 weeks, so mastery clusters near 50 and hides weak topics; accuracy shows them now. Readiness still uses mastery. Seed adds deterministic batch×topic strengths so the demo heatmap is meaningful. Readiness ring uses coral (not red) below 40 per v2 voice.
 - D21 2026-11-05: v2 "admin re-auth within 15 min" implemented for superadmin mutations (create college, export/delete student) via an Auth.js `signIn` event → `events.sign_in`; stale sessions get a "Confirm it's me" magic link. College-admin/TPO routine actions (import, batches) rely on session + rate limit + audit instead (re-auth there would add a magic-link round trip to every import).
+- D22 2026-11-05: Runtime image uses Node 22 LTS (v1 Dockerfile said Node 20; vitest 5 / toolchain need ≥22.12 and npm 10.8 on Node 20 crashed in `npm ci`). Optional BuildKit `--secret id=ca` for TLS-intercepting proxies (no-op on Railway). `preDeployCommand` runs `node scripts/migrate.mjs` (no tsx/drizzle-kit in the runtime image).
 - D16 2026-11-04: CSRF for custom JSON routes = same-origin `Origin` check + `application/json` content-type (forces preflight) + SameSite=Lax cookies; no double-submit token (server actions already have Next origin check).
 - D15 2026-11-04: Bank seeded at 260 hand-authored, machine-verified golden questions (v1 gate ≥120 met; v2 asks 600). The designed route to 600–2,000 is the Haiku-batch → Sonnet-QA pipeline, which needs ANTHROPIC_API_KEY (~$30 per the pack). Not hand-authoring 340 more in-session.
 
 ## Blocked / needs human
 - [ ] ANTHROPIC_API_KEY — to run `scripts/generate.ts` + `scripts/qa.ts` and reach the 600-Q gate (pipeline ready, dry-run verified).
 - [ ] AUTH_RESEND_KEY + verified sending domain (real email). Until then magic links print to server console (and `/api/dev/magic-link` when ALLOW_DEV_LOGIN_LINKS=true / non-prod).
-- [ ] Railway login (Phase 8).
+- [ ] Railway login + first deploy (Phase 8) — run docs/DEPLOY.md §0–§4 (≈15 min). Everything else is ready.
 
 ## Log
+- 2026-11-05T01:20+05:30 phase 8 config done + verified with local Docker; deploy waits for Railway login.
 - 2026-11-05T00:50+05:30 phase 7 done: admin + content + superadmin; 192 unit + 24 e2e green.
 - 2026-11-05T00:10+05:30 phase 6 done: TPO dashboard end to end; visual pass fixed mock scroll offset, DI pipe tables → real tables, flat heatmap (metric + seed), demo names.
 - 2026-11-04T23:20+05:30 phase 5 done: mock exam (service + runner + result/review), cron build-drills/weekly + scripts/cron.mjs, 166 unit + 16 e2e green.

@@ -1,0 +1,39 @@
+# Run LearnCrew on any machine with Docker (no Railway): docker compose -f docker-compose.prod.yml --env-file .env.prod up -d
+# Phones need HTTPS for the PWA/service worker: expose with `cloudflared tunnel --url http://localhost:3000` (or a reverse proxy with TLS).
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-learncrew}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env.prod}
+      POSTGRES_DB: learncrew
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-learncrew}"]
+      interval: 5s
+      retries: 20
+  migrate:
+    build: .
+    image: learncrew:latest
+    command: ["node", "scripts/migrate.mjs"]
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER:-learncrew}:${POSTGRES_PASSWORD}@postgres:5432/learncrew
+    depends_on:
+      postgres: { condition: service_healthy }
+  web:
+    image: learncrew:latest
+    restart: unless-stopped
+    env_file: .env.prod
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER:-learncrew}:${POSTGRES_PASSWORD}@postgres:5432/learncrew
+    ports: ["3000:3000"]
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+  # Daily drills at 05:00 IST and the Monday report: use the host's cron, e.g.
+  #   30 23 * * * docker compose -f docker-compose.prod.yml run --rm web node scripts/cron.mjs build-drills
+  #   0 1 * * 1  docker compose -f docker-compose.prod.yml run --rm web node scripts/cron.mjs weekly
+  # (set APP_BASE_URL=http://web:3000 for those runs)
+volumes:
+  pgdata:
