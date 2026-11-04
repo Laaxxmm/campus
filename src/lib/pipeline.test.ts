@@ -33,3 +33,16 @@ describe("pipeline helpers", () => {
     expect(explanationSupportsAnswer({ options: ["10", "12", "14", "16"], answer_index: 1, explanation: "so the answer is 14" }).ok).toBe(false);
   });
 });
+
+import cases from "../../tests/fixtures/qa-cases.json";
+import { judgeQa, type QaVerdict } from "./pipeline";
+describe("blind QA verifier (fixtures)", () => {
+  for (const c of cases as { name: string; q: { answer_index: number; status: string; explanation: string }; r: QaVerdict; status: string; passed: boolean; explanation?: string }[]) {
+    it(c.name, () => {
+      const out = judgeQa(c.q, c.r, "test-model");
+      expect(out.status).toBe(c.status);
+      expect(out.qa_flags.passed).toBe(c.passed);
+      if (c.explanation) expect(out.explanation).toBe(c.explanation);
+    });
+  }
+});

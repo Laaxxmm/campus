@@ -1,0 +1,6 @@
+[
+ {"name":"agrees","q":{"id":"Q-QNT-PCT-0901","answer_index":1,"status":"draft","explanation":"old"},"r":{"id":"Q-QNT-PCT-0901","my_answer_index":1,"ambiguous":false,"issues":[],"fixed_explanation":null},"status":"draft","passed":true},
+ {"name":"disagrees","q":{"id":"Q-QNT-PCT-0902","answer_index":2,"status":"draft","explanation":"old"},"r":{"id":"Q-QNT-PCT-0902","my_answer_index":0,"ambiguous":false,"issues":["key looks wrong"],"fixed_explanation":null},"status":"review","passed":false},
+ {"name":"ambiguous","q":{"id":"Q-QNT-PCT-0903","answer_index":3,"status":"draft","explanation":"old"},"r":{"id":"Q-QNT-PCT-0903","my_answer_index":3,"ambiguous":true,"issues":["B also defensible"],"fixed_explanation":null},"status":"review","passed":false},
+ {"name":"fixes explanation on pass","q":{"id":"Q-QNT-PCT-0904","answer_index":0,"status":"draft","explanation":"too long"},"r":{"id":"Q-QNT-PCT-0904","my_answer_index":0,"ambiguous":false,"issues":[],"fixed_explanation":"short fix"},"status":"draft","passed":true,"explanation":"short fix"}
+]

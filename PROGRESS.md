@@ -1,13 +1,13 @@
 # PROGRESS — LearnCrew Campus
-Current phase: 4 — Student drill + streak + PWA | Last green: 2026-11-04T22:00+05:30 | Tests: unit 122/122, e2e 11/11
+Current phase: 5 — Adaptive engine + real mocks | Last green: 2026-11-04T22:30+05:30 | Tests: unit 133/133, e2e 13/13
 Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived at docs/ORCHESTRATOR-v1.md; v1 phases 0–3 work carried over (same schema + stack).
 
 ## Phase checklist (✅ only when phase QA gate green)
 - [x] 0 — Design system + architecture docs ✅ (docs/DESIGN.md, ARCHITECTURE.md, SECURITY.md; tokens compile)
 - [x] 1 — Scaffold ✅ (v2 tokens navy/amber + Inter + lucide, env.ts boot validation, CSP nonce + headers, CI workflow, /dev/ui, architecture test)
 - [x] 2 — Auth + roles + tenancy ✅ (RBAC matrix 70 cases, Postgres rate limiter + login/submit wiring, audit logger, cookie flags, cross-college DB test; per-route IDOR e2e added as routes land)
-- [ ] 3 — Question bank + pipeline — done: schema, 260 golden verified Q, generate/qa/dedupe/quant-check (--dry-run), idempotent seed. Gap: 600-Q seed count (Blocked: needs ANTHROPIC_API_KEY — see Blocked), verifier fixture test
-- [ ] 4 — Student drill + streak + PWA — done: drill engine, grading, sync, offline queue, SW, e2e drill + offline. Gaps: axe check, offline-shell e2e, profile tab
+- [ ] 3 — Question bank + pipeline — BLOCKED on 600-Q count only (needs ANTHROPIC_API_KEY, D15). Green: schema tests, verifier fixture test, 260 golden verified Q, coverage/balance test, generate/qa/dedupe/quant-check (--dry-run), idempotent seed
+- [x] 4 — Student drill + streak + PWA ✅ (e2e: login → 10-Q drill → streak 1; offline answers sync once; SW offline shell + cached drill; axe zero serious on 7 screens; /today 108 KB JS)
 - [ ] 5 — Adaptive engine + real mocks
 - [ ] 6 — TPO dashboard
 - [ ] 7 — Admin
@@ -15,11 +15,13 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 - [ ] 9 — Pilot hardening
 - [ ] 10 — Final QA matrix
 
-## Current phase tasks (phase 3 v2 gap + phase 4 gate)
-- [ ] QA verifier fixture test (blind-solve mismatch → review)
-- [ ] Profile tab (leaderboard link, privacy, sign out)
-- [ ] axe a11y check on student screens
-- [ ] offline-shell e2e (SW installed → /offline + cached drill page load offline)
+## Current phase tasks (phase 5 — adaptive engine + real mocks)
+- [ ] adaptive unit tests: band up/down, daily clamp, composition 6/2/2, no repeats 14d, college subset
+- [ ] mock service: start (one active, server ends_at, option shuffle), autosave (debounced), resume, submit (negative marks, section scores, percentile), auto-submit at 0, late submit rejected, tab-switch count
+- [ ] mock UX: pre-test screen, sticky timer (amber <5 min, coral <1 min), section tabs, palette (unanswered/answered/flagged/visited), mark for review, clear, prev/next, keyboard 1–4/N/P/F, submit confirm
+- [ ] result (score, percentile, accuracy, time/question, section chart) + review mode (filters wrong/flagged/skipped)
+- [ ] cron: /api/cron/build-drills, /api/cron/weekly (snapshots, retire leaked, prune), 401 without secret; scripts/cron.ts
+- [ ] e2e: full mock incl. refresh mid-test, auto-submit at 0 (fake clock), answer-leak test
 
 ## Feature test registry
 | Feature | Test file | Status |
@@ -42,6 +44,11 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 | RBAC matrix (14 routes × 5 roles) | src/lib/rbac.test.ts | ✅ |
 | Rate limits (login, submit, atomic) | tests/rate-audit.test.ts, e2e/auth.spec.ts | ✅ |
 | Audit log append + scope | tests/rate-audit.test.ts | ✅ |
+| Blind-QA verifier (fixtures) | src/lib/pipeline.test.ts | ✅ |
+| Bank count/coverage/answer balance | tests/bank-count.test.ts | ✅ (260; 600 blocked) |
+| Leaderboard/today/progress services | tests/student-services.test.ts | ✅ |
+| axe (login, today, drill, progress, profile, leaderboard, mocks) | e2e/a11y.spec.ts | ✅ |
+| PWA manifest + SW offline shell + cached drill | e2e/a11y.spec.ts | ✅ |
 
 ## Decisions (ADR-lite)
 - D1 2026-11-04: `learncrew-campus-product-pack.md` was NOT provided to the build session. Taxonomy, the "12 samples", and pack prompts (system/variant/qa/seed) are authored by the orchestrator from the summaries in ORCHESTRATOR.md. Replace with pack versions when available.
@@ -69,6 +76,7 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 - [ ] Railway login (Phase 8).
 
 ## Log
+- 2026-11-04T22:30+05:30 phase 4 done: profile tab (target company, deletion request, sign out), privacy page, axe clean (fixed 2 contrast issues), static offline shell + drill doc cache warm (fixed offline reload after client nav), leaderboard Date-param bug fixed + tested.
 - 2026-11-04T22:00+05:30 phase 2 (v2) done: migration 0001 (audit_logs, rate_limits, batch_mocks, mock exam cols), rate limiter wired to login + sync, audit lib, 7-day idle sessions, RBAC matrix; 122 unit + 11 e2e green.
 - 2026-11-04T21:40+05:30 phase 1 (v2) done: retheme to navy/amber + Inter + lucide (no emoji/confetti), env.ts, CSP nonce middleware (all e2e pass under CSP), CI workflow, /dev/ui, postcss override → npm audit 0 vulns.
 - 2026-11-04T21:10+05:30 phase 3 (v1) done: 260 golden Q across 42 topics (5 parallel authoring agents, every answer re-solved in code), pack samples added, seed idempotent (2 runs identical), 500-student seed OK. v2 spec + product pack received; adopted v2.

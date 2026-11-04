@@ -76,17 +76,17 @@ export async function progressFor(userId: string) {
 /** Weekly XP for the student's batch. Names shown as first name + last initial only. */
 export async function batchLeaderboard(batchId: string | null, collegeId: string | null) {
   if (!batchId || !collegeId) return [];
-  const since = istMidnightUtc(weekStart(istDate()));
+  const since = istMidnightUtc(weekStart(istDate())).toISOString().replace("Z", ""); // timestamp (UTC wall clock) column
   const rows = await db.execute<{ id: string; name: string | null; xp: number; drills: number }>(sql`
     with a as (
       select ${attempts.userId} uid,
         sum(case when ${attempts.correct} then 10 + case when ${attempts.timeMs} < ${questions.timeSec} * 500 then 5 else 0 end else 0 end)::int xp
       from ${attempts} join ${questions} on ${questions.id} = ${attempts.questionId}
-      where ${attempts.createdAt} >= ${since}
+      where ${attempts.createdAt} >= ${since}::timestamp
       group by 1
     ), d as (
       select ${drills.userId} uid, count(*)::int n from ${drills}
-      where ${drills.completedAt} >= ${since} group by 1
+      where ${drills.completedAt} >= ${since}::timestamp group by 1
     )
     select u.id, u.name, (coalesce(a.xp,0) + 20 * coalesce(d.n,0))::int xp, coalesce(d.n,0)::int drills
     from ${users} u left join a on a.uid = u.id left join d on d.uid = u.id

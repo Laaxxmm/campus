@@ -43,5 +43,5 @@ export default async function middleware(req: NextRequest, ev: NextFetchEvent) {
 
 export const config = {
   runtime: "nodejs",
-  matcher: [{ source: "/((?!_next/static|_next/image|icons/|sw.js|manifest.webmanifest|favicon.ico|api/).*)" }],
+  matcher: [{ source: "/((?!_next/static|_next/image|icons/|sw.js|offline.html|manifest.webmanifest|favicon.ico|api/).*)" }],
 };

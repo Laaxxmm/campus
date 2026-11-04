@@ -8,7 +8,7 @@ import "./env";
 import { readFileSync, writeFileSync } from "node:fs";
 import type { QuestionJson } from "../src/lib/question-schema";
 import { aiEnabled, anthropic, MODELS, parseJsonObject, textOf } from "../src/lib/llm";
-import { blind } from "../src/lib/pipeline";
+import { blind, judgeQa } from "../src/lib/pipeline";
 
 type QaOut = { id: string; my_answer_index: number; ambiguous: boolean; issues: string[]; fixed_explanation: string | null };
 type Draft = QuestionJson & { qa_flags?: unknown };
@@ -47,15 +47,10 @@ async function main() {
         system: [{ type: "text", text: system, cache_control: { type: "ephemeral" } }],
         messages: [{ role: "user", content: prompt }],
       });
-      const r = parseJsonObject<QaOut>(textOf(msg));
-      const matches = r.my_answer_index === q.answer_index;
-      const ok = matches && !r.ambiguous;
-      q.qa_flags = { ...r, matches, passed: ok, model: MODELS.smart(), at: new Date().toISOString() };
-      if (!ok) {
-        q.status = "review";
-        flagged++;
-      } else pass++;
-      if (r.fixed_explanation && ok) q.explanation = r.fixed_explanation;
+      const judged = judgeQa(q, parseJsonObject<QaOut>(textOf(msg)), MODELS.smart());
+      Object.assign(q, judged);
+      if (judged.qa_flags.passed) pass++;
+      else flagged++;
     }
     if (!dryRun) writeFileSync(f, JSON.stringify(drafts, null, 1));
     console.log(`${f}: checked ${n}, passed ${pass}, flagged ${flagged}${dryRun ? " (dry-run)" : ""}`);

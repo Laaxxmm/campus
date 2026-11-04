@@ -76,7 +76,7 @@ export default async function Today() {
           </div>
         </section>
       )}
-      <p className="text-center text-xs text-text-400">Longest streak {s.longest} · {s.freezes ? "1 streak freeze ready this week" : "Freeze used this week"}</p>
+      <p className="text-center text-xs text-text-600">Longest streak {s.longest} · {s.freezes ? "1 streak freeze ready this week" : "Freeze used this week"}</p>
     </div>
   );
 }

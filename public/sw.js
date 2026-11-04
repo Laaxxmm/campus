@@ -1,11 +1,11 @@
 /* LearnCrew service worker (hand-rolled, no build step).
- * - precache: offline page, manifest, icons
+ * - precache: static no-JS offline page, manifest, icons
  * - /_next/static: cache-first (immutable hashed assets)
  * - student pages (/today, /drill/*): network-first, fall back to last cached copy, then /offline
  * - never caches /api/* or auth routes; attempt queue lives in IndexedDB (src/lib/offline-queue.ts)
  */
-const VERSION = "lc-v1";
-const PRECACHE = ["/offline", "/manifest.webmanifest", "/icons/icon-192.png", "/icons/icon-512.png"];
+const VERSION = "lc-v2";
+const PRECACHE = ["/offline.html", "/manifest.webmanifest", "/icons/icon-192.png", "/icons/icon-512.png"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(PRECACHE)).then(() => self.skipWaiting()));
@@ -38,6 +38,7 @@ self.addEventListener("fetch", (e) => {
     );
     return;
   }
+  // RSC payloads (client-side navigations) are cached under their own ?_rsc= URL; documents under the page URL.
   if (PAGE.test(url.pathname)) {
     e.respondWith(
       fetch(req)
@@ -48,7 +49,7 @@ self.addEventListener("fetch", (e) => {
           }
           return res;
         })
-        .catch(() => caches.match(req).then((hit) => hit || (req.mode === "navigate" ? caches.match("/offline") : Response.error()))),
+        .catch(() => caches.match(req).then((hit) => hit || (req.mode === "navigate" ? caches.match("/offline.html") : Response.error()))),
     );
   }
 });

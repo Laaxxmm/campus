@@ -130,3 +130,16 @@ export function explanationSupportsAnswer(q: Pick<QuestionJson, "options" | "ans
 export function blind(q: QuestionJson) {
   return { id: q.id, section: q.section, topic: q.topic, stem: q.stem, options: q.options, difficulty: q.difficulty };
 }
+
+export type QaVerdict = { id: string; my_answer_index: number; ambiguous: boolean; issues: string[]; fixed_explanation: string | null };
+/** Blind-QA decision: mismatch or ambiguous → "review"; agreement → stays draft with passed flag. */
+export function judgeQa<T extends { answer_index: number; status: string; explanation: string }>(q: T, r: QaVerdict, model: string) {
+  const matches = r.my_answer_index === q.answer_index;
+  const passed = matches && !r.ambiguous;
+  return {
+    ...q,
+    status: passed ? q.status : "review",
+    explanation: passed && r.fixed_explanation ? r.fixed_explanation : q.explanation,
+    qa_flags: { ...r, matches, passed, model },
+  };
+}

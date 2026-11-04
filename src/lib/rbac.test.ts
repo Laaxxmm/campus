@@ -31,6 +31,6 @@ describe("RBAC matrix (deny by default)", () => {
     }
   }
   it("public paths are unguarded", () => {
-    for (const p of ["/", "/login", "/login/check-email", "/privacy", "/offline", "/api/health"]) expect(rolesFor(p)).toBeNull();
+    for (const p of ["/", "/login", "/login/check-email", "/privacy", "/offline.html", "/api/health"]) expect(rolesFor(p)).toBeNull();
   });
 });

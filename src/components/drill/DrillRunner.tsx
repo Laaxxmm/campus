@@ -36,6 +36,9 @@ export function DrillRunner({ drillId, items, initialResults, explainEnabled }: 
       if (saved) setLocal((l) => ({ answers: { ...saved.answers, ...l.answers }, current: Math.max(l.current, saved.current) }));
     } catch {}
     hydrated.current = true;
+    // Warm the service-worker cache with the full drill document so a reload works offline even when
+    // the student arrived via client-side navigation (which only fetches an RSC payload).
+    if (navigator.serviceWorker?.controller) void fetch(window.location.pathname, { credentials: "same-origin" }).catch(() => {});
   }, [drillId, items]);
   useEffect(() => {
     if (hydrated.current) localStorage.setItem(storeKey(drillId), JSON.stringify(local));
