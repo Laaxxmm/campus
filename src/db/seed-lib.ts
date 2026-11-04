@@ -93,10 +93,10 @@ export async function seedPeople(opts: SeedOptions) {
   await upsertUser({ email: DEMO.admin, name: "College Admin", role: "admin", collegeId: demo.id, consent: true });
   await upsertUser({ email: DEMO.content, name: "Content Reviewer", role: "content", collegeId: null, consent: true });
   await upsertUser({ email: DEMO.otherTpo, name: "Other TPO", role: "tpo", collegeId: other.id, consent: true });
-  await upsertUser({ email: DEMO.newStudent, name: "New Student", role: "student", collegeId: demo.id, batchId: b1.id, rollNo: "21CS999", consent: false, resetConsent: true });
+  await upsertUser({ email: DEMO.newStudent, name: "Nikhil Rao", role: "student", collegeId: demo.id, batchId: b1.id, rollNo: "21CS999", consent: false, resetConsent: true });
 
   for (const [i, email] of DEMO.freshStudents.entries()) {
-    const u = await upsertUser({ email, name: `Test Student ${i + 1}`, role: "student", collegeId: demo.id, batchId: b1.id, rollNo: `21CS9${i}0`, consent: true, targetCompany: "tcs_nqt" });
+    const u = await upsertUser({ email, name: ["Meera Krishnan", "Vikram Rao", "Ishwarya Nair", "Gokul Raman"][i] ?? `Student ${i + 1}`, role: "student", collegeId: demo.id, batchId: b1.id, rollNo: `21CS9${i}0`, consent: true, targetCompany: "tcs_nqt" });
     await resetActivity(u.id);
     await db.update(users).set({ consentAt: new Date("2026-10-01T04:00:00Z") }).where(eq(users.id, u.id));
   }

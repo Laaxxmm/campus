@@ -115,6 +115,10 @@ export function MockRunner({ data }: { data: MockAttemptDto }) {
     [data.attemptId, flush, router],
   );
 
+  useEffect(() => {
+    window.scrollTo(0, 0); // arriving from the intro page keeps its scroll offset otherwise
+  }, [idx]);
+
   // --- clock + auto-submit -----------------------------------------------
   useEffect(() => {
     const t = setInterval(() => setNow(Date.now() + offset), 250);
@@ -218,8 +222,8 @@ export function MockRunner({ data }: { data: MockAttemptDto }) {
         </nav>
       </header>
 
-      <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-4 px-4 py-4 md:flex-row">
-        <main className="flex-1 space-y-3 pb-40 md:pb-4">
+      <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-4 px-4 pb-24 pt-4 md:flex-row md:pb-4">
+        <main className="flex-1 space-y-3">
           <div className="flex items-center justify-between text-sm text-text-600">
             <span className="tabular" data-testid="mock-qno">Question {idx + 1} of {data.questions.length}</span>
             {data.negativeMark > 0 && <span>+{data.markCorrect} / −{data.negativeMark}</span>}

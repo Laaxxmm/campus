@@ -38,7 +38,11 @@ body { font-family: var(--font-sans); -webkit-tap-highlight-color: transparent; 
 
 @media print {
   .no-print { display: none !important; }
-  body { background: #fff; }
+  html, body { background: #fff !important; }
+  aside { display: none !important; }
+  main { padding: 0 !important; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @page { size: A4; margin: 14mm; }
 }
 
 /* gentle streak pop on drill completion (no confetti — v2 voice) */

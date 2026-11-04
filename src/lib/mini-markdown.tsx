@@ -9,16 +9,35 @@ export function renderStem(src: string): ReactNode {
         <code>{part.replace(/\n$/, "")}</code>
       </pre>
     ) : (
-      <Fragment key={i}>
-        {part.split("\n").map((line, j, arr) => (
-          <Fragment key={j}>
-            {inline(line)}
-            {j < arr.length - 1 && <br />}
-          </Fragment>
-        ))}
-      </Fragment>
+      <Fragment key={i}>{textBlock(part)}</Fragment>
     ),
   );
+}
+
+/** Plain lines, with runs of ≥2 "a | b" lines rendered as a small table (DI questions). */
+function textBlock(part: string): ReactNode[] {
+  const lines = part.split("\n");
+  const out: ReactNode[] = [];
+  let i = 0;
+  while (i < lines.length) {
+    if (lines[i].includes("|") && lines[i + 1]?.includes("|")) {
+      const rows: string[][] = [];
+      while (i < lines.length && lines[i].includes("|")) rows.push(lines[i++].split("|").map((c) => c.trim()));
+      const [head, ...body] = rows;
+      out.push(
+        <div key={`t${i}`} className="my-2 overflow-x-auto">
+          <table className="min-w-full border-collapse text-sm">
+            <thead><tr>{head.map((c, k) => <th key={k} scope="col" className="border border-border bg-surface px-2 py-1 text-left font-semibold">{inline(c)}</th>)}</tr></thead>
+            <tbody>{body.map((r, k) => <tr key={k}>{r.map((c, m) => <td key={m} className="border border-border px-2 py-1 tabular">{inline(c)}</td>)}</tr>)}</tbody>
+          </table>
+        </div>,
+      );
+      continue;
+    }
+    out.push(<Fragment key={`l${i}`}>{inline(lines[i])}{i < lines.length - 1 && !lines[i + 1]?.includes("|") ? <br /> : null}</Fragment>);
+    i++;
+  }
+  return out;
 }
 
 const SUP: Record<string, string> = { "0": "⁰", "1": "¹", "2": "²", "3": "³", "4": "⁴", "5": "⁵", "6": "⁶", "7": "⁷", "8": "⁸", "9": "⁹" };

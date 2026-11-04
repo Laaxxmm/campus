@@ -85,6 +85,7 @@ export function DrillRunner({ drillId, items, initialResults, explainEnabled }: 
   }
 
   function next() {
+    window.scrollTo(0, 0);
     setSelected(null);
     setStartedAt(Date.now());
     setLocal((l) => ({ ...l, current: l.current + 1 }));

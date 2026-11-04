@@ -59,8 +59,13 @@ export async function weekly(now = new Date()) {
     snapshots += rows.length;
   }
   const retired = await retireLeaked(now);
+  // Pre-generate this week's TPO report for every college (cached; LLM only if key set, aggregates only).
+  const { colleges } = await import("@/db/schema");
+  const { weeklyReport } = await import("./reports");
+  const cols = await db.select({ id: colleges.id }).from(colleges);
+  for (const c of cols) await weeklyReport({ id: "00000000-0000-0000-0000-000000000000", role: "superadmin", collegeId: null }, c.id, { refresh: true, now }).catch((e) => console.error(JSON.stringify({ level: "error", msg: "weekly report failed", college: c.id, err: String(e) })));
   await pruneRateLimits();
-  return { week, snapshots, retired };
+  return { week, snapshots, retired, reports: cols.length };
 }
 
 /**

@@ -117,7 +117,7 @@ export const attempts = pgTable("attempts", {
   chosenIndex: integer("chosen_index"), correct: boolean("correct").notNull(),
   timeMs: integer("time_ms").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-}, t => [uniqueIndex("attempts_client_uq").on(t.userId, t.clientId), index("attempts_user_q_idx").on(t.userId, t.questionId)]);
+}, t => [uniqueIndex("attempts_client_uq").on(t.userId, t.clientId), index("attempts_user_q_idx").on(t.userId, t.questionId), index("attempts_user_time_idx").on(t.userId, t.createdAt)]);
 
 export const reviewQueue = pgTable("review_queue", {     // spaced review 1/3/7 days
   userId: uuid("user_id").notNull().references(() => users.id),
@@ -197,6 +197,13 @@ export const events = pgTable("events", {   // lightweight analytics
   name: text("name").notNull(), props: jsonb("props"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 }, t => [index("events_college_time_idx").on(t.collegeId, t.createdAt)]);
+
+export const weeklyReports = pgTable("weekly_reports", {   // cached TPO narrative per college × ISO week (aggregates only, no PII)
+  collegeId: uuid("college_id").notNull().references(() => colleges.id),
+  week: text("week").notNull(),
+  stats: jsonb("stats").notNull(), narrative: text("narrative").notNull(), model: text("model").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, t => [primaryKey({ columns: [t.collegeId, t.week] })]);
 
 export const auditLogs = pgTable("audit_logs", {   // v2: append-only, every TPO/admin mutation
   id: uuid("id").primaryKey().defaultRandom(),

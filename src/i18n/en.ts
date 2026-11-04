@@ -8,9 +8,10 @@ export const en = {
     students: "Students",
     atRisk: "At risk",
     reports: "Reports",
+    mocks: "Mocks",
     import: "Import roster",
     batches: "Batches",
-    college: "College",
+    college: "Settings",
   },
   login: {
     title: "Log in to LearnCrew",

@@ -25,7 +25,9 @@ describe("architecture rules", () => {
   it("client components never import server-only modules", () => {
     const offenders = walk("src").filter((f) => {
       const s = readFileSync(f, "utf8");
-      return /^["']use client["']/.test(s.trimStart()) && /from\s+["'](@\/db|@\/server|@\/auth|@\/lib\/drill)["']/.test(s);
+      if (!/^["']use client["']/.test(s.trimStart())) return false;
+      // value imports of server-only modules (type-only imports are erased and allowed)
+      return /^import\s+(?!type\b)[^;]*from\s+["'](@\/db|@\/server|@\/auth|@\/lib\/(drill|bank|audit|rate-limit|events|llm))(\/[^"']*)?["']/m.test(s);
     });
     expect(offenders).toEqual([]);
   });

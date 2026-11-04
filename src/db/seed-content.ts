@@ -86,7 +86,7 @@ export async function seedBlueprintsAndMocks() {
 
 const isSundayIst = (date: string) => new Date(`${date}T00:00:00Z`).getUTCDay() === 0;
 
-type Student = { id: string; collegeId: string | null; targetCompany: string | null; email: string };
+type Student = { id: string; collegeId: string | null; batchId: string | null; targetCompany: string | null; email: string };
 
 /**
  * 3 weeks of synthetic activity so dashboards aren't empty. Only for students with no drills yet → idempotent.
@@ -150,7 +150,9 @@ export async function seedActivity(students: Student[], opts: { days?: number; t
       let score = 0;
       const startedAt = new Date(istMidnightUtc(date).getTime() + (7 + Math.floor(rng() * 14)) * 3600_000);
       picks.forEach((q, i) => {
-        const p = Math.min(0.95, Math.max(0.1, ability + (3 - q.difficulty) * 0.08));
+        // Batch-level topic strengths/weaknesses (deterministic) so the TPO heatmap tells a story.
+        const bias = ((hashString(`${s.batchId}:${q.topic}`) % 1000) / 1000 - 0.5) * 0.5;
+        const p = Math.min(0.95, Math.max(0.08, ability + bias + (3 - q.difficulty) * 0.08));
         const correct = rng() < p;
         const timeMs = Math.round(q.timeSec * 1000 * (0.35 + rng() * 0.9));
         if (correct) score++;

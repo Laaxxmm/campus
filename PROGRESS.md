@@ -1,5 +1,5 @@
 # PROGRESS — LearnCrew Campus
-Current phase: 6 — TPO dashboard | Last green: 2026-11-04T23:20+05:30 | Tests: unit 166/166, e2e 16/16
+Current phase: 7 — Admin | Last green: 2026-11-05T00:10+05:30 | Tests: unit 178/178, e2e 20/20
 Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived at docs/ORCHESTRATOR-v1.md; v1 phases 0–3 work carried over (same schema + stack).
 
 ## Phase checklist (✅ only when phase QA gate green)
@@ -9,19 +9,19 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 - [ ] 3 — Question bank + pipeline — BLOCKED on 600-Q count only (needs ANTHROPIC_API_KEY, D15). Green: schema tests, verifier fixture test, 260 golden verified Q, coverage/balance test, generate/qa/dedupe/quant-check (--dry-run), idempotent seed
 - [x] 4 — Student drill + streak + PWA ✅ (e2e: login → 10-Q drill → streak 1; offline answers sync once; SW offline shell + cached drill; axe zero serious on 7 screens; /today 108 KB JS)
 - [x] 5 — Adaptive engine + real mocks ✅ (Elo/bands/6-2-2/spaced review 17 tests; exam UX w/ palette, flags, keyboard, sectional timers, autosave+resume, negative marks, percentile, review mode; cron routes; e2e full mock + refresh, fake-clock auto-submit, leak, IDOR)
-- [ ] 6 — TPO dashboard
+- [x] 6 — TPO dashboard ✅ (KPIs, accuracy/mastery heatmap batch×topic & student×topic w/ company filter, students table + Excel-safe CSV export (audited), drill-down, at-risk + WhatsApp nudges, weekly report (template / Sonnet aggregates-only, cached), create/schedule mock (audited); services p95 ≤ 43 ms on 505 students; e2e incl. cross-college 404)
 - [ ] 7 — Admin
 - [ ] 8 — Railway deploy
 - [ ] 9 — Pilot hardening
 - [ ] 10 — Final QA matrix
 
-## Current phase tasks (phase 6 — TPO dashboard)
-- [ ] TPO service (scoped SQL aggregates): KPIs, heatmap batch×topic + student×topic w/ company filter, students table, student drill-down, at-risk (≥5 days inactive OR readiness <40) + WhatsApp nudge text
-- [ ] CSV export (streamed, Excel-safe BOM, formula-injection escaped) + audit
-- [ ] weekly report: aggregates only, templated narrative (Sonnet when key set, no PII), print CSS
-- [ ] create/schedule mock for batch (createMock action) + audit
-- [ ] TPO sidebar (v2 nav), breadcrumbs, 1280 desktop + mobile stack
-- [ ] e2e: TPO flows, cross-college 404 by URL, CSV headers; p95 < 800 ms on 500 students
+## Current phase tasks (phase 7 — Admin)
+- [ ] /admin/import: CsvDropzone → papaparse → Zod row errors (bad email, duplicate roll, unknown batch) → preview → confirm → upsert users (+create batches toggle) → invites (Resend/console); seat limit; rate limit 5/hr; audit
+- [ ] fixtures/roster-200.csv; import 200 → re-import 0 duplicates; malformed rows reported
+- [ ] /admin/batches (drive date, target company), /admin/college (seats used/limit)
+- [ ] /content/review: filter status/topic/flag, QA side-by-side, approve → golden (+college access), edit, retire; audit
+- [ ] /super: colleges list, create college + first TPO invite, usage; student data export/delete (DPDP); audit log viewer
+- [ ] e2e + audit entries asserted
 
 ## Feature test registry
 | Feature | Test file | Status |
@@ -56,6 +56,9 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 | Mock auto-submit at 0 (fake clock) | e2e/mock.spec.ts | ✅ |
 | Mock attempt IDOR by URL → 404 | e2e/mock.spec.ts | ✅ |
 | Cron: 401 w/o secret, build drills idempotent, weekly snapshots, retire leaked | tests/cron.test.ts | ✅ |
+| TPO services: scoping, no scope widening, KPIs, heatmap, nudge, CSV, mock create/schedule audited, report no-PII + cache | tests/tpo.test.ts | ✅ |
+| CSV escaping (formula injection, BOM, CRLF) | src/lib/csv.test.ts | ✅ |
+| TPO e2e: KPIs/heatmap/filter, table filter + drill-down, CSV headers, cross-college 404 + export, at-risk, report, schedule → student sees it | e2e/tpo.spec.ts | ✅ |
 
 ## Decisions (ADR-lite)
 - D1 2026-11-04: `learncrew-campus-product-pack.md` was NOT provided to the build session. Taxonomy, the "12 samples", and pack prompts (system/variant/qa/seed) are authored by the orchestrator from the summaries in ORCHESTRATOR.md. Replace with pack versions when available.
@@ -75,6 +78,7 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 - D18 2026-11-04: Login rate limit is per (IP, email) only — no IP-only cap, because campus NAT shares one IP across a college. Sessions: 7-day idle expiry rolled daily (Auth.js DB sessions have no creation timestamp, so the 30-day absolute cap is not enforced; revisit with a sessions.created_at column).
 - D17 2026-11-04: Migration 0001 adds audit_logs, rate_limits, batch_mocks and v2 mock-exam columns (negative marks, sectional, autosaved answers, one-active-attempt partial unique index).
 - D19 2026-11-04: Spec said "Phase 4 random-by-band, Phase 5 adaptive"; drills used the adaptive composer from the start (same code path, tested in phase 5). Mocks record `attempts` rows for analytics but do not move Elo (drills train, mocks measure). Client `auto` flag on submit only labels the attempt; scoring always uses answers the server accepted before `ends_at` (+5 s grace).
+- D20 2026-11-05: TPO heatmap defaults to 30-day accuracy per topic (toggle: Elo mastery). With K=24 Elo moves ~±50 in 3 weeks, so mastery clusters near 50 and hides weak topics; accuracy shows them now. Readiness still uses mastery. Seed adds deterministic batch×topic strengths so the demo heatmap is meaningful. Readiness ring uses coral (not red) below 40 per v2 voice.
 - D16 2026-11-04: CSRF for custom JSON routes = same-origin `Origin` check + `application/json` content-type (forces preflight) + SameSite=Lax cookies; no double-submit token (server actions already have Next origin check).
 - D15 2026-11-04: Bank seeded at 260 hand-authored, machine-verified golden questions (v1 gate ≥120 met; v2 asks 600). The designed route to 600–2,000 is the Haiku-batch → Sonnet-QA pipeline, which needs ANTHROPIC_API_KEY (~$30 per the pack). Not hand-authoring 340 more in-session.
 
@@ -84,6 +88,7 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 - [ ] Railway login (Phase 8).
 
 ## Log
+- 2026-11-05T00:10+05:30 phase 6 done: TPO dashboard end to end; visual pass fixed mock scroll offset, DI pipe tables → real tables, flat heatmap (metric + seed), demo names.
 - 2026-11-04T23:20+05:30 phase 5 done: mock exam (service + runner + result/review), cron build-drills/weekly + scripts/cron.mjs, 166 unit + 16 e2e green.
 - 2026-11-04T22:30+05:30 phase 4 done: profile tab (target company, deletion request, sign out), privacy page, axe clean (fixed 2 contrast issues), static offline shell + drill doc cache warm (fixed offline reload after client nav), leaderboard Date-param bug fixed + tested.
 - 2026-11-04T22:00+05:30 phase 2 (v2) done: migration 0001 (audit_logs, rate_limits, batch_mocks, mock exam cols), rate limiter wired to login + sync, audit lib, 7-day idle sessions, RBAC matrix; 122 unit + 11 e2e green.
