@@ -16,3 +16,12 @@ Setup (once): `npm run db:seed` (or `railway run npm run db:seed`). Open two win
 | 5:00 | Close | "Pilot: one batch free for 4 weeks. We import your roster CSV the same day." |
 
 Other logins: `admin@demo.learncrew.in` (roster import `fixtures/roster-bad.csv` shows row-level errors), `content@learncrew.in` (review queue), `SUPERADMIN_EMAIL` (`/super`: create a college + first TPO invite, audit log, data requests).
+
+## v3 coach add-on (+3 minutes)
+| Show | Say |
+|---|---|
+| Phone as `student030@…`: finish a drill → Insight card → *Start focus drill* | "Every attempt ends with what's going wrong and a one-tap fix — computed by rules, not guessed." |
+| Companies → tick Infosys → open it | "Readiness 0–100 with the why: aptitude vs the bar, tech concepts for your branch, consistency, profile. Round by round gaps, tech cards, HR questions with STAR outlines." |
+| Skills checklist | "Required vs nice-to-have, have/weak/missing, one action each. Honest: no promises of selection." |
+| Profile coach → upload a resume PDF | "Free checklist and templates. AI drafts only on click, with consent and a monthly quota; we never touch LinkedIn." |
+| Laptop TPO → Companies funnel → Weak topics → *Assign to N* | "Interview-ready % per company, and one click sends a focus pack to the 42 students weak in Time & Work." |

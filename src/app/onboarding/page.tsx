@@ -31,7 +31,7 @@ export default async function Onboarding({ searchParams }: { searchParams: Promi
     <main className="mx-auto max-w-md px-4 py-6">
       <h1 className="text-xl font-bold">{t.onboarding.title}</h1>
       {error === "consent" && (
-        <p role="alert" className="mt-3 rounded-md bg-danger-50 p-3 text-sm text-danger-500">
+        <p role="alert" className="mt-3 rounded-md bg-danger-50 p-3 text-sm text-danger-700">
           {t.onboarding.mustConsent}
         </p>
       )}

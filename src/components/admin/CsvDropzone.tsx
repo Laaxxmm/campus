@@ -81,7 +81,7 @@ export function CsvDropzone({ collegeId }: { collegeId?: string }) {
       </div>
       {pending && <div className="h-24 animate-pulse rounded-md bg-ink-50" aria-label="Checking file" />}
       {fatal && (
-        <p role="alert" className="rounded-sm bg-danger-50 p-3 text-sm text-danger-500">
+        <p role="alert" className="rounded-sm bg-danger-50 p-3 text-sm text-danger-700">
           {fatal}
         </p>
       )}
@@ -94,7 +94,7 @@ export function CsvDropzone({ collegeId }: { collegeId?: string }) {
             <span className={cn("rounded-pill px-3 py-1", p.counts.error ? "bg-coral-50 text-ink-900" : "bg-surface")} data-testid="error-count">
               {p.counts.error} with errors
             </span>
-            <span className={cn("rounded-pill px-3 py-1", p.overSeats ? "bg-danger-50 text-danger-500" : "bg-surface")}>
+            <span className={cn("rounded-pill px-3 py-1", p.overSeats ? "bg-danger-50 text-danger-700" : "bg-surface")}>
               Seats {p.seats.after}/{p.seats.limit}
             </span>
             {p.newBatches.length > 0 && <span className="rounded-pill bg-accent-50 px-3 py-1">New batches: {p.newBatches.join(", ")}</span>}
@@ -158,7 +158,7 @@ export function CsvDropzone({ collegeId }: { collegeId?: string }) {
             Imported: {done.created} new, {done.updated} updated, {done.unchanged} unchanged, {done.skipped} skipped. {done.invited ? `${done.invited} invites sent.` : ""}
           </p>
         ) : (
-          <p role="alert" className="rounded-sm bg-danger-50 p-3 text-sm text-danger-500">
+          <p role="alert" className="rounded-sm bg-danger-50 p-3 text-sm text-danger-700">
             {done.error}
           </p>
         ))}

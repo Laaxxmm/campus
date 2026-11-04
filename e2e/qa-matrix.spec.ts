@@ -3,7 +3,7 @@ import { expect, test, type Page } from "@playwright/test";
 import { login } from "./helpers";
 import { e2eSql } from "./db";
 
-const PROTECTED = ["/today", "/drill/00000000-0000-4000-8000-000000000000", "/mocks", "/mocks/attempt/00000000-0000-4000-8000-000000000000", "/progress", "/profile", "/leaderboard", "/onboarding", "/tpo", "/tpo/heatmap", "/tpo/students", "/tpo/at-risk", "/tpo/mocks", "/tpo/reports", "/admin/import", "/admin/batches", "/admin/college", "/content/review", "/super", "/super/audit", "/super/privacy"];
+const PROTECTED = ["/today", "/drill/00000000-0000-4000-8000-000000000000", "/mocks", "/mocks/attempt/00000000-0000-4000-8000-000000000000", "/progress", "/profile", "/leaderboard", "/onboarding", "/tpo", "/tpo/heatmap", "/tpo/students", "/tpo/at-risk", "/tpo/mocks", "/tpo/reports", "/admin/import", "/admin/batches", "/admin/college", "/content/review", "/super", "/super/audit", "/super/privacy", "/insights", "/companies", "/companies/tcs_nqt", "/companies/tcs_nqt/skills", "/learn/dbms", "/profile-coach", "/tpo/funnel", "/tpo/weak-topics", "/super/llm", "/content/companies"];
 
 test("anon: every protected route redirects to /login; public routes are open", async ({ page }) => {
   for (const p of PROTECTED) {
@@ -50,7 +50,7 @@ test("axe: TPO, admin, content and superadmin screens have zero serious/critical
   await page.goto("/");
   await noSerious(page, "/");
   await login(page, "tpo@demo.learncrew.in");
-  for (const p of ["/tpo", "/tpo/heatmap", "/tpo/students", "/tpo/at-risk", "/tpo/mocks", "/tpo/reports", "/admin/import", "/admin/batches", "/admin/college"]) {
+  for (const p of ["/tpo", "/tpo/funnel", "/tpo/weak-topics", "/tpo/heatmap", "/tpo/students", "/tpo/at-risk", "/tpo/mocks", "/tpo/reports", "/admin/import", "/admin/batches", "/admin/college"]) {
     await page.goto(p);
     await noSerious(page, p);
   }
@@ -59,11 +59,13 @@ test("axe: TPO, admin, content and superadmin screens have zero serious/critical
   await login(p2, "content@learncrew.in");
   await p2.goto("/content/review?status=golden");
   await noSerious(p2, "/content/review");
+  await p2.goto("/content/companies");
+  await noSerious(p2, "/content/companies");
   await c.close();
   const s = await browser.newContext();
   const p3 = await s.newPage();
   await login(p3, process.env.SUPERADMIN_EMAIL ?? "founder@learncrew.in");
-  for (const p of ["/super", "/super/audit", "/super/privacy"]) {
+  for (const p of ["/super", "/super/audit", "/super/privacy", "/super/llm"]) {
     await p3.goto(p);
     await noSerious(p3, p);
   }
@@ -83,4 +85,22 @@ test("axe: mock intro, exam runner and result/review screens", async ({ page }) 
   await page.getByTestId("confirm-submit").click();
   await expect(page.getByTestId("mock-score")).toBeVisible();
   await noSerious(page, "/mocks/attempt/[id]/result");
+});
+
+test("axe: v3 coach screens (insights, companies, crack-path, skills, learn, profile coach)", async ({ page }) => {
+  await login(page, "student034@demo.learncrew.in");
+  for (const p of ["/insights", "/companies", "/companies/tcs_nqt", "/companies/tcs_nqt/skills", "/learn/sql", "/profile-coach", "/profile-coach?tab=linkedin"]) {
+    await page.goto(p);
+    await noSerious(page, p);
+  }
+});
+
+test("TPO cannot open student coach screens; student cannot open TPO coach screens", async ({ page, browser }) => {
+  await login(page, "tpo@demo.learncrew.in");
+  for (const p of ["/insights", "/companies", "/profile-coach"]) expect((await page.goto(p))?.status(), p).toBe(403);
+  const c = await browser.newContext();
+  const s = await c.newPage();
+  await login(s, "student035@demo.learncrew.in");
+  for (const p of ["/tpo/funnel", "/tpo/weak-topics", "/super/llm", "/content/companies"]) expect((await s.goto(p))?.status(), p).toBe(403);
+  await c.close();
 });

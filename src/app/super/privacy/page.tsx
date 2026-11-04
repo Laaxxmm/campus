@@ -31,7 +31,7 @@ export default async function Privacy({ searchParams }: { searchParams: Promise<
   return (
     <AdminShell title="Data requests (DPDP)" role={user.role}>
       {!fresh && <ReauthNotice back="/super/privacy" />}
-      {sp.error && <p role="alert" className="mb-3 rounded-sm bg-danger-50 p-3 text-sm text-danger-500">{sp.error}</p>}
+      {sp.error && <p role="alert" className="mb-3 rounded-sm bg-danger-50 p-3 text-sm text-danger-700">{sp.error}</p>}
       {sp.deleted && <p role="status" className="mb-3 rounded-sm bg-success-50 p-3 text-sm">Student and all practice data deleted.</p>}
       <section className="mb-6">
         <h2 className="mb-2 font-semibold text-ink-900">Deletion requests from students</h2>

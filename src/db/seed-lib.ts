@@ -10,7 +10,7 @@ export const DEMO = {
   content: "content@learncrew.in",
   newStudent: "newstudent@demo.learncrew.in",
   /** Fresh-every-seed students for e2e (activity wiped on each seed run). */
-  freshStudents: ["drill.student@demo.learncrew.in", "offline.student@demo.learncrew.in", "mock.student@demo.learncrew.in", "smoke.student@demo.learncrew.in"],
+  freshStudents: ["drill.student@demo.learncrew.in", "offline.student@demo.learncrew.in", "mock.student@demo.learncrew.in", "smoke.student@demo.learncrew.in", "insight.student@demo.learncrew.in"],
   student: (i: number) => `student${String(i).padStart(3, "0")}@demo.learncrew.in`,
   otherTpo: "tpo@sample.learncrew.in",
   otherStudent: (i: number) => `student${String(i).padStart(3, "0")}@sample.learncrew.in`,
@@ -66,6 +66,7 @@ export async function upsertUser(v: { email: string; name: string; role: Role; c
 }
 
 export async function resetActivity(userId: string) {
+  for (const t of ["attempt_insights", "weekly_focus", "target_companies", "student_skills", "profile_reviews", "consents", "focus_assignment_students"]) await db.execute(sql`delete from ${sql.identifier(t)} where user_id = ${userId}`);
   await db.execute(sql`delete from attempts where user_id = ${userId}`);
   await db.execute(sql`delete from mock_attempts where user_id = ${userId}`);
   await db.execute(sql`delete from drills where user_id = ${userId}`);
@@ -96,7 +97,7 @@ export async function seedPeople(opts: SeedOptions) {
   await upsertUser({ email: DEMO.newStudent, name: "Nikhil Rao", role: "student", collegeId: demo.id, batchId: b1.id, rollNo: "21CS999", consent: false, resetConsent: true });
 
   for (const [i, email] of DEMO.freshStudents.entries()) {
-    const u = await upsertUser({ email, name: ["Meera Krishnan", "Vikram Rao", "Ishwarya Nair", "Gokul Raman"][i] ?? `Student ${i + 1}`, role: "student", collegeId: demo.id, batchId: b1.id, rollNo: `21CS9${i}0`, consent: true, targetCompany: "tcs_nqt" });
+    const u = await upsertUser({ email, name: ["Meera Krishnan", "Vikram Rao", "Ishwarya Nair", "Gokul Raman", "Harini Suresh"][i] ?? `Student ${i + 1}`, role: "student", collegeId: demo.id, batchId: b1.id, rollNo: `21CS9${i}0`, consent: true, targetCompany: "tcs_nqt" });
     await resetActivity(u.id);
     await db.update(users).set({ consentAt: new Date("2026-10-01T04:00:00Z") }).where(eq(users.id, u.id));
   }

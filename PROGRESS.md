@@ -1,24 +1,27 @@
 # PROGRESS — LearnCrew Campus
-Current phase: DONE locally — waiting on human for Railway deploy (8) and API key (3) | Last green: 2026-11-05T02:40+05:30 | Tests: unit 195/195, e2e 32/32 (clean clone)
-Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived at docs/ORCHESTRATOR-v1.md; v1 phases 0–3 work carried over (same schema + stack).
+Current phase: v3 complete locally — waiting on human for Railway deploy (10) + API key (3: 600-Q bank, 300-tech target) | Last green: 2026-11-05T05:40+05:30 | Tests: unit 264/264, e2e 41/41
+Governing spec: ORCHESTRATOR.md (v3 "Placement Readiness Coach", adopted 2026-11-05). v2 → docs/ORCHESTRATOR-v2.md, v1 → docs/ORCHESTRATOR-v1.md.
 
 ## Phase checklist (✅ only when phase QA gate green)
-- [x] 0 — Design system + architecture docs ✅ (docs/DESIGN.md, ARCHITECTURE.md, SECURITY.md; tokens compile)
-- [x] 1 — Scaffold ✅ (v2 tokens navy/amber + Inter + lucide, env.ts boot validation, CSP nonce + headers, CI workflow, /dev/ui, architecture test)
-- [x] 2 — Auth + roles + tenancy ✅ (RBAC matrix 70 cases, Postgres rate limiter + login/submit wiring, audit logger, cookie flags, cross-college DB test; per-route IDOR e2e added as routes land)
-- [ ] 3 — Question bank + pipeline — BLOCKED on v2's 600-Q count only (needs ANTHROPIC_API_KEY, D15; v1 gate ≥120 met with 260). Green: schema tests, verifier fixture test, 260 golden verified Q, coverage/balance test, generate/qa/dedupe/quant-check (--dry-run), idempotent seed
-- [x] 4 — Student drill + streak + PWA ✅ (e2e: login → 10-Q drill → streak 1; offline answers sync once; SW offline shell + cached drill; axe zero serious on 7 screens; /today 108 KB JS)
-- [x] 5 — Adaptive engine + real mocks ✅ (Elo/bands/6-2-2/spaced review 17 tests; exam UX w/ palette, flags, keyboard, sectional timers, autosave+resume, negative marks, percentile, review mode; cron routes; e2e full mock + refresh, fake-clock auto-submit, leak, IDOR)
-- [x] 6 — TPO dashboard ✅ (KPIs, accuracy/mastery heatmap batch×topic & student×topic w/ company filter, students table + Excel-safe CSV export (audited), drill-down, at-risk + WhatsApp nudges, weekly report (template / Sonnet aggregates-only, cached), create/schedule mock (audited); services p95 ≤ 43 ms on 505 students; e2e incl. cross-college 404)
-- [x] 7 — Admin ✅ (roster CSV import w/ Zod row errors, seat limit, re-import idempotent, invites, rate limit, audit; batches + settings; content review queue w/ blind-QA side-by-side, approve → golden + college access → next drill; superadmin colleges/create+TPO invite, audit log viewer, DPDP export/delete with 15-min re-auth)
-- [ ] 8 — Railway deploy — config ✅ (Dockerfile Node 22 standalone, non-root, healthcheck; railway.json; compose prod; DEPLOY.md). Verified locally: image builds, migrates, /api/health ok, cron 401/200, bad env → exit 1. BLOCKED on human: `railway login` + deploy (steps in docs/DEPLOY.md)
-- [x] 9 — Pilot hardening ✅ (load: 500 students × 10 answers sync p95 35 ms, 200 concurrent mock-takers 200/200; Lighthouse mobile perf 99–100 / a11y 100 on 4 pages; explain-more cached + rate-limited; error/not-found pages; JSON logs; events; landing; smoke suite; DEMO.md; reports in docs/reports/). Backups: Railway volume backups — enable at deploy (DEPLOY.md §1)
-- [x] 10 — Final QA matrix ✅ locally (docs/QA_MATRIX.md: every row mapped to a passing test; anon redirects, CSRF on all JSON routes, IDOR, axe on ~30 screens, gitleaks, npm audit 0, Lighthouse, load, 28 screenshots in docs/screens/; clean-clone run green). Only open row: smoke against the deployed URL (needs phase 8 deploy)
+- [x] 0 — Design system + architecture docs ✅ (DESIGN, ARCHITECTURE, SECURITY incl. prompt injection/PII, PRODUCT with 6 pillars + readiness formula; coach tables in schema, migration 0003)
+- [x] 1 — Scaffold ✅
+- [x] 2 — Auth + roles + tenancy ✅ (+ v3 consent records table)
+- [ ] 3 — Content — BLOCKED on counts only: aptitude 260/600, tech MCQ 171/300, concept cards 60/100 (generation pipeline needs ANTHROPIC_API_KEY, D15/D25). Green: schema + verifier fixtures, 6 company profiles each with dated sources (validator), 40 HR cards
+- [x] 4 — Drill + attempt events + streak + PWA ✅ (answer changes + marked stored per answer; e2e asserts events)
+- [x] 5 — Real mocks + Insight engine v1 ✅ (rule fixtures, not-enough-data path, LLM-down + bad-output fallback, focus drills)
+- [x] 6 — Company crack-path + missing-skills checklist ✅ (readiness v3 unit tests, e2e pick → gap → tech drill → checklist)
+- [x] 7 — Resume + LinkedIn coach ✅ (injection fixture, Zod output, quota, temp-file deletion, TPO no-draft-leak)
+- [x] 8 — TPO dashboard (coach view) ✅ (interview-ready funnel, weak topics → assign pack → student Today, drill-down with insights/checklists, cross-college blocked)
+- [x] 9 — Admin ✅ (colleges, CSV import, question + company-profile review, LLM usage/quota view, audit log)
+- [ ] 10 — Railway deploy — config ✅ + local Docker verified; BLOCKED on Railway login
+- [x] 11 — Pilot hardening ✅ (Lighthouse 99–100/100, load 500 drills + 200 mocks, LLM cost ₹1.67/student/month, error pages; reports in docs/reports/)
+- [ ] 12 — Final QA matrix — all rows green locally (docs/QA_MATRIX.md); deployed smoke pending phase 10
 
 ## Current phase tasks
-- [ ] (human) Railway login + deploy per docs/DEPLOY.md → then `BASE_URL=https://<domain> npx playwright test e2e/smoke.spec.ts --project=desktop` against staging
-- [ ] (human, optional) ANTHROPIC_API_KEY → `npx tsx scripts/generate.ts` → `scripts/qa.ts` → `scripts/import-drafts.ts` → approve in /content/review to reach 600+
-- [ ] (human) AUTH_RESEND_KEY + verified sending domain before inviting a real college
+- [ ] (human) Railway login + deploy per docs/DEPLOY.md → `BASE_URL=https://<staging> npx playwright test e2e/smoke.spec.ts --project=desktop`
+- [ ] (human) verify company-profile sources (research agent could only read search-result summaries; prepinsta/tcsion blocked) → publish/keep in /content/companies
+- [ ] (human, optional) ANTHROPIC_API_KEY → generate/QA/import drafts to reach 600 aptitude + 300 tech + 100 cards
+- [ ] (human) AUTH_RESEND_KEY + verified sending domain
 
 ## Feature test registry
 | Feature | Test file | Status |
@@ -66,8 +69,25 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 | QA matrix: anon redirects (21 routes), 401/403 CSRF on 4 JSON routes + cron, drill IDOR, axe on TPO/admin/content/super/mock screens | e2e/qa-matrix.spec.ts | ✅ |
 | Health route | tests/health.test.ts | ✅ |
 | Explanation sheet shows the correct option on a wrong answer | e2e/drill.spec.ts | ✅ |
+| Tech concept bank + concept cards + company profiles + HR cards (schema, sources) | npm run content:validate, tests/bank-count.test.ts | ✅ |
+| Answer events (answer_changes, marked) | e2e/coach.spec.ts, tests/mocks.test.ts | ✅ |
+| Insight rules: gap, time leak, guessing, second-guessing, quadrant, trend, focus, not-enough-data | src/lib/insights/rules.test.ts | ✅ |
+| Insight service: cache, weekly focus, LLM-down + number/topic-changing output rejected, focus drill | tests/insights.test.ts | ✅ |
+| Readiness v3 formula + interview-ready gates | src/lib/readiness-v3.test.ts | ✅ |
+| Crack-path e2e: targets → breakdown → round gaps → tech drill → skills checklist; concept cards | e2e/coach.spec.ts | ✅ |
+| Resume/LinkedIn checklists, keyword gap, templates, injection + PII guards | src/lib/coach/checklists.test.ts | ✅ |
+| Profile coach: PDF parse + temp deletion, consent, storage revoke, injection never reaches model, Zod output, quota, TPO draft privacy | tests/profile-coach.test.ts, e2e/profile-coach.spec.ts | ✅ |
+| TPO coach: weak topics scoping, funnel, assign pack (foreign ids dropped, audited) → completion | tests/tpo-coach.test.ts, e2e/tpo.spec.ts | ✅ |
+| v3 routes: anon redirects, role 403s, axe on coach + TPO coach + admin screens | e2e/qa-matrix.spec.ts | ✅ |
+| LLM cost report | docs/reports/llm-cost.md | ✅ |
 
 ## Decisions (ADR-lite)
+- D25 2026-11-05: v3 adopted mid-build (after v2 phases 0–10 were done). Kept schema/routes; added coach tables (migration 0003). Content counts: tech bank seeded at 171 MCQ + 60 cards (v3 asks 300 + 100) for the same reason as D15 — the Sonnet-batch → Haiku-verify pipeline is the designed route and needs the API key.
+- D26 2026-11-05: Student bottom nav = 5 tabs: Today · Mocks · Insights · Companies · Me (v2 capped at 4, v3 lists 6). "Practice" lives in Today (daily + assigned packs) and crack-path tech drills; Progress/Leaderboard/Profile coach sit under Me.
+- D27 2026-11-05: Daily drills stay aptitude-only; the `tech` section is practised via crack-path/focus drills so a Mech student never gets DBMS in the daily 10. Readiness shown on Today, crack-path and TPO funnel is the v3 formula; weekly snapshots store the v3 score + breakdown when the company is profiled (v2 blueprint readiness remains for un-profiled companies).
+- D28 2026-11-05: Company cutoffs are rarely published. Profiles carry `cutoffs.approx: true`, a null `aptitude_percent` when no source gives a figure, and the UI then says "assumed bar of 65". Sources were gathered via web search summaries; pages could not be opened from the sandbox for two sites → human verification task, review/publish toggle at /content/companies.
+- D29 2026-11-05: Insight LLM phrasing is accepted only if it keeps the same number of bullets, the same focus topics and the exact same set of numbers; otherwise the deterministic template is used. Insights claim nothing about a topic with < 5 attempts.
+- D30 2026-11-05: Resume upload is parsed from a 0600 temp file in a private mkdtemp dir that is removed in `finally`; extracted text is stored only with `resume_storage` consent, and revoking it wipes stored text. Drafts: `ai_drafts` consent, 3/month + 3/hour, PII and instruction-like lines stripped, output Zod-stripped to known keys. No LinkedIn API, no scraping — students paste fields.
 - D1 2026-11-04: `learncrew-campus-product-pack.md` was NOT provided to the build session. Taxonomy, the "12 samples", and pack prompts (system/variant/qa/seed) are authored by the orchestrator from the summaries in ORCHESTRATOR.md. Replace with pack versions when available.
 - D2 2026-11-04: Next.js pinned to 15.x (npm `latest` is 16.x) to honour the locked stack.
 - D3 2026-11-04: Build env has no Docker-hosted Postgres by default; local dev/test uses native Postgres 16 + pgvector on :5432 (same as docker-compose port), so commands in README are unchanged.
@@ -94,11 +114,13 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 - D15 2026-11-04: Bank seeded at 260 hand-authored, machine-verified golden questions (v1 gate ≥120 met; v2 asks 600). The designed route to 600–2,000 is the Haiku-batch → Sonnet-QA pipeline, which needs ANTHROPIC_API_KEY (~$30 per the pack). Not hand-authoring 340 more in-session.
 
 ## Blocked / needs human
-- [ ] ANTHROPIC_API_KEY — to run `scripts/generate.ts` + `scripts/qa.ts` and reach the 600-Q gate (pipeline ready, dry-run verified).
-- [ ] AUTH_RESEND_KEY + verified sending domain (real email). Until then magic links print to server console (and `/api/dev/magic-link` when ALLOW_DEV_LOGIN_LINKS=true / non-prod).
-- [ ] Railway login + first deploy (Phase 8) — run docs/DEPLOY.md §0–§4 (≈15 min). Everything else is ready.
+- [ ] Railway login + first deploy (Phase 10) — docs/DEPLOY.md §0–§4 (~15 min).
+- [ ] ANTHROPIC_API_KEY — to grow the banks (600 aptitude / 300 tech / 100 cards) and enable optional Haiku phrasing / Sonnet drafts / explain-more.
+- [ ] Verify company-profile sources before a real pilot (see D28).
+- [ ] AUTH_RESEND_KEY + verified sending domain (real email).
 
 ## Log
+- 2026-11-05T05:40+05:30 v3 done locally: tech bank, company profiles, HR cards, insight engine, readiness v3, crack-path, skills checklist, profile coach, TPO coach, admin additions, LLM cost report; 264 unit + 41 e2e green.
 - 2026-11-05T02:40+05:30 phase 10 done locally: QA matrix green, clean clone (npm ci → typecheck → lint → 195 unit → 32 e2e → build) green. Remaining: Railway deploy (human login), 600-Q bank (API key).
 - 2026-11-05T01:50+05:30 phase 9 done: load + Lighthouse reports committed, explain-more, error pages, landing, smoke, DEMO.md.
 - 2026-11-05T01:20+05:30 phase 8 config done + verified with local Docker; deploy waits for Railway login.

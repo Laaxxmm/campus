@@ -12,10 +12,10 @@ export const InsightTextSchema = z.object({
 
 const pct = (x: number) => `${Math.round(x * 100)}%`;
 
-export function factLine(f: Fact, name: (t: string) => string): string | null {
+export function factLine(f: Fact, name: (t: string) => string, rank = 0): string | null {
   switch (f.kind) {
     case "gap":
-      return `${name(f.topic)} is your weakest area: ${pct(f.accuracy)} correct over your last ${f.attempts} questions${f.sessionWrong ? ` (${f.sessionWrong} missed today)` : ""}.`;
+      return `${name(f.topic)} ${rank === 0 ? "is your weakest area" : "also needs work"}: ${pct(f.accuracy)} correct over your last ${f.attempts} questions${f.sessionWrong ? ` (${f.sessionWrong} missed today)` : ""}.`;
     case "time_leak":
       return `${name(f.topic)} is eating time: ${f.count} question${f.count > 1 ? "s" : ""} took over 1.5× the target (${f.extraSec}s extra).`;
     case "guessing":
@@ -37,7 +37,8 @@ export function factLine(f: Fact, name: (t: string) => string): string | null {
 }
 
 export function templateText(r: InsightFacts, name: (t: string) => string): InsightText {
-  const lines = r.facts.map((f) => factLine(f, name)).filter((x): x is string => Boolean(x)).slice(0, 3);
+  let gaps = 0;
+  const lines = r.facts.map((f) => factLine(f, name, f.kind === "gap" ? gaps++ : 0)).filter((x): x is string => Boolean(x)).slice(0, 3);
   const trend = r.facts.find((f) => f.kind === "trend");
   const strength = r.facts.find((f) => f.kind === "strength");
   const headline =

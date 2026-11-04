@@ -34,7 +34,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
       <h1 className="text-xl font-semibold">{t.login.title}</h1>
       <p className="mt-1 text-sm text-text-600">{t.login.subtitle}</p>
       {msg && (
-        <p role="alert" className="mt-4 rounded-md bg-danger-50 p-3 text-sm text-danger-500">
+        <p role="alert" className="mt-4 rounded-md bg-danger-50 p-3 text-sm text-danger-700">
           {msg}
         </p>
       )}

@@ -31,7 +31,7 @@ export default async function Super({ searchParams }: { searchParams: Promise<{ 
   return (
     <AdminShell title="Colleges" role={user.role}>
       {!fresh && <ReauthNotice back="/super" />}
-      {sp.error && <p role="alert" className="mb-3 rounded-sm bg-danger-50 p-3 text-sm text-danger-500">{sp.error}</p>}
+      {sp.error && <p role="alert" className="mb-3 rounded-sm bg-danger-50 p-3 text-sm text-danger-700">{sp.error}</p>}
       {sp.created && <p role="status" className="mb-3 rounded-sm bg-success-50 p-3 text-sm">College created and TPO invited.</p>}
       <div className="overflow-x-auto rounded-md border border-border bg-bg">
         <table className="w-full text-sm" data-testid="colleges">

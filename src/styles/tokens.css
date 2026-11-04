@@ -12,6 +12,7 @@
   --success-700: #15803d; /* text on white (AA) */
   --success-50: #dcfce7;
   --danger-500: #dc2626; /* wrong answers, review mode only */
+  --danger-700: #b91c1c; /* small text on danger-50 (AA) */
   --danger-50: #fee2e2;
   --info-500: #2563eb; /* links, focus ring */
   --bg: #ffffff;

@@ -17,6 +17,7 @@ const MATRIX: Record<string, AppRole[]> = {
   "/companies/tcs_nqt": ["student"],
   "/companies/tcs_nqt/skills": ["student"],
   "/profile-coach": ["student"],
+  "/learn/dbms": ["student"],
   "/onboarding": ["student"],
   "/tpo": ["tpo", "admin", "superadmin"],
   "/tpo/students/123": ["tpo", "admin", "superadmin"],

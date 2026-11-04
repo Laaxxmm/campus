@@ -32,7 +32,7 @@ test("drill result ends with an insight card; 'Start focus drill' opens a focus 
 });
 
 test("new student: insights say 'not enough data' instead of guessing", async ({ page }) => {
-  await login(page, "smoke.student@demo.learncrew.in");
+  await login(page, "insight.student@demo.learncrew.in");
   await page.goto("/insights");
   await expect(page.getByText(/first insight arrives after a drill/i)).toBeVisible();
 });

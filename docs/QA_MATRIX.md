@@ -11,6 +11,12 @@ Legend: ✓ allowed · ✗ denied (403 page, or 404 for foreign ids) · redirect
 | Explain more | `POST /api/explain` | ✓ own, after a wrong answer | ✗ | ✗ | ✗ | 401 | `tests/explain.test.ts` (off without key, cache), `e2e/qa-matrix.spec.ts` (CSRF) |
 | Mocks list / take / result / review | `/mocks`, `/mocks/[id]`, `/mocks/attempt/[id]`, `/result`, `POST …/save`, `POST …/submit` | ✓ own | ✗ | ✗ | ✗ | redirect / 401 | `e2e/mock.spec.ts` (full flow, refresh resume, review filters, **answer-leak**, fake-clock **auto-submit**, IDOR 404), `tests/mocks.test.ts` (one active attempt, late save 409, sectional lock, negative marks, percentile), `e2e/qa-matrix.spec.ts` (CSRF) |
 | Progress / streak / leaderboard / profile | `/progress`, `/leaderboard`, `/profile` | ✓ own | ✗ | ✗ | ✗ | redirect | `src/lib/streak.test.ts`, `tests/student-services.test.ts` (first name + initial only), `e2e/a11y.spec.ts` |
+| Insights + focus | `/insights`, focus-drill action | ✓ own | ✗ | ✗ | ✗ | redirect | `src/lib/insights/rules.test.ts`, `tests/insights.test.ts` (fallbacks, cache), `e2e/coach.spec.ts` (card → focus drill, not-enough-data) |
+| Companies crack-path | `/companies`, `/companies/[key]`, `/learn/[topic]` | ✓ own | ✗ | ✗ | ✗ | redirect | `src/lib/readiness-v3.test.ts`, `e2e/coach.spec.ts`, `e2e/qa-matrix.spec.ts` (TPO → 403) |
+| Skills checklist | `/companies/[key]/skills` | ✓ own | ✗ | ✗ | ✗ | redirect | `e2e/coach.spec.ts` (self-declared update) |
+| Profile coach | `/profile-coach` (upload, LinkedIn, draft, share) | ✓ own | ✗ | ✗ | ✗ | redirect | `tests/profile-coach.test.ts` (**consent, injection, quota, temp-file deletion**, TPO no-draft-leak), `e2e/profile-coach.spec.ts` |
+| TPO coach: funnel / weak topics / assign | `/tpo/funnel`, `/tpo/weak-topics` | ✗ | ✓ own | ✓ own | ✓ | redirect | `tests/tpo-coach.test.ts` (scoping, audit), `e2e/tpo.spec.ts` (assign → student Today) |
+| LLM usage / company-profile review | `/super/llm`, `/content/companies` | ✗ | ✗ | ✗ | ✓ (+content) | redirect | `e2e/qa-matrix.spec.ts` (axe, student → 403) |
 | TPO overview / heatmap | `/tpo`, `/tpo/heatmap` | ✗ | ✓ own college | ✓ own college | ✓ any (`?college=`) | redirect | `e2e/tpo.spec.ts`, `tests/tpo.test.ts` (scoping, no scope widening via params) |
 | TPO students / drill-down / export | `/tpo/students`, `/tpo/students/[id]`, `/tpo/students/export` | ✗ | ✓ own | ✓ own | ✓ | redirect | `e2e/tpo.spec.ts` (**cross-college 404**, CSV headers, export never includes other college), `tests/tpo.test.ts`, `src/lib/csv.test.ts`, `src/lib/authz.test.ts` |
 | At-risk + nudges / weekly report | `/tpo/at-risk`, `/tpo/reports` | ✗ | ✓ own | ✓ own | ✓ | redirect | `e2e/tpo.spec.ts`, `tests/tpo.test.ts` (report has no PII, cached) |
@@ -34,7 +40,8 @@ Legend: ✓ allowed · ✗ denied (403 page, or 404 for foreign ids) · redirect
 | Secrets: gitleaks (git history) clean with documented test-fixture allowlist | `.gitleaks.toml`, CI job | ✅ |
 | `npm audit --omit=dev --audit-level=high` | 0 vulnerabilities | ✅ |
 | axe: zero serious/critical on student, mock, TPO, admin, content, superadmin screens | `e2e/a11y.spec.ts`, `e2e/qa-matrix.spec.ts` | ✅ |
+| LLM cost ₹/student/month | `docs/reports/llm-cost.md` (₹1.67 model, ₹4.16 worst case) | ✅ |
 | Lighthouse mobile ≥ 90 perf / ≥ 95 a11y | `docs/reports/lighthouse.md` (99–100 / 100) | ✅ |
 | Load: 500 students drill (sync p95 < 500 ms), 200 concurrent mock-takers | `docs/reports/load-test.md` (p95 35 ms; 200/200) | ✅ |
-| 360 px screenshots of every main screen | `docs/screens/` (28) | ✅ |
+| 360 px screenshots of every main screen | `docs/screens/` (37) | ✅ |
 | Deployed smoke (`BASE_URL=… e2e/smoke.spec.ts`) | needs Railway deploy | ⏳ blocked on human (Railway login) |

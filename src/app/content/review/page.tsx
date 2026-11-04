@@ -43,7 +43,7 @@ export default async function Review({ searchParams }: { searchParams: Promise<S
       <div className="mb-4 flex flex-wrap gap-2 text-sm">
         {(["draft", "review", "golden", "retired"] as const).map((s) => <Link key={s} href={`/content/review?status=${s}`} className="rounded-pill border border-border bg-bg px-3 py-1 hover:border-ink-700">{s}: {r.counts[s] ?? 0}</Link>)}
       </div>
-      {sp.error && <p role="alert" className="mb-3 rounded-sm bg-danger-50 p-3 text-sm text-danger-500">{sp.error}</p>}
+      {sp.error && <p role="alert" className="mb-3 rounded-sm bg-danger-50 p-3 text-sm text-danger-700">{sp.error}</p>}
       {sp.done && <p role="status" className="mb-3 rounded-sm bg-success-50 p-3 text-sm">Done: {sp.done}.</p>}
       <form method="get" className="mb-4 flex flex-wrap items-end gap-3">
         <label className="text-sm">Status<select name="status" defaultValue={sp.status ?? ""} className={sel}><option value="">Needs review (draft + review)</option><option value="draft">draft</option><option value="review">review</option><option value="golden">golden</option><option value="retired">retired</option></select></label>

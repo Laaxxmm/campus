@@ -1,6 +1,6 @@
 # LearnCrew Campus
 
-B2B placement-aptitude practice for Indian colleges. Students do a 10-question daily drill (streaks, XP, offline PWA) and company-pattern mock tests; TPOs see readiness per company, topic heatmaps, at-risk lists and weekly reports.
+B2B **placement readiness coach** for Indian colleges. Students do a 10-question daily drill (streaks, XP, offline PWA) and real-feel company mocks; after every attempt the insight engine says what is going wrong and what to focus on. Each student gets a company crack-path (bar, rounds, tech prep, HR questions), a missing-skills checklist and a resume/LinkedIn coach. TPOs see interview-ready % per company, cohort weak topics (assign focus packs), heatmaps, at-risk lists and weekly reports.
 
 **Stack:** Next.js 15 (App Router, TypeScript strict) · Tailwind 4 · Auth.js v5 (email magic link) · Drizzle + Postgres 16/pgvector · Zod · Vitest · Playwright · Docker → Railway.
 
@@ -34,6 +34,8 @@ No email provider needed: with `AUTH_RESEND_KEY` empty, the login link is printe
 | `npm run e2e` | Playwright (builds, seeds `learncrew_e2e`, runs 360 px mobile + desktop) |
 | `npm run db:generate` / `db:migrate` / `db:seed` / `db:studio` | Drizzle |
 | `npm run bank:validate` | Validate `content/bank/*.json` (schema, coverage, duplicates) |
+| `npm run content:validate` | Validate concept cards, company profiles (sources required) and HR cards |
+| `npx tsx scripts/llm-cost.ts` | LLM cost model + actuals → `docs/reports/llm-cost.md` |
 | `npx tsx scripts/generate.ts --dry-run` | Haiku batch variant generation (real run needs `ANTHROPIC_API_KEY`) |
 | `npx tsx scripts/qa.ts content/drafts/x.json` | Blind Sonnet QA → review flags |
 | `npx tsx scripts/quant-check.ts` · `scripts/dedupe.ts` · `scripts/import-drafts.ts` | Code re-solve, near-duplicate drop, load drafts for `/content/review` |

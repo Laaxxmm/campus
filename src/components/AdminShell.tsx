@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Building2, ClipboardCheck, Library, LogOut, ScrollText, ShieldCheck } from "lucide-react";
+import { Briefcase, Building2, ClipboardCheck, Cpu, Library, LogOut, ScrollText, ShieldCheck } from "lucide-react";
 import { signOut } from "@/auth";
 
 async function logout() {
@@ -12,7 +12,8 @@ export function AdminShell({ children, title, role }: { children: React.ReactNod
     ...(role === "superadmin" ? [{ href: "/super", label: "Colleges", Icon: Building2 }] : []),
     { href: "/content/review?status=golden", label: "Question bank", Icon: Library },
     { href: "/content/review", label: "Review queue", Icon: ClipboardCheck },
-    ...(role === "superadmin" ? [{ href: "/super/audit", label: "Audit log", Icon: ScrollText }, { href: "/super/privacy", label: "Data requests", Icon: ShieldCheck }] : []),
+    { href: "/content/companies", label: "Company profiles", Icon: Briefcase },
+    ...(role === "superadmin" ? [{ href: "/super/audit", label: "Audit log", Icon: ScrollText }, { href: "/super/llm", label: "LLM usage", Icon: Cpu }, { href: "/super/privacy", label: "Data requests", Icon: ShieldCheck }] : []),
   ];
   return (
     <div className="flex min-h-dvh flex-col bg-surface md:flex-row">

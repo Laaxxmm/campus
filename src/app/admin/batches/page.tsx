@@ -46,7 +46,7 @@ export default async function Batches({ searchParams }: { searchParams: Promise<
   const bl = await batchList(user, opts);
   return (
     <TpoShell title="Batches" collegeName={college.name} crumbs={[{ href: "/tpo", label: "Overview" }, { href: "/admin/batches", label: "Batches" }]}>
-      {sp.error && <p role="alert" className="mb-4 rounded-sm bg-danger-50 p-3 text-sm text-danger-500">{sp.error}</p>}
+      {sp.error && <p role="alert" className="mb-4 rounded-sm bg-danger-50 p-3 text-sm text-danger-700">{sp.error}</p>}
       {sp.saved && <p role="status" className="mb-4 rounded-sm bg-success-50 p-3 text-sm">Saved.</p>}
       <ul className="space-y-3">
         {bl.map((b) => (

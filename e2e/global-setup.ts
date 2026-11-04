@@ -15,5 +15,10 @@ export default async function globalSetup() {
   await sql`delete from colleges where name like 'E2E College%'`;
   await sql`delete from batch_mocks`;
   await sql`update questions set status = 'golden' where status <> 'golden' and source = 'seed'`;
+  // Re-runnable coach tests: drop recent drills (+ their attempts/insights) for students that tests drive through a drill.
+  const reusable = ["student030@demo.learncrew.in", "student003@demo.learncrew.in", "student004@demo.learncrew.in", "student012@demo.learncrew.in", "student018@demo.learncrew.in", "student019@demo.learncrew.in"];
+  await sql`delete from attempt_insights where drill_id in (select d.id from drills d join users u on u.id = d.user_id where u.email in ${sql(reusable)} and d.date >= current_date - 1)`;
+  await sql`delete from attempts where drill_id in (select d.id from drills d join users u on u.id = d.user_id where u.email in ${sql(reusable)} and d.date >= current_date - 1)`;
+  await sql`delete from drills where id in (select d.id from drills d join users u on u.id = d.user_id where u.email in ${sql(reusable)} and d.date >= current_date - 1)`;
   await sql.end();
 }

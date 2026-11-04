@@ -36,7 +36,7 @@ export default async function WeakTopics({ searchParams }: { searchParams: Promi
   return (
     <TpoShell title="Weak topics" collegeName={college.name} crumbs={[{ href: "/tpo", label: "Overview" }, { href: "/tpo/weak-topics", label: "Weak topics" }]}>
       {sp.assigned && <p role="status" className="mb-4 rounded-sm bg-success-50 p-3 text-sm">Focus pack on {topicName(sp.topic ?? "")} assigned to {sp.assigned} students. They&apos;ll see it on their Today screen.</p>}
-      {sp.error && <p role="alert" className="mb-4 rounded-sm bg-danger-50 p-3 text-sm text-danger-500">{sp.error}</p>}
+      {sp.error && <p role="alert" className="mb-4 rounded-sm bg-danger-50 p-3 text-sm text-danger-700">{sp.error}</p>}
       <form method="get" className="mb-4 flex items-end gap-3">
         <label className="text-sm">Batch<select name="batch" defaultValue={batch?.id ?? ""} className="mt-1 block h-11 rounded-sm border border-border bg-bg px-3"><option value="">All batches</option>{bl.map((b) => <option key={b.id} value={b.id}>{b.name}</option>)}</select></label>
         <Button type="submit" variant="secondary">Show</Button>
