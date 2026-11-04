@@ -1,5 +1,5 @@
 # PROGRESS — LearnCrew Campus
-Current phase: 5 — Adaptive engine + real mocks | Last green: 2026-11-04T22:30+05:30 | Tests: unit 133/133, e2e 13/13
+Current phase: 6 — TPO dashboard | Last green: 2026-11-04T23:20+05:30 | Tests: unit 166/166, e2e 16/16
 Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived at docs/ORCHESTRATOR-v1.md; v1 phases 0–3 work carried over (same schema + stack).
 
 ## Phase checklist (✅ only when phase QA gate green)
@@ -8,20 +8,20 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 - [x] 2 — Auth + roles + tenancy ✅ (RBAC matrix 70 cases, Postgres rate limiter + login/submit wiring, audit logger, cookie flags, cross-college DB test; per-route IDOR e2e added as routes land)
 - [ ] 3 — Question bank + pipeline — BLOCKED on 600-Q count only (needs ANTHROPIC_API_KEY, D15). Green: schema tests, verifier fixture test, 260 golden verified Q, coverage/balance test, generate/qa/dedupe/quant-check (--dry-run), idempotent seed
 - [x] 4 — Student drill + streak + PWA ✅ (e2e: login → 10-Q drill → streak 1; offline answers sync once; SW offline shell + cached drill; axe zero serious on 7 screens; /today 108 KB JS)
-- [ ] 5 — Adaptive engine + real mocks
+- [x] 5 — Adaptive engine + real mocks ✅ (Elo/bands/6-2-2/spaced review 17 tests; exam UX w/ palette, flags, keyboard, sectional timers, autosave+resume, negative marks, percentile, review mode; cron routes; e2e full mock + refresh, fake-clock auto-submit, leak, IDOR)
 - [ ] 6 — TPO dashboard
 - [ ] 7 — Admin
 - [ ] 8 — Railway deploy
 - [ ] 9 — Pilot hardening
 - [ ] 10 — Final QA matrix
 
-## Current phase tasks (phase 5 — adaptive engine + real mocks)
-- [ ] adaptive unit tests: band up/down, daily clamp, composition 6/2/2, no repeats 14d, college subset
-- [ ] mock service: start (one active, server ends_at, option shuffle), autosave (debounced), resume, submit (negative marks, section scores, percentile), auto-submit at 0, late submit rejected, tab-switch count
-- [ ] mock UX: pre-test screen, sticky timer (amber <5 min, coral <1 min), section tabs, palette (unanswered/answered/flagged/visited), mark for review, clear, prev/next, keyboard 1–4/N/P/F, submit confirm
-- [ ] result (score, percentile, accuracy, time/question, section chart) + review mode (filters wrong/flagged/skipped)
-- [ ] cron: /api/cron/build-drills, /api/cron/weekly (snapshots, retire leaked, prune), 401 without secret; scripts/cron.ts
-- [ ] e2e: full mock incl. refresh mid-test, auto-submit at 0 (fake clock), answer-leak test
+## Current phase tasks (phase 6 — TPO dashboard)
+- [ ] TPO service (scoped SQL aggregates): KPIs, heatmap batch×topic + student×topic w/ company filter, students table, student drill-down, at-risk (≥5 days inactive OR readiness <40) + WhatsApp nudge text
+- [ ] CSV export (streamed, Excel-safe BOM, formula-injection escaped) + audit
+- [ ] weekly report: aggregates only, templated narrative (Sonnet when key set, no PII), print CSS
+- [ ] create/schedule mock for batch (createMock action) + audit
+- [ ] TPO sidebar (v2 nav), breadcrumbs, 1280 desktop + mobile stack
+- [ ] e2e: TPO flows, cross-college 404 by URL, CSV headers; p95 < 800 ms on 500 students
 
 ## Feature test registry
 | Feature | Test file | Status |
@@ -49,6 +49,13 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 | Leaderboard/today/progress services | tests/student-services.test.ts | ✅ |
 | axe (login, today, drill, progress, profile, leaderboard, mocks) | e2e/a11y.spec.ts | ✅ |
 | PWA manifest + SW offline shell + cached drill | e2e/a11y.spec.ts | ✅ |
+| Adaptive engine (Elo, bands, daily clamp, 6/2/2, review, determinism) | src/lib/adaptive.test.ts | ✅ |
+| Mock scoring (negative marks, percentile, sectional deadlines) | src/lib/mock-scoring.test.ts | ✅ |
+| Mock service (one active, leak-free DTO, IDOR, late save 409, auto-finalize, sectional lock) | tests/mocks.test.ts | ✅ |
+| Mock e2e: full flow + refresh resume + review filters + leak | e2e/mock.spec.ts | ✅ |
+| Mock auto-submit at 0 (fake clock) | e2e/mock.spec.ts | ✅ |
+| Mock attempt IDOR by URL → 404 | e2e/mock.spec.ts | ✅ |
+| Cron: 401 w/o secret, build drills idempotent, weekly snapshots, retire leaked | tests/cron.test.ts | ✅ |
 
 ## Decisions (ADR-lite)
 - D1 2026-11-04: `learncrew-campus-product-pack.md` was NOT provided to the build session. Taxonomy, the "12 samples", and pack prompts (system/variant/qa/seed) are authored by the orchestrator from the summaries in ORCHESTRATOR.md. Replace with pack versions when available.
@@ -67,6 +74,7 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 - D14 2026-11-04: v2 "db.select only in scoped.ts" enforced as: `src/app/**` may not import `@/db`/drizzle (test), and every staff query uses `scoped()`. A stricter lint rule would forbid student-own queries that are already keyed by session user id.
 - D18 2026-11-04: Login rate limit is per (IP, email) only — no IP-only cap, because campus NAT shares one IP across a college. Sessions: 7-day idle expiry rolled daily (Auth.js DB sessions have no creation timestamp, so the 30-day absolute cap is not enforced; revisit with a sessions.created_at column).
 - D17 2026-11-04: Migration 0001 adds audit_logs, rate_limits, batch_mocks and v2 mock-exam columns (negative marks, sectional, autosaved answers, one-active-attempt partial unique index).
+- D19 2026-11-04: Spec said "Phase 4 random-by-band, Phase 5 adaptive"; drills used the adaptive composer from the start (same code path, tested in phase 5). Mocks record `attempts` rows for analytics but do not move Elo (drills train, mocks measure). Client `auto` flag on submit only labels the attempt; scoring always uses answers the server accepted before `ends_at` (+5 s grace).
 - D16 2026-11-04: CSRF for custom JSON routes = same-origin `Origin` check + `application/json` content-type (forces preflight) + SameSite=Lax cookies; no double-submit token (server actions already have Next origin check).
 - D15 2026-11-04: Bank seeded at 260 hand-authored, machine-verified golden questions (v1 gate ≥120 met; v2 asks 600). The designed route to 600–2,000 is the Haiku-batch → Sonnet-QA pipeline, which needs ANTHROPIC_API_KEY (~$30 per the pack). Not hand-authoring 340 more in-session.
 
@@ -76,6 +84,7 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 - [ ] Railway login (Phase 8).
 
 ## Log
+- 2026-11-04T23:20+05:30 phase 5 done: mock exam (service + runner + result/review), cron build-drills/weekly + scripts/cron.mjs, 166 unit + 16 e2e green.
 - 2026-11-04T22:30+05:30 phase 4 done: profile tab (target company, deletion request, sign out), privacy page, axe clean (fixed 2 contrast issues), static offline shell + drill doc cache warm (fixed offline reload after client nav), leaderboard Date-param bug fixed + tested.
 - 2026-11-04T22:00+05:30 phase 2 (v2) done: migration 0001 (audit_logs, rate_limits, batch_mocks, mock exam cols), rate limiter wired to login + sync, audit lib, 7-day idle sessions, RBAC matrix; 122 unit + 11 e2e green.
 - 2026-11-04T21:40+05:30 phase 1 (v2) done: retheme to navy/amber + Inter + lucide (no emoji/confetti), env.ts, CSP nonce middleware (all e2e pass under CSP), CI workflow, /dev/ui, postcss override → npm audit 0 vulns.

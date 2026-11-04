@@ -65,7 +65,10 @@
      ],
      "timeSec": 60
     }
-   ]
+   ],
+   "negative_mark": 0,
+   "sectional": true,
+   "instructions": "Sections are timed separately; when a section's time ends you move to the next one. No negative marking. Your answers save automatically. LearnCrew practice pattern — not an official company paper."
   }
  },
  {
@@ -131,7 +134,10 @@
      ],
      "timeSec": 60
     }
-   ]
+   ],
+   "negative_mark": 0,
+   "sectional": false,
+   "instructions": "You can move freely between sections. No negative marking. Your answers save automatically. LearnCrew practice pattern — not an official company paper."
   }
  },
  {
@@ -198,7 +204,10 @@
      ],
      "timeSec": 60
     }
-   ]
+   ],
+   "negative_mark": 0,
+   "sectional": false,
+   "instructions": "You can move freely between sections. No negative marking. Your answers save automatically. LearnCrew practice pattern — not an official company paper."
   }
  },
  {
@@ -264,7 +273,10 @@
      ],
      "timeSec": 60
     }
-   ]
+   ],
+   "negative_mark": 0,
+   "sectional": false,
+   "instructions": "You can move freely between sections. No negative marking. Your answers save automatically. LearnCrew practice pattern — not an official company paper."
   }
  },
  {
@@ -331,7 +343,10 @@
      ],
      "timeSec": 60
     }
-   ]
+   ],
+   "negative_mark": 0.25,
+   "sectional": false,
+   "instructions": "You can move freely between sections. Each wrong answer deducts 0.25 marks; skipped questions score 0. Your answers save automatically. LearnCrew practice pattern — not an official company paper."
   }
  },
  {
@@ -397,7 +412,10 @@
      ],
      "timeSec": 60
     }
-   ]
+   ],
+   "negative_mark": 0.25,
+   "sectional": false,
+   "instructions": "You can move freely between sections. Each wrong answer deducts 0.25 marks; skipped questions score 0. Your answers save automatically. LearnCrew practice pattern — not an official company paper."
   }
  }
 ]

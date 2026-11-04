@@ -18,7 +18,7 @@ type BlueprintFile = {
   section_weights: Record<string, number>;
   topic_weights: Record<string, number>;
   notes: string;
-  mock: { title: string; duration_sec: number; blueprint: { section: string; count: number; difficulty: [number, number]; timeSec: number }[] };
+  mock: { title: string; duration_sec: number; negative_mark: number; sectional: boolean; instructions: string; blueprint: { section: string; count: number; difficulty: [number, number]; timeSec: number }[] };
 }[];
 
 export function loadBlueprints(): BlueprintFile {
@@ -78,8 +78,9 @@ export async function seedBlueprintsAndMocks() {
       .values({ company: b.company, sectionWeights: b.section_weights, topicWeights: b.topic_weights, notes: b.notes })
       .onConflictDoUpdate({ target: companyBlueprints.company, set: { sectionWeights: b.section_weights, topicWeights: b.topic_weights, notes: b.notes } });
     const [m] = await db.select().from(mocks).where(and(eq(mocks.company, b.company), eq(mocks.title, b.mock.title))).limit(1);
-    if (m) await db.update(mocks).set({ blueprint: b.mock.blueprint, durationSec: b.mock.duration_sec }).where(eq(mocks.id, m.id));
-    else await db.insert(mocks).values({ company: b.company, title: b.mock.title, blueprint: b.mock.blueprint, durationSec: b.mock.duration_sec });
+    const v = { blueprint: b.mock.blueprint, durationSec: b.mock.duration_sec, negativeMark: b.mock.negative_mark, sectional: b.mock.sectional, instructions: b.mock.instructions };
+    if (m) await db.update(mocks).set(v).where(eq(mocks.id, m.id));
+    else await db.insert(mocks).values({ company: b.company, title: b.mock.title, ...v });
   }
 }
 

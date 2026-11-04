@@ -1,7 +1,6 @@
 import { z } from "zod";
-import { requireUser, UnauthorizedError } from "@/lib/authz";
 import { GradeError, gradeAttempt } from "@/lib/drill";
-import { csrfGuard } from "@/lib/http";
+import { studentApi } from "@/server/api";
 import { hit, tooMany } from "@/lib/rate-limit";
 
 export const dynamic = "force-dynamic";
@@ -22,16 +21,9 @@ const Body = z.object({
 
 /** Offline attempt sync. Idempotent per (user, clientId); safe to retry. */
 export async function POST(req: Request) {
-  const bad = csrfGuard(req);
-  if (bad) return bad;
-  let user;
-  try {
-    user = await requireUser({ redirect: false });
-  } catch (e) {
-    if (e instanceof UnauthorizedError) return Response.json({ error: "unauthorized" }, { status: 401 });
-    throw e;
-  }
-  if (user.role !== "student") return Response.json({ error: "forbidden" }, { status: 403 });
+  const g = await studentApi(req);
+  if ("res" in g) return g.res;
+  const user = g.user;
   const parsed = Body.safeParse(await req.json().catch(() => null));
   if (!parsed.success) return Response.json({ error: "bad request", issues: parsed.error.issues.slice(0, 5) }, { status: 400 });
 
