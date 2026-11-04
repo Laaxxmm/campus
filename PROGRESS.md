@@ -1,5 +1,5 @@
 # PROGRESS — LearnCrew Campus
-Current phase: 9 — Pilot hardening (8 waits for Railway login) | Last green: 2026-11-05T01:20+05:30 | Tests: unit 192/192, e2e 24/24
+Current phase: 10 — Final QA matrix (8 waits for Railway login) | Last green: 2026-11-05T01:50+05:30 | Tests: unit 194/194, e2e 27/27
 Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived at docs/ORCHESTRATOR-v1.md; v1 phases 0–3 work carried over (same schema + stack).
 
 ## Phase checklist (✅ only when phase QA gate green)
@@ -12,17 +12,15 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 - [x] 6 — TPO dashboard ✅ (KPIs, accuracy/mastery heatmap batch×topic & student×topic w/ company filter, students table + Excel-safe CSV export (audited), drill-down, at-risk + WhatsApp nudges, weekly report (template / Sonnet aggregates-only, cached), create/schedule mock (audited); services p95 ≤ 43 ms on 505 students; e2e incl. cross-college 404)
 - [x] 7 — Admin ✅ (roster CSV import w/ Zod row errors, seat limit, re-import idempotent, invites, rate limit, audit; batches + settings; content review queue w/ blind-QA side-by-side, approve → golden + college access → next drill; superadmin colleges/create+TPO invite, audit log viewer, DPDP export/delete with 15-min re-auth)
 - [ ] 8 — Railway deploy — config ✅ (Dockerfile Node 22 standalone, non-root, healthcheck; railway.json; compose prod; DEPLOY.md). Verified locally: image builds, migrates, /api/health ok, cron 401/200, bad env → exit 1. BLOCKED on human: `railway login` + deploy (steps in docs/DEPLOY.md)
-- [ ] 9 — Pilot hardening
+- [x] 9 — Pilot hardening ✅ (load: 500 students × 10 answers sync p95 35 ms, 200 concurrent mock-takers 200/200; Lighthouse mobile perf 99–100 / a11y 100 on 4 pages; explain-more cached + rate-limited; error/not-found pages; JSON logs; events; landing; smoke suite; DEMO.md; reports in docs/reports/). Backups: Railway volume backups — enable at deploy (DEPLOY.md §1)
 - [ ] 10 — Final QA matrix
 
-## Current phase tasks (phase 9 — pilot hardening)
-- [ ] /api/explain (cached per question×wrong option, 5/min/user, hidden without key)
-- [ ] error boundary + not-found pages; structured JSON logs; events (drill_started/completed, explain_more, tpo_export)
-- [ ] landing page for colleges (pitch + Book pilot mailto)
-- [ ] smoke suite e2e/smoke.spec.ts runnable against BASE_URL
-- [ ] load test: 500 students drill in 10 min (/api/sync p95 < 500 ms) + 200 concurrent mock-takers; results in docs/reports/
-- [ ] Lighthouse mobile (perf ≥ 90, a11y ≥ 95, PWA installable) → docs/reports/
-- [ ] docs/DEMO.md (TPO 5-minute walkthrough)
+## Current phase tasks (phase 10 — final QA matrix)
+- [ ] docs/QA_MATRIX.md with every row mapped to a test
+- [ ] fill matrix gaps (anon redirects for every route, CSRF on all JSON routes, rate-limit on submit, /api/health unit)
+- [ ] gitleaks-style secret scan, npm audit, axe on TPO/admin screens
+- [ ] 360 px screenshots of every main screen → docs/screens/
+- [ ] full clean-clone run: typecheck, lint, test, e2e, build
 
 ## Feature test registry
 | Feature | Test file | Status |
@@ -63,6 +61,10 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 | Roster import: 200 rows, re-import 0 dupes, malformed rows, seat limit, cross-college email, create batches, audit | tests/roster.test.ts | ✅ |
 | Content review (filters, approve → access → next drill, edit/version, retire, role), batches scoped, superadmin re-auth/create/export/delete + audit | tests/admin.test.ts | ✅ |
 | Admin e2e: import UI (seat block, row errors, idempotent), settings/batches, review approve, superadmin create college + audit, TPO blocked from /super & /content | e2e/admin.spec.ts | ✅ |
+| Explain-more: off without key, requires prior wrong attempt, cache hit = 0 model calls | tests/explain.test.ts | ✅ |
+| Load: /api/sync p95 < 500 ms @ 500 students; 200 concurrent mocks | docs/reports/load-test.md | ✅ |
+| Lighthouse mobile ≥ 90 perf / ≥ 95 a11y | docs/reports/lighthouse.md | ✅ |
+| Smoke (health, landing, drill e2e, TPO + CSV + 404) — local or BASE_URL | e2e/smoke.spec.ts | ✅ local; deployed: pending Railway |
 
 ## Decisions (ADR-lite)
 - D1 2026-11-04: `learncrew-campus-product-pack.md` was NOT provided to the build session. Taxonomy, the "12 samples", and pack prompts (system/variant/qa/seed) are authored by the orchestrator from the summaries in ORCHESTRATOR.md. Replace with pack versions when available.
@@ -85,6 +87,7 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 - D20 2026-11-05: TPO heatmap defaults to 30-day accuracy per topic (toggle: Elo mastery). With K=24 Elo moves ~±50 in 3 weeks, so mastery clusters near 50 and hides weak topics; accuracy shows them now. Readiness still uses mastery. Seed adds deterministic batch×topic strengths so the demo heatmap is meaningful. Readiness ring uses coral (not red) below 40 per v2 voice.
 - D21 2026-11-05: v2 "admin re-auth within 15 min" implemented for superadmin mutations (create college, export/delete student) via an Auth.js `signIn` event → `events.sign_in`; stale sessions get a "Confirm it's me" magic link. College-admin/TPO routine actions (import, batches) rely on session + rate limit + audit instead (re-auth there would add a magic-link round trip to every import).
 - D22 2026-11-05: Runtime image uses Node 22 LTS (v1 Dockerfile said Node 20; vitest 5 / toolchain need ≥22.12 and npm 10.8 on Node 20 crashed in `npm ci`). Optional BuildKit `--secret id=ca` for TLS-intercepting proxies (no-op on Railway). `preDeployCommand` runs `node scripts/migrate.mjs` (no tsx/drizzle-kit in the runtime image).
+- D23 2026-11-05: Structured logs are a 20-line JSON logger (`src/lib/log.ts`) rather than pino — pino's worker-thread transport needs extra bundling config in Next standalone; JSON lines are what Railway ingests either way.
 - D16 2026-11-04: CSRF for custom JSON routes = same-origin `Origin` check + `application/json` content-type (forces preflight) + SameSite=Lax cookies; no double-submit token (server actions already have Next origin check).
 - D15 2026-11-04: Bank seeded at 260 hand-authored, machine-verified golden questions (v1 gate ≥120 met; v2 asks 600). The designed route to 600–2,000 is the Haiku-batch → Sonnet-QA pipeline, which needs ANTHROPIC_API_KEY (~$30 per the pack). Not hand-authoring 340 more in-session.
 
@@ -94,6 +97,7 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 - [ ] Railway login + first deploy (Phase 8) — run docs/DEPLOY.md §0–§4 (≈15 min). Everything else is ready.
 
 ## Log
+- 2026-11-05T01:50+05:30 phase 9 done: load + Lighthouse reports committed, explain-more, error pages, landing, smoke, DEMO.md.
 - 2026-11-05T01:20+05:30 phase 8 config done + verified with local Docker; deploy waits for Railway login.
 - 2026-11-05T00:50+05:30 phase 7 done: admin + content + superadmin; 192 unit + 24 e2e green.
 - 2026-11-05T00:10+05:30 phase 6 done: TPO dashboard end to end; visual pass fixed mock scroll offset, DI pipe tables → real tables, flat heatmap (metric + seed), demo names.

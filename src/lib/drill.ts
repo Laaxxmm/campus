@@ -7,6 +7,7 @@ import { istDate } from "./time";
 import { rngFor } from "./rng";
 import { xpForAttempt, XP } from "./xp";
 import { topicById } from "./question-schema";
+import { track } from "./events";
 
 export const DRILL_SIZE = 10;
 export const NO_REPEAT_DAYS = 14;
@@ -132,6 +133,12 @@ export type SubmitOutput = AttemptResultDto & { duplicate: boolean; drillComplet
  * Side effects (skill Elo/band, review queue, XP, streak on completion) run exactly once.
  */
 export async function gradeAttempt(userId: string, input: SubmitInput, now = new Date()): Promise<SubmitOutput> {
+  const out = await gradeInTx(userId, input, now);
+  if (out.drillCompleted && !out.duplicate) await track("drill_completed", { userId, props: { drillId: input.drillId, score: out.score } });
+  return out;
+}
+
+async function gradeInTx(userId: string, input: SubmitInput, now: Date): Promise<SubmitOutput> {
   const today = istDate(now);
   return db.transaction(async (tx) => {
     const [d] = await tx.select().from(drills).where(and(eq(drills.id, input.drillId), eq(drills.userId, userId))).for("update").limit(1);
