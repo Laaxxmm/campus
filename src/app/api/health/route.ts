@@ -1,13 +1,8 @@
-import { sql } from "drizzle-orm";
-import { db } from "@/db";
+import { dbHealthy } from "@/server/services/health";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  try {
-    await db.execute(sql`select 1`);
-    return Response.json({ ok: true, db: true });
-  } catch {
-    return Response.json({ ok: false, db: false }, { status: 503 });
-  }
+  const ok = await dbHealthy();
+  return Response.json({ ok, db: ok }, { status: ok ? 200 : 503 });
 }

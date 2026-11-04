@@ -5,9 +5,9 @@ export function TimerBar({ elapsedMs, limitSec }: { elapsedMs: number; limitSec:
   return (
     <div className="flex items-center gap-2" aria-label={over ? "Time up" : `${s} seconds left`}>
       <div className="h-1.5 flex-1 overflow-hidden rounded-pill bg-border">
-        <div className={`h-full ${over ? "bg-danger" : pct > 70 ? "bg-warn" : "bg-brand-600"}`} style={{ width: `${pct}%` }} />
+        <div className={`h-full ${over ? "bg-danger-500" : pct > 70 ? "bg-accent-500" : "bg-ink-900"}`} style={{ width: `${pct}%` }} />
       </div>
-      <span className={`w-10 text-right text-xs tabular ${over ? "text-danger" : "text-ink-600"}`}>{over ? "0s" : `${s}s`}</span>
+      <span className={`w-10 text-right text-xs tabular ${over ? "text-danger-500" : "text-text-600"}`}>{over ? "0s" : `${s}s`}</span>
     </div>
   );
 }

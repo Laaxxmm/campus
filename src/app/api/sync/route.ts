@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { requireUser, UnauthorizedError } from "@/lib/authz";
 import { GradeError, gradeAttempt } from "@/lib/drill";
+import { csrfGuard } from "@/lib/http";
 
 export const dynamic = "force-dynamic";
 
@@ -20,6 +21,8 @@ const Body = z.object({
 
 /** Offline attempt sync. Idempotent per (user, clientId); safe to retry. */
 export async function POST(req: Request) {
+  const bad = csrfGuard(req);
+  if (bad) return bad;
   let user;
   try {
     user = await requireUser({ redirect: false });

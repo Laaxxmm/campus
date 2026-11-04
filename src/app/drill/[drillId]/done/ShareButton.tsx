@@ -13,7 +13,7 @@ export function ShareButton({ text }: { text: string }) {
     } catch {}
   }
   return (
-    <button type="button" onClick={share} className="mt-4 min-h-11 rounded-pill border border-border bg-surface px-5 text-sm font-semibold">
+    <button type="button" onClick={share} className="mt-4 min-h-11 rounded-pill border border-border bg-bg px-5 text-sm font-semibold">
       {copied ? "Copied!" : "Share my score"}
     </button>
   );

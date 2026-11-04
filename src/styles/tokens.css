@@ -1,27 +1,30 @@
-/* LearnCrew design tokens — docs/design.md */
+/* LearnCrew design tokens — docs/DESIGN.md (v2: navy + amber) */
 :root {
-  --brand-600: #4f46e5;
-  --brand-700: #4338ca;
-  --brand-50: #eef2ff;
-  --success: #16a34a;
+  --ink-900: #0f1b3d; /* primary: headers, primary buttons, nav */
+  --ink-700: #23315c;
+  --ink-50: #eef1f8;
+  --accent-500: #f59e0b; /* CTAs, streak flame, highlights */
+  --accent-600: #d97706;
+  --accent-50: #fef3c7;
+  --coral-500: #f97362; /* soft alerts, flagged */
+  --coral-50: #fff1ef;
+  --success-500: #16a34a;
   --success-50: #dcfce7;
-  --danger: #dc2626;
+  --danger-500: #dc2626; /* wrong answers, review mode only */
   --danger-50: #fee2e2;
-  --warn: #f59e0b;
-  --warn-50: #fef3c7;
-  --streak: #f97316;
-  --ink-900: #0f172a;
-  --ink-600: #475569;
-  --ink-400: #94a3b8;
-  --surface: #ffffff;
-  --bg: #f8fafc;
-  --border: #e2e8f0;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-pill: 999px;
+  --info-500: #2563eb; /* links, focus ring */
+  --bg: #ffffff;
+  --surface: #f7f8fb;
+  --border: #e5e7eb;
+  --text-900: #111827;
+  --text-600: #4b5563;
+  --text-400: #9ca3af;
+  --radius-input: 8px;
+  --radius-card: 12px;
+  --radius-pill: 9999px;
   --heat-0: #fee2e2;
   --heat-1: #fef3c7;
-  --heat-2: #dcfce7;
-  --heat-3: #16a34a;
+  --heat-2: #d9f99d;
+  --heat-3: #86efac;
+  --heat-4: #16a34a;
 }

@@ -1,6 +1,6 @@
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { ForbiddenError, requireRole, scoped } from "./authz";
-import { getStudentForStaff, listStudentsForStaff } from "./queries/students";
+import { getStudentForStaff, listStudentsForStaff } from "../server/services/staff-students";
 import { makeCollege, makeUser, resetDb } from "../../tests/db";
 import { pg } from "@/db";
 import { homeFor, rolesFor } from "./routes";

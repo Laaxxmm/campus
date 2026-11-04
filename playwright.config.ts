@@ -15,8 +15,8 @@ export default defineConfig({
   globalSetup: external ? undefined : "./e2e/global-setup.ts",
   use: { baseURL, trace: "retain-on-failure" },
   projects: [
-    { name: "mobile", use: { ...devices["Pixel 5"], viewport: { width: 360, height: 740 } }, testIgnore: /tpo\.spec|smoke\.spec/ },
-    { name: "desktop", use: { ...devices["Desktop Chrome"], viewport: { width: 1280, height: 800 } }, testMatch: /tpo\.spec|smoke\.spec/ },
+    { name: "mobile", use: { ...devices["Pixel 5"], viewport: { width: 360, height: 740 } }, testIgnore: /tpo\.spec|smoke\.spec|security\.spec/ },
+    { name: "desktop", use: { ...devices["Desktop Chrome"], viewport: { width: 1280, height: 800 } }, testMatch: /tpo\.spec|smoke\.spec|security\.spec/ },
   ],
   webServer: external
     ? undefined
@@ -32,7 +32,7 @@ export default defineConfig({
           AUTH_TRUST_HOST: "true",
           AUTH_RESEND_KEY: "",
           ALLOW_DEV_LOGIN_LINKS: "true",
-          CRON_SECRET: "e2e-cron-secret",
+          CRON_SECRET: "e2e-cron-secret-0123456789",
           ANTHROPIC_API_KEY: "",
         },
       },

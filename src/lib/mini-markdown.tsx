@@ -5,7 +5,7 @@ export function renderStem(src: string): ReactNode {
   const parts = src.split(/```[a-zA-Z]*\n?/);
   return parts.map((part, i) =>
     i % 2 === 1 ? (
-      <pre key={i} className="my-2 overflow-x-auto rounded-md bg-ink-900 p-3 text-sm leading-relaxed text-white">
+      <pre key={i} className="my-2 overflow-x-auto rounded-md bg-text-900 p-3 text-sm leading-relaxed text-white">
         <code>{part.replace(/\n$/, "")}</code>
       </pre>
     ) : (
@@ -32,7 +32,7 @@ function inline(line: string): ReactNode[] {
   while ((m = re.exec(line))) {
     if (m.index > last) out.push(text(line.slice(last, m.index)));
     const tok = m[0];
-    out.push(tok.startsWith("`") ? <code key={k++} className="rounded bg-bg px-1 font-mono text-[0.95em]">{tok.slice(1, -1)}</code> : <strong key={k++}>{tok.slice(2, -2)}</strong>);
+    out.push(tok.startsWith("`") ? <code key={k++} className="rounded bg-surface px-1 font-mono text-[0.95em]">{tok.slice(1, -1)}</code> : <strong key={k++}>{tok.slice(2, -2)}</strong>);
     last = m.index + tok.length;
   }
   if (last < line.length) out.push(text(line.slice(last)));

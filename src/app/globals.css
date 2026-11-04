@@ -2,30 +2,37 @@
 @import "../styles/tokens.css";
 
 @theme inline {
-  --color-brand-50: var(--brand-50);
-  --color-brand-600: var(--brand-600);
-  --color-brand-700: var(--brand-700);
-  --color-success: var(--success);
-  --color-success-50: var(--success-50);
-  --color-danger: var(--danger);
-  --color-danger-50: var(--danger-50);
-  --color-warn: var(--warn);
-  --color-warn-50: var(--warn-50);
-  --color-streak: var(--streak);
   --color-ink-900: var(--ink-900);
-  --color-ink-600: var(--ink-600);
-  --color-ink-400: var(--ink-400);
-  --color-surface: var(--surface);
+  --color-ink-700: var(--ink-700);
+  --color-ink-50: var(--ink-50);
+  --color-accent-500: var(--accent-500);
+  --color-accent-600: var(--accent-600);
+  --color-accent-50: var(--accent-50);
+  --color-coral-500: var(--coral-500);
+  --color-coral-50: var(--coral-50);
+  --color-success-500: var(--success-500);
+  --color-success-50: var(--success-50);
+  --color-danger-500: var(--danger-500);
+  --color-danger-50: var(--danger-50);
+  --color-info-500: var(--info-500);
   --color-bg: var(--bg);
+  --color-surface: var(--surface);
   --color-border: var(--border);
-  --radius-sm: var(--radius-sm);
-  --radius-md: var(--radius-md);
-  --radius-lg: var(--radius-lg);
+  --color-text-900: var(--text-900);
+  --color-text-600: var(--text-600);
+  --color-text-400: var(--text-400);
+  --radius-sm: var(--radius-input);
+  --radius-md: var(--radius-card);
+  --radius-lg: var(--radius-card);
   --radius-pill: var(--radius-pill);
-  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif;
+  --font-sans: var(--font-inter), Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif;
 }
 
-html, body { background: var(--bg); color: var(--ink-900); }
+html, body { background: var(--surface); color: var(--text-900); line-height: 1.5; }
+h1, h2, h3 { line-height: 1.2; }
+:focus-visible { outline: 2px solid var(--info-500); outline-offset: 2px; }
+* { transition-timing-function: ease-out; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
 body { font-family: var(--font-sans); -webkit-tap-highlight-color: transparent; }
 .tabular { font-variant-numeric: tabular-nums; }
 
@@ -34,13 +41,6 @@ body { font-family: var(--font-sans); -webkit-tap-highlight-color: transparent; 
   body { background: #fff; }
 }
 
-/* drill done celebrations (CSS only, no JS) */
-.confetti {
-  background-image: radial-gradient(circle, var(--streak) 2px, transparent 3px), radial-gradient(circle, var(--brand-600) 2px, transparent 3px), radial-gradient(circle, var(--success) 2px, transparent 3px);
-  background-size: 37px 41px, 53px 47px, 29px 31px;
-  animation: confetti-fall 2.2s ease-out both;
-}
-@keyframes confetti-fall { from { transform: translateY(-60px); opacity: 1; } to { transform: translateY(120px); opacity: 0; } }
-.streak-pop { animation: pop 0.6s ease-out both 0.2s; }
-@keyframes pop { 0% { transform: scale(0.6); } 60% { transform: scale(1.25); } 100% { transform: scale(1); } }
-@media (prefers-reduced-motion: reduce) { .confetti, .streak-pop { animation: none; } }
+/* gentle streak pop on drill completion (no confetti — v2 voice) */
+.streak-pop { animation: pop 0.2s ease-out both 0.1s; }
+@keyframes pop { 0% { transform: scale(0.85); } 100% { transform: scale(1); } }

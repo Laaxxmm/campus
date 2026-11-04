@@ -1,10 +1,10 @@
 export type DotState = "todo" | "current" | "correct" | "wrong" | "pending";
 const cls: Record<DotState, string> = {
   todo: "bg-border",
-  current: "bg-brand-600 ring-2 ring-brand-50",
-  correct: "bg-success",
-  wrong: "bg-danger",
-  pending: "bg-warn",
+  current: "bg-ink-900 ring-2 ring-ink-50",
+  correct: "bg-success-500",
+  wrong: "bg-danger-500",
+  pending: "bg-accent-500",
 };
 export function ProgressDots({ states }: { states: DotState[] }) {
   return (

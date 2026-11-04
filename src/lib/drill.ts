@@ -89,16 +89,8 @@ export async function getOrCreateDrill(userId: string, date = istDate()) {
   return row;
 }
 
-export type DrillQuestionDto = { id: string; index: number; section: string; topic: string; stem: string; options: string[]; timeSec: number };
-export type AttemptResultDto = {
-  questionId: string;
-  correct: boolean;
-  chosenDisplayed: number | null;
-  correctDisplayed: number;
-  explanation: string;
-  shortcut: string | null;
-  xp: number;
-};
+import type { AttemptResultDto, DrillQuestionDto } from "./drill-types";
+export type { AttemptResultDto, DrillQuestionDto };
 
 /** Questions in the student's option order. Never includes the answer. */
 export async function drillForClient(userId: string, drillId: string) {

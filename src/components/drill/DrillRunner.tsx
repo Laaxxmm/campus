@@ -1,7 +1,8 @@
 "use client";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { CloudUpload, X } from "lucide-react";
 import { useRouter } from "next/navigation";
-import type { AttemptResultDto, DrillQuestionDto } from "@/lib/drill";
+import type { AttemptResultDto, DrillQuestionDto } from "@/lib/drill-types";
 import { renderStem } from "@/lib/mini-markdown";
 import { enqueue, flush, type SyncResult } from "@/lib/offline-queue";
 import { OptionButton, type OptionState } from "@/components/OptionButton";
@@ -101,9 +102,9 @@ export function DrillRunner({ drillId, items, initialResults, explainEnabled }: 
       <div className="flex min-h-dvh flex-col">
         <OfflineBanner />
         <main className="mx-auto flex max-w-md flex-1 flex-col items-center justify-center px-4 text-center">
-          <div className="text-5xl" aria-hidden>📦</div>
+          <CloudUpload aria-hidden className="h-12 w-12 text-ink-900" />
           <h1 className="mt-3 text-xl font-bold">All 10 answered!</h1>
-          <p className="mt-2 text-ink-600" data-testid="sync-status">
+          <p className="mt-2 text-text-600" data-testid="sync-status">
             {synced}/{items.length} synced. {online ? "Syncing…" : "We'll grade the rest as soon as you're online."}
           </p>
         </main>
@@ -122,11 +123,11 @@ export function DrillRunner({ drillId, items, initialResults, explainEnabled }: 
   };
 
   return (
-    <div className="flex min-h-dvh flex-col bg-bg">
+    <div className="flex min-h-dvh flex-col bg-surface">
       <OfflineBanner />
-      <header className="sticky top-0 z-10 space-y-2 bg-bg px-4 pb-2 pt-3">
-        <div className="flex items-center justify-between text-xs text-ink-600">
-          <a href="/today" className="py-2 pr-3" aria-label="Exit drill">✕</a>
+      <header className="sticky top-0 z-10 space-y-2 bg-surface px-4 pb-2 pt-3">
+        <div className="flex items-center justify-between text-xs text-text-600">
+          <a href="/today" className="flex min-h-11 min-w-11 items-center" aria-label="Exit drill"><X className="h-5 w-5" /></a>
           <span className="tabular">Q {local.current + 1} / {items.length}</span>
           <span className="w-6" />
         </div>
@@ -135,28 +136,28 @@ export function DrillRunner({ drillId, items, initialResults, explainEnabled }: 
       </header>
 
       <main className="mx-auto w-full max-w-md flex-1 px-4 pb-72">
-        <article className="rounded-lg border border-border bg-surface p-4 text-base leading-relaxed" data-testid="stem">
+        <article className="rounded-lg border border-border bg-bg p-4 text-base leading-relaxed" data-testid="stem">
           {renderStem(q.stem)}
         </article>
       </main>
 
-      <footer className="fixed inset-x-0 bottom-0 z-20 border-t border-border bg-surface/95 px-4 pb-4 pt-3 backdrop-blur">
+      <footer className="fixed inset-x-0 bottom-0 z-20 border-t border-border bg-bg/95 px-4 pb-4 pt-3 backdrop-blur">
         <div className="mx-auto max-w-md space-y-2">
           {q.options.map((opt, i) => (
             <OptionButton key={i} label={LETTERS[i]} text={opt} state={optionState(i)} onClick={() => (answered ? undefined : selected === i ? submit(i) : setSelected(i))} />
           ))}
           {!answered && (
             <div className="flex gap-2 pt-1">
-              <button type="button" onClick={() => submit(null)} className="min-h-11 px-3 text-sm text-ink-600">Skip</button>
-              <button type="button" disabled={selected === null || busy} onClick={() => submit(selected)} className="min-h-12 flex-1 rounded-md bg-brand-600 font-semibold text-white disabled:opacity-40">
+              <button type="button" onClick={() => submit(null)} className="min-h-11 px-3 text-sm text-text-600">Skip</button>
+              <button type="button" disabled={selected === null || busy} onClick={() => submit(selected)} className="min-h-12 flex-1 rounded-md bg-ink-900 font-semibold text-white disabled:opacity-40">
                 Check answer
               </button>
             </div>
           )}
           {answered && !result && (
             <div className="flex items-center gap-2 pt-1">
-              <p className="flex-1 text-sm text-ink-600" data-testid="pending-note">Saved offline · will be graded when you reconnect</p>
-              <button type="button" onClick={next} className="min-h-12 rounded-md bg-brand-600 px-6 font-semibold text-white">Next</button>
+              <p className="flex-1 text-sm text-text-600" data-testid="pending-note">Saved offline · will be graded when you reconnect</p>
+              <button type="button" onClick={next} className="min-h-12 rounded-md bg-ink-900 px-6 font-semibold text-white">Next</button>
             </div>
           )}
         </div>

@@ -2,7 +2,7 @@ import { and, desc, eq, sql } from "drizzle-orm";
 import { db } from "@/db";
 import { attempts, drills, questions, skills, streaks, users } from "@/db/schema";
 import { readiness } from "@/lib/adaptive";
-import { blueprintFor, targetCompanyFor } from "@/lib/drill";
+import { blueprintFor, drillForClient, targetCompanyFor } from "@/lib/drill";
 import { displayStreak, NEW_STREAK } from "@/lib/streak";
 import { istDate, istMidnightUtc, weekStart } from "@/lib/time";
 import { TOPICS, topicName } from "@/lib/question-schema";
@@ -100,4 +100,12 @@ export function shortName(name: string | null) {
   const [first, ...rest] = name.trim().split(/\s+/);
   const last = rest.at(-1);
   return last ? `${first} ${last[0]}.` : first;
+}
+
+/** Done-page data: drill (own only), results, streak. Null when the drill is not this student's. */
+export async function drillSummary(userId: string, drillId: string) {
+  const data = await drillForClient(userId, drillId);
+  if (!data) return null;
+  const [st] = await db.select().from(streaks).where(eq(streaks.userId, userId));
+  return { ...data, streak: st ?? null };
 }

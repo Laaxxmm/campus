@@ -15,14 +15,14 @@ const items = [
 export function TpoShell({ children, title, collegeName }: { children: React.ReactNode; title: string; collegeName?: string }) {
   return (
     <div className="flex min-h-dvh flex-col md:flex-row">
-      <aside className="no-print border-b border-border bg-surface md:w-56 md:border-b-0 md:border-r">
+      <aside className="no-print border-b border-border bg-bg md:w-56 md:border-b-0 md:border-r">
         <div className="px-4 py-4">
-          <div className="text-lg font-bold text-brand-600">{t.appName}</div>
-          {collegeName && <div className="text-xs text-ink-600">{collegeName}</div>}
+          <div className="text-lg font-bold text-ink-900">{t.appName}</div>
+          {collegeName && <div className="text-xs text-text-600">{collegeName}</div>}
         </div>
         <nav aria-label="TPO" className="flex gap-1 overflow-x-auto px-2 pb-2 md:flex-col md:overflow-visible">
           {items.map((it) => (
-            <Link key={it.href} href={it.href} className="whitespace-nowrap rounded-sm px-3 py-2 text-sm text-ink-600 hover:bg-brand-50 hover:text-brand-700">
+            <Link key={it.href} href={it.href} className="whitespace-nowrap rounded-sm px-3 py-2 text-sm text-text-600 hover:bg-ink-50 hover:text-ink-700">
               {it.label}
             </Link>
           ))}
