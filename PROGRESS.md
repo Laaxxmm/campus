@@ -1,9 +1,9 @@
 # PROGRESS — LearnCrew Campus
-Current phase: v3 complete locally — waiting on human for Railway deploy (10) + API key (3: 600-Q bank, 300-tech target) | Last green: 2026-11-05T05:40+05:30 | Tests: unit 264/264, e2e 41/41
-Governing spec: ORCHESTRATOR.md (v3 "Placement Readiness Coach", adopted 2026-11-05). v2 → docs/ORCHESTRATOR-v2.md, v1 → docs/ORCHESTRATOR-v1.md.
+Current phase: v4 design upgrade complete locally — waiting on human for Railway deploy (10) + API key (3) | Last green: 2026-11-05T05:20+05:30 | Tests: unit 270/270, e2e 41/41, visual 5/5 (62 screens, 112/112 checklist), Lighthouse a11y 100 on 37/37 routes
+Governing spec: ORCHESTRATOR.md (v4 "design-quality upgrade", adopted 2026-11-05). v3 → docs/ORCHESTRATOR-v3.md, v2 → docs/ORCHESTRATOR-v2.md, v1 → docs/ORCHESTRATOR-v1.md.
 
 ## Phase checklist (✅ only when phase QA gate green)
-- [x] 0 — Design system + architecture docs ✅ (DESIGN, ARCHITECTURE, SECURITY incl. prompt injection/PII, PRODUCT with 6 pillars + readiness formula; coach tables in schema, migration 0003)
+- [x] 0 — Design system + architecture docs ✅ (v4 gate re-run: DESIGN.md layout grid + ASCII wireframes + exact component specs, `/dev/ui` all components × states, spacing lint green, Visual QA checklist green; DESIGN, ARCHITECTURE, SECURITY incl. prompt injection/PII, PRODUCT with 6 pillars + readiness formula; coach tables in schema, migration 0003)
 - [x] 1 — Scaffold ✅
 - [x] 2 — Auth + roles + tenancy ✅ (+ v3 consent records table)
 - [ ] 3 — Content — BLOCKED on counts only: aptitude 260/600, tech MCQ 171/300, concept cards 60/100 (generation pipeline needs ANTHROPIC_API_KEY, D15/D25). Green: schema + verifier fixtures, 6 company profiles each with dated sources (validator), 40 HR cards
@@ -15,7 +15,7 @@ Governing spec: ORCHESTRATOR.md (v3 "Placement Readiness Coach", adopted 2026-11
 - [x] 9 — Admin ✅ (colleges, CSV import, question + company-profile review, LLM usage/quota view, audit log)
 - [ ] 10 — Railway deploy — config ✅ + local Docker verified; BLOCKED on Railway login
 - [x] 11 — Pilot hardening ✅ (Lighthouse 99–100/100, load 500 drills + 200 mocks, LLM cost ₹1.67/student/month, error pages; reports in docs/reports/)
-- [ ] 12 — Final QA matrix — all rows green locally (docs/QA_MATRIX.md); deployed smoke pending phase 10
+- [ ] 12 — Final QA matrix — all rows green locally incl. v4 rows (Visual QA 360/768/1280/1440, visual regression, Lighthouse a11y every route, spacing lint) (docs/QA_MATRIX.md); deployed smoke pending phase 10
 
 ## Current phase tasks
 - [ ] (human) Railway login + deploy per docs/DEPLOY.md → `BASE_URL=https://<staging> npx playwright test e2e/smoke.spec.ts --project=desktop`
@@ -82,6 +82,10 @@ Governing spec: ORCHESTRATOR.md (v3 "Placement Readiness Coach", adopted 2026-11
 | LLM cost report | docs/reports/llm-cost.md | ✅ |
 
 ## Decisions (ADR-lite)
+- D31 2026-11-05: v4 8pt grid is enforced by `scripts/lint-spacing.mjs` (part of `npm run lint`, so CI), not by reviewer eyes. `src/components/ui/*` is exempt because the spec's own exact values (button padding-x 20) are off-grid; 4px only for `gap-1` icon gaps and `py-1`/`px-1` on `rounded-pill` chips.
+- D32 2026-11-05: Exam Submit is the screen's single primary CTA; "Save & Next" is a heavy-outline secondary (2px ink border) so the two never compete. The spec's 40×40 palette cell is below the 44px tap rule; kept for density (30–60 cells in a 320 rail) and justified by the 8px gap (48px pitch, WCAG 2.5.8). The visual-QA tap check exempts exactly those cells.
+- D33 2026-11-05: Visual regression (`toHaveScreenshot`, 1%) covers only deterministic screens (`/dev/ui`, landing, login at 360/1280). Data-driven screens are gated by DOM assertions in `e2e/visual-qa.spec.ts` instead: seeded dates, streaks and timers make pixel baselines of them flaky. The "no orphan whitespace" box is ticked only from a manual review file (`docs/screens/v4-review.json`).
+- D34 2026-11-05: Heatmap "branch" filter uses `batches.branch` (always set) rather than `users.branch` (optional, self-declared); date window ∈ {7, 30, 90} days, accuracy only (mastery is long-term). Unknown branches/windows are ignored, never widened.
 - D25 2026-11-05: v3 adopted mid-build (after v2 phases 0–10 were done). Kept schema/routes; added coach tables (migration 0003). Content counts: tech bank seeded at 171 MCQ + 60 cards (v3 asks 300 + 100) for the same reason as D15 — the Sonnet-batch → Haiku-verify pipeline is the designed route and needs the API key.
 - D26 2026-11-05: Student bottom nav = 5 tabs: Today · Mocks · Insights · Companies · Me (v2 capped at 4, v3 lists 6). "Practice" lives in Today (daily + assigned packs) and crack-path tech drills; Progress/Leaderboard/Profile coach sit under Me.
 - D27 2026-11-05: Daily drills stay aptitude-only; the `tech` section is practised via crack-path/focus drills so a Mech student never gets DBMS in the daily 10. Readiness shown on Today, crack-path and TPO funnel is the v3 formula; weekly snapshots store the v3 score + breakdown when the company is profiled (v2 blueprint readiness remains for un-profiled companies).
@@ -120,6 +124,7 @@ Governing spec: ORCHESTRATOR.md (v3 "Placement Readiness Coach", adopted 2026-11
 - [ ] AUTH_RESEND_KEY + verified sending domain (real email).
 
 ## Log
+- 2026-11-05T05:20+05:30 v4 design upgrade done locally: 8pt lint (418 → 0), primitives (Button/Card/Input/Field/Badge/Container/PageHeader/Section/Stat), shells on 1120/720/1440 containers, exam chrome rebuilt (64/48/72 bars, 320 rail + mobile bottom sheet, TimerBar/OptionCard/PaletteCell per spec), result hero + 2-col insights, heatmap sticky filters (+branch/date), `/dev/ui`, DESIGN.md wireframes. Visual QA review caught and fixed: option cards stacked ~2px apart (margin override), mobile timer overlapping Submit, round legend swatches, 6-tall TPO KPI stack on mobile, ragged review-queue filters, landing contrast (axe). Unit 270, e2e 41, visual 5, Lighthouse a11y 37/37 = 100.
 - 2026-11-05T06:10+05:30 v3 verified: clean clone (npm ci → typecheck → lint → bank+content validate → 264 unit → 41 e2e → build) green; Docker image rebuilt — health ok, profile-coach PDF upload e2e + smoke suite pass against the container; TPO funnel 1.4 s → 110 ms at 505 students.
 - 2026-11-05T05:40+05:30 v3 done locally: tech bank, company profiles, HR cards, insight engine, readiness v3, crack-path, skills checklist, profile coach, TPO coach, admin additions, LLM cost report; 264 unit + 41 e2e green.
 - 2026-11-05T02:40+05:30 phase 10 done locally: QA matrix green, clean clone (npm ci → typecheck → lint → 195 unit → 32 e2e → build) green. Remaining: Railway deploy (human login), 600-Q bank (API key).

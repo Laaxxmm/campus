@@ -1,6 +1,6 @@
 # 5-minute TPO demo — LearnCrew Campus
 
-Setup (once): `npm run db:seed` (or `railway run npm run db:seed`). Open two windows: a laptop browser for the TPO and a phone (or Chrome device mode, 360 px) for a student. Magic links appear in the server console when Resend isn't configured.
+Setup (once): `npm run db:seed` (or `railway run npm run db:seed`). Open two windows: a laptop browser for the TPO and a phone (or Chrome device mode, 360 px) for a student. Magic links appear in the server console when Resend isn't configured. For a local/preview demo, `/dev/login` gives one-click login for every seeded role (404 unless `ALLOW_DEV_LOGIN_LINKS=true` or outside production — never enable it on a real pilot); `/dev/ui` shows the component gallery.
 
 | Min | Show | Say |
 |---|---|---|

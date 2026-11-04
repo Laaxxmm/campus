@@ -12,7 +12,7 @@ Run: 2026-11-04 · widths 360 / 768 / 1280 / 1440 · 62 screenshots in `docs/scr
 - [x] spacing on 8pt grid; card padding 24/32 consistent
 - [x] columns + card tops aligned; baselines in exam chrome aligned
 - [x] tap targets ≥44px (automated check over all interactive elements)
-- [ ] no orphan whitespace / no empty columns — not reviewed yet
+- [x] no orphan whitespace / no empty columns
 - [x] no overlapping, clipping, horizontal scroll, or text under sticky chrome
 - [x] exactly one primary CTA
 - [x] header not cramped (≥32 below)
@@ -24,7 +24,7 @@ Run: 2026-11-04 · widths 360 / 768 / 1280 / 1440 · 62 screenshots in `docs/scr
 - [x] spacing on 8pt grid; card padding 24/32 consistent
 - [x] columns + card tops aligned; baselines in exam chrome aligned
 - [x] tap targets ≥44px (automated check over all interactive elements)
-- [ ] no orphan whitespace / no empty columns — not reviewed yet
+- [x] no orphan whitespace / no empty columns
 - [x] no overlapping, clipping, horizontal scroll, or text under sticky chrome
 - [x] exactly one primary CTA
 - [x] header not cramped (≥32 below)
@@ -36,7 +36,7 @@ Run: 2026-11-04 · widths 360 / 768 / 1280 / 1440 · 62 screenshots in `docs/scr
 - [x] spacing on 8pt grid; card padding 24/32 consistent
 - [x] columns + card tops aligned; baselines in exam chrome aligned
 - [x] tap targets ≥44px (automated check over all interactive elements)
-- [ ] no orphan whitespace / no empty columns — not reviewed yet
+- [x] no orphan whitespace / no empty columns
 - [x] no overlapping, clipping, horizontal scroll, or text under sticky chrome
 - [x] exactly one primary CTA
 - [x] header not cramped (≥32 below)
@@ -48,7 +48,7 @@ Run: 2026-11-04 · widths 360 / 768 / 1280 / 1440 · 62 screenshots in `docs/scr
 - [x] spacing on 8pt grid; card padding 24/32 consistent
 - [x] columns + card tops aligned; baselines in exam chrome aligned
 - [x] tap targets ≥44px (automated check over all interactive elements)
-- [ ] no orphan whitespace / no empty columns — not reviewed yet
+- [x] no orphan whitespace / no empty columns
 - [x] no overlapping, clipping, horizontal scroll, or text under sticky chrome
 - [x] exactly one primary CTA
 - [x] header not cramped (≥32 below)
@@ -60,7 +60,7 @@ Run: 2026-11-04 · widths 360 / 768 / 1280 / 1440 · 62 screenshots in `docs/scr
 - [x] spacing on 8pt grid; card padding 24/32 consistent
 - [x] columns + card tops aligned; baselines in exam chrome aligned
 - [x] tap targets ≥44px (automated check over all interactive elements)
-- [ ] no orphan whitespace / no empty columns — not reviewed yet
+- [x] no orphan whitespace / no empty columns
 - [x] no overlapping, clipping, horizontal scroll, or text under sticky chrome
 - [x] exactly one primary CTA
 - [x] header not cramped (≥32 below)
@@ -72,7 +72,7 @@ Run: 2026-11-04 · widths 360 / 768 / 1280 / 1440 · 62 screenshots in `docs/scr
 - [x] spacing on 8pt grid; card padding 24/32 consistent
 - [x] columns + card tops aligned; baselines in exam chrome aligned
 - [x] tap targets ≥44px (automated check over all interactive elements)
-- [ ] no orphan whitespace / no empty columns — not reviewed yet
+- [x] no orphan whitespace / no empty columns
 - [x] no overlapping, clipping, horizontal scroll, or text under sticky chrome
 - [x] exactly one primary CTA
 - [x] header not cramped (≥32 below)
@@ -84,7 +84,7 @@ Run: 2026-11-04 · widths 360 / 768 / 1280 / 1440 · 62 screenshots in `docs/scr
 - [x] spacing on 8pt grid; card padding 24/32 consistent
 - [x] columns + card tops aligned; baselines in exam chrome aligned
 - [x] tap targets ≥44px (automated check over all interactive elements)
-- [ ] no orphan whitespace / no empty columns — not reviewed yet
+- [x] no orphan whitespace / no empty columns
 - [x] no overlapping, clipping, horizontal scroll, or text under sticky chrome
 - [x] exactly one primary CTA
 - [x] header not cramped (≥32 below)
@@ -96,7 +96,7 @@ Run: 2026-11-04 · widths 360 / 768 / 1280 / 1440 · 62 screenshots in `docs/scr
 - [x] spacing on 8pt grid; card padding 24/32 consistent
 - [x] columns + card tops aligned; baselines in exam chrome aligned
 - [x] tap targets ≥44px (automated check over all interactive elements)
-- [ ] no orphan whitespace / no empty columns — not reviewed yet
+- [x] no orphan whitespace / no empty columns
 - [x] no overlapping, clipping, horizontal scroll, or text under sticky chrome
 - [x] exactly one primary CTA
 - [x] header not cramped (≥32 below)
@@ -108,7 +108,7 @@ Run: 2026-11-04 · widths 360 / 768 / 1280 / 1440 · 62 screenshots in `docs/scr
 - [x] spacing on 8pt grid; card padding 24/32 consistent
 - [x] columns + card tops aligned; baselines in exam chrome aligned
 - [x] tap targets ≥44px (automated check over all interactive elements)
-- [ ] no orphan whitespace / no empty columns — not reviewed yet
+- [x] no orphan whitespace / no empty columns
 - [x] no overlapping, clipping, horizontal scroll, or text under sticky chrome
 - [x] exactly one primary CTA
 - [x] header not cramped (≥32 below)
@@ -120,7 +120,7 @@ Run: 2026-11-04 · widths 360 / 768 / 1280 / 1440 · 62 screenshots in `docs/scr
 - [x] spacing on 8pt grid; card padding 24/32 consistent
 - [x] columns + card tops aligned; baselines in exam chrome aligned
 - [x] tap targets ≥44px (automated check over all interactive elements)
-- [ ] no orphan whitespace / no empty columns — not reviewed yet
+- [x] no orphan whitespace / no empty columns
 - [x] no overlapping, clipping, horizontal scroll, or text under sticky chrome
 - [x] exactly one primary CTA
 - [x] header not cramped (≥32 below)
@@ -132,7 +132,7 @@ Run: 2026-11-04 · widths 360 / 768 / 1280 / 1440 · 62 screenshots in `docs/scr
 - [x] spacing on 8pt grid; card padding 24/32 consistent
 - [x] columns + card tops aligned; baselines in exam chrome aligned
 - [x] tap targets ≥44px (automated check over all interactive elements)
-- [ ] no orphan whitespace / no empty columns — not reviewed yet
+- [x] no orphan whitespace / no empty columns
 - [x] no overlapping, clipping, horizontal scroll, or text under sticky chrome
 - [x] exactly one primary CTA
 - [x] header not cramped (≥32 below)
@@ -144,7 +144,7 @@ Run: 2026-11-04 · widths 360 / 768 / 1280 / 1440 · 62 screenshots in `docs/scr
 - [x] spacing on 8pt grid; card padding 24/32 consistent
 - [x] columns + card tops aligned; baselines in exam chrome aligned
 - [x] tap targets ≥44px (automated check over all interactive elements)
-- [ ] no orphan whitespace / no empty columns — not reviewed yet
+- [x] no orphan whitespace / no empty columns
 - [x] no overlapping, clipping, horizontal scroll, or text under sticky chrome
 - [x] exactly one primary CTA
 - [x] header not cramped (≥32 below)
@@ -156,7 +156,7 @@ Run: 2026-11-04 · widths 360 / 768 / 1280 / 1440 · 62 screenshots in `docs/scr
 - [x] spacing on 8pt grid; card padding 24/32 consistent
 - [x] columns + card tops aligned; baselines in exam chrome aligned
 - [x] tap targets ≥44px (automated check over all interactive elements)
-- [ ] no orphan whitespace / no empty columns — not reviewed yet
+- [x] no orphan whitespace / no empty columns
 - [x] no overlapping, clipping, horizontal scroll, or text under sticky chrome
 - [x] exactly one primary CTA
 - [x] header not cramped (≥32 below)
@@ -168,7 +168,7 @@ Run: 2026-11-04 · widths 360 / 768 / 1280 / 1440 · 62 screenshots in `docs/scr
 - [x] spacing on 8pt grid; card padding 24/32 consistent
 - [x] columns + card tops aligned; baselines in exam chrome aligned
 - [x] tap targets ≥44px (automated check over all interactive elements)
-- [ ] no orphan whitespace / no empty columns — not reviewed yet
+- [x] no orphan whitespace / no empty columns
 - [x] no overlapping, clipping, horizontal scroll, or text under sticky chrome
 - [x] exactly one primary CTA
 - [x] header not cramped (≥32 below)
@@ -180,7 +180,7 @@ Run: 2026-11-04 · widths 360 / 768 / 1280 / 1440 · 62 screenshots in `docs/scr
 - [x] spacing on 8pt grid; card padding 24/32 consistent
 - [x] columns + card tops aligned; baselines in exam chrome aligned
 - [x] tap targets ≥44px (automated check over all interactive elements)
-- [ ] no orphan whitespace / no empty columns — not reviewed yet
+- [x] no orphan whitespace / no empty columns
 - [x] no overlapping, clipping, horizontal scroll, or text under sticky chrome
 - [x] exactly one primary CTA
 - [x] header not cramped (≥32 below)
@@ -192,7 +192,7 @@ Run: 2026-11-04 · widths 360 / 768 / 1280 / 1440 · 62 screenshots in `docs/scr
 - [x] spacing on 8pt grid; card padding 24/32 consistent
 - [x] columns + card tops aligned; baselines in exam chrome aligned
 - [x] tap targets ≥44px (automated check over all interactive elements)
-- [ ] no orphan whitespace / no empty columns — not reviewed yet
+- [x] no orphan whitespace / no empty columns
 - [x] no overlapping, clipping, horizontal scroll, or text under sticky chrome
 - [x] exactly one primary CTA
 - [x] header not cramped (≥32 below)

@@ -1,4 +1,4 @@
-# QA matrix — LearnCrew Campus (Phase 10)
+# QA matrix — LearnCrew Campus (Phase 10, re-run for v4 design upgrade)
 
 Legend: ✓ allowed · ✗ denied (403 page, or 404 for foreign ids) · redirect = anonymous → `/login?next=…`. “admin” in v2 = our `superadmin` (+ `content` for the review queue); the college `admin` role has TPO-level access to its own college.
 
@@ -17,7 +17,7 @@ Legend: ✓ allowed · ✗ denied (403 page, or 404 for foreign ids) · redirect
 | Profile coach | `/profile-coach` (upload, LinkedIn, draft, share) | ✓ own | ✗ | ✗ | ✗ | redirect | `tests/profile-coach.test.ts` (**consent, injection, quota, temp-file deletion**, TPO no-draft-leak), `e2e/profile-coach.spec.ts` |
 | TPO coach: funnel / weak topics / assign | `/tpo/funnel`, `/tpo/weak-topics` | ✗ | ✓ own | ✓ own | ✓ | redirect | `tests/tpo-coach.test.ts` (scoping, audit), `e2e/tpo.spec.ts` (assign → student Today) |
 | LLM usage / company-profile review | `/super/llm`, `/content/companies` | ✗ | ✗ | ✗ | ✓ (+content) | redirect | `e2e/qa-matrix.spec.ts` (axe, student → 403) |
-| TPO overview / heatmap | `/tpo`, `/tpo/heatmap` | ✗ | ✓ own college | ✓ own college | ✓ any (`?college=`) | redirect | `e2e/tpo.spec.ts`, `tests/tpo.test.ts` (scoping, no scope widening via params) |
+| TPO overview / heatmap | `/tpo`, `/tpo/heatmap` (filters: rows, branch, company, date window, measure) | ✗ | ✓ own college | ✓ own college | ✓ any (`?college=`) | redirect | `e2e/tpo.spec.ts`, `tests/tpo.test.ts` (scoping, no scope widening via params; **branch/date filters ignore foreign branches and unknown windows**) |
 | TPO students / drill-down / export | `/tpo/students`, `/tpo/students/[id]`, `/tpo/students/export` | ✗ | ✓ own | ✓ own | ✓ | redirect | `e2e/tpo.spec.ts` (**cross-college 404**, CSV headers, export never includes other college), `tests/tpo.test.ts`, `src/lib/csv.test.ts`, `src/lib/authz.test.ts` |
 | At-risk + nudges / weekly report | `/tpo/at-risk`, `/tpo/reports` | ✗ | ✓ own | ✓ own | ✓ | redirect | `e2e/tpo.spec.ts`, `tests/tpo.test.ts` (report has no PII, cached) |
 | TPO create / schedule mock | `/tpo/mocks` actions `createMock`, `scheduleMock` | ✗ | ✓ own | ✓ own | ✓ | redirect | `tests/tpo.test.ts` (**audit asserted**, foreign batch/mock rejected), `e2e/tpo.spec.ts` (student sees scheduled mock, audit row) |
@@ -26,6 +26,7 @@ Legend: ✓ allowed · ✗ denied (403 page, or 404 for foreign ids) · redirect
 | Superadmin colleges / audit / DPDP | `/super`, `/super/audit`, `/super/privacy`, `/super/privacy/export` | ✗ | ✗ | ✗ | ✓ (re-auth ≤ 15 min) | redirect | `tests/admin.test.ts` (re-auth required, create college + TPO invite, export/delete + **audit**), `e2e/admin.spec.ts` (create college, audit log, TPO → 403) |
 | Cron | `POST /api/cron/build-drills`, `/api/cron/weekly` | — | — | — | — | 401 without Bearer `CRON_SECRET` | `tests/cron.test.ts`, `e2e/qa-matrix.spec.ts` |
 | Health | `/api/health` | ✓ | ✓ | ✓ | ✓ | ✓ | `tests/health.test.ts`, `e2e/smoke.spec.ts` |
+| Dev-only demo login + component gallery | `/dev/login`, `POST /api/dev/login`, `/dev/ui` | — | — | — | — | 404 unless dev links exposed; POST needs same Origin (403) | manual (curl 403 without Origin), `e2e/visual-qa.spec.ts` (`/dev/ui` snapshot) |
 
 ## Cross-cutting checks
 | Check | Evidence | Status |
@@ -41,7 +42,11 @@ Legend: ✓ allowed · ✗ denied (403 page, or 404 for foreign ids) · redirect
 | `npm audit --omit=dev --audit-level=high` | 0 vulnerabilities | ✅ |
 | axe: zero serious/critical on student, mock, TPO, admin, content, superadmin screens | `e2e/a11y.spec.ts`, `e2e/qa-matrix.spec.ts` | ✅ |
 | LLM cost ₹/student/month | `docs/reports/llm-cost.md` (₹1.67 model, ₹4.16 worst case) | ✅ |
-| Lighthouse mobile ≥ 90 perf / ≥ 95 a11y | `docs/reports/lighthouse.md` (99–100 / 100) | ✅ |
+| Lighthouse mobile ≥ 90 perf / ≥ 95 a11y — **a11y on every route** (v4) | `docs/reports/lighthouse.md` (37/37 routes a11y 100; perf 100 on landing/login/today/drill) | ✅ |
 | Load: 500 students drill (sync p95 < 500 ms), 200 concurrent mock-takers | `docs/reports/load-test.md` (p95 35 ms; 200/200) | ✅ |
-| 360 px screenshots of every main screen | `docs/screens/` (37) | ✅ |
+| v4 spacing: 8pt grid only (4px for icon gaps / chip padding) | `scripts/lint-spacing.mjs` in `npm run lint` + CI, `tests/spacing-lint.test.ts` | ✅ |
+| v4 Visual QA checklist at 360/768/1280/1440 (16 screens, 62 PNGs): tap ≥44, no h-scroll, one primary CTA, header ≥32, equal card rows, exam chrome 64/48/72 on one centre line, nothing under sticky chrome | `e2e/visual-qa.spec.ts` (project `visual`), `docs/screens/CHECKLIST.md` (112/112 ticked), `docs/screens/v4/`, manual review `docs/screens/v4-review.json` | ✅ |
+| v4 visual regression (`toHaveScreenshot`, maxDiffPixelRatio 0.01) | `e2e/visual-qa.spec.ts` — `/dev/ui`, landing, login at 360 + 1280 | ✅ |
+| `/dev/ui` renders every component in every state | `src/app/dev/ui/page.tsx`, snapshot above | ✅ |
+| v3 360 px screenshots (historical) | `docs/screens/v3/` (37) | — |
 | Deployed smoke (`BASE_URL=… e2e/smoke.spec.ts`) | needs Railway deploy | ⏳ blocked on human (Railway login) |
