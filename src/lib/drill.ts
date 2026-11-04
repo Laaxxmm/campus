@@ -135,7 +135,11 @@ export type SubmitOutput = AttemptResultDto & { duplicate: boolean; drillComplet
  */
 export async function gradeAttempt(userId: string, input: SubmitInput, now = new Date()): Promise<SubmitOutput> {
   const out = await gradeInTx(userId, input, now);
-  if (out.drillCompleted && !out.duplicate) await track("drill_completed", { userId, props: { drillId: input.drillId, score: out.score } });
+  if (out.drillCompleted && !out.duplicate) {
+    await track("drill_completed", { userId, props: { drillId: input.drillId, score: out.score } });
+    const [d] = await db.select({ a: drills.assignmentId }).from(drills).where(eq(drills.id, input.drillId));
+    if (d?.a) await (await import("@/server/services/tpo-coach")).completeAssignment(userId, d.a);
+  }
   return out;
 }
 

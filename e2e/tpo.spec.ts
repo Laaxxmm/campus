@@ -79,3 +79,31 @@ test("TPO of the other college sees only their own students", async ({ page }) =
   expect(text).not.toContain("demo.learncrew.in");
   expect(await page.getByTestId("students-table").locator("tbody tr").count()).toBe(10);
 });
+
+test("TPO coach view: funnel + interview-ready KPI, weak topics → assign pack → student sees it on Today; drill-down shows insights, never unshared drafts", async ({ page, browser }) => {
+  await login(page, "tpo@demo.learncrew.in");
+  await page.goto("/tpo");
+  await expect(page.getByTestId("kpis")).toContainText("Interview-ready");
+  await page.goto("/tpo/funnel");
+  await expect(page.getByTestId("funnel").locator("section").first()).toContainText("Targeting");
+  await page.goto("/tpo/weak-topics");
+  const first = page.getByTestId("weak-topics").locator("li").first();
+  await first.getByTestId("assign-pack").click();
+  await expect(page.getByText(/Focus pack on .* assigned to \d+ students/)).toBeVisible();
+  await expect(page.getByTestId("assignments")).toBeVisible();
+  const sql = (await import("./db")).e2eSql();
+  const [s] = await sql`select u.email, u.id from focus_assignment_students fas join users u on u.id = fas.user_id join focus_assignments fa on fa.id = fas.assignment_id order by fa.created_at desc limit 1`;
+  await sql.end();
+  await page.goto(`/tpo/students/${s.id}`);
+  await expect(page.getByTestId("coach-detail")).toBeVisible();
+  await expect(page.getByTestId("draft-privacy")).toContainText(/private to the student|shared a draft/);
+
+  const ctx = await browser.newContext({ viewport: { width: 360, height: 740 } });
+  const p2 = await ctx.newPage();
+  await login(p2, s.email);
+  await p2.goto("/today");
+  await expect(p2.getByTestId("assigned-pack").first()).toContainText("Focus pack");
+  await p2.getByTestId("assigned-pack").first().getByRole("button", { name: /start pack/i }).click();
+  await expect(p2).toHaveURL(/\/drill\/[0-9a-f-]+$/);
+  await ctx.close();
+});

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { staffContext } from "@/server/staff";
 import { heatmap, overview } from "@/server/services/tpo";
+import { readinessFunnel } from "@/server/services/tpo-coach";
 import { companyName } from "@/lib/companies";
 import { TpoShell } from "@/components/TpoShell";
 import { KpiCard } from "@/components/KpiCard";
@@ -11,7 +12,7 @@ export const dynamic = "force-dynamic";
 
 export default async function TpoOverview({ searchParams }: { searchParams: Promise<{ college?: string }> }) {
   const { user, college, opts } = await staffContext((await searchParams).college);
-  const [o, h] = await Promise.all([overview(user, opts), heatmap(user, opts)]);
+  const [o, h, f] = await Promise.all([overview(user, opts), heatmap(user, opts), readinessFunnel(user, opts)]);
   const risk = o.rows.filter((r) => r.atRisk).sort((a, b) => (b.inactiveDays ?? 999) - (a.inactiveDays ?? 999)).slice(0, 8);
   return (
     <TpoShell title="Overview" collegeName={college.name}>
@@ -21,7 +22,8 @@ export default async function TpoOverview({ searchParams }: { searchParams: Prom
         </EmptyState>
       ) : (
         <div className="space-y-8">
-          <section className="grid grid-cols-2 gap-3 lg:grid-cols-5" aria-label="Key numbers" data-testid="kpis">
+          <section className="grid grid-cols-2 gap-3 lg:grid-cols-6" aria-label="Key numbers" data-testid="kpis">
+            <KpiCard label="Interview-ready" value={`${f.interviewReadyPct}%`} hint="aptitude + tech + profile gates" />
             <KpiCard label="Weekly active" value={`${o.weeklyActivePct}%`} hint={`of ${o.total} students · goal ≥ 60%`} tone={o.weeklyActivePct >= 60 ? "good" : "neutral"} />
             <KpiCard label="Median streak" value={`${o.medianStreak}d`} hint="goal ≥ 5 days" tone={o.medianStreak >= 5 ? "good" : "neutral"} />
             <KpiCard label="Avg readiness" value={o.avgReadiness ?? "—"} hint="for each student's target company" />

@@ -3,6 +3,9 @@ import { Clock } from "lucide-react";
 import { requireRole, requireUser } from "@/lib/authz";
 import { getOrCreateDrill } from "@/lib/drill";
 import { todaySummary } from "@/server/services/student";
+import { myAssignments } from "@/server/services/tpo-coach";
+import { topicName } from "@/lib/question-schema";
+import { startAssignedPack } from "@/app/actions/focus";
 import { companyName } from "@/lib/companies";
 import { StreakFlame } from "@/components/StreakFlame";
 import { XpBadge } from "@/components/XpBadge";
@@ -21,6 +24,7 @@ export default async function Today() {
     drillError = true;
   }
   const s = await todaySummary(user.id);
+  const packs = (await myAssignments(user.id)).filter((a) => !a.completedAt);
   const done = Boolean(s.drill?.completedAt);
   const first = s.name.split(" ")[0] || "there";
 
@@ -56,6 +60,16 @@ export default async function Today() {
           )}
         </section>
       )}
+
+      {packs.map((a) => (
+        <form key={a.id} action={startAssignedPack} className="rounded-md border border-accent-500 bg-accent-50 p-4" data-testid="assigned-pack">
+          <input type="hidden" name="assignment" value={a.id} />
+          <p className="text-xs font-semibold uppercase tracking-wide text-ink-700">From your TPO</p>
+          <p className="mt-1 font-semibold text-ink-900">Focus pack: {a.topics.map(topicName).join(", ")}</p>
+          <p className="text-sm text-text-600">{a.questionsPerDay} questions a day{a.dueOn ? ` · until ${a.dueOn}` : ""}{a.note ? ` · ${a.note}` : ""}</p>
+          <button type="submit" className="mt-3 min-h-11 w-full rounded-sm bg-ink-900 font-semibold text-white">Start pack</button>
+        </form>
+      ))}
 
       <section className="flex items-center gap-4 rounded-lg border border-border bg-bg p-4">
         <ReadinessRing score={s.readiness} label={`${companyName(s.company)} ready`} />

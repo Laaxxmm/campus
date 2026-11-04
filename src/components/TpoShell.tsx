@@ -1,10 +1,12 @@
 import Link from "next/link";
-import { BarChart3, CalendarDays, ClipboardList, FileText, Grid3X3, LayoutDashboard, LogOut, Settings, TriangleAlert, Upload, Users } from "lucide-react";
+import { BarChart3, CalendarDays, ClipboardList, FileText, Filter, Grid3X3, LayoutDashboard, LogOut, Settings, Target, TriangleAlert, Upload, Users } from "lucide-react";
 import { signOut } from "@/auth";
 import { t } from "@/i18n/en";
 
 const items = [
   { href: "/tpo", label: t.tpoNav.overview, Icon: LayoutDashboard },
+  { href: "/tpo/weak-topics", label: "Weak topics", Icon: Target },
+  { href: "/tpo/funnel", label: "Companies funnel", Icon: Filter },
   { href: "/tpo/heatmap", label: t.tpoNav.heatmap, Icon: Grid3X3 },
   { href: "/tpo/students", label: t.tpoNav.students, Icon: Users },
   { href: "/tpo/at-risk", label: t.tpoNav.atRisk, Icon: TriangleAlert },

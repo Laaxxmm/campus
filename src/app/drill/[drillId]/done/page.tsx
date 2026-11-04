@@ -27,7 +27,7 @@ export default async function DrillDone({ params }: { params: Promise<{ drillId:
   return (
     <main className="relative mx-auto flex min-h-dvh max-w-md flex-col items-center px-4 pb-10 pt-12 text-center">
       <p className="text-sm font-semibold text-text-600">{d.completedAt ? "Drill complete" : "Drill in progress"}</p>
-      <div className="mt-2 text-6xl font-bold tabular" data-testid="score">{score}/10</div>
+      <div className="mt-2 text-6xl font-bold tabular" data-testid="score">{score}/{d.questionIds.length}</div>
       <p className="mt-2 text-lg">{great ? "Excellent work — that rhythm is paying off." : score >= 4 ? "Good effort. Review the misses and keep going." : "Every attempt makes you sharper. Tomorrow builds on today."}</p>
       <div className="mt-6 flex items-center gap-6">
         <div>

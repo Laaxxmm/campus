@@ -1,6 +1,9 @@
 import { notFound } from "next/navigation";
 import { staffContext } from "@/server/staff";
 import { studentDetail } from "@/server/services/tpo";
+import { coachDetail } from "@/server/services/tpo-coach";
+import { reviewsForStaff } from "@/server/services/profile-coach";
+import type { InsightText } from "@/lib/insights/text";
 import { companyName } from "@/lib/companies";
 import { TpoShell } from "@/components/TpoShell";
 import { heatColor } from "@/components/Heatmap";
@@ -12,6 +15,7 @@ export default async function StudentDetail({ params, searchParams }: { params: 
   const { id } = await params;
   const s = await studentDetail(user, id, opts);
   if (!s) notFound(); // includes students of other colleges
+  const [coach, reviews] = await Promise.all([coachDetail(user, s.id, opts), reviewsForStaff(user.role === "superadmin" ? { role: "superadmin", collegeId: null } : user, s.id)]);
   const max = Math.max(100, ...s.readinessTrend.map((x) => x.score));
   return (
     <TpoShell title={s.name ?? s.email} collegeName={college.name} crumbs={[{ href: "/tpo", label: "Overview" }, { href: "/tpo/students", label: "Students" }, { href: `/tpo/students/${s.id}`, label: s.name ?? "Student" }]}>
@@ -45,6 +49,20 @@ export default async function StudentDetail({ params, searchParams }: { params: 
               </div>
             ))}
           </div>
+        </section>
+      </div>
+      <div className="mt-4 grid gap-4 lg:grid-cols-3" data-testid="coach-detail">
+        <section className="rounded-md border border-border bg-bg p-4 lg:col-span-2">
+          <h2 className="mb-2 font-semibold text-ink-900">Latest insights</h2>
+          {coach?.insights.length ? coach.insights.map((i, k) => <div key={k} className="mb-2 text-sm"><div className="font-medium">{(i.text as InsightText).headline}</div><ul className="list-disc pl-5 text-text-600">{(i.text as InsightText).whatsWrong.map((w, j) => <li key={j}>{w}</li>)}</ul></div>) : <p className="text-sm text-text-600">No insights yet.</p>}
+          <h2 className="mb-2 mt-4 font-semibold text-ink-900">Readiness by target (v3)</h2>
+          <ul className="grid gap-2 sm:grid-cols-2">{coach?.readiness.map((x) => <li key={x.company} className="rounded-sm bg-surface p-2 text-sm"><div className="flex justify-between"><span>{x.name}</span><b className="tabular">{x.r.score}</b></div><div className="text-xs text-text-600">apt {x.r.aptitude.score} · tech {x.r.tech.score} · cons {x.r.consistency.score} · profile {x.r.profile.score}{x.r.interviewReady ? " · interview-ready" : ""}</div></li>)}</ul>
+        </section>
+        <section className="rounded-md border border-border bg-bg p-4">
+          <h2 className="mb-2 font-semibold text-ink-900">Profile checklists</h2>
+          <p className="text-sm">Resume: <b className="tabular">{reviews?.resume ? `${reviews.resume.score}%` : "not started"}</b></p>
+          <p className="text-sm">LinkedIn: <b className="tabular">{reviews?.linkedin ? `${reviews.linkedin.score}%` : "not started"}</b></p>
+          <p className="mt-2 text-xs text-text-600" data-testid="draft-privacy">{reviews?.resume?.shared || reviews?.linkedin?.shared ? "The student shared a draft with you." : "Drafts are private to the student unless they share them."}</p>
         </section>
       </div>
       <section className="mt-4 rounded-md border border-border bg-bg p-4">

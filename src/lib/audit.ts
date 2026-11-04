@@ -17,7 +17,8 @@ export type AuditAction =
   | "mock.create"
   | "mock.schedule"
   | "invite.send"
-  | "export.students_csv";
+  | "export.students_csv"
+  | "focus.assign";
 
 /** Append-only audit record. Never throws into the caller's happy path, but logs failures. */
 export async function audit(actor: { id: string; collegeId: string | null }, action: AuditAction, target: { type?: string; id?: string; collegeId?: string | null; meta?: Record<string, unknown>; ip?: string } = {}) {
