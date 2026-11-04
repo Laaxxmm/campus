@@ -1,26 +1,24 @@
 # PROGRESS — LearnCrew Campus
-Current phase: 10 — Final QA matrix (8 waits for Railway login) | Last green: 2026-11-05T01:50+05:30 | Tests: unit 194/194, e2e 27/27
+Current phase: DONE locally — waiting on human for Railway deploy (8) and API key (3) | Last green: 2026-11-05T02:40+05:30 | Tests: unit 195/195, e2e 32/32 (clean clone)
 Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived at docs/ORCHESTRATOR-v1.md; v1 phases 0–3 work carried over (same schema + stack).
 
 ## Phase checklist (✅ only when phase QA gate green)
 - [x] 0 — Design system + architecture docs ✅ (docs/DESIGN.md, ARCHITECTURE.md, SECURITY.md; tokens compile)
 - [x] 1 — Scaffold ✅ (v2 tokens navy/amber + Inter + lucide, env.ts boot validation, CSP nonce + headers, CI workflow, /dev/ui, architecture test)
 - [x] 2 — Auth + roles + tenancy ✅ (RBAC matrix 70 cases, Postgres rate limiter + login/submit wiring, audit logger, cookie flags, cross-college DB test; per-route IDOR e2e added as routes land)
-- [ ] 3 — Question bank + pipeline — BLOCKED on 600-Q count only (needs ANTHROPIC_API_KEY, D15). Green: schema tests, verifier fixture test, 260 golden verified Q, coverage/balance test, generate/qa/dedupe/quant-check (--dry-run), idempotent seed
+- [ ] 3 — Question bank + pipeline — BLOCKED on v2's 600-Q count only (needs ANTHROPIC_API_KEY, D15; v1 gate ≥120 met with 260). Green: schema tests, verifier fixture test, 260 golden verified Q, coverage/balance test, generate/qa/dedupe/quant-check (--dry-run), idempotent seed
 - [x] 4 — Student drill + streak + PWA ✅ (e2e: login → 10-Q drill → streak 1; offline answers sync once; SW offline shell + cached drill; axe zero serious on 7 screens; /today 108 KB JS)
 - [x] 5 — Adaptive engine + real mocks ✅ (Elo/bands/6-2-2/spaced review 17 tests; exam UX w/ palette, flags, keyboard, sectional timers, autosave+resume, negative marks, percentile, review mode; cron routes; e2e full mock + refresh, fake-clock auto-submit, leak, IDOR)
 - [x] 6 — TPO dashboard ✅ (KPIs, accuracy/mastery heatmap batch×topic & student×topic w/ company filter, students table + Excel-safe CSV export (audited), drill-down, at-risk + WhatsApp nudges, weekly report (template / Sonnet aggregates-only, cached), create/schedule mock (audited); services p95 ≤ 43 ms on 505 students; e2e incl. cross-college 404)
 - [x] 7 — Admin ✅ (roster CSV import w/ Zod row errors, seat limit, re-import idempotent, invites, rate limit, audit; batches + settings; content review queue w/ blind-QA side-by-side, approve → golden + college access → next drill; superadmin colleges/create+TPO invite, audit log viewer, DPDP export/delete with 15-min re-auth)
 - [ ] 8 — Railway deploy — config ✅ (Dockerfile Node 22 standalone, non-root, healthcheck; railway.json; compose prod; DEPLOY.md). Verified locally: image builds, migrates, /api/health ok, cron 401/200, bad env → exit 1. BLOCKED on human: `railway login` + deploy (steps in docs/DEPLOY.md)
 - [x] 9 — Pilot hardening ✅ (load: 500 students × 10 answers sync p95 35 ms, 200 concurrent mock-takers 200/200; Lighthouse mobile perf 99–100 / a11y 100 on 4 pages; explain-more cached + rate-limited; error/not-found pages; JSON logs; events; landing; smoke suite; DEMO.md; reports in docs/reports/). Backups: Railway volume backups — enable at deploy (DEPLOY.md §1)
-- [ ] 10 — Final QA matrix
+- [x] 10 — Final QA matrix ✅ locally (docs/QA_MATRIX.md: every row mapped to a passing test; anon redirects, CSRF on all JSON routes, IDOR, axe on ~30 screens, gitleaks, npm audit 0, Lighthouse, load, 28 screenshots in docs/screens/; clean-clone run green). Only open row: smoke against the deployed URL (needs phase 8 deploy)
 
-## Current phase tasks (phase 10 — final QA matrix)
-- [ ] docs/QA_MATRIX.md with every row mapped to a test
-- [ ] fill matrix gaps (anon redirects for every route, CSRF on all JSON routes, rate-limit on submit, /api/health unit)
-- [ ] gitleaks-style secret scan, npm audit, axe on TPO/admin screens
-- [ ] 360 px screenshots of every main screen → docs/screens/
-- [ ] full clean-clone run: typecheck, lint, test, e2e, build
+## Current phase tasks
+- [ ] (human) Railway login + deploy per docs/DEPLOY.md → then `BASE_URL=https://<domain> npx playwright test e2e/smoke.spec.ts --project=desktop` against staging
+- [ ] (human, optional) ANTHROPIC_API_KEY → `npx tsx scripts/generate.ts` → `scripts/qa.ts` → `scripts/import-drafts.ts` → approve in /content/review to reach 600+
+- [ ] (human) AUTH_RESEND_KEY + verified sending domain before inviting a real college
 
 ## Feature test registry
 | Feature | Test file | Status |
@@ -65,6 +63,9 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 | Load: /api/sync p95 < 500 ms @ 500 students; 200 concurrent mocks | docs/reports/load-test.md | ✅ |
 | Lighthouse mobile ≥ 90 perf / ≥ 95 a11y | docs/reports/lighthouse.md | ✅ |
 | Smoke (health, landing, drill e2e, TPO + CSV + 404) — local or BASE_URL | e2e/smoke.spec.ts | ✅ local; deployed: pending Railway |
+| QA matrix: anon redirects (21 routes), 401/403 CSRF on 4 JSON routes + cron, drill IDOR, axe on TPO/admin/content/super/mock screens | e2e/qa-matrix.spec.ts | ✅ |
+| Health route | tests/health.test.ts | ✅ |
+| Explanation sheet shows the correct option on a wrong answer | e2e/drill.spec.ts | ✅ |
 
 ## Decisions (ADR-lite)
 - D1 2026-11-04: `learncrew-campus-product-pack.md` was NOT provided to the build session. Taxonomy, the "12 samples", and pack prompts (system/variant/qa/seed) are authored by the orchestrator from the summaries in ORCHESTRATOR.md. Replace with pack versions when available.
@@ -88,6 +89,7 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 - D21 2026-11-05: v2 "admin re-auth within 15 min" implemented for superadmin mutations (create college, export/delete student) via an Auth.js `signIn` event → `events.sign_in`; stale sessions get a "Confirm it's me" magic link. College-admin/TPO routine actions (import, batches) rely on session + rate limit + audit instead (re-auth there would add a magic-link round trip to every import).
 - D22 2026-11-05: Runtime image uses Node 22 LTS (v1 Dockerfile said Node 20; vitest 5 / toolchain need ≥22.12 and npm 10.8 on Node 20 crashed in `npm ci`). Optional BuildKit `--secret id=ca` for TLS-intercepting proxies (no-op on Railway). `preDeployCommand` runs `node scripts/migrate.mjs` (no tsx/drizzle-kit in the runtime image).
 - D23 2026-11-05: Structured logs are a 20-line JSON logger (`src/lib/log.ts`) rather than pino — pino's worker-thread transport needs extra bundling config in Next standalone; JSON lines are what Railway ingests either way.
+- D24 2026-11-05: Phase 10 a11y fixes: green text uses new `success-700` (#15803D; #16A34A text was 3.3:1), heatmap cells always dark text, landing eyebrow ink-700, streak number ink-900 with amber flame. gitleaks: test-fixture allowlist + one allowlisted historical commit (a throwaway local-DB session cookie embedded in a Lighthouse HTML report; scrubbed next commit, sessions deleted) instead of rewriting pushed history.
 - D16 2026-11-04: CSRF for custom JSON routes = same-origin `Origin` check + `application/json` content-type (forces preflight) + SameSite=Lax cookies; no double-submit token (server actions already have Next origin check).
 - D15 2026-11-04: Bank seeded at 260 hand-authored, machine-verified golden questions (v1 gate ≥120 met; v2 asks 600). The designed route to 600–2,000 is the Haiku-batch → Sonnet-QA pipeline, which needs ANTHROPIC_API_KEY (~$30 per the pack). Not hand-authoring 340 more in-session.
 
@@ -97,6 +99,7 @@ Governing spec: ORCHESTRATOR.md (v2, adopted 2026-11-04 mid-build). v1 archived 
 - [ ] Railway login + first deploy (Phase 8) — run docs/DEPLOY.md §0–§4 (≈15 min). Everything else is ready.
 
 ## Log
+- 2026-11-05T02:40+05:30 phase 10 done locally: QA matrix green, clean clone (npm ci → typecheck → lint → 195 unit → 32 e2e → build) green. Remaining: Railway deploy (human login), 600-Q bank (API key).
 - 2026-11-05T01:50+05:30 phase 9 done: load + Lighthouse reports committed, explain-more, error pages, landing, smoke, DEMO.md.
 - 2026-11-05T01:20+05:30 phase 8 config done + verified with local Docker; deploy waits for Railway login.
 - 2026-11-05T00:50+05:30 phase 7 done: admin + content + superadmin; 192 unit + 24 e2e green.

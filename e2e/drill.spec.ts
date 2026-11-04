@@ -16,6 +16,7 @@ test("student answers 10 questions → done page shows score and streak 1", asyn
     await expect(page.getByText(`Q ${i + 1} / 10`)).toBeVisible();
     await answerCurrent(page);
     await expect(page.getByTestId("verdict")).toBeVisible();
+    if (/not quite/i.test(await page.getByTestId("verdict").innerText())) await expect(page.getByTestId("correct-answer")).toContainText(/^Answer: [ABCD]\. /);
     await page.getByRole("button", { name: i === 9 ? /finish/i : /^next$/i }).click();
   }
   await expect(page).toHaveURL(/\/done$/);

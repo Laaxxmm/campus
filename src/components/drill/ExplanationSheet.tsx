@@ -23,6 +23,11 @@ export function ExplanationSheet({ result, onNext, last, explainEnabled, correct
         <p className={`text-lg font-bold ${result.correct ? "text-success-700" : "text-danger-500"}`} data-testid="verdict">
           {result.correct ? `Correct! +${result.xp} XP` : result.chosenDisplayed === null ? "Skipped" : "Not quite"}
         </p>
+        {!result.correct && correctText && (
+          <p className="mt-1 text-sm font-semibold text-ink-900" data-testid="correct-answer">
+            Answer: {["A", "B", "C", "D"][result.correctDisplayed]}. {correctText}
+          </p>
+        )}
         <p className="mt-2 text-sm leading-relaxed text-text-900">{result.explanation}</p>
         {result.shortcut && <p className="mt-2 rounded-md bg-ink-50 p-2 text-sm text-ink-700"><Zap aria-hidden className="mr-1 inline h-4 w-4" />Shortcut: {result.shortcut}</p>}
         {explainEnabled && !result.correct && !more && (
