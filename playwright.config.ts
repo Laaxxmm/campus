@@ -15,8 +15,8 @@ export default defineConfig({
   globalSetup: external ? undefined : "./e2e/global-setup.ts",
   use: { baseURL, trace: "retain-on-failure" },
   projects: [
-    { name: "mobile", use: { ...devices["Pixel 5"], viewport: { width: 360, height: 740 } }, testIgnore: /tpo\.spec|smoke\.spec|security\.spec/ },
-    { name: "desktop", use: { ...devices["Desktop Chrome"], viewport: { width: 1280, height: 800 } }, testMatch: /tpo\.spec|smoke\.spec|security\.spec/ },
+    { name: "mobile", use: { ...devices["Pixel 5"], viewport: { width: 360, height: 740 } }, testIgnore: /tpo\.spec|smoke\.spec|security\.spec|admin\.spec/ },
+    { name: "desktop", use: { ...devices["Desktop Chrome"], viewport: { width: 1280, height: 800 } }, testMatch: /tpo\.spec|smoke\.spec|security\.spec|admin\.spec/ },
   ],
   webServer: external
     ? undefined

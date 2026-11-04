@@ -1,0 +1,10 @@
+name,email,roll_no,batch
+Asha Varma,asha.varma@demo.learncrew.in,23CS001,2027 CSE-A
+No Email,,23CS002,2027 CSE-A
+Bad Email,not-an-email,23CS003,2027 CSE-A
+Dup Roll,dup.roll@demo.learncrew.in,23CS001,2027 CSE-A
+Ghost Batch,ghost@demo.learncrew.in,23CS004,2030 MECH
+Asha Again,asha.varma@demo.learncrew.in,23CS005,2027 CSE-A
+Other College,student001@sample.learncrew.in,23CS006,2027 CSE-A
+"Comma, Name",comma.name@demo.learncrew.in,23CS007,2027 ECE
+X,x@demo.learncrew.in,23CS008,2027 ECE

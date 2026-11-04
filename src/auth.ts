@@ -5,6 +5,7 @@ import { eq } from "drizzle-orm";
 import { db } from "@/db";
 import { accounts, sessions, users, verificationTokens } from "@/db/schema";
 import { sendMagicLink } from "@/lib/mail";
+import { track } from "@/lib/events";
 import type { AppRole } from "@/types/next-auth";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
@@ -28,6 +29,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   pages: { signIn: "/login", verifyRequest: "/login/check-email", error: "/login" },
+  events: {
+    // Recorded for the 15-minute re-auth rule on superadmin actions (src/server/services/super.ts).
+    async signIn({ user }) {
+      if (user.id) await track("sign_in", { userId: user.id });
+    },
+  },
   callbacks: {
     // Invite-only: the email must already exist (seeded, CSV-imported, or invited).
     async signIn({ user }) {

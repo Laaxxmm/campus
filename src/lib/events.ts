@@ -11,7 +11,8 @@ export type EventName =
   | "mock_submitted"
   | "roster_import"
   | "data_deletion_request"
-  | "client_error";
+  | "client_error"
+  | "sign_in";
 
 export async function track(name: EventName, opts: { userId?: string | null; collegeId?: string | null; props?: Record<string, unknown> } = {}) {
   try {
