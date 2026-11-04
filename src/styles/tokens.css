@@ -1,0 +1,27 @@
+/* LearnCrew design tokens — docs/design.md */
+:root {
+  --brand-600: #4f46e5;
+  --brand-700: #4338ca;
+  --brand-50: #eef2ff;
+  --success: #16a34a;
+  --success-50: #dcfce7;
+  --danger: #dc2626;
+  --danger-50: #fee2e2;
+  --warn: #f59e0b;
+  --warn-50: #fef3c7;
+  --streak: #f97316;
+  --ink-900: #0f172a;
+  --ink-600: #475569;
+  --ink-400: #94a3b8;
+  --surface: #ffffff;
+  --bg: #f8fafc;
+  --border: #e2e8f0;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+  --heat-0: #fee2e2;
+  --heat-1: #fef3c7;
+  --heat-2: #dcfce7;
+  --heat-3: #16a34a;
+}
