@@ -90,9 +90,14 @@ export function techTopicsFor(p: CompanyProfile, branch: Branch) {
   return valid.length ? valid : ["dbms", "oop_concepts", "dsa_basics"];
 }
 
-export async function readinessFor(p: CompanyProfile, s: Signals): Promise<Readiness> {
-  const [bp] = await db.select().from(companyBlueprints).where(eq(companyBlueprints.company, p.key));
-  const sw = (bp?.sectionWeights as Record<string, number>) ?? { quant: 0.35, logical: 0.3, verbal: 0.25, coding: 0.1 };
+export async function sectionWeightsFor(company: string) {
+  const [bp] = await db.select().from(companyBlueprints).where(eq(companyBlueprints.company, company));
+  return (bp?.sectionWeights as Record<string, number>) ?? { quant: 0.35, logical: 0.3, verbal: 0.25, coding: 0.1 };
+}
+
+/** Pass `weights` when scoring many students for one company (avoids a query per student). */
+export async function readinessFor(p: CompanyProfile, s: Signals, weights?: Record<string, number>): Promise<Readiness> {
+  const sw = weights ?? (await sectionWeightsFor(p.key));
   return readinessV3({
     company: p.key,
     sectionWeights: sw,

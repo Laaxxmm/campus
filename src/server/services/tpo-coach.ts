@@ -11,7 +11,7 @@ import { displayStreak, NEW_STREAK } from "@/lib/streak";
 import { istDate } from "@/lib/time";
 import { MIN_TOPIC_ATTEMPTS } from "@/lib/insights/rules";
 import { collegeOf } from "./tpo";
-import { getProfile, listProfiles, readinessFor, type Signals } from "./companies";
+import { getProfile, listProfiles, readinessFor, sectionWeightsFor, type Signals } from "./companies";
 import type { SessionUser } from "@/lib/authz";
 
 type Staff = Pick<SessionUser, "id" | "role" | "collegeId">;
@@ -33,19 +33,28 @@ export async function bulkSignals(collegeId: string) {
     db.select().from(targetCompanies).where(inArray(targetCompanies.userId, ids)),
   ]);
   const today = istDate();
+  const group = <T,>(rows: T[], key: (r: T) => string | null) => {
+    const m = new Map<string, T[]>();
+    for (const r of rows) {
+      const k = key(r);
+      if (k) (m.get(k) ?? m.set(k, []).get(k)!).push(r);
+    }
+    return m;
+  };
+  const skBy = group(sk, (x) => x.u), cntBy = group([...cnt], (x) => x.u), revBy = group(rev, (x) => x.u), tgBy = group(tg, (x) => x.userId);
+  const d14By = new Map(d14.map((x) => [x.u, x.n])), m30By = new Map(m30.map((x) => [x.u, x.n])), hrBy = new Map(hr.map((x) => [x.u, x.n])), stBy = new Map(st.map((x) => [x.userId, x]));
   for (const s of studs) {
-    const mine = rev.filter((r) => r.u === s.id);
+    const mine = revBy.get(s.id) ?? [];
     const r = mine.find((x) => x.kind === "resume")?.score, l = mine.find((x) => x.kind === "linkedin")?.score;
-    const st1 = st.find((x) => x.userId === s.id);
-    const t = tg.filter((x) => x.userId === s.id && !x.company.startsWith("dream:")).map((x) => x.company);
+    const t = (tgBy.get(s.id) ?? []).filter((x) => !x.company.startsWith("dream:")).map((x) => x.company);
     out.set(s.id, {
       name: s.name,
       batchId: s.batchId,
       targets: t.length ? t : [s.target ?? s.batchTarget ?? "tcs_nqt"],
       branch: branchOf(s.branch ?? s.batchBranch),
-      ratings: new Map(sk.filter((x) => x.u === s.id).map((x) => [x.t, x.r])),
-      attemptsByTopic: new Map(cnt.filter((x) => x.u === s.id).map((x) => [x.t, x.n])),
-      consistency: { drillsLast14: d14.find((x) => x.u === s.id)?.n ?? 0, streak: displayStreak(st1 ?? NEW_STREAK, today), mocksLast30: m30.find((x) => x.u === s.id)?.n ?? 0, hrPracticed: hr.find((x) => x.u === s.id)?.n ?? 0 },
+      ratings: new Map((skBy.get(s.id) ?? []).map((x) => [x.t, x.r])),
+      attemptsByTopic: new Map((cntBy.get(s.id) ?? []).map((x) => [x.t, x.n])),
+      consistency: { drillsLast14: d14By.get(s.id) ?? 0, streak: displayStreak(stBy.get(s.id) ?? NEW_STREAK, today), mocksLast30: m30By.get(s.id) ?? 0, hrPracticed: hrBy.get(s.id) ?? 0 },
       profileScore: r === undefined && l === undefined ? null : Math.round(((r ?? 0) + (l ?? 0)) / 2),
     });
   }
@@ -63,11 +72,12 @@ export async function readinessFunnel(staff: Staff, opts: { collegeId?: string }
   const readyStudents = new Set<string>();
   for (const prof of await listProfiles()) {
     const p = (await getProfile(prof.key))!;
+    const sw = await sectionWeightsFor(p.key);
     const row: FunnelRow = { company: p.key, name: p.name, targeting: 0, aptitude: 0, tech: 0, profile: 0, ready: 0, avgReadiness: 0 };
     let sum = 0;
     for (const [uid, s] of signals) {
       if (!s.targets.includes(p.key)) continue;
-      const r = await readinessFor(p, s);
+      const r = await readinessFor(p, s, sw);
       row.targeting++;
       sum += r.score;
       if (r.aptitude.score >= 80) {
