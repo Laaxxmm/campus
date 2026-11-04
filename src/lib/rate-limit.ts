@@ -10,6 +10,8 @@ export const LIMITS = {
   import: { max: 5, windowMs: 60 * 60_000 },
   aiGen: { max: 20, windowMs: 60 * 60_000 },
   mockSave: { max: 240, windowMs: 60_000 },
+  draft: { max: 3, windowMs: 60 * 60_000 },
+  upload: { max: 10, windowMs: 60 * 60_000 },
 } as const;
 export type Bucket = keyof typeof LIMITS;
 

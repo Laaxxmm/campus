@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ChevronRight, LogOut, ShieldCheck, Trophy } from "lucide-react";
+import { ChevronRight, FileUser, LogOut, ShieldCheck, TrendingUp, Trophy } from "lucide-react";
 import { signOut } from "@/auth";
 import { requireRole, requireUser } from "@/lib/authz";
 import { COMPANIES } from "@/lib/companies";
@@ -52,6 +52,8 @@ export default async function Profile({ searchParams }: { searchParams: Promise<
         {sp.saved && <p role="status" className="text-sm text-success-700">Saved. Tomorrow&apos;s drill will focus on this pattern.</p>}
       </form>
       <nav className="divide-y divide-border rounded-md border border-border bg-bg">
+        <Link href="/profile-coach" className="flex min-h-12 items-center gap-3 px-4"><FileUser className="h-5 w-5 text-ink-900" aria-hidden /> <span className="flex-1">Profile coach (resume + LinkedIn)</span><ChevronRight className="h-4 w-4 text-text-400" aria-hidden /></Link>
+        <Link href="/progress" className="flex min-h-12 items-center gap-3 px-4"><TrendingUp className="h-5 w-5 text-ink-900" aria-hidden /> <span className="flex-1">Progress &amp; topic mastery</span><ChevronRight className="h-4 w-4 text-text-400" aria-hidden /></Link>
         <Link href="/leaderboard" className="flex min-h-12 items-center gap-3 px-4"><Trophy className="h-5 w-5 text-accent-600" aria-hidden /> <span className="flex-1">Batch leaderboard</span><ChevronRight className="h-4 w-4 text-text-400" aria-hidden /></Link>
         <Link href="/privacy" className="flex min-h-12 items-center gap-3 px-4"><ShieldCheck className="h-5 w-5 text-ink-900" aria-hidden /> <span className="flex-1">Privacy &amp; your data</span><ChevronRight className="h-4 w-4 text-text-400" aria-hidden /></Link>
       </nav>

@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: "standalone",
   poweredByHeader: false,
+  experimental: { serverActions: { bodySizeLimit: "3mb" } }, // resume PDF upload (≤ 2 MB enforced in the service)
   async headers() {
     return [
       {

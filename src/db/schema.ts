@@ -293,7 +293,7 @@ export const weeklyFocus = pgTable("weekly_focus", {
 export const consents = pgTable("consents", {   // v3: explicit consent records (DPDP)
   id: uuid("id").primaryKey().defaultRandom(),
   userId: uuid("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
-  kind: text("kind").$type<"dpdp" | "resume_storage" | "ai_drafts">().notNull(),
+  kind: text("kind").$type<"dpdp" | "resume_processing" | "resume_storage" | "ai_drafts">().notNull(),
   grantedAt: timestamp("granted_at").defaultNow().notNull(), revokedAt: timestamp("revoked_at"),
 }, t => [index("consents_user_idx").on(t.userId, t.kind)]);
 
