@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { Briefcase, Building2, ClipboardCheck, Cpu, Library, LogOut, ScrollText, ShieldCheck } from "lucide-react";
 import { signOut } from "@/auth";
+import { PageHeader } from "@/components/ui/layout";
 
 async function logout() {
   "use server";
   await signOut({ redirectTo: "/login" });
 }
 
-export function AdminShell({ children, title, role }: { children: React.ReactNode; title: string; role: string }) {
+export function AdminShell({ children, title, subtitle, actions, role }: { children: React.ReactNode; title: string; subtitle?: React.ReactNode; actions?: React.ReactNode; role: string }) {
   const items = [
     ...(role === "superadmin" ? [{ href: "/super", label: "Colleges", Icon: Building2 }] : []),
     { href: "/content/review?status=golden", label: "Question bank", Icon: Library },
@@ -26,9 +27,11 @@ export function AdminShell({ children, title, role }: { children: React.ReactNod
           <form action={logout} className="md:mt-4"><button type="submit" className="flex min-h-11 items-center gap-2 rounded-sm px-4 text-sm text-white/85 hover:bg-ink-700"><LogOut aria-hidden className="h-4 w-4" />Sign out</button></form>
         </nav>
       </aside>
-      <main className="min-w-0 flex-1 p-4 md:p-8">
-        <h1 className="mb-6 text-2xl font-bold text-ink-900">{title}</h1>
-        {children}
+      <main className="min-w-0 flex-1 px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-[1440px]">
+          <PageHeader title={title} subtitle={subtitle} actions={actions} />
+          {children}
+        </div>
       </main>
     </div>
   );

@@ -8,7 +8,7 @@ export function ReadinessRing({ score, label, size = 112 }: { score: number; lab
       <svg width={size} height={size} viewBox="0 0 100 100" role="img" aria-hidden>
         <circle cx="50" cy="50" r={r} fill="none" stroke="var(--border)" strokeWidth="10" />
         <circle cx="50" cy="50" r={r} fill="none" stroke={color} strokeWidth="10" strokeLinecap="round" strokeDasharray={`${(pct / 100) * c} ${c}`} transform="rotate(-90 50 50)" />
-        <text x="50" y="55" textAnchor="middle" fontSize="22" fontWeight="700" fill="var(--text-900)">{pct}</text>
+        <text x="50" y="57" textAnchor="middle" fontSize="26" fontWeight="700" fill="var(--text-900)" className="tabular">{pct}</text>
       </svg>
       <figcaption className="mt-2 text-xs text-text-600">{label}</figcaption>
     </figure>

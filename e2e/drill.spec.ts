@@ -13,7 +13,7 @@ test("student answers 10 questions → done page shows score and streak 1", asyn
   await page.getByTestId("start-drill").click();
   await expect(page).toHaveURL(/\/drill\/[0-9a-f-]+$/);
   for (let i = 0; i < 10; i++) {
-    await expect(page.getByText(`Q ${i + 1} / 10`)).toBeVisible();
+    await expect(page.getByText(`Question ${i + 1} of 10`)).toBeVisible();
     await answerCurrent(page);
     await expect(page.getByTestId("verdict")).toBeVisible();
     if (/not quite/i.test(await page.getByTestId("verdict").innerText())) await expect(page.getByTestId("correct-answer")).toContainText(/^Answer: [ABCD]\. /);
@@ -27,14 +27,14 @@ test("student answers 10 questions → done page shows score and streak 1", asyn
 test("offline: answer 3 offline → back online → synced exactly once", async ({ page, context }) => {
   await login(page, "offline.student@demo.learncrew.in");
   await page.getByTestId("start-drill").click();
-  await expect(page.getByText("Q 1 / 10")).toBeVisible();
+  await expect(page.getByText("Question 1 of 10")).toBeVisible();
   await context.setOffline(true);
   for (let i = 0; i < 3; i++) {
     await answerCurrent(page);
     await expect(page.getByTestId("pending-note")).toBeVisible();
     await page.getByRole("button", { name: /^next$/i }).click();
   }
-  await expect(page.getByText("Q 4 / 10")).toBeVisible();
+  await expect(page.getByText("Question 4 of 10")).toBeVisible();
   const sql = e2eSql();
   const count = async () => (await sql`select count(*)::int n from attempts a join users u on u.id = a.user_id where u.email = 'offline.student@demo.learncrew.in'`)[0].n as number;
   expect(await count()).toBe(0);

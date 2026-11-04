@@ -8,6 +8,10 @@ import type { InsightText } from "@/lib/insights/text";
 import type { InsightFacts } from "@/lib/insights/rules";
 import { XP } from "@/lib/xp";
 import { StreakFlame } from "@/components/StreakFlame";
+import { cn } from "@/lib/utils";
+import { Container, PageHeader, Section, Stat } from "@/components/ui/layout";
+import { Card } from "@/components/ui/card";
+import { buttonVariants } from "@/components/ui/button";
 import { ShareButton } from "./ShareButton";
 
 export const dynamic = "force-dynamic";
@@ -24,36 +28,57 @@ export default async function DrillDone({ params }: { params: Promise<{ drillId:
   const xp = data.results.reduce((s, r) => s + r.xp, 0) + (d.completedAt ? XP.drillComplete : 0);
   const great = score >= 7;
   const insight = d.completedAt ? await insightForDrill(user, d.id) : null;
+  const focusTopics = insight ? (insight.facts as InsightFacts).focus.map((f) => f.topic) : [];
+  // One primary CTA: the insight's "Start focus drill" when there is one, otherwise "Back to Today".
+  const backIsPrimary = focusTopics.length === 0;
   return (
-    <main className="relative mx-auto flex min-h-dvh max-w-md flex-col items-center px-4 pb-10 pt-12 text-center">
-      <p className="text-sm font-semibold text-text-600">{d.completedAt ? "Drill complete" : "Drill in progress"}</p>
-      <div className="mt-2 text-6xl font-bold tabular" data-testid="score">{score}/{d.questionIds.length}</div>
-      <p className="mt-2 text-lg">{great ? "Excellent work — that rhythm is paying off." : score >= 4 ? "Good effort. Review the misses and keep going." : "Every attempt makes you sharper. Tomorrow builds on today."}</p>
-      <div className="mt-6 flex items-center gap-6">
-        <div>
-          <div className="text-2xl font-bold text-ink-900 tabular">+{xp}</div>
-          <div className="text-xs text-text-600">XP today</div>
-        </div>
-        <div>
-          <div className="streak-pop" data-testid="streak"><StreakFlame days={st?.current ?? 0} size="lg" /></div>
-          <div className="text-xs text-text-600">day streak</div>
-        </div>
-      </div>
-      <p className="mt-6 rounded-md bg-ink-50 px-4 py-2 text-sm text-ink-700">Come back tomorrow — new drill at 5 AM.</p>
-      {insight && <div className="mt-6 w-full"><InsightCard text={insight.text as InsightText} focusTopics={(insight.facts as InsightFacts).focus.map((f) => f.topic)} /></div>}
-      <ShareButton text={`I scored ${score}/10 on today's LearnCrew placement drill 🔥 ${st?.current ?? 0}-day streak!`} />
-      <ol className="mt-6 w-full space-y-2 text-left text-sm">
-        {data.items.map((it, i) => {
-          const r = data.results.find((x) => x.questionId === it.id);
-          return (
-            <li key={it.id} className="flex items-center gap-2 rounded-md bg-bg px-4 py-2">
-              <span className={r?.correct ? "text-success-700" : "text-danger-500"}>{r ? (r.correct ? "✓" : "✗") : "•"}</span>
-              <span className="truncate">Q{i + 1}. {it.stem.split("\n")[0]}</span>
-            </li>
-          );
-        })}
-      </ol>
-      <Link href="/today" className="mt-8 flex min-h-12 w-full items-center justify-center rounded-md bg-ink-900 font-semibold text-white">Back to Today</Link>
+    <main className="min-h-dvh bg-surface pb-16">
+      <Container size="reading">
+        <PageHeader title={d.completedAt ? "Drill complete" : "Drill in progress"} subtitle={great ? "Excellent work — that rhythm is paying off." : score >= 4 ? "Good effort. Review the misses and keep going." : "Every attempt makes you sharper. Tomorrow builds on today."} />
+        <Card>
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <Stat label="Score" size="lg" value={<span data-testid="score">{score}/{d.questionIds.length}</span>} />
+            <div className="flex items-end gap-8">
+              <Stat label="XP today" value={`+${xp}`} />
+              <div>
+                <div className="text-xs font-medium uppercase tracking-wide text-text-600">day streak</div>
+                <div className="streak-pop mt-2 leading-none" data-testid="streak">
+                  <StreakFlame days={st?.current ?? 0} size="lg" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <p className="mt-6 rounded-sm bg-ink-50 px-4 py-2 text-sm text-ink-700">Come back tomorrow — new drill at 5 AM.</p>
+          <ShareButton text={`I scored ${score}/10 on today's LearnCrew placement drill 🔥 ${st?.current ?? 0}-day streak!`} />
+        </Card>
+        {insight && (
+          <Section>
+            <InsightCard text={insight.text as InsightText} focusTopics={focusTopics} stack />
+          </Section>
+        )}
+        <Section>
+          <ol className="divide-y divide-border rounded-md border border-border bg-bg px-6 text-base lg:px-8">
+            {data.items.map((it, i) => {
+              const r = data.results.find((x) => x.questionId === it.id);
+              return (
+                <li key={it.id} className="flex min-h-12 items-center gap-4 py-2">
+                  <span className={r?.correct ? "w-4 font-bold text-success-700" : "w-4 font-bold text-danger-700"}>{r ? (r.correct ? "✓" : "✗") : "•"}</span>
+                  <span className="truncate">
+                    Q{i + 1}. {it.stem.split("\n")[0]}
+                  </span>
+                </li>
+              );
+            })}
+          </ol>
+        </Section>
+        <Link
+          href="/today"
+          className={cn(buttonVariants({ variant: backIsPrimary ? "primary" : "secondary", size: "lg" }), "mt-12 w-full lg:mt-16")}
+          data-cta={backIsPrimary ? "primary" : undefined}
+        >
+          Back to Today
+        </Link>
+      </Container>
     </main>
   );
 }

@@ -10,7 +10,7 @@ async function reauth(formData: FormData) {
 
 export function ReauthNotice({ back }: { back: string }) {
   return (
-    <form action={reauth} className="mb-4 flex flex-wrap items-center gap-4 rounded-md border border-accent-500 bg-accent-50 p-4 text-sm" data-testid="reauth">
+    <form action={reauth} className="mb-6 flex flex-wrap items-center gap-4 rounded-md border border-accent-500 bg-accent-50 p-4 text-sm text-ink-900" data-testid="reauth">
       <span className="flex-1">Admin changes need a sign-in from the last 15 minutes. We&apos;ll email you a fresh link.</span>
       <input type="hidden" name="back" value={back} />
       <Button type="submit" variant="secondary">Confirm it&apos;s me</Button>

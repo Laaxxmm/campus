@@ -7,6 +7,7 @@ import { MockError, mockResult } from "@/server/services/mocks";
 import { ReviewList } from "@/components/mock/ReviewList";
 import { insightForMock } from "@/server/services/insights";
 import { InsightCard } from "@/components/insights/InsightCard";
+import { Container, PageHeader } from "@/components/ui/layout";
 import type { InsightText } from "@/lib/insights/text";
 import type { InsightFacts } from "@/lib/insights/rules";
 
@@ -26,36 +27,72 @@ export default async function MockResultPage({ params }: { params: Promise<{ id:
   }
   const insight = await insightForMock(user, id);
   return (
-    <main className="mx-auto max-w-3xl space-y-6 px-4 py-6">
-      <Link href="/mocks" className="inline-flex min-h-11 items-center gap-1 text-sm text-ink-900"><ArrowLeft aria-hidden className="h-4 w-4" /> Mocks</Link>
-      <div>
-        <div className="text-xs font-semibold uppercase tracking-wide text-text-600">{companyName(r.company)}</div>
-        <h1 className="text-2xl font-bold text-ink-900">{r.title} — result</h1>
-        {r.autoSubmitted && <p className="mt-2 text-sm text-text-600">Submitted automatically when time ran out.</p>}
-      </div>
-      <section className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-        <div className="rounded-md border border-border bg-bg p-4"><div className="text-xs text-text-600">Score</div><div className="text-2xl font-bold tabular" data-testid="mock-score">{r.marks}/{r.maxMarks}</div></div>
-        <div className="rounded-md border border-border bg-bg p-4"><div className="text-xs text-text-600">Percentile (college)</div><div className="text-2xl font-bold tabular">{r.percentile ?? "—"}</div><div className="text-[11px] text-text-600">{r.takers} taker{r.takers === 1 ? "" : "s"}</div></div>
-        <div className="rounded-md border border-border bg-bg p-4"><div className="text-xs text-text-600">Accuracy</div><div className="text-2xl font-bold tabular">{r.accuracy === null ? "—" : `${r.accuracy}%`}</div></div>
-        <div className="rounded-md border border-border bg-bg p-4"><div className="text-xs text-text-600">Avg time / Q</div><div className="text-2xl font-bold tabular">{r.avgTimeSec}s</div></div>
-      </section>
-      <section className="rounded-md border border-border bg-bg p-4">
-        <h2 className="font-semibold">Section breakdown</h2>
-        <ul className="mt-4 space-y-4">
-          {r.sections.map((s) => (
-            <li key={s.section}>
-              <div className="flex justify-between text-sm"><span className="font-medium">{SECTION[s.section] ?? s.section}</span><span className="tabular text-text-600">{s.correct}✓ · {s.wrong}✗ · {s.skipped} skipped · {s.marks} marks</span></div>
-              <div className="mt-2 flex h-3 overflow-hidden rounded-pill bg-surface" role="img" aria-label={`${s.section}: ${s.correct} correct, ${s.wrong} wrong, ${s.skipped} skipped of ${s.total}`}>
-                <div className="bg-success-500" style={{ width: `${(100 * s.correct) / s.total}%` }} />
-                <div className="bg-danger-500" style={{ width: `${(100 * s.wrong) / s.total}%` }} />
+    <main className="min-h-dvh bg-surface pb-16">
+      <Container size="app">
+        <PageHeader
+          eyebrow={companyName(r.company)}
+          title={`${r.title} — result`}
+          subtitle={r.autoSubmitted ? "Submitted automatically when time ran out." : undefined}
+          actions={
+            <Link href="/mocks" className="inline-flex h-11 items-center gap-2 rounded-sm border border-border bg-bg px-4 text-sm font-semibold text-ink-900 hover:border-ink-700">
+              <ArrowLeft aria-hidden className="h-4 w-4" /> All mocks
+            </Link>
+          }
+        />
+        <div className="space-y-12 lg:space-y-16">
+          {/* Hero score card: score 48–60/700 tabular, percentile + accuracy beside it */}
+          <section aria-label="Score" className="rounded-md border border-border bg-bg p-6 lg:p-8">
+            <div className="grid gap-8 sm:grid-cols-[auto_1fr] sm:items-end">
+              <div>
+                <div className="text-xs font-medium uppercase tracking-wide text-text-600">Score</div>
+                <div className="mt-2 text-5xl font-bold leading-none tabular text-ink-900 lg:text-6xl" data-testid="mock-score">
+                  {r.marks}/{r.maxMarks}
+                </div>
               </div>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-4 text-xs text-text-600">{r.correct} correct · {r.wrong} wrong · {r.skipped} skipped{r.tabSwitches ? ` · ${r.tabSwitches} tab switch${r.tabSwitches > 1 ? "es" : ""} recorded` : ""}</p>
-      </section>
-      {insight && <InsightCard text={insight.text as InsightText} focusTopics={(insight.facts as InsightFacts).focus.map((f) => f.topic)} />}
-      <ReviewList items={r.review} />
+              <dl className="grid grid-cols-3 gap-6 sm:justify-self-end">
+                <div>
+                  <dt className="text-xs font-medium uppercase tracking-wide text-text-600">Percentile</dt>
+                  <dd className="mt-2 text-3xl font-bold leading-none tabular text-ink-900">{r.percentile ?? "—"}</dd>
+                  <dd className="mt-2 text-xs text-text-600">{r.takers} taker{r.takers === 1 ? "" : "s"} in college</dd>
+                </div>
+                <div>
+                  <dt className="text-xs font-medium uppercase tracking-wide text-text-600">Accuracy</dt>
+                  <dd className="mt-2 text-3xl font-bold leading-none tabular text-ink-900">{r.accuracy === null ? "—" : `${r.accuracy}%`}</dd>
+                </div>
+                <div>
+                  <dt className="text-xs font-medium uppercase tracking-wide text-text-600">Avg / Q</dt>
+                  <dd className="mt-2 text-3xl font-bold leading-none tabular text-ink-900">{r.avgTimeSec}s</dd>
+                </div>
+              </dl>
+            </div>
+            <div className="mt-8 border-t border-border pt-6">
+              <h2 className="text-base font-semibold text-ink-900">Section breakdown</h2>
+              <ul className="mt-4 grid gap-6 md:grid-cols-2">
+                {r.sections.map((s) => (
+                  <li key={s.section}>
+                    <div className="flex flex-col gap-2 text-sm sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+                      <span className="font-medium">{SECTION[s.section] ?? s.section}</span>
+                      <span className="tabular text-text-600">
+                        {s.correct} correct · {s.wrong} wrong · {s.skipped} skipped · {s.marks} marks
+                      </span>
+                    </div>
+                    <div className="mt-2 flex h-2 overflow-hidden rounded-pill bg-surface" role="img" aria-label={`${s.section}: ${s.correct} correct, ${s.wrong} wrong, ${s.skipped} skipped of ${s.total}`}>
+                      <div className="bg-success-500" style={{ width: `${(100 * s.correct) / s.total}%` }} />
+                      <div className="bg-danger-500" style={{ width: `${(100 * s.wrong) / s.total}%` }} />
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-6 text-sm text-text-600">
+                {r.correct} correct · {r.wrong} wrong · {r.skipped} skipped
+                {r.tabSwitches ? ` · ${r.tabSwitches} tab switch${r.tabSwitches > 1 ? "es" : ""} recorded` : ""}
+              </p>
+            </div>
+          </section>
+          {insight && <InsightCard text={insight.text as InsightText} focusTopics={(insight.facts as InsightFacts).focus.map((f) => f.topic)} />}
+          <ReviewList items={r.review} />
+        </div>
+      </Container>
     </main>
   );
 }

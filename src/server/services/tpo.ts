@@ -128,9 +128,25 @@ export async function overview(staff: Staff, opts: { collegeId?: string } = {}) 
 export type HeatMetric = "accuracy" | "mastery";
 /** metric "accuracy" (default) = % correct in the last 30 days — moves fast, shows where a batch is weak today.
  *  metric "mastery" = mean Elo mastery — slower, longer-term signal (D20). */
-export async function heatmap(staff: Staff, opts: { collegeId?: string; company?: string; batchId?: string; metric?: HeatMetric } = {}) {
+/** Distinct batch branches in the staff member's college (for the heatmap filter bar). */
+export async function branchList(staff: Staff, opts: { collegeId?: string } = {}) {
+  const collegeId = collegeOf(staff, opts.collegeId);
+  const rows = await db
+    .selectDistinct({ branch: batches.branch })
+    .from(batches)
+    .where(and(eq(batches.collegeId, collegeId), sql`${batches.branch} is not null and ${batches.branch} <> ''`))
+    .orderBy(asc(batches.branch));
+  return rows.map((r) => r.branch as string);
+}
+
+export const HEAT_WINDOWS = [7, 30, 90] as const;
+
+export async function heatmap(staff: Staff, opts: { collegeId?: string; company?: string; batchId?: string; metric?: HeatMetric; branch?: string; days?: number } = {}) {
   const metric: HeatMetric = opts.metric === "mastery" ? "mastery" : "accuracy";
   const collegeId = collegeOf(staff, opts.collegeId);
+  const days = (HEAT_WINDOWS as readonly number[]).includes(Number(opts.days)) ? Number(opts.days) : 30;
+  // Only accept a branch that exists in this college; anything else is ignored (never widens scope).
+  const branch = opts.branch && (await branchList(staff, { collegeId })).includes(opts.branch) ? opts.branch : null;
   const company = opts.company && (COMPANY_IDS as string[]).includes(opts.company) ? opts.company : null;
   const [bp] = company ? await db.select().from(companyBlueprints).where(eq(companyBlueprints.company, company)) : [];
   const sw = (bp?.sectionWeights ?? null) as Record<string, number> | null;
@@ -141,8 +157,8 @@ export async function heatmap(staff: Staff, opts: { collegeId?: string; company?
 
   const byStudent = Boolean(opts.batchId);
   const rowKey = byStudent ? sql`u.id` : sql`b.id`;
-  const scope = sql`u.college_id = ${collegeId} and u.role = 'student' ${byStudent ? sql`and u.batch_id = ${opts.batchId}` : sql``}`;
-  const since = ts(new Date(Date.now() - 30 * 86_400_000));
+  const scope = sql`u.college_id = ${collegeId} and u.role = 'student' ${byStudent ? sql`and u.batch_id = ${opts.batchId}` : sql``} ${branch ? sql`and b.branch = ${branch}` : sql``}`;
+  const since = ts(new Date(Date.now() - days * 86_400_000));
   const cells =
     metric === "mastery"
       ? await db.execute<{ row_id: string; topic: string; mastery: number; n: number }>(sql`
@@ -155,7 +171,7 @@ export async function heatmap(staff: Staff, opts: { collegeId?: string; company?
           where ${scope} and a.created_at >= ${since}::timestamp group by 1, 2 having count(*) >= 3`);
   const rowsMeta = byStudent
     ? (await db.select({ id: users.id, name: users.name }).from(users).where(and(eq(users.collegeId, collegeId), eq(users.batchId, opts.batchId!), eq(users.role, "student"))).orderBy(asc(users.name))).map((r) => ({ id: r.id, name: shortName(r.name) }))
-    : (await db.select({ id: batches.id, name: batches.name }).from(batches).where(eq(batches.collegeId, collegeId)).orderBy(asc(batches.name)));
+    : (await db.select({ id: batches.id, name: batches.name }).from(batches).where(and(eq(batches.collegeId, collegeId), branch ? eq(batches.branch, branch) : undefined)).orderBy(asc(batches.name)));
   const grid = rowsMeta.map((r) => ({
     id: r.id,
     name: r.name,
@@ -164,7 +180,7 @@ export async function heatmap(staff: Staff, opts: { collegeId?: string; company?
       return c ? { mastery: c.mastery, n: c.n } : null;
     }),
   }));
-  return { company, companyName: company ? companyName(company) : null, topics, rows: grid, byStudent, metric };
+  return { company, companyName: company ? companyName(company) : null, topics, rows: grid, byStudent, metric, branch, days };
 }
 
 /** Student drill-down, college-scoped. Null → caller 404s (also for other colleges' ids). */

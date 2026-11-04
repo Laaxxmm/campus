@@ -9,6 +9,7 @@ import { COMPANIES } from "@/lib/companies";
 import { TpoShell } from "@/components/TpoShell";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Section } from "@/components/ui/layout";
 
 export const dynamic = "force-dynamic";
 
@@ -28,14 +29,15 @@ async function save(formData: FormData) {
 }
 
 function BatchFields({ b }: { b?: { name: string; gradYear: number | null; branch: string | null; targetCompany: string | null; targetDriveDate: string | null } }) {
-  const sel = "mt-2 block h-11 w-full rounded-sm border border-border bg-bg px-4";
+  const sel = "mt-2 block h-11 w-full rounded-sm border border-border bg-bg px-4 text-base font-normal";
+  const lbl = "text-sm font-medium";
   return (
-    <div className="grid grid-cols-2 gap-2 md:grid-cols-5">
-      <label className="text-sm">Name<Input name="name" required defaultValue={b?.name} className="mt-2" /></label>
-      <label className="text-sm">Grad year<Input name="gradYear" type="number" min={2020} max={2040} defaultValue={b?.gradYear ?? ""} className="mt-2" /></label>
-      <label className="text-sm">Branch<Input name="branch" defaultValue={b?.branch ?? ""} className="mt-2" /></label>
-      <label className="text-sm">Target company<select name="targetCompany" defaultValue={b?.targetCompany ?? ""} className={sel}><option value="">—</option>{COMPANIES.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}</select></label>
-      <label className="text-sm">Drive date<Input name="targetDriveDate" type="date" defaultValue={b?.targetDriveDate ?? ""} className="mt-2" /></label>
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5">
+      <label className={lbl}>Name<Input name="name" required defaultValue={b?.name} className="mt-2 font-normal" /></label>
+      <label className={lbl}>Grad year<Input name="gradYear" type="number" min={2020} max={2040} defaultValue={b?.gradYear ?? ""} className="mt-2 font-normal" /></label>
+      <label className={lbl}>Branch<Input name="branch" defaultValue={b?.branch ?? ""} className="mt-2 font-normal" /></label>
+      <label className={lbl}>Target company<select name="targetCompany" defaultValue={b?.targetCompany ?? ""} className={sel}><option value="">—</option>{COMPANIES.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}</select></label>
+      <label className={lbl}>Drive date<Input name="targetDriveDate" type="date" defaultValue={b?.targetDriveDate ?? ""} className="mt-2 font-normal" /></label>
     </div>
   );
 }
@@ -45,28 +47,31 @@ export default async function Batches({ searchParams }: { searchParams: Promise<
   const { user, college, collegeId, opts } = await staffContext(sp.college);
   const bl = await batchList(user, opts);
   return (
-    <TpoShell title="Batches" collegeName={college.name} crumbs={[{ href: "/tpo", label: "Overview" }, { href: "/admin/batches", label: "Batches" }]}>
-      {sp.error && <p role="alert" className="mb-4 rounded-sm bg-danger-50 p-4 text-sm text-danger-700">{sp.error}</p>}
-      {sp.saved && <p role="status" className="mb-4 rounded-sm bg-success-50 p-4 text-sm">Saved.</p>}
-      <ul className="space-y-4">
-        {bl.map((b) => (
-          <li key={b.id}>
-            <form action={save} className="rounded-md border border-border bg-bg p-4">
-              <input type="hidden" name="id" value={b.id} />
-              {user.role === "superadmin" && <input type="hidden" name="college" value={collegeId} />}
-              <div className="mb-2 flex items-center justify-between"><span className="font-semibold text-ink-900">{b.name}</span><span className="text-sm text-text-600">{b.students} students</span></div>
-              <BatchFields b={b} />
-              <Button type="submit" variant="secondary" className="mt-4">Save</Button>
-            </form>
-          </li>
-        ))}
-      </ul>
-      <form action={save} className="mt-6 rounded-md border border-dashed border-border bg-bg p-4">
-        <h2 className="mb-2 font-semibold text-ink-900">New batch</h2>
-        {user.role === "superadmin" && <input type="hidden" name="college" value={collegeId} />}
-        <BatchFields />
-        <Button type="submit" className="mt-4">Create batch</Button>
-      </form>
+    <TpoShell title="Batches" subtitle="Set each batch’s target company and drive date. Drive dates are quoted in at-risk nudges." collegeName={college.name} crumbs={[{ href: "/tpo", label: "Overview" }, { href: "/admin/batches", label: "Batches" }]}>
+      {sp.error && <p role="alert" className="mb-6 rounded-sm bg-danger-50 p-4 text-sm text-danger-700">{sp.error}</p>}
+      {sp.saved && <p role="status" className="mb-6 rounded-sm bg-success-50 p-4 text-sm text-ink-900">Saved.</p>}
+      <Section className="mt-0 lg:mt-0" title="Your batches" meta={`${bl.length} ${bl.length === 1 ? "batch" : "batches"}`}>
+        <ul className="space-y-4">
+          {bl.map((b) => (
+            <li key={b.id}>
+              <form action={save} className="rounded-md border border-border bg-bg p-6 lg:p-8">
+                <input type="hidden" name="id" value={b.id} />
+                {user.role === "superadmin" && <input type="hidden" name="college" value={collegeId} />}
+                <div className="mb-4 flex items-baseline justify-between gap-4"><span className="text-base font-semibold text-ink-900">{b.name}</span><span className="text-sm text-text-600"><span className="tabular">{b.students}</span> students</span></div>
+                <BatchFields b={b} />
+                <Button type="submit" variant="secondary" className="mt-4">Save</Button>
+              </form>
+            </li>
+          ))}
+        </ul>
+      </Section>
+      <Section title="New batch">
+        <form action={save} className="rounded-md border border-dashed border-border bg-bg p-6 lg:p-8">
+          {user.role === "superadmin" && <input type="hidden" name="college" value={collegeId} />}
+          <BatchFields />
+          <Button type="submit" variant="primary" className="mt-4" data-cta="primary">Create batch</Button>
+        </form>
+      </Section>
     </TpoShell>
   );
 }

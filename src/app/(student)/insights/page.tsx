@@ -7,6 +7,10 @@ import type { InsightFacts } from "@/lib/insights/rules";
 import { InsightCard } from "@/components/insights/InsightCard";
 import { EmptyState } from "@/components/EmptyState";
 import { startFocusDrill } from "@/app/actions/focus";
+import { StudentPage } from "@/components/StudentPage";
+import { Section } from "@/components/ui/layout";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -15,54 +19,86 @@ export default async function Insights({ searchParams }: { searchParams: Promise
   const sp = await searchParams;
   const o = await insightsOverview(user);
   const latest = o.recent[0];
+  const weekly = o.progress.length > 0 && (
+    <section className="flex h-full flex-col rounded-md border border-border bg-bg p-6 lg:p-8" data-testid="weekly-focus" aria-labelledby="weekly-h">
+      <h2 id="weekly-h" className="text-xs font-medium uppercase tracking-wide text-text-600">Focus this week</h2>
+      <ul className="mt-4 space-y-4">
+        {o.progress.map((p) => {
+          const pct = Math.min(100, Math.round((100 * p.done) / Math.max(1, p.target)));
+          return (
+            <li key={p.topic}>
+              <div className="flex items-baseline justify-between gap-4 text-sm">
+                <span className="font-medium text-text-900">{p.name}</span>
+                <span className="tabular text-text-600">{p.done}/{p.target} questions</span>
+              </div>
+              <div className="mt-2 h-2 overflow-hidden rounded-pill bg-surface" role="meter" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label={`${p.name} weekly target`}>
+                <div className="h-full bg-ink-900" style={{ width: `${pct}%` }} />
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+      <form action={startFocusDrill} className="mt-auto pt-6">
+        <input type="hidden" name="topics" value={o.progress.map((p) => p.topic).join(",")} />
+        <button type="submit" data-cta="primary" className="flex h-[52px] w-full items-center justify-center rounded-sm bg-accent-500 px-6 font-semibold text-ink-900 hover:bg-accent-600 active:translate-y-px">
+          Practise focus topics · 10 Q
+        </button>
+      </form>
+    </section>
+  );
   return (
-    <div className="space-y-6">
-      <h1 className="text-xl font-bold text-ink-900">Insights</h1>
-      {sp.error && <p role="alert" className="rounded-sm bg-coral-50 p-4 text-sm">Not enough questions for that focus yet — try again after your next drill.</p>}
-      {o.progress.length > 0 && (
-        <section className="rounded-md border border-border bg-bg p-4" data-testid="weekly-focus">
-          <h2 className="font-semibold text-ink-900">Focus this week</h2>
-          <ul className="mt-4 space-y-4">
-            {o.progress.map((p) => {
-              const pct = Math.min(100, Math.round((100 * p.done) / Math.max(1, p.target)));
-              return (
-                <li key={p.topic}>
-                  <div className="flex justify-between text-sm"><span className="font-medium">{p.name}</span><span className="tabular text-text-600">{p.done}/{p.target} questions</span></div>
-                  <div className="mt-2 h-2 overflow-hidden rounded-pill bg-surface" role="meter" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label={`${p.name} weekly target`}>
-                    <div className="h-full bg-ink-900" style={{ width: `${pct}%` }} />
+    <StudentPage title="Insights" subtitle={latest ? (latest.text as InsightText).headline : "What's going wrong, and what to practise next."} width={latest || weekly ? "app" : "reading"}>
+      {sp.error && (
+        <p role="alert" className="rounded-sm bg-coral-50 p-4 text-sm">
+          Not enough questions for that focus yet — try again after your next drill.
+        </p>
+      )}
+      <div className="space-y-12 lg:space-y-16">
+        {latest ? (
+          weekly ? (
+            <div className="grid items-stretch gap-6 lg:grid-cols-2">
+              {weekly}
+              <InsightCard text={latest.text as InsightText} focusTopics={[]} showFocus={false} hideHeadline />
+            </div>
+          ) : (
+            <InsightCard text={latest.text as InsightText} focusTopics={[]} hideHeadline />
+          )
+        ) : (
+          <>
+            {weekly}
+            <EmptyState icon={Lightbulb} title="Your first insight arrives after a drill" body="Finish today's 10 questions — we'll show what's going wrong and what to focus on.">
+              <Link href="/today" data-cta={weekly ? undefined : "primary"} className={cn(buttonVariants({ variant: "primary" }), "mt-6")}>
+                Go to Today
+              </Link>
+            </EmptyState>
+          </>
+        )}
+        {o.recent.length > 1 && (
+          <Section title="Earlier">
+            <ul className="divide-y divide-border rounded-md border border-border bg-bg">
+              {o.recent.slice(1).map((r) => (
+                <li key={r.id} className="px-6 py-4 lg:px-8">
+                  <div className="text-xs text-text-600">
+                    {r.createdAt.toLocaleDateString("en-IN", { timeZone: "Asia/Kolkata", day: "numeric", month: "short" })} · {r.mockAttemptId ? "Mock" : "Drill"}
                   </div>
+                  <div className="mt-2 font-medium text-text-900">{(r.text as InsightText).headline}</div>
+                  {(r.facts as InsightFacts).focus.length > 0 && (
+                    <div className="mt-2 text-sm text-text-600">Focus: {(r.text as InsightText).focus.map((f) => f.line.split(" — ")[0]).join(", ")}</div>
+                  )}
                 </li>
-              );
-            })}
-          </ul>
-          <form action={startFocusDrill} className="mt-4">
-            <input type="hidden" name="topics" value={o.progress.map((p) => p.topic).join(",")} />
-            <button type="submit" className="min-h-12 w-full rounded-sm bg-accent-500 font-semibold text-ink-900 hover:bg-accent-600">Practise focus topics · 10 Q</button>
-          </form>
-        </section>
-      )}
-      {latest ? (
-        <InsightCard text={latest.text as InsightText} focusTopics={[]} />
-      ) : (
-        <EmptyState icon={Lightbulb} title="Your first insight arrives after a drill" body="Finish today's 10 questions — we'll show what's going wrong and what to focus on.">
-          <Link href="/today" className="mt-4 inline-block font-semibold text-info-500 underline">Go to Today</Link>
-        </EmptyState>
-      )}
-      {o.recent.length > 1 && (
-        <section>
-          <h2 className="mb-2 text-sm font-semibold text-text-600">Earlier</h2>
-          <ul className="space-y-2">
-            {o.recent.slice(1).map((r) => (
-              <li key={r.id} className="rounded-md border border-border bg-bg p-4 text-sm">
-                <div className="text-xs text-text-600">{r.createdAt.toLocaleDateString("en-IN", { timeZone: "Asia/Kolkata", day: "numeric", month: "short" })} · {r.mockAttemptId ? "Mock" : "Drill"}</div>
-                <div className="font-medium">{(r.text as InsightText).headline}</div>
-                {(r.facts as InsightFacts).focus.length > 0 && <div className="text-xs text-text-600">Focus: {(r.text as InsightText).focus.map((f) => f.line.split(" — ")[0]).join(", ")}</div>}
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-      <p className="text-center text-xs text-text-600"><Link href="/progress" className="underline">Topic mastery & history</Link> · <Link href="/leaderboard" className="underline">Leaderboard</Link></p>
-    </div>
+              ))}
+            </ul>
+          </Section>
+        )}
+        <nav aria-label="More progress" className="flex flex-wrap gap-2">
+          <Link href="/progress" className="inline-flex h-11 items-center rounded-sm border border-border bg-bg px-4 text-sm font-semibold text-ink-900 hover:border-ink-700">
+            Topic mastery &amp; history
+          </Link>
+          <Link href="/leaderboard" className="inline-flex h-11 items-center rounded-sm border border-border bg-bg px-4 text-sm font-semibold text-ink-900 hover:border-ink-700">
+            Leaderboard
+          </Link>
+        </nav>
+      </div>
+    </StudentPage>
   );
 }

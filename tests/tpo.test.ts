@@ -2,7 +2,7 @@ import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { eq } from "drizzle-orm";
 import { db, pg } from "@/db";
 import { auditLogs, batches, collegeQuestionAccess, questions, skills, users } from "@/db/schema";
-import { heatmap, nudgeText, overview, studentDetail, studentRows } from "@/server/services/tpo";
+import { branchList, heatmap, nudgeText, overview, studentDetail, studentRows } from "@/server/services/tpo";
 import { createMock, scheduleMock } from "@/server/services/tpo-mocks";
 import { reportStats, templatedNarrative, weeklyReport } from "@/server/services/reports";
 import { studentsCsv } from "@/server/services/tpo-export";
@@ -53,6 +53,17 @@ describe("TPO dashboard services", () => {
     expect(h.rows[0].cells[col]!.mastery).toBeGreaterThan(70); // Beta's weak student not mixed in
     const hc = await heatmap(tpoA, { company: "tcs_nqt" });
     expect(hc.company).toBe("tcs_nqt");
+  });
+  it("heatmap branch + date filters are college-scoped and never widen scope", async () => {
+    await db.update(batches).set({ branch: "CSE" }).where(eq(batches.id, A.batch.id));
+    await db.update(batches).set({ branch: "MECH" }).where(eq(batches.id, B.batch.id));
+    expect(await branchList(tpoA)).toEqual(["CSE"]); // Beta's MECH is not offered to Alpha
+    const ok = await heatmap(tpoA, { metric: "mastery", branch: "CSE", days: 7 });
+    expect(ok).toMatchObject({ branch: "CSE", days: 7 });
+    expect(ok.rows.map((r) => r.id)).toEqual([A.batch.id]);
+    const foreign = await heatmap(tpoA, { metric: "mastery", branch: "MECH", days: 3650 });
+    expect(foreign).toMatchObject({ branch: null, days: 30 }); // unknown branch / window ignored
+    expect(foreign.rows.every((r) => r.id !== B.batch.id)).toBe(true);
   });
   it("nudge text is personal but short; includes drive date and app link", () => {
     const t = nudgeText({ name: "Kavya Menon", target: "infosys", inactiveDays: 6, readiness: 30 }, "https://app.x.in", "2027-02-10");

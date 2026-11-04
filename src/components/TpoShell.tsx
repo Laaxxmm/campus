@@ -2,6 +2,7 @@ import Link from "next/link";
 import { BarChart3, CalendarDays, ClipboardList, FileText, Filter, Grid3X3, LayoutDashboard, LogOut, Settings, Target, TriangleAlert, Upload, Users } from "lucide-react";
 import { signOut } from "@/auth";
 import { t } from "@/i18n/en";
+import { PageHeader } from "@/components/ui/layout";
 
 const items = [
   { href: "/tpo", label: t.tpoNav.overview, Icon: LayoutDashboard },
@@ -22,14 +23,14 @@ async function logout() {
   await signOut({ redirectTo: "/login" });
 }
 
-export function TpoShell({ children, title, collegeName, crumbs = [], actions }: { children: React.ReactNode; title: string; collegeName?: string; crumbs?: { href: string; label: string }[]; actions?: React.ReactNode }) {
+export function TpoShell({ children, title, subtitle, collegeName, crumbs = [], actions }: { children: React.ReactNode; title: string; subtitle?: React.ReactNode; collegeName?: string; crumbs?: { href: string; label: string }[]; actions?: React.ReactNode }) {
   return (
     <div className="flex min-h-dvh flex-col bg-surface md:flex-row">
       <aside className="no-print border-b border-border bg-ink-900 text-white md:sticky md:top-0 md:h-dvh md:w-60 md:shrink-0 md:border-b-0">
         <div className="flex items-center justify-between px-4 py-4 md:block">
           <div>
             <div className="flex items-center gap-2 text-lg font-bold"><BarChart3 aria-hidden className="h-5 w-5 text-accent-500" />LearnCrew</div>
-            {collegeName && <div className="text-xs text-white/70">{collegeName}</div>}
+            {collegeName && <div className="mt-2 text-xs text-white/70">{collegeName}</div>}
           </div>
         </div>
         <nav aria-label="TPO" className="flex gap-1 overflow-x-auto px-2 pb-2 md:flex-col md:overflow-visible">
@@ -44,9 +45,10 @@ export function TpoShell({ children, title, collegeName, crumbs = [], actions }:
           </form>
         </nav>
       </aside>
-      <main className="min-w-0 flex-1 p-4 md:p-8">
+      <main className="min-w-0 flex-1 px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-[1440px]">
         {crumbs.length > 0 && (
-          <nav aria-label="Breadcrumb" className="no-print mb-2 text-sm text-text-600">
+          <nav aria-label="Breadcrumb" className="no-print pt-6 text-sm text-text-600 lg:pt-8">
             {crumbs.map((c, i) => (
               <span key={c.href}>
                 <Link href={c.href} className="hover:text-ink-900 hover:underline">{c.label}</Link>
@@ -55,11 +57,9 @@ export function TpoShell({ children, title, collegeName, crumbs = [], actions }:
             ))}
           </nav>
         )}
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
-          <h1 className="text-2xl font-bold text-ink-900">{title}</h1>
-          {actions}
-        </div>
+        <PageHeader title={title} subtitle={subtitle} actions={actions} className={crumbs.length ? "pt-2 lg:pt-2" : undefined} />
         {children}
+        </div>
       </main>
     </div>
   );

@@ -28,30 +28,33 @@ export default async function Privacy({ searchParams }: { searchParams: Promise<
   const user = requireRole(await requireUser(), ["superadmin"]);
   const sp = await searchParams;
   const [reqs, fresh] = await Promise.all([deletionRequests(user), recentlyAuthenticated(user.id)]);
+  const lbl = "block text-sm font-medium";
+  const card = "flex h-full flex-col gap-4 rounded-md border border-border bg-bg p-6 lg:p-8";
   return (
-    <AdminShell title="Data requests (DPDP)" role={user.role}>
+    <AdminShell title="Data requests (DPDP)" subtitle="Export or permanently delete a student's data on request." role={user.role}>
       {!fresh && <ReauthNotice back="/super/privacy" />}
-      {sp.error && <p role="alert" className="mb-4 rounded-sm bg-danger-50 p-4 text-sm text-danger-700">{sp.error}</p>}
-      {sp.deleted && <p role="status" className="mb-4 rounded-sm bg-success-50 p-4 text-sm">Student and all practice data deleted.</p>}
-      <section className="mb-6">
-        <h2 className="mb-2 font-semibold text-ink-900">Deletion requests from students</h2>
+      {sp.error && <p role="alert" className="mb-6 rounded-sm bg-danger-50 p-4 text-sm text-danger-700">{sp.error}</p>}
+      {sp.deleted && <p role="status" className="mb-6 rounded-sm bg-success-50 p-4 text-sm text-ink-900">Student and all practice data deleted.</p>}
+      <section aria-labelledby="requests-h">
+        <div className="mb-6 flex items-baseline justify-between gap-4"><h2 id="requests-h" className="text-lg font-semibold text-ink-900">Deletion requests from students</h2><span className="text-sm text-text-600"><span className="tabular">{reqs.length}</span> pending</span></div>
         <ul className="divide-y divide-border rounded-md border border-border bg-bg text-sm">
-          {reqs.map((r, i) => <li key={i} className="flex flex-wrap justify-between gap-2 px-4 py-2"><span>{r.name} · {r.email} · {r.college}</span><span className="text-text-600">{r.at.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })}</span></li>)}
-          {!reqs.length && <li className="px-4 py-2 text-text-600">No pending requests.</li>}
+          {reqs.map((r, i) => <li key={i} className="flex flex-wrap justify-between gap-2 px-6 py-4"><span className="text-ink-900">{r.name} · {r.email} · {r.college}</span><span className="tabular text-text-600">{r.at.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })}</span></li>)}
+          {!reqs.length && <li className="px-6 py-4 text-text-600">No pending requests.</li>}
         </ul>
       </section>
-      <div className="grid gap-4 md:grid-cols-2">
-        <form method="get" action="/super/privacy/export" className="space-y-2 rounded-md border border-border bg-bg p-4">
-          <h2 className="font-semibold text-ink-900">Export a student&apos;s data</h2>
-          <label className="block text-sm">Student email<Input name="email" type="email" required className="mt-2" /></label>
-          <Button type="submit" variant="secondary">Download JSON</Button>
+      <div className="mt-12 grid gap-6 lg:mt-16 lg:grid-cols-2">
+        <form method="get" action="/super/privacy/export" className={card}>
+          <h2 className="text-base font-semibold text-ink-900">Export a student&apos;s data</h2>
+          <p className="text-sm text-text-600">Downloads the student’s profile and practice data as a JSON file.</p>
+          <label className={lbl}>Student email<Input name="email" type="email" required className="mt-2 font-normal" /></label>
+          <div className="mt-auto pt-2"><Button type="submit" variant="secondary">Download JSON</Button></div>
         </form>
-        <form action={erase} className="space-y-2 rounded-md border border-border bg-bg p-4">
-          <h2 className="font-semibold text-ink-900">Delete a student</h2>
-          <p className="text-xs text-text-600">Removes the account, answers, drills, mocks, streaks and readiness. Analytics events are de-identified. This cannot be undone.</p>
-          <label className="block text-sm">Student email<Input name="email" type="email" required className="mt-2" /></label>
-          <label className="block text-sm">Type DELETE to confirm<Input name="confirm" required className="mt-2" /></label>
-          <Button type="submit" variant="danger">Delete permanently</Button>
+        <form action={erase} className={card}>
+          <h2 className="text-base font-semibold text-ink-900">Delete a student</h2>
+          <p className="text-sm text-text-600">Removes the account, answers, drills, mocks, streaks and readiness. Analytics events are de-identified. This cannot be undone.</p>
+          <label className={lbl}>Student email<Input name="email" type="email" required className="mt-2 font-normal" /></label>
+          <label className={lbl}>Type DELETE to confirm<Input name="confirm" required className="mt-2 font-normal" /></label>
+          <div className="mt-auto pt-2"><Button type="submit" variant="danger">Delete permanently</Button></div>
         </form>
       </div>
     </AdminShell>

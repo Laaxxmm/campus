@@ -17,14 +17,18 @@ test("full mock: answer, flag, refresh mid-test resumes, submit, result + review
   await expect(page.getByTestId("mock-qno")).toHaveText(/Question 1 of \d+/);
 
   await page.getByRole("radiogroup").locator("button").first().click();
-  await page.getByRole("button", { name: /^next/i }).click();
+  await page.getByRole("button", { name: /save & next/i }).click();
   await page.getByRole("button", { name: /mark for review/i }).click();
   await page.keyboard.press("3"); // keyboard answer on Q2
   await expect(page.getByText("All answers saved")).toBeVisible({ timeout: 5000 });
 
   await page.reload();
+  // Palette: right rail on desktop, bottom-sheet drawer on mobile/tablet.
+  const opener = page.getByTestId("palette-open");
+  if (await opener.isVisible()) await opener.click();
   await expect(page.getByRole("button", { name: /Question 1, answered/ })).toBeVisible();
   await expect(page.getByRole("button", { name: /Question 2, answered, flagged/ })).toBeVisible();
+  if (await opener.isVisible()) await page.keyboard.press("Escape");
 
   // Leak check: nothing served during the test contains an explanation or answer key.
   const sql = e2eSql();

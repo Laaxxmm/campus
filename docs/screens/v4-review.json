@@ -1,0 +1,18 @@
+{
+  "01-landing": "ok",
+  "02-login": "ok",
+  "03-today": "ok",
+  "04-drill": "ok",
+  "05-mock-pretest": "ok",
+  "06-in-mock": "ok",
+  "07-in-mock-palette-drawer": "ok",
+  "08-submit-dialog": "ok",
+  "09-result": "ok",
+  "10-review": "ok",
+  "11-insights": "ok",
+  "12-company-crack-path": "ok",
+  "13-profile-coach": "ok",
+  "14-tpo-overview": "ok",
+  "15-tpo-heatmap": "ok",
+  "16-admin-queue": "ok"
+}

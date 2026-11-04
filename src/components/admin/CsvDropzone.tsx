@@ -4,6 +4,7 @@ import { FileUp } from "lucide-react";
 import type { Preview } from "@/server/services/roster";
 import { commitAction, previewAction } from "@/app/admin/import/actions";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 type Done = Awaited<ReturnType<typeof commitAction>>;
 
@@ -34,50 +35,55 @@ export function CsvDropzone({ collegeId }: { collegeId?: string }) {
   const importable = p ? p.counts.new + p.counts.update : 0;
 
   return (
-    <div className="space-y-4">
-      <div
-        onDragOver={(e) => {
-          e.preventDefault();
-          setDrag(true);
-        }}
-        onDragLeave={() => setDrag(false)}
-        onDrop={(e) => {
-          e.preventDefault();
-          setDrag(false);
-          const f = e.dataTransfer.files[0];
-          if (f) void load(f);
-        }}
-        className={cn("flex flex-col items-center justify-center rounded-md border-2 border-dashed bg-bg p-8 text-center", drag ? "border-info-500 bg-ink-50" : "border-border")}
-      >
-        <FileUp aria-hidden className="h-8 w-8 text-ink-900" />
-        <p className="mt-2 font-semibold">Drop your roster CSV here</p>
-        <p className="text-sm text-text-600">Columns: name, email, roll_no, batch (Excel → Save as CSV)</p>
-        <button type="button" onClick={() => input.current?.click()} className="mt-4 min-h-11 rounded-sm bg-ink-900 px-4 text-sm font-semibold text-white hover:bg-ink-700">
-          Choose file
-        </button>
-        <input
-          ref={input}
-          type="file"
-          accept=".csv,text/csv"
-          className="sr-only"
-          aria-label="Roster CSV file"
-          data-testid="csv-input"
-          onChange={(e) => {
-            const f = e.target.files?.[0];
+    <div className="space-y-6">
+      <div className="grid gap-6 xl:grid-cols-12">
+        <div
+          onDragOver={(e) => {
+            e.preventDefault();
+            setDrag(true);
+          }}
+          onDragLeave={() => setDrag(false)}
+          onDrop={(e) => {
+            e.preventDefault();
+            setDrag(false);
+            const f = e.dataTransfer.files[0];
             if (f) void load(f);
           }}
-        />
-        {fileName && <p className="mt-2 text-xs text-text-600">{fileName}</p>}
-      </div>
-      <div className="flex flex-wrap gap-4 text-sm">
-        <label className="flex min-h-11 items-center gap-2">
-          <input type="checkbox" checked={createBatches} onChange={(e) => refresh(e.target.checked)} className="h-5 w-5 accent-ink-900" />
-          Create batches that don&apos;t exist yet
-        </label>
-        <label className="flex min-h-11 items-center gap-2">
-          <input type="checkbox" checked={sendInvites} onChange={(e) => setSendInvites(e.target.checked)} className="h-5 w-5 accent-ink-900" />
-          Email invites to new students
-        </label>
+          className={cn("flex h-full flex-col items-center justify-center rounded-md border-2 border-dashed bg-bg p-8 text-center xl:col-span-8", drag ? "border-info-500 bg-ink-50" : "border-border")}
+        >
+          <FileUp aria-hidden className="h-8 w-8 text-ink-900" />
+          <p className="mt-2 font-semibold text-ink-900">Drop your roster CSV here</p>
+          <p className="mt-2 text-sm text-text-600">Columns: name, email, roll_no, batch (Excel → Save as CSV)</p>
+          <Button type="button" onClick={() => input.current?.click()} variant={p ? "secondary" : "primary"} data-cta={p ? undefined : "primary"} className="mt-4">
+            Choose file
+          </Button>
+          <input
+            ref={input}
+            type="file"
+            accept=".csv,text/csv"
+            className="sr-only"
+            aria-label="Roster CSV file"
+            data-testid="csv-input"
+            onChange={(e) => {
+              const f = e.target.files?.[0];
+              if (f) void load(f);
+            }}
+          />
+          {fileName && <p className="mt-2 text-xs text-text-600">{fileName}</p>}
+        </div>
+        <div role="group" aria-labelledby="import-options-h" className="h-full rounded-md border border-border bg-bg p-6 text-sm lg:p-8 xl:col-span-4">
+          <h2 id="import-options-h" className="mb-4 text-base font-semibold text-ink-900">Import options</h2>
+          <div className="space-y-2">
+            <label className="flex min-h-11 items-center gap-2">
+              <input type="checkbox" checked={createBatches} onChange={(e) => refresh(e.target.checked)} className="h-5 w-5 accent-ink-900" />
+              Create batches that don&apos;t exist yet
+            </label>
+            <label className="flex min-h-11 items-center gap-2">
+              <input type="checkbox" checked={sendInvites} onChange={(e) => setSendInvites(e.target.checked)} className="h-5 w-5 accent-ink-900" />
+              Email invites to new students
+            </label>
+          </div>
+        </div>
       </div>
       {pending && <div className="h-24 animate-pulse rounded-md bg-ink-50" aria-label="Checking file" />}
       {fatal && (
@@ -104,16 +110,16 @@ export function CsvDropzone({ collegeId }: { collegeId?: string }) {
               This import would exceed your seat limit. Remove rows or ask LearnCrew to add seats.
             </p>
           )}
-          <div className="max-h-96 overflow-auto rounded-md border border-border bg-bg">
+          <div className="max-h-96 overflow-auto rounded-md border border-border bg-bg" tabIndex={0} role="region" aria-label="Import preview rows">
             <table className="w-full text-sm">
-              <thead className="sticky top-0 bg-surface text-left text-xs text-text-600">
+              <thead className="sticky top-0 bg-surface text-left text-xs font-medium uppercase tracking-wide text-text-600">
                 <tr>
-                  <th className="px-4 py-2">Line</th>
-                  <th className="px-4 py-2">Name</th>
-                  <th className="px-4 py-2">Email</th>
-                  <th className="px-4 py-2">Roll no</th>
-                  <th className="px-4 py-2">Batch</th>
-                  <th className="px-4 py-2">Status</th>
+                  <th scope="col" className="px-4 py-2 text-right">Line</th>
+                  <th scope="col" className="px-4 py-2">Name</th>
+                  <th scope="col" className="px-4 py-2">Email</th>
+                  <th scope="col" className="px-4 py-2">Roll no</th>
+                  <th scope="col" className="px-4 py-2">Batch</th>
+                  <th scope="col" className="px-4 py-2">Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -122,7 +128,7 @@ export function CsvDropzone({ collegeId }: { collegeId?: string }) {
                   .slice(0, 500)
                   .map((r) => (
                     <tr key={r.line} className={cn("border-t border-border", r.status === "error" && "bg-coral-50")}>
-                      <td className="px-4 py-2 tabular">{r.line}</td>
+                      <td className="px-4 py-2 text-right tabular">{r.line}</td>
                       <td className="px-4 py-2">{r.name}</td>
                       <td className="px-4 py-2">{r.email}</td>
                       <td className="px-4 py-2">{r.rollNo}</td>
@@ -133,8 +139,10 @@ export function CsvDropzone({ collegeId }: { collegeId?: string }) {
               </tbody>
             </table>
           </div>
-          <button
+          <Button
             type="button"
+            variant="cta"
+            size="lg"
             disabled={!importable || p.overSeats || pending}
             onClick={() =>
               text &&
@@ -144,12 +152,12 @@ export function CsvDropzone({ collegeId }: { collegeId?: string }) {
                 if (r.ok) setPreview(await previewAction(text, createBatches, collegeId));
               })
             }
-            className="min-h-12 rounded-sm bg-accent-500 px-6 font-semibold text-ink-900 hover:bg-accent-600 disabled:opacity-40"
             data-testid="confirm-import"
+            data-cta="primary"
           >
             Import {importable} student{importable === 1 ? "" : "s"}
             {p.counts.error ? ` (skip ${p.counts.error} with errors)` : ""}
-          </button>
+          </Button>
         </section>
       )}
       {done &&

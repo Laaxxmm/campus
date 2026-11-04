@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { ArrowDownUp } from "lucide-react";
 import type { StudentRow } from "@/server/services/tpo";
+import { buttonVariants } from "@/components/ui/button";
 
 type Key = "name" | "batch" | "streak" | "xp" | "drills7" | "accuracy30" | "readiness" | "inactiveDays";
 const COLS: { key: Key; label: string; num?: boolean }[] = [
@@ -35,26 +36,26 @@ export function StudentsTable({ rows, batches }: { rows: StudentRow[]; batches: 
   }, [rows, q, batch, risk, sort]);
   const exportHref = `/tpo/students/export${batch ? `?batch=${batch}` : ""}`;
   return (
-    <div className="space-y-4">
-      <div className="no-print flex flex-wrap items-end gap-4">
-        <label className="text-sm">Search<input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Name, email or roll no." className="mt-2 block h-11 w-64 rounded-sm border border-border bg-bg px-4" /></label>
-        <label className="text-sm">Batch
-          <select value={batch} onChange={(e) => setBatch(e.target.value)} className="mt-2 block h-11 rounded-sm border border-border bg-bg px-4">
+    <div>
+      <div className="no-print mb-6 flex flex-wrap items-end gap-4">
+        <label className="text-sm font-medium">Search<input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Name, email or roll no." className="mt-2 block h-11 w-64 rounded-sm border border-border bg-bg px-4 text-base font-normal" /></label>
+        <label className="text-sm font-medium">Batch
+          <select value={batch} onChange={(e) => setBatch(e.target.value)} className="mt-2 block h-11 min-w-48 rounded-sm border border-border bg-bg px-4 text-base font-normal">
             <option value="">All batches</option>
             {batches.map((b) => <option key={b.id} value={b.id}>{b.name}</option>)}
           </select>
         </label>
         <label className="flex min-h-11 items-center gap-2 text-sm"><input type="checkbox" checked={risk} onChange={(e) => setRisk(e.target.checked)} className="h-5 w-5 accent-ink-900" />At risk only</label>
-        <a href={exportHref} className="ml-auto inline-flex min-h-11 items-center rounded-sm bg-ink-900 px-4 text-sm font-semibold text-white hover:bg-ink-700" data-testid="export-csv">Export CSV</a>
+        <a href={exportHref} className={buttonVariants({ variant: "primary", className: "ml-auto" })} data-testid="export-csv" data-cta="primary">Export CSV</a>
       </div>
-      <p className="text-xs text-text-600" aria-live="polite">{shown.length} of {rows.length} students</p>
-      <div className="overflow-x-auto rounded-md border border-border bg-bg">
+      <p className="mb-2 text-sm text-text-600" aria-live="polite"><span className="tabular">{shown.length}</span> of <span className="tabular">{rows.length}</span> students</p>
+      <div className="max-h-[70vh] overflow-auto rounded-md border border-border bg-bg" tabIndex={0} role="region" aria-label="Students">
         <table className="w-full min-w-[760px] text-sm" data-testid="students-table">
-          <thead className="bg-surface text-left text-xs text-text-600">
+          <thead className="sticky top-0 z-10 bg-surface text-left text-xs text-text-600">
             <tr>
               {COLS.map((c) => (
                 <th key={c.key} scope="col" className={`px-4 py-2 ${c.num ? "text-right" : ""}`} aria-sort={sort.key === c.key ? (sort.dir === 1 ? "ascending" : "descending") : "none"}>
-                  <button type="button" onClick={() => setSort((s) => ({ key: c.key, dir: s.key === c.key ? (s.dir === 1 ? -1 : 1) : c.num ? -1 : 1 }))} className="inline-flex min-h-8 items-center gap-1 font-semibold hover:text-ink-900">
+                  <button type="button" onClick={() => setSort((s) => ({ key: c.key, dir: s.key === c.key ? (s.dir === 1 ? -1 : 1) : c.num ? -1 : 1 }))} className="inline-flex min-h-9 items-center gap-1 font-semibold uppercase tracking-wide hover:text-ink-900">
                     {c.label}<ArrowDownUp aria-hidden className="h-3 w-3" />
                   </button>
                 </th>

@@ -7,7 +7,8 @@ import { renderStem } from "@/lib/mini-markdown";
 import { enqueue, flush, type SyncResult } from "@/lib/offline-queue";
 import { OptionButton, type OptionState } from "@/components/OptionButton";
 import { ProgressDots, type DotState } from "@/components/ProgressDots";
-import { TimerBar } from "@/components/TimerBar";
+import { QuestionTimer } from "@/components/TimerBar";
+import { Button } from "@/components/ui/button";
 import { OfflineBanner, useOnline } from "@/components/OfflineBanner";
 import { ExplanationSheet } from "./ExplanationSheet";
 
@@ -131,24 +132,26 @@ export function DrillRunner({ drillId, items, initialResults, explainEnabled }: 
   return (
     <div className="flex min-h-dvh flex-col bg-surface">
       <OfflineBanner />
-      <header className="sticky top-0 z-10 space-y-2 bg-surface px-4 pb-2 pt-4">
+      <header className="sticky top-0 z-10 border-b border-border bg-bg/95 backdrop-blur">
+        <div className="mx-auto max-w-[720px] space-y-2 px-4 pb-4 pt-2 sm:px-6">
         <div className="flex items-center justify-between text-xs text-text-600">
           <a href="/today" className="flex min-h-11 min-w-11 items-center" aria-label="Exit drill"><X className="h-5 w-5" /></a>
-          <span className="tabular">Q {local.current + 1} / {items.length}</span>
-          <span className="w-6" />
+          <span className="text-sm font-semibold tabular text-ink-900">Question {local.current + 1} of {items.length}</span>
+          <span className="w-11" />
         </div>
         <ProgressDots states={dots} />
-        <TimerBar elapsedMs={answered ? 0 : now - startedAt} limitSec={q.timeSec} />
+        <QuestionTimer elapsedMs={answered ? 0 : now - startedAt} limitSec={q.timeSec} />
+        </div>
       </header>
 
-      <main className="mx-auto w-full max-w-md flex-1 px-4 pb-72">
-        <article className="rounded-lg border border-border bg-bg p-4 text-base leading-relaxed" data-testid="stem">
+      <main className="mx-auto w-full max-w-[720px] flex-1 px-4 pb-96 pt-6 sm:px-6 lg:pt-8">
+        <article className="rounded-lg border border-border bg-bg p-6 lg:p-8 text-base leading-relaxed" data-testid="stem">
           {renderStem(q.stem)}
         </article>
       </main>
 
-      <footer className="fixed inset-x-0 bottom-0 z-20 border-t border-border bg-bg/95 px-4 pb-4 pt-4 backdrop-blur">
-        <div className="mx-auto max-w-md space-y-2">
+      <footer className="fixed inset-x-0 bottom-0 z-20 border-t border-border bg-bg/95 backdrop-blur">
+        <div className="mx-auto max-w-[720px] space-y-2 px-4 pb-4 pt-4 sm:px-6">
           {q.options.map((opt, i) => (
             <OptionButton key={i} label={LETTERS[i]} text={opt} state={optionState(i)} onClick={() => {
                 if (answered) return;
@@ -159,16 +162,16 @@ export function DrillRunner({ drillId, items, initialResults, explainEnabled }: 
           ))}
           {!answered && (
             <div className="flex gap-2 pt-2">
-              <button type="button" onClick={() => submit(null)} className="min-h-11 px-4 text-sm text-text-600">Skip</button>
-              <button type="button" disabled={selected === null || busy} onClick={() => submit(selected)} className="min-h-12 flex-1 rounded-md bg-ink-900 font-semibold text-white disabled:opacity-40">
+              <Button variant="ghost" onClick={() => submit(null)} className="text-text-600">Skip</Button>
+              <Button size="lg" disabled={selected === null} loading={busy} onClick={() => submit(selected)} className="flex-1" data-cta="primary">
                 Check answer
-              </button>
+              </Button>
             </div>
           )}
           {answered && !result && (
             <div className="flex items-center gap-2 pt-2">
               <p className="flex-1 text-sm text-text-600" data-testid="pending-note">Saved offline · will be graded when you reconnect</p>
-              <button type="button" onClick={next} className="min-h-12 rounded-md bg-ink-900 px-6 font-semibold text-white">Next</button>
+              <Button size="lg" onClick={next} data-cta="primary">Next</Button>
             </div>
           )}
         </div>
