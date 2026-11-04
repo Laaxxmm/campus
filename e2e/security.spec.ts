@@ -23,9 +23,9 @@ test("session cookie is httpOnly + SameSite=Lax", async ({ page, context }) => {
   expect(c!.sameSite).toBe("Lax");
 });
 
-test("custom JSON API rejects cross-origin / missing Origin (CSRF)", async ({ request }) => {
+test("custom JSON API rejects cross-origin / missing Origin (CSRF)", async ({ request, baseURL }) => {
   const r1 = await request.post("/api/sync", { data: { attempts: [] }, headers: { origin: "https://evil.example" } });
   expect(r1.status()).toBe(403);
-  const r2 = await request.post("/api/sync", { data: { attempts: [] }, headers: { "content-type": "text/plain", origin: "http://localhost:3100" } });
+  const r2 = await request.post("/api/sync", { data: { attempts: [] }, headers: { "content-type": "text/plain", origin: new URL(baseURL!).origin } });
   expect(r2.status()).toBe(403);
 });

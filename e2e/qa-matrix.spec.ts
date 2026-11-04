@@ -18,11 +18,11 @@ test("anon: every protected route redirects to /login; public routes are open", 
   }
 });
 
-test("JSON APIs: 401 when anonymous, 403 cross-origin (CSRF) for every POST route", async ({ request }) => {
+test("JSON APIs: 401 when anonymous, 403 cross-origin (CSRF) for every POST route", async ({ request, baseURL }) => {
   const id = "00000000-0000-4000-8000-000000000000";
   const routes = ["/api/sync", "/api/explain", `/api/mocks/attempt/${id}/save`, `/api/mocks/attempt/${id}/submit`];
   for (const r of routes) {
-    const same = await request.post(r, { data: {}, headers: { origin: "http://localhost:3100" } });
+    const same = await request.post(r, { data: {}, headers: { origin: new URL(baseURL!).origin } });
     expect(same.status(), `${r} anon`).toBe(401);
     const evil = await request.post(r, { data: {}, headers: { origin: "https://evil.example" } });
     expect(evil.status(), `${r} cross-origin`).toBe(403);
