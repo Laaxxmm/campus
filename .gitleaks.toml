@@ -1,0 +1,15 @@
+# gitleaks config — default rules plus a narrow allowlist of intentional test fixtures.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Test-only fixture values and build output"
+paths = [
+  '''^\.next/''',
+  '''(^|/)playwright\.config\.ts$''',   # e2e CRON_SECRET for the throwaway e2e server
+  '''^tests/''',                        # unit-test secrets
+  '''^\.github/workflows/ci\.yml$''',   # CI-only AUTH_SECRET/CRON_SECRET for the ephemeral CI database
+]
+# 27253db: Lighthouse HTML embedded a session cookie for a local, throwaway dev database (sessions since deleted;
+# scrubbed from the reports in the next commit). Not a production credential.
+commits = ["27253db68173e582b95a2252a60579249e1c0d37"]

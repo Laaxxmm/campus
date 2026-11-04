@@ -20,7 +20,7 @@ export function OptionButton({ label, text, state, onClick }: { label: string; t
     >
       <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-pill bg-surface text-sm font-semibold">{label}</span>
       <span className="flex-1">{text}</span>
-      {state === "correct" && <Check aria-label="correct" className="h-5 w-5 text-success-500" />}
+      {state === "correct" && <Check aria-label="correct" className="h-5 w-5 text-success-700" />}
       {state === "wrong" && <XIcon aria-label="wrong" className="h-5 w-5 text-danger-500" />}
     </button>
   );

@@ -35,7 +35,7 @@ export default async function CollegeSettings({ searchParams }: { searchParams: 
         <label className="block text-sm">College name<Input name="name" defaultValue={s.college.name} required className="mt-1" /></label>
         <label className="block text-sm">City<Input name="city" defaultValue={s.college.city ?? ""} className="mt-1" /></label>
         <Button type="submit" variant="secondary">Save</Button>
-        {sp.saved && <p role="status" className="text-sm text-success-500">Saved.</p>}
+        {sp.saved && <p role="status" className="text-sm text-success-700">Saved.</p>}
       </form>
     </TpoShell>
   );

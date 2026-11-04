@@ -18,9 +18,9 @@ export function ReviewList({ items }: { items: MockReviewItem[] }) {
   const shown = items.filter((q) => (f === "all" ? true : f === "wrong" ? q.yourChoice !== null && !q.correct : f === "flagged" ? q.flagged : q.yourChoice === null));
   return (
     <section aria-labelledby="review-h">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <h2 id="review-h" className="text-lg font-semibold text-ink-900">Review</h2>
-        <div role="tablist" className="flex gap-1">
+        <div role="tablist" className="flex flex-wrap gap-1">
           {FILTERS.map((x) => (
             <button key={x.id} role="tab" aria-selected={f === x.id} onClick={() => setF(x.id)} className={cn("min-h-9 rounded-pill border px-3 text-sm", f === x.id ? "border-ink-900 bg-ink-900 text-white" : "border-border bg-bg")}>
               {x.label}
@@ -33,7 +33,7 @@ export function ReviewList({ items }: { items: MockReviewItem[] }) {
           <li key={q.id} className="rounded-md border border-border bg-bg p-4" data-testid="review-item">
             <div className="mb-2 flex items-center gap-2 text-xs text-text-600">
               <span className="font-semibold">Q{q.index + 1}</span>
-              {q.correct ? <span className="inline-flex items-center gap-1 text-success-500"><Check aria-hidden className="h-3.5 w-3.5" />Correct</span> : q.yourChoice === null ? <span>Skipped</span> : <span className="inline-flex items-center gap-1 text-danger-500"><X aria-hidden className="h-3.5 w-3.5" />Wrong</span>}
+              {q.correct ? <span className="inline-flex items-center gap-1 text-success-700"><Check aria-hidden className="h-3.5 w-3.5" />Correct</span> : q.yourChoice === null ? <span>Skipped</span> : <span className="inline-flex items-center gap-1 text-danger-500"><X aria-hidden className="h-3.5 w-3.5" />Wrong</span>}
               {q.flagged && <span className="inline-flex items-center gap-1"><Flag aria-hidden className="h-3.5 w-3.5 text-coral-500" />Flagged</span>}
               <span className="ml-auto tabular">{Math.round(q.timeMs / 1000)}s</span>
             </div>

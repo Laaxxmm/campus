@@ -167,7 +167,7 @@ export function DrillRunner({ drillId, items, initialResults, explainEnabled }: 
         </div>
       </footer>
 
-      {result && <ExplanationSheet result={result} onNext={next} last={local.current === items.length - 1} explainEnabled={explainEnabled} />}
+      {result && <ExplanationSheet result={result} onNext={next} last={local.current === items.length - 1} explainEnabled={explainEnabled} correctText={q.options[result.correctDisplayed]} />}
     </div>
   );
 }

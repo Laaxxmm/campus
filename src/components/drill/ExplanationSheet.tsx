@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Zap } from "lucide-react";
 import type { AttemptResultDto } from "@/lib/drill-types";
 
-export function ExplanationSheet({ result, onNext, last, explainEnabled }: { result: AttemptResultDto; onNext: () => void; last: boolean; explainEnabled: boolean }) {
+export function ExplanationSheet({ result, onNext, last, explainEnabled, correctText }: { result: AttemptResultDto; onNext: () => void; last: boolean; explainEnabled: boolean; correctText?: string }) {
   const [more, setMore] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   async function explainMore() {
@@ -20,7 +20,7 @@ export function ExplanationSheet({ result, onNext, last, explainEnabled }: { res
   return (
     <section role="dialog" aria-label="Explanation" className="fixed inset-x-0 bottom-0 z-30 max-h-[70dvh] overflow-y-auto rounded-t-lg border-t border-border bg-bg px-4 pb-4 pt-4 shadow-2xl">
       <div className="mx-auto max-w-md">
-        <p className={`text-lg font-bold ${result.correct ? "text-success-500" : "text-danger-500"}`} data-testid="verdict">
+        <p className={`text-lg font-bold ${result.correct ? "text-success-700" : "text-danger-500"}`} data-testid="verdict">
           {result.correct ? `Correct! +${result.xp} XP` : result.chosenDisplayed === null ? "Skipped" : "Not quite"}
         </p>
         <p className="mt-2 text-sm leading-relaxed text-text-900">{result.explanation}</p>

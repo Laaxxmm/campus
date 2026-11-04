@@ -52,7 +52,7 @@ export default async function StudentDetail({ params, searchParams }: { params: 
         <ul className="grid gap-1 sm:grid-cols-2 lg:grid-cols-3">
           {s.topics.map((t) => (
             <li key={t.topic} className="flex items-center gap-2 text-sm">
-              <span className="inline-flex h-7 w-10 items-center justify-center rounded-sm tabular" style={{ background: heatColor(t.mastery), color: t.mastery >= 75 ? "#fff" : undefined }}>{t.mastery}</span>
+              <span className="inline-flex h-7 w-10 items-center justify-center rounded-sm tabular" style={{ background: heatColor(t.mastery), color: "var(--text-900)" }}>{t.mastery}</span>
               <span className="flex-1">{t.name}</span>
               <span className="text-xs text-text-600">L{t.band}</span>
             </li>

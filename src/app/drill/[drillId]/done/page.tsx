@@ -41,7 +41,7 @@ export default async function DrillDone({ params }: { params: Promise<{ drillId:
           const r = data.results.find((x) => x.questionId === it.id);
           return (
             <li key={it.id} className="flex items-center gap-2 rounded-md bg-bg px-3 py-2">
-              <span className={r?.correct ? "text-success-500" : "text-danger-500"}>{r ? (r.correct ? "✓" : "✗") : "•"}</span>
+              <span className={r?.correct ? "text-success-700" : "text-danger-500"}>{r ? (r.correct ? "✓" : "✗") : "•"}</span>
               <span className="truncate">Q{i + 1}. {it.stem.split("\n")[0]}</span>
             </li>
           );

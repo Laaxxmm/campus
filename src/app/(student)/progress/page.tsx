@@ -17,7 +17,7 @@ export default async function ProgressPage() {
           {p.companies.map((c) => (
             <li key={c.id} className="rounded-md border border-border bg-bg p-3">
               <div className="text-xs text-text-600">{c.name}</div>
-              <div className={`text-2xl font-bold tabular ${c.score >= 70 ? "text-success-500" : c.score >= 40 ? "text-text-900" : "text-danger-500"}`}>{c.score}</div>
+              <div className={`text-2xl font-bold tabular ${c.score >= 70 ? "text-success-700" : c.score >= 40 ? "text-text-900" : "text-danger-500"}`}>{c.score}</div>
             </li>
           ))}
         </ul>

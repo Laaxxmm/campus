@@ -85,7 +85,7 @@ export default async function Review({ searchParams }: { searchParams: Promise<S
                 <div className="grid gap-4 md:grid-cols-2">
                   <div>
                     <p className="whitespace-pre-line text-sm">{q.stem}</p>
-                    <ol className="mt-2 space-y-1 text-sm">{q.options.map((o, i) => <li key={i} className={i === q.answerIndex ? "font-semibold text-success-500" : ""}>{LETTERS[i]}. {o}{i === q.answerIndex && " ✓ key"}</li>)}</ol>
+                    <ol className="mt-2 space-y-1 text-sm">{q.options.map((o, i) => <li key={i} className={i === q.answerIndex ? "font-semibold text-success-700" : ""}>{LETTERS[i]}. {o}{i === q.answerIndex && " ✓ key"}</li>)}</ol>
                     <p className="mt-2 text-sm text-text-600">{q.explanation}</p>
                   </div>
                   <div className="rounded-sm bg-surface p-3 text-sm">

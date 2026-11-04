@@ -43,7 +43,7 @@ export function Heatmap({ topics, rows, rowHref, rowLabel, metric = "accuracy" }
                 <td key={topics[i].id} className="p-0.5">
                   <div
                     className="flex h-8 min-w-8 items-center justify-center rounded-sm tabular"
-                    style={{ background: c ? heatColor(c.mastery) : "var(--surface)", color: c && c.mastery >= 75 ? "#fff" : "var(--text-900)" }}
+                    style={{ background: c ? heatColor(c.mastery) : "var(--surface)", color: "var(--text-900)" }}
                     title={c ? `${topics[i].name}: ${c.mastery}${metric === "accuracy" ? "%" : ""} (${c.n} student${c.n === 1 ? "" : "s"})` : `${topics[i].name}: no data`}
                   >
                     {c ? c.mastery : "·"}
